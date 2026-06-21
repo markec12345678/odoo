@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_l10n_si_helpdesk_ticket" model="ir.sequence">
+            <field name="name">SI Helpdesk Ticket</field>
+            <field name="code">l10n_si.helpdesk.ticket</field>
+            <field name="prefix">TICKET/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Default stages -->
+        <record id="stage_novo" model="l10n_si.helpdesk.stage">
+            <field name="name">Novo</field>
+            <field name="sequence">10</field>
+            <field name="is_default" eval="True"/>
+        </record>
+        <record id="stage_v_obravnavi" model="l10n_si.helpdesk.stage">
+            <field name="name">V obravnavi</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="stage_čaka_odgovor" model="l10n_si.helpdesk.stage">
+            <field name="name">Čaka odgovor</field>
+            <field name="sequence">30</field>
+            <field name="fold" eval="True"/>
+        </record>
+        <record id="stage_rešeno" model="l10n_si.helpdesk.stage">
+            <field name="name">Rešeno</field>
+            <field name="sequence">40</field>
+        </record>
+        <record id="stage_zaprto" model="l10n_si.helpdesk.stage">
+            <field name="name">Zaprto</field>
+            <field name="sequence">50</field>
+            <field name="is_close" eval="True"/>
+            <field name="fold" eval="True"/>
+        </record>
+
+        <!-- Default team -->
+        <record id="team_support" model="l10n_si.helpdesk.team">
+            <field name="name">Tehnična podpora</field>
+            <field name="sequence">10</field>
+            <field name="sla_response_hours">4.0</field>
+            <field name="sla_resolution_hours">48.0</field>
+            <field name="use_automatic_assignment" eval="True"/>
+        </record>
+    </data>
+</odoo>

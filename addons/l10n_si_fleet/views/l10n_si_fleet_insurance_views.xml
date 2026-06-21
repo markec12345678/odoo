@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_fleet_insurance_tree" model="ir.ui.view">
+        <field name="name">l10n_si.fleet.insurance.tree</field>
+        <field name="model">l10n_si.fleet.insurance</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="date_to &lt; context_today().strftime('%Y-%m-%d')"
+                  decoration-warning="date_to &lt; (context_today() + relativedelta(days=30)).strftime('%Y-%m-%d')">
+                <field name="name"/>
+                <field name="vehicle_id"/>
+                <field name="insurance_company"/>
+                <field name="policy_number"/>
+                <field name="insurance_type"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="premium" sum="Skupaj premija"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_fleet_insurance_form" model="ir.ui.view">
+        <field name="name">l10n_si.fleet.insurance.form</field>
+        <field name="model">l10n_si.fleet.insurance</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="vehicle_id"/>
+                            <field name="insurance_company"/>
+                            <field name="policy_number"/>
+                            <field name="insurance_type"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="premium"/>
+                            <field name="deductible"/>
+                            <field name="vendor_id"/>
+                        </group>
+                    </group>
+                    <group string="Opombe">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_fleet_insurance" model="ir.actions.act_window">
+        <field name="name">Zavarovanja (SI)</field>
+        <field name="res_model">l10n_si.fleet.insurance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_fleet_insurance"
+              name="Zavarovanja"
+              parent="fleet.fleet_vehicles"
+              action="action_l10n_si_fleet_insurance"
+              sequence="50"/>
+</odoo>

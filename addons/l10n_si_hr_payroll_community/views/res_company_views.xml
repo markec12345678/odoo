@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_si_payroll" model="ir.ui.view">
+        <field name="name">res.company.form.si.payroll</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Slovenian Payroll"
+                       attrs="{'invisible': [('country_id', '!=', %(base.si)s)]}">
+                    <field name="si_payroll_minimum_bruto"/>
+                    <field name="si_payroll_injury_rate"/>
+                    <field name="si_payroll_auto_m4"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

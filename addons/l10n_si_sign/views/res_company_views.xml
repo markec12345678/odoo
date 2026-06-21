@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_si_sign" model="ir.ui.view">
+        <field name="name">res.company.form.si.sign</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Slovenian Digital Signing (eIDAS)"
+                       attrs="{'invisible': [('country_id', '!=', %(base.si)s)]}">
+                    <group>
+                        <field name="si_sign_certificate" filename="si_sign_certificate_filename"/>
+                        <field name="si_sign_certificate_filename" invisible="1"/>
+                        <field name="si_sign_certificate_password" password="True"/>
+                    </group>
+                    <group>
+                        <field name="si_sign_tsa_url"/>
+                        <field name="si_sign_default_workflow"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

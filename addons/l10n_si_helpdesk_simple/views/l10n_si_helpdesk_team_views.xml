@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_helpdesk_team_tree" model="ir.ui.view">
+        <field name="name">l10n_si.helpdesk.team.tree</field>
+        <field name="model">l10n_si.helpdesk.team</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="leader_id"/>
+                <field name="sla_response_hours"/>
+                <field name="sla_resolution_hours"/>
+                <field name="open_ticket_count"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_helpdesk_team_form" model="ir.ui.view">
+        <field name="name">l10n_si.helpdesk.team.form</field>
+        <field name="model">l10n_si.helpdesk.team</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_tickets" type="object"
+                                class="oe_stat_button" icon="fa-ticket">
+                            <field name="open_ticket_count" widget="statinfo"
+                                   string="Open Tickets"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="leader_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="sla_response_hours"/>
+                            <field name="sla_resolution_hours"/>
+                            <field name="use_automatic_assignment"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Members" name="members">
+                            <field name="member_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="email"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Stages">
+                            <field name="stage_ids"/>
+                        </page>
+                        <page string="Description">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_helpdesk_team" model="ir.actions.act_window">
+        <field name="name">Helpdesk Teams (SI)</field>
+        <field name="res_model">l10n_si.helpdesk.team</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

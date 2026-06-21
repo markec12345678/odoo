@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_fleet_maintenance_tree" model="ir.ui.view">
+        <field name="name">l10n_si.fleet.maintenance.tree</field>
+        <field name="model">l10n_si.fleet.maintenance</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'draft'"
+                  decoration-success="state == 'done'">
+                <field name="date"/>
+                <field name="vehicle_id"/>
+                <field name="maintenance_type"/>
+                <field name="vendor_id"/>
+                <field name="odometer"/>
+                <field name="cost" sum="Skupaj"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_fleet_maintenance_form" model="ir.ui.view">
+        <field name="name">l10n_si.fleet.maintenance.form</field>
+        <field name="model">l10n_si.fleet.maintenance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_done" type="object" string="Opravi" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="vehicle_id"/>
+                            <field name="date"/>
+                            <field name="maintenance_type"/>
+                        </group>
+                        <group>
+                            <field name="vendor_id"/>
+                            <field name="cost"/>
+                            <field name="odometer"/>
+                            <field name="next_service_odometer"/>
+                            <field name="invoice_number"/>
+                        </group>
+                    </group>
+                    <group string="Opis del">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_fleet_maintenance" model="ir.actions.act_window">
+        <field name="name">Servisi (SI)</field>
+        <field name="res_model">l10n_si.fleet.maintenance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_fleet_maintenance"
+              name="Servisi"
+              parent="fleet.fleet_vehicles"
+              action="action_l10n_si_fleet_maintenance"
+              sequence="40"/>
+</odoo>

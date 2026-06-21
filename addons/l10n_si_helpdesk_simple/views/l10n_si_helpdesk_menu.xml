@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_si_helpdesk_root"
+              name="SI Helpdesk"
+              web_icon="l10n_si_helpdesk_simple,static/description/icon.png"
+              sequence="60"/>
+
+    <menuitem id="menu_si_helpdesk_ticket"
+              name="Tickets"
+              parent="menu_si_helpdesk_root"
+              action="action_l10n_si_helpdesk_ticket"
+              sequence="10"/>
+
+    <menuitem id="menu_si_helpdesk_config"
+              name="Configuration"
+              parent="menu_si_helpdesk_root"
+              sequence="90"/>
+
+    <menuitem id="menu_si_helpdesk_team"
+              name="Teams"
+              parent="menu_si_helpdesk_config"
+              action="action_l10n_si_helpdesk_team"
+              sequence="10"/>
+
+    <menuitem id="menu_si_helpdesk_stage"
+              name="Stages"
+              parent="menu_si_helpdesk_config"
+              action="action_l10n_si_helpdesk_stage"
+              sequence="20"/>
+
+    <menuitem id="menu_si_helpdesk_canned_response"
+              name="Canned Responses"
+              parent="menu_si_helpdesk_config"
+              action="action_l10n_si_helpdesk_canned_response"
+              sequence="30"/>
+</odoo>

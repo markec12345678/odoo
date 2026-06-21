@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_contract_form_si" model="ir.ui.view">
+        <field name="name">hr.contract.form.si</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Slovenian Contract Details" name="si_contract">
+                    <group>
+                        <field name="si_work_hours_per_week"/>
+                        <field name="si_employment_type"/>
+                        <field name="si_probation_until"/>
+                    </group>
+                    <group>
+                        <field name="si_job_title_code"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

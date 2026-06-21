@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_payslip_tree" model="ir.ui.view">
+        <field name="name">l10n_si.payslip.tree</field>
+        <field name="model">l10n_si.payslip</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'draft'"
+                  decoration-success="state == 'paid'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="date_from"/>
+                <field name="employee_id"/>
+                <field name="structure_id"/>
+                <field name="bruto_amount" sum="Skupaj bruto"/>
+                <field name="contributions_employee" sum="Prispevki D"/>
+                <field name="income_tax" sum="Dohodnina"/>
+                <field name="net_amount" sum="Skupaj neto"/>
+                <field name="total_cost_employer" sum="Skupaj strošek"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_payslip_form" model="ir.ui.view">
+        <field name="name">l10n_si.payslip.form</field>
+        <field name="model">l10n_si.payslip</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_post_to_accounting" type="object" string="Knjiži" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('cancelled',))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="contract_id"/>
+                            <field name="structure_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="payment_date"/>
+                            <field name="move_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Vhodni podatki">
+                            <group>
+                                <group>
+                                    <field name="bruto_amount"/>
+                                    <field name="work_hours"/>
+                                    <field name="work_days"/>
+                                </group>
+                                <group>
+                                    <field name="sick_hours"/>
+                                    <field name="overtime_hours"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Obračun">
+                            <group>
+                                <group string="Prispevki">
+                                    <field name="contributions_employee"/>
+                                    <field name="contributions_employer"/>
+                                </group>
+                                <group string="Olajšave">
+                                    <field name="tax_relief_general"/>
+                                    <field name="tax_relief_children"/>
+                                    <field name="tax_relief_other"/>
+                                </group>
+                                <group string="Dohodnina">
+                                    <field name="tax_base"/>
+                                    <field name="income_tax"/>
+                                </group>
+                                <group string="Neto">
+                                    <field name="net_amount"/>
+                                    <field name="total_cost_employer"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_payslip_search" model="ir.ui.view">
+        <field name="name">l10n_si.payslip.search</field>
+        <field name="model">l10n_si.payslip</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="structure_id"/>
+                <filter name="filter_draft" string="Osnutki" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_confirmed" string="Potrjene" domain="[('state', '=', 'confirmed')]"/>
+                <filter name="filter_paid" string="Plačane" domain="[('state', '=', 'paid')]"/>
+                <group string="Group By">
+                    <filter name="group_employee" string="Zaposleni" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_month" string="Mesec" context="{'group_by': 'date_from:month'}"/>
+                    <filter name="group_structure" string="Struktura" context="{'group_by': 'structure_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_payslip" model="ir.actions.act_window">
+        <field name="name">Payslips (SI)</field>
+        <field name="res_model">l10n_si.payslip</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_payslip"
+              name="Payslips"
+              parent="menu_si_payroll_root"
+              action="action_l10n_si_payslip"/>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_bank_sync_config_user,l10n_si.bank.sync.config.user,model_l10n_si_bank_sync_config,account.group_account_invoice,1,0,0,0
+access_l10n_si_bank_sync_config_manager,l10n_si.bank.sync.config.manager,model_l10n_si_bank_sync_config,account.group_account_manager,1,1,1,1
+access_l10n_si_bank_sync_log_invoice,l10n_si.bank.sync.log.invoice,model_l10n_si_bank_sync_log,account.group_account_invoice,1,0,1,0
+access_l10n_si_bank_sync_log_manager,l10n_si.bank.sync.log.manager,model_l10n_si_bank_sync_log,account.group_account_manager,1,1,1,1

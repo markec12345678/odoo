@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_fleet_trip_user,l10n_si.fleet.trip.user,model_l10n_si_fleet_trip,base.group_user,1,1,1,0
+access_l10n_si_fleet_trip_manager,l10n_si.fleet.trip.manager,model_l10n_si_fleet_trip,base.group_system,1,1,1,1
+access_l10n_si_fleet_fuel_user,l10n_si.fleet.fuel.user,model_l10n_si_fleet_fuel,base.group_user,1,1,1,0
+access_l10n_si_fleet_fuel_manager,l10n_si.fleet.fuel.manager,model_l10n_si_fleet_fuel,base.group_system,1,1,1,1
+access_l10n_si_fleet_maintenance_user,l10n_si.fleet.maintenance.user,model_l10n_si_fleet_maintenance,base.group_user,1,1,1,0
+access_l10n_si_fleet_maintenance_manager,l10n_si.fleet.maintenance.manager,model_l10n_si_fleet_maintenance,base.group_system,1,1,1,1
+access_l10n_si_fleet_insurance_user,l10n_si.fleet.insurance.user,model_l10n_si_fleet_insurance,base.group_user,1,0,0,0
+access_l10n_si_fleet_insurance_manager,l10n_si.fleet.insurance.manager,model_l10n_si_fleet_insurance,base.group_system,1,1,1,1

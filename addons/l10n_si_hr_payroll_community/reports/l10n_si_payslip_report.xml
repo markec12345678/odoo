@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_l10n_si_payslip">
+        <t t-call="web.html_container">
+            <t t-Call="web.external_layout">
+                <div class="page">
+                    <h2 class="text-center">PLAČILNI LIST</h2>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-6">
+                            <strong>Zaposleni:</strong>
+                            <span t-field="doc.employee_id.name"/><br/>
+                            <strong>Davčna št.:</strong>
+                            <span t-field="doc.employee_id.si_tax_number"/><br/>
+                            <strong>ZZZS:</strong>
+                            <span t-field="doc.employee_id.si_health_insurance_id"/>
+                        </div>
+                        <div class="col-6 text-right">
+                            <strong>Obdobje:</strong>
+                            <span t-field="doc.date_from"/>
+                            –
+                            <span t-field="doc.date_to"/><br/>
+                            <strong>Struktura:</strong>
+                            <span t-field="doc.structure_id.name"/>
+                        </div>
+                    </div>
+                    <table class="table table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Postavka</th>
+                                <th class="text-right">Znesek (€)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Bruto znesek</td><td class="text-right"><span t-field="doc.bruto_amount" t-options='{"widget":"monetary"}'/></td></tr>
+                            <tr><td>Prispevki delojemalca (22.10%)</td><td class="text-right"><span t-field="doc.contributions_employee"/></td></tr>
+                            <tr><td>Splošna olajšava</td><td class="text-right"><span t-field="doc.tax_relief_general"/></td></tr>
+                            <tr><td>Olajšava za otroke</td><td class="text-right"><span t-field="doc.tax_relief_children"/></td></tr>
+                            <tr><td>Druge olajšave</td><td class="text-right"><span t-field="doc.tax_relief_other"/></td></tr>
+                            <tr class="table-active"><td><strong>Osnova za dohodnino</strong></td><td class="text-right"><strong><span t-field="doc.tax_base"/></strong></td></tr>
+                            <tr><td>Akontacija dohodnine</td><td class="text-right"><span t-field="doc.income_tax"/></td></tr>
+                            <tr class="table-success"><td><strong>NETO IZPLAČILO</strong></td><td class="text-right"><strong><span t-field="doc.net_amount"/></strong></td></tr>
+                            <tr><td colspan="2"><small>Prispevki delodajalca (16.10%): <span t-field="doc.contributions_employer"/> €</small></td></tr>
+                            <tr><td colspan="2"><small>Skupni strošek delodajalca: <span t-field="doc.total_cost_employer"/> €</small></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <small>
+                                <p>Olajšava za otroke: ZDoh-2, 110. člen.</p>
+                                <p>Akontacija dohodnine: ZDoh-2, 95. člen.</p>
+                                <p>Prispevki: ZPrD, 13. in 18. člen.</p>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_report_l10n_si_payslip"
+            model="l10n_si.payslip"
+            string="Plačilni list (SI)"
+            report_type="qweb-pdf"
+            name="l10n_si_hr_payroll_community.report_l10n_si_payslip"
+            file="l10n_si_hr_payroll_community.report_l10n_si_payslip"
+            print_report_name="'PLACA_%s_%s' % (object.employee_id.name, object.date_from)"/>
+</odoo>

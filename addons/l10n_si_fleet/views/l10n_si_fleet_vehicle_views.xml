@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_fleet_vehicle_form_si" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form.si</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Slovenian Fleet Data" name="si_fleet">
+                    <group>
+                        <field name="si_plate_number"/>
+                        <field name="si_vin"/>
+                        <field name="si_engine_number"/>
+                        <field name="si_year_of_production"/>
+                        <field name="si_fuel_type"/>
+                        <field name="si_fuel_consumption"/>
+                    </group>
+                    <group>
+                        <field name="si_insurance_company"/>
+                        <field name="si_insurance_policy"/>
+                        <field name="si_insurance_expiry"/>
+                        <field name="si_registration_expiry"/>
+                        <field name="si_technical_inspection_expiry"/>
+                    </group>
+                    <group>
+                        <field name="si_owner"/>
+                        <field name="si_acquisition_date"/>
+                        <field name="si_acquisition_value"/>
+                        <field name="si_current_value"/>
+                        <field name="si_assigned_driver_id"/>
+                    </group>
+                    <group string="Stroški (skupaj)">
+                        <field name="si_total_fuel_cost" widget="monetary"/>
+                        <field name="si_total_maintenance_cost" widget="monetary"/>
+                        <field name="si_total_cost" widget="monetary"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_trips" type="object" class="oe_stat_button" icon="fa-road">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Vozni listi</span>
+                    </div>
+                </button>
+                <button name="action_view_fuel" type="object" class="oe_stat_button" icon="fa-tachometer">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Gorivo</span>
+                    </div>
+                </button>
+                <button name="action_view_maintenance" type="object" class="oe_stat_button" icon="fa-wrench">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Servisi</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

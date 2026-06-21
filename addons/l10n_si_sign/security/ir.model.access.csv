@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_sign_request_user,l10n_si.sign.request.user,model_l10n_si_sign_request,base.group_user,1,1,1,0
+access_l10n_si_sign_request_manager,l10n_si.sign.request.manager,model_l10n_si_sign_request,base.group_system,1,1,1,1
+access_l10n_si_sign_signature_user,l10n_si.sign.signature.user,model_l10n_si_sign_signature,base.group_user,1,1,1,0
+access_l10n_si_sign_signature_manager,l10n_si.sign.signature.manager,model_l10n_si_sign_signature,base.group_system,1,1,1,1
+access_l10n_si_sign_upload_wizard,l10n_si.sign.upload.wizard,model_l10n_si_sign_upload_wizard,base.group_user,1,1,1,1

@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_helpdesk_team_user,l10n_si.helpdesk.team.user,model_l10n_si_helpdesk_team,base.group_user,1,0,0,0
+access_l10n_si_helpdesk_team_manager,l10n_si.helpdesk.team.manager,model_l10n_si_helpdesk_team,base.group_system,1,1,1,1
+access_l10n_si_helpdesk_stage_user,l10n_si.helpdesk.stage.user,model_l10n_si_helpdesk_stage,base.group_user,1,0,0,0
+access_l10n_si_helpdesk_stage_manager,l10n_si.helpdesk.stage.manager,model_l10n_si_helpdesk_stage,base.group_system,1,1,1,1
+access_l10n_si_helpdesk_ticket_user,l10n_si.helpdesk.ticket.user,model_l10n_si_helpdesk_ticket,base.group_user,1,1,1,0
+access_l10n_si_helpdesk_ticket_manager,l10n_si.helpdesk.ticket.manager,model_l10n_si_helpdesk_ticket,base.group_system,1,1,1,1
+access_l10n_si_helpdesk_tag_user,l10n_si.helpdesk.tag.user,model_l10n_si_helpdesk_tag,base.group_user,1,1,1,0
+access_l10n_si_helpdesk_tag_manager,l10n_si.helpdesk.tag.manager,model_l10n_si_helpdesk_tag,base.group_system,1,1,1,1
+access_l10n_si_helpdesk_canned_response_user,l10n_si.helpdesk.canned.response.user,model_l10n_si_helpdesk_canned_response,base.group_user,1,0,0,0
+access_l10n_si_helpdesk_canned_response_manager,l10n_si.helpdesk.canned.response.manager,model_l10n_si_helpdesk_canned_response,base.group_system,1,1,1,1

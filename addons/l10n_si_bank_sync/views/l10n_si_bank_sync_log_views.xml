@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_bank_sync_log_tree" model="ir.ui.view">
+        <field name="name">l10n_si.bank.sync.log.tree</field>
+        <field name="model">l10n_si.bank.sync.log</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'success'"
+                  decoration-danger="state == 'error'">
+                <field name="create_date"/>
+                <field name="config_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="state"/>
+                <field name="statement_count"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_bank_sync_log_form" model="ir.ui.view">
+        <field name="name">l10n_si.bank.sync.log.form</field>
+        <field name="model">l10n_si.bank.sync.log</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="config_id"/>
+                        <field name="state"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="statement_count"/>
+                    </group>
+                    <group string="Sporočilo">
+                        <field name="message" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_bank_sync_log" model="ir.actions.act_window">
+        <field name="name">SI Bank Sync Logs</field>
+        <field name="res_model">l10n_si.bank.sync.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_bank_sync_log"
+              name="Logs"
+              parent="menu_si_bank_sync_root"
+              action="action_l10n_si_bank_sync_log"/>
+</odoo>

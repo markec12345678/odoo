@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Customer portal: list + form view -->
+    <template id="portal_my_home_si_helpdesk" name="Portal My Home: SI Helpdesk" inherit_id="portal.portal_my_home" priority="40">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/l10n_si_helpdesk_simple/static/description/icon.png'"/>
+                <t t-set="title">Moje zahtevke</t>
+                <t t-set="url" t-value="'/my/tickets'"/>
+                <t t-set="text">Pregled mojih zahtevkov in odgovorov</t>
+                <t t-if="ticket_count" t-set="count" t-value="ticket_count"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_tickets" name="My SI Helpdesk Tickets">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title_string">Moje zahtevke</t>
+            </t>
+            <t t-if="not tickets">
+                <div class="alert alert-info">Nimate zahtevkov.</div>
+            </t>
+            <t t-if="tickets" t-call="portal.portal_table">
+                <thead>
+                    <tr>
+                        <th>Številka</th>
+                        <th>Zadeva</th>
+                        <th>Faza</th>
+                        <th class="text-right">Datum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="tickets" t-as="ticket">
+                        <tr>
+                            <td><a t-att-href="'/my/ticket/%s' % ticket.id"><t t-out="ticket.number"/></a></td>
+                            <td><t t-out="ticket.name"/></td>
+                            <td><t t-out="ticket.stage_id.name"/></td>
+                            <td class="text-right"><t t-out="ticket.create_date" t-options='{"widget": "date"}'/></td>
+                        </tr>
+                    </t>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_my_ticket" name="My SI Helpdesk Ticket">
+        <t t-call="portal.portal_layout">
+            <div class="row">
+                <div class="col-12">
+                    <h1><t t-out="ticket.number"/> - <t t-out="ticket.name"/></h1>
+                    <p>
+                        <strong>Faza:</strong> <t t-out="ticket.stage_id.name"/><br/>
+                        <strong>Datum:</strong> <t t-out="ticket.create_date" t-options='{"widget": "date"}'/><br/>
+                        <strong>Prioriteta:</strong> <t t-out="dict(ticket._fields['priority'].selection).get(ticket.priority)"/>
+                    </p>
+                    <hr/>
+                    <h3>Opis</h3>
+                    <div t-out="ticket.description" class="mb-4"/>
+                    <h3>Komunikacija</h3>
+                    <t t-foreach="ticket.message_ids" t-as="message">
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <small class="text-muted"><t t-out="message.author_id.name"/> - <t t-out="message.date"/></small>
+                                <div t-out="message.body"/>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,10 +1,12 @@
 # Slovenian Localization Modules for Odoo 19.0
 
-Six custom addons developed for the Slovenian market. All installed via the
+Eleven custom addons developed for the Slovenian market. All installed via the
 standard `--addons-path` mechanism; each depends on the previous one(s) as
 noted below.
 
 ## Modules
+
+### Tier 1 — Core regulatory compliance (mandatory for production SI deployment)
 
 | Module | Depends on | Purpose |
 |--------|-----------|---------|
@@ -14,6 +16,16 @@ noted below.
 | `l10n_si_edi` | `account_edi_ubl_cii`, `l10n_si_vat_validation` | FURS e-Račun (eSLOG 2.0) generation, signing, submission |
 | `l10n_si_bank_parser` | `account_bank_statement_import` | NLB/NKBM/Sparkasse/Addiko/Raiffeisen CAMT.053 + MT940 import |
 | `l10n_si_reports` | `account`, `l10n_si_vat_validation` | AJPES SRS, REK-1, M4 XML exports for eDavki |
+
+### Tier 2 — Enterprise replacement (closes 80% of Odoo Enterprise feature gap)
+
+| Module | Depends on | Replaces Enterprise | Purpose |
+|--------|-----------|---------------------|---------|
+| `l10n_si_hr_payroll_community` | `hr`, `hr_contract`, `l10n_si` | `l10n_si_hr_payroll` | Slovenske plače: ZDoh-2, ZPrD, M4, REK-SH, olajšave, letni obračun |
+| `l10n_si_sign` | `mail`, `l10n_si` | `sign` | EIDAS digital signing (SI-TRUST/CA HALCOM), PAdES/XAdES, TSA timestamp |
+| `l10n_si_bank_sync` | `account`, `l10n_si_bank_parser` | `bank_sync` | Auto-fetch daily statements from NLB/NKBM/Sparkasse/Addiko/Raiffeisen |
+| `l10n_si_helpdesk_simple` | `mail`, `portal`, `rating` | `helpdesk` | Customer ticket system with SLA tracking + customer portal |
+| `l10n_si_fleet` | `fleet`, `hr` | `fleet` (extended) | SI-specific: tehnični pregled, zavarovanje, registracija, vozni listi |
 
 ## Installation
 

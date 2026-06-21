@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_si_payroll" model="ir.ui.view">
+        <field name="name">hr.employee.form.si.payroll</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="SI Payroll" name="si_payroll">
+                    <group>
+                        <group string="Identifikacija">
+                            <field name="si_tax_number"/>
+                            <field name="si_birth_date"/>
+                            <field name="si_health_insurance_id"/>
+                            <field name="si_work_permit_number"/>
+                            <field name="si_bank_account"/>
+                        </group>
+                        <group string="Olajšave">
+                            <field name="si_is_disabled"/>
+                            <field name="si_is_student"/>
+                            <field name="si_is_young_worker"/>
+                            <field name="si_is_pensioner"/>
+                            <field name="si_children_count"/>
+                            <field name="si_additional_child_relief"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_fleet_trip_tree" model="ir.ui.view">
+        <field name="name">l10n_si.fleet.trip.tree</field>
+        <field name="model">l10n_si.fleet.trip</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date_start"/>
+                <field name="vehicle_id"/>
+                <field name="driver_id"/>
+                <field name="mileage_start"/>
+                <field name="mileage_end"/>
+                <field name="distance" sum="Skupaj km"/>
+                <field name="purpose"/>
+                <field name="partner_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_fleet_trip_form" model="ir.ui.view">
+        <field name="name">l10n_si.fleet.trip.form</field>
+        <field name="model">l10n_si.fleet.trip</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_end_trip" type="object" string="Zaključi vožnjo" class="btn-primary"
+                            attrs="{'invisible': [('date_end', '!=', False)]}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="vehicle_id"/>
+                            <field name="driver_id"/>
+                            <field name="purpose"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="mileage_start"/>
+                            <field name="mileage_end"/>
+                            <field name="distance"/>
+                        </group>
+                    </group>
+                    <group string="Opis">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_fleet_trip" model="ir.actions.act_window">
+        <field name="name">Vozni listi (SI)</field>
+        <field name="res_model">l10n_si.fleet.trip</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_fleet_trip"
+              name="Vozni listi"
+              parent="fleet.fleet_vehicles"
+              action="action_l10n_si_fleet_trip"
+              sequence="20"/>
+</odoo>

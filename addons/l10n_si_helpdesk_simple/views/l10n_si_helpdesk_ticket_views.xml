@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_helpdesk_ticket_tree" model="ir.ui.view">
+        <field name="name">l10n_si.helpdesk.ticket.tree</field>
+        <field name="model">l10n_si.helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="priority == '3'"
+                  decoration-warning="priority == '2'"
+                  decoration-muted="stage_id.is_close">
+                <field name="number"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="team_id"/>
+                <field name="user_id"/>
+                <field name="stage_id"/>
+                <field name="priority" widget="priority"/>
+                <field name="create_date"/>
+                <field name="sla_response_deadline" optional="show"/>
+                <field name="sla_resolution_deadline" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_helpdesk_ticket_form" model="ir.ui.view">
+        <field name="name">l10n_si.helpdesk.ticket.form</field>
+        <field name="model">l10n_si.helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="stage_id" widget="statusbar"
+                           options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <field name="priority" widget="priority"/>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="Subject..."/></h1>
+                        <h3><field name="number"/></h3>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="team_id"/>
+                            <field name="user_id"/>
+                            <field name="category"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="create_date" readonly="1"/>
+                            <field name="first_response_date" readonly="1"/>
+                            <field name="sla_response_deadline" readonly="1"/>
+                            <field name="sla_resolution_deadline" readonly="1"/>
+                            <field name="closed_date" readonly="1"/>
+                            <field name="total_time" widget="float_time"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Opis">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                        <page string="Timesheets" name="timesheets">
+                            <field name="timesheet_ids">
+                                <tree editable="bottom">
+                                    <field name="date"/>
+                                    <field name="employee_id"/>
+                                    <field name="name"/>
+                                    <field name="unit_amount" widget="float_time"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_helpdesk_ticket_kanban" model="ir.ui.view">
+        <field name="name">l10n_si.helpdesk.ticket.kanban</field>
+        <field name="model">l10n_si.helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id" class="o_kanban_small_column">
+                <field name="stage_id"/>
+                <field name="priority"/>
+                <field name="user_id"/>
+                <field name="partner_id"/>
+                <field name="number"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <field name="priority" widget="priority"/>
+                                    <strong class="o_kanban_record_title">
+                                        <field name="number"/> - <field name="name"/>
+                                    </strong>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <field name="partner_id"/>
+                                </div>
+                                <div class="o_kanban_record_footer">
+                                    <field name="user_id" widget="many2one_avatar_user"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_helpdesk_ticket_search" model="ir.ui.view">
+        <field name="name">l10n_si.helpdesk.ticket.search</field>
+        <field name="model">l10n_si.helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="number"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="team_id"/>
+                <filter name="filter_open" string="Odprti"
+                        domain="[('stage_id.is_close', '=', False)]"/>
+                <filter name="filter_urgent" string="Nujni"
+                        domain="[('priority', '=', '3')]"/>
+                <filter name="filter_sla_breach" string="SLA presežen"
+                        domain="['|',
+                            '&amp;', ('first_response_date', '=', False),
+                                     ('sla_response_deadline', '&lt;', context_today()),
+                            '&amp;', ('closed_date', '=', False),
+                                     ('sla_resolution_deadline', '&lt;', context_today())]"/>
+                <group string="Group By">
+                    <filter name="group_team" string="Ekipa" context="{'group_by': 'team_id'}"/>
+                    <filter name="group_user" string="Zadolženi" context="{'group_by': 'user_id'}"/>
+                    <filter name="group_stage" string="Faza" context="{'group_by': 'stage_id'}"/>
+                    <filter name="group_priority" string="Prioriteta" context="{'group_by': 'priority'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_helpdesk_ticket" model="ir.actions.act_window">
+        <field name="name">SI Helpdesk Tickets</field>
+        <field name="res_model">l10n_si.helpdesk.ticket</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+</odoo>
