@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_knowledge_article_tree" model="ir.ui.view">
+        <field name="name">l10n_si.knowledge.article.tree</field>
+        <field name="model">l10n_si.knowledge.article</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="parent_id"/>
+                <field name="visibility"/>
+                <field name="view_count"/>
+                <field name="last_updated"/>
+                <field name="author_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_knowledge_article_form" model="ir.ui.view">
+        <field name="name">l10n_si.knowledge.article.form</field>
+        <field name="model">l10n_si.knowledge.article</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="category"/>
+                            <field name="parent_id"/>
+                            <field name="visibility"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="author_id" readonly="1"/>
+                            <field name="created_on" readonly="1"/>
+                            <field name="last_updated" readonly="1"/>
+                            <field name="view_count" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Povzetek">
+                        <field name="summary" nolabel="1"/>
+                    </group>
+                    <group string="Vsebina">
+                        <field name="body" nolabel="1" widget="html"/>
+                    </group>
+                    <group string="Tags">
+                        <field name="tag_ids" widget="many2many_tags" nolabel="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Sub-articles">
+                            <field name="child_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="category"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Version history">
+                            <field name="version_ids" readonly="1">
+                                <tree>
+                                    <field name="snapshot_on"/>
+                                    <field name="snapshot_by"/>
+                                    <button name="action_restore" type="object" string="Restavriraj" class="btn-sm btn-secondary"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_knowledge_article_search" model="ir.ui.view">
+        <field name="name">l10n_si.knowledge.article.search</field>
+        <field name="model">l10n_si.knowledge.article</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="body"/>
+                <field name="tag_ids"/>
+                <filter name="filter_faq" string="FAQ" domain="[('category', '=', 'faq')]"/>
+                <filter name="filter_procedure" string="Postopki" domain="[('category', '=', 'procedure')]"/>
+                <filter name="filter_onboarding" string="Onboarding" domain="[('category', '=', 'onboarding')]"/>
+                <group string="Group By">
+                    <filter name="group_category" string="Kategorija" context="{'group_by': 'category'}"/>
+                    <filter name="group_visibility" string="Vidnost" context="{'group_by': 'visibility'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_knowledge_article" model="ir.actions.act_window">
+        <field name="name">Articles (SI Knowledge)</field>
+        <field name="res_model">l10n_si.knowledge.article</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_knowledge_root" name="SI Knowledge" web_icon="l10n_si_knowledge,static/description/icon.png" sequence="65"/>
+    <menuitem id="menu_si_knowledge_article" name="Articles" parent="menu_si_knowledge_root" action="action_l10n_si_knowledge_article"/>
+</odoo>

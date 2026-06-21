@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_whatsapp_template_tree" model="ir.ui.view">
+        <field name="name">l10n_si.whatsapp.template.tree</field>
+        <field name="model">l10n_si.whatsapp.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="language"/>
+                <field name="category"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_whatsapp_template_form" model="ir.ui.view">
+        <field name="name">l10n_si.whatsapp.template.form</field>
+        <field name="model">l10n_si.whatsapp.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="language"/>
+                            <field name="category"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group string="Vsebina (uporabi {{partner.name}}, {{user.name}}, {{date}})">
+                        <field name="body" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_whatsapp_template" model="ir.actions.act_window">
+        <field name="name">SI WhatsApp Templates</field>
+        <field name="res_model">l10n_si.whatsapp.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_whatsapp_template" name="Templates" parent="menu_si_whatsapp_root" action="action_l10n_si_whatsapp_template"/>
+</odoo>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_subscription_tree" model="ir.ui.view">
+        <field name="name">l10n_si.subscription.tree</field>
+        <field name="model">l10n_si.subscription</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'active'"
+                  decoration-muted="state in ('cancelled', 'expired')"
+                  decoration-warning="state == 'trial'">
+                <field name="number"/>
+                <field name="partner_id"/>
+                <field name="plan_id"/>
+                <field name="recurring_price"/>
+                <field name="recurring_rule"/>
+                <field name="date_start"/>
+                <field name="next_invoice_date"/>
+                <field name="date_end"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_subscription_form" model="ir.ui.view">
+        <field name="name">l10n_si.subscription.form</field>
+        <field name="model">l10n_si.subscription</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_activate" type="object" string="Aktiviraj" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_pause" type="object" string="Pavziraj"
+                            attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                    <button name="action_resume" type="object" string="Nadaljuj"
+                            attrs="{'invisible': [('state', '!=', 'paused')]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('cancelled', 'expired'))]}"
+                            confirm="Resnično preklicati naročnino?"/>
+                    <button name="action_generate_invoice" type="object" string="Generiraj račun"
+                            attrs="{'invisible': [('state', 'not in', ('active', 'trial'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="number" readonly="1"/>
+                            <field name="partner_id"/>
+                            <field name="plan_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="recurring_price"/>
+                            <field name="recurring_interval"/>
+                            <field name="recurring_rule"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="next_invoice_date"/>
+                            <field name="date_cancelled" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_subscription_search" model="ir.ui.view">
+        <field name="name">l10n_si.subscription.search</field>
+        <field name="model">l10n_si.subscription</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="number"/>
+                <field name="partner_id"/>
+                <field name="plan_id"/>
+                <filter name="filter_active" string="Aktivne" domain="[('state', '=', 'active')]"/>
+                <filter name="filter_trial" string="Trial" domain="[('state', '=', 'trial')]"/>
+                <filter name="filter_cancelled" string="Preklicane" domain="[('state', '=', 'cancelled')]"/>
+                <filter name="filter_due_today" string="Račun danes" domain="[('next_invoice_date', '=', context_today())]"/>
+                <group string="Group By">
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_plan" string="Načrt" context="{'group_by': 'plan_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_subscription" model="ir.actions.act_window">
+        <field name="name">Subscriptions (SI)</field>
+        <field name="res_model">l10n_si.subscription</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_subscription_root" name="SI Subscriptions" parent="sale.sale_menu_root" sequence="20"/>
+    <menuitem id="menu_si_subscription" name="Subscriptions" parent="menu_si_subscription_root" action="action_l10n_si_subscription"/>
+    <menuitem id="menu_si_subscription_plan" name="Plans" parent="menu_si_subscription_root" action="action_l10n_si_subscription_plan"/>
+</odoo>

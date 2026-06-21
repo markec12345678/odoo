@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_ocr_document_tree" model="ir.ui.view">
+        <field name="name">l10n_si.ocr.document.tree</field>
+        <field name="model">l10n_si.ocr.document</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'posted'"
+                  decoration-warning="state == 'extracted'"
+                  decoration-danger="state == 'error'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="invoice_number"/>
+                <field name="invoice_date"/>
+                <field name="amount_total" sum="Skupaj"/>
+                <field name="confidence" widget="percentage"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_ocr_document_form" model="ir.ui.view">
+        <field name="name">l10n_si.ocr.document.form</field>
+        <field name="model">l10n_si.ocr.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_run_ocr" type="object" string="Zaženi OCR" class="btn-primary"
+                            attrs="{'invisible': [('state', 'in', ('processing', 'posted'))]}"/>
+                    <button name="action_create_bill" type="object" string="Ustvari račun" class="btn-primary"
+                            attrs="{'invisible': ['|', ('state', '!=', 'extracted'), ('partner_id', '=', False)]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="pdf_attachment_id" widget="url"/>
+                            <field name="page_count"/>
+                            <field name="confidence" widget="percentage"/>
+                        </group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="invoice_number"/>
+                            <field name="invoice_date"/>
+                            <field name="date_due"/>
+                            <field name="vat_number"/>
+                            <field name="iban"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="amount_untaxed"/>
+                            <field name="amount_tax"/>
+                            <field name="amount_total"/>
+                            <field name="tax_rate_detected"/>
+                        </group>
+                        <group>
+                            <field name="move_id"/>
+                            <field name="error_message" attrs="{'invisible': [('error_message', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="OCR text">
+                            <field name="extracted_text" nolabel="1" widget="ace" options="{'mode': 'text'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_ocr_document" model="ir.actions.act_window">
+        <field name="name">SI OCR Documents</field>
+        <field name="res_model">l10n_si.ocr.document</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_ocr_root" name="SI OCR" parent="account.menu_finance_payables" sequence="50"/>
+    <menuitem id="menu_si_ocr_document" name="Documents" parent="menu_si_ocr_root" action="action_l10n_si_ocr_document"/>
+</odoo>

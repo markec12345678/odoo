@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_whatsapp_message_tree" model="ir.ui.view">
+        <field name="name">l10n_si.whatsapp.message.tree</field>
+        <field name="model">l10n_si.whatsapp.message</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'read'"
+                  decoration-info="direction == 'incoming'"
+                  decoration-danger="state == 'failed'">
+                <field name="create_date"/>
+                <field name="partner_id"/>
+                <field name="phone"/>
+                <field name="direction"/>
+                <field name="body"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_whatsapp_message_form" model="ir.ui.view">
+        <field name="name">l10n_si.whatsapp.message.form</field>
+        <field name="model">l10n_si.whatsapp.message</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_send" type="object" string="Pošlji" class="btn-primary"
+                            attrs="{'invisible': [('state', 'in', ('sent', 'delivered', 'read', 'received'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="phone"/>
+                            <field name="direction" readonly="1"/>
+                            <field name="template_id"/>
+                        </group>
+                        <group>
+                            <field name="message_id" readonly="1"/>
+                            <field name="error_message" attrs="{'invisible': [('error_message', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <group string="Sporočilo">
+                        <field name="body" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_whatsapp_message" model="ir.actions.act_window">
+        <field name="name">SI WhatsApp Messages</field>
+        <field name="res_model">l10n_si.whatsapp.message</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_whatsapp_root" name="SI WhatsApp" parent="base.menu_administration" sequence="110"/>
+    <menuitem id="menu_si_whatsapp_message" name="Messages" parent="menu_si_whatsapp_root" action="action_l10n_si_whatsapp_message"/>
+</odoo>

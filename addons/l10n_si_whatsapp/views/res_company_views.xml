@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_si_whatsapp" model="ir.ui.view">
+        <field name="name">res.company.form.si.whatsapp</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="SI WhatsApp Configuration">
+                    <group>
+                        <field name="si_whatsapp_backend"/>
+                        <field name="si_whatsapp_phone_number_id" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'cloud_api')]}"/>
+                        <field name="si_whatsapp_business_id" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'cloud_api')]}"/>
+                        <field name="si_whatsapp_access_token" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'cloud_api')]}"/>
+                        <field name="si_whatsapp_verify_token" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'cloud_api')]}"/>
+                    </group>
+                    <group>
+                        <field name="si_whatsapp_twilio_account_sid" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'twilio')]}"/>
+                        <field name="si_whatsapp_twilio_auth_token" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'twilio')]}"/>
+                        <field name="si_whatsapp_twilio_from" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'twilio')]}"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_approval_rule_user,l10n_si.approval.rule.user,model_l10n_si_approval_rule,base.group_user,1,0,0,0
+access_l10n_si_approval_rule_manager,l10n_si.approval.rule.manager,model_l10n_si_approval_rule,base.group_system,1,1,1,1
+access_l10n_si_approval_rule_approver,l10n_si.approval.rule.approver,model_l10n_si_approval_rule_approver,base.group_user,1,0,0,0
+access_l10n_si_approval_rule_approver_manager,l10n_si.approval.rule.approver.manager,model_l10n_si_approval_rule_approver,base.group_system,1,1,1,1
+access_l10n_si_approval_request_user,l10n_si.approval.request.user,model_l10n_si_approval_request,base.group_user,1,1,1,0
+access_l10n_si_approval_request_manager,l10n_si.approval.request.manager,model_l10n_si_approval_request,base.group_system,1,1,1,1
+access_l10n_si_approval_step_user,l10n_si.approval.step.user,model_l10n_si_approval_step,base.group_user,1,0,1,0
+access_l10n_si_approval_step_manager,l10n_si.approval.step.manager,model_l10n_si_approval_step,base.group_system,1,1,1,1

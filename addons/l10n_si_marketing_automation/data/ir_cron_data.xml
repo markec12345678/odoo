@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="cron_si_marketing_process_campaigns" model="ir.cron">
+            <field name="name">SI Marketing: Process Campaigns</field>
+            <field name="model_id" ref="model_l10n_si_marketing_campaign"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_process_campaigns()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="nextcall" eval="(DateTime.now().replace(minute=0, second=0) + relativedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+    </data>
+</odoo>

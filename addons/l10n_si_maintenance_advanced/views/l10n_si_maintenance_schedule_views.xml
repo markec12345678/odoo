@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_maintenance_schedule_tree" model="ir.ui.view">
+        <field name="name">l10n_si.maintenance.schedule.tree</field>
+        <field name="model">l10n_si.maintenance.schedule</field>
+        <field name="arch" type="xml">
+            <tree decoration-warning="next_run_date &lt; context_today()">
+                <field name="name"/>
+                <field name="equipment_id"/>
+                <field name="frequency"/>
+                <field name="frequency_interval"/>
+                <field name="next_run_date"/>
+                <field name="last_run_date"/>
+                <field name="technician_id"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_maintenance_schedule_form" model="ir.ui.view">
+        <field name="name">l10n_si.maintenance.schedule.form</field>
+        <field name="model">l10n_si.maintenance.schedule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="equipment_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="frequency"/>
+                            <field name="frequency_interval"/>
+                            <field name="next_run_date"/>
+                            <field name="last_run_date" readonly="1"/>
+                            <field name="technician_id"/>
+                            <field name="estimated_duration_hours" widget="float_time"/>
+                        </group>
+                    </group>
+                    <group string="Opis dela">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Generirani zahtevki">
+                            <field name="request_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="schedule_date"/>
+                                    <field name="stage_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_maintenance_schedule" model="ir.actions.act_window">
+        <field name="name">Preventive Schedules (SI)</field>
+        <field name="res_model">l10n_si.maintenance.schedule</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_maintenance_schedule" name="Preventive Schedules"
+              parent="maintenance.menu_maintenance_title"
+              action="action_l10n_si_maintenance_schedule" sequence="20"/>
+</odoo>

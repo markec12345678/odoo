@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_timesheet_week_tree" model="ir.ui.view">
+        <field name="name">l10n_si.timesheet.week.tree</field>
+        <field name="model">l10n_si.timesheet.week</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'submitted'"
+                  decoration-success="state == 'approved'"
+                  decoration-danger="state == 'rejected'">
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="employee_id"/>
+                <field name="week_number"/>
+                <field name="total_hours" widget="float_time" sum="Skupaj"/>
+                <field name="state"/>
+                <field name="approved_by_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_timesheet_week_form" model="ir.ui.view">
+        <field name="name">l10n_si.timesheet.week.form</field>
+        <field name="model">l10n_si.timesheet.week</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit" type="object" string="Pošlji v odobritev" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_approve" type="object" string="Odobri" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'submitted')]}"/>
+                    <button name="action_reject" type="object" string="Zavrni"
+                            attrs="{'invisible': [('state', '!=', 'submitted')]}"/>
+                    <button name="action_back_to_draft" type="object" string="Nazaj v osnutek"
+                            attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="week_number"/>
+                            <field name="year"/>
+                        </group>
+                        <group>
+                            <field name="total_hours" widget="float_time" readonly="1"/>
+                            <field name="submitted_on" readonly="1"/>
+                            <field name="submitted_to_id" readonly="1"/>
+                            <field name="approved_on" readonly="1"/>
+                            <field name="approved_by_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Postavke">
+                            <field name="line_ids" attrs="{'readonly': [('state', 'in', ['submitted', 'approved'])]}">
+                                <tree>
+                                    <field name="date"/>
+                                    <field name="project_id"/>
+                                    <field name="task_id"/>
+                                    <field name="name"/>
+                                    <field name="unit_amount" widget="float_time" sum="Skupaj"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Razlog zavrnitve" attrs="{'invisible': [('state', '!=', 'rejected')]}">
+                            <field name="reject_reason" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_timesheet_week_search" model="ir.ui.view">
+        <field name="name">l10n_si.timesheet.week.search</field>
+        <field name="model">l10n_si.timesheet.week</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <filter name="filter_draft" string="Osnutki" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_submitted" string="Čakajo na odobritev" domain="[('state', '=', 'submitted')]"/>
+                <filter name="filter_mine" string="Moji" domain="[('employee_id.user_id', '=', uid)]"/>
+                <filter name="filter_to_approve" string="Za odobritev" domain="[('submitted_to_id', '=', uid), ('state', '=', 'submitted')]"/>
+                <group string="Group By">
+                    <filter name="group_employee" string="Zaposleni" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_week" string="Teden" context="{'group_by': 'date_start:week'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_timesheet_week" model="ir.actions.act_window">
+        <field name="name">Weekly Timesheets (SI)</field>
+        <field name="res_model">l10n_si.timesheet.week</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_timesheet_root" name="SI Timesheets" parent="hr_timesheet.menu_hr_time_tracking" sequence="20"/>
+    <menuitem id="menu_si_timesheet_week" name="Weekly Approval" parent="menu_si_timesheet_root" action="action_l10n_si_timesheet_week"/>
+</odoo>

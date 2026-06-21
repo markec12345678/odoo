@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_quality_nonconformance_tree" model="ir.ui.view">
+        <field name="name">l10n_si.quality.nonconformance.tree</field>
+        <field name="model">l10n_si.quality.nonconformance</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="severity == 'critical'"
+                  decoration-warning="severity == 'major'"
+                  decoration-success="state == 'closed'">
+                <field name="number"/>
+                <field name="product_id"/>
+                <field name="severity"/>
+                <field name="category"/>
+                <field name="detected_on"/>
+                <field name="responsible_id"/>
+                <field name="action_deadline"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_quality_nonconformance_form" model="ir.ui.view">
+        <field name="name">l10n_si.quality.nonconformance.form</field>
+        <field name="model">l10n_si.quality.nonconformance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_investigate" type="object" string="Preiskuj" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'open')]}"/>
+                    <button name="action_implement" type="object" string="Izvedi CAPA" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'investigation')]}"/>
+                    <button name="action_verify" type="object" string="Preveri" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'action')]}"/>
+                    <button name="action_close" type="object" string="Zapri"
+                            attrs="{'invisible': [('state', '!=', 'verified')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="number"/>
+                            <field name="product_id"/>
+                            <field name="lot_id"/>
+                            <field name="severity"/>
+                            <field name="category"/>
+                        </group>
+                        <group>
+                            <field name="detected_by"/>
+                            <field name="detected_on"/>
+                            <field name="responsible_id"/>
+                            <field name="action_deadline"/>
+                            <field name="verified_by" readonly="1"/>
+                            <field name="verified_on" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Opis neustreznosti">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                    <group>
+                        <group string="Količina">
+                            <field name="quantity_rejected"/>
+                            <field name="disposition"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="CAPA">
+                            <group>
+                                <field name="root_cause"/>
+                                <field name="corrective_action"/>
+                                <field name="preventive_action"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_quality_nonconformance" model="ir.actions.act_window">
+        <field name="name">Non-Conformances (SI)</field>
+        <field name="res_model">l10n_si.quality.nonconformance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_quality_nonconformance" name="Non-Conformances"
+              parent="menu_si_quality_root" action="action_l10n_si_quality_nonconformance"/>
+</odoo>

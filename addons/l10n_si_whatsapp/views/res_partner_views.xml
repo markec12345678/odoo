@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_si_whatsapp" model="ir.ui.view">
+        <field name="name">res.partner.form.si.whatsapp</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="SI WhatsApp" name="si_whatsapp">
+                    <group>
+                        <field name="si_whatsapp_opt_in"/>
+                        <field name="si_whatsapp_opt_in_date" readonly="1"/>
+                        <field name="si_whatsapp_opt_out_date" readonly="1"/>
+                    </group>
+                    <group>
+                        <button name="action_si_whatsapp_opt_in" type="object"
+                                string="Opt-in" class="btn-sm btn-success"
+                                attrs="{'invisible': [('si_whatsapp_opt_in', '=', True)]}"/>
+                        <button name="action_si_whatsapp_opt_out" type="object"
+                                string="Opt-out" class="btn-sm btn-danger"
+                                attrs="{'invisible': [('si_whatsapp_opt_in', '=', False)]}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

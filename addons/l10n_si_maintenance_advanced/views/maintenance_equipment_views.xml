@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_maintenance_equipment_form_si" model="ir.ui.view">
+        <field name="name">maintenance.equipment.form.si</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="SI Maintenance Data">
+                    <group>
+                        <field name="si_serial_number"/>
+                        <field name="si_acquisition_date"/>
+                        <field name="si_acquisition_value"/>
+                        <field name="si_warranty_expiry"/>
+                        <field name="si_location"/>
+                        <field name="si_critical"/>
+                    </group>
+                    <group>
+                        <field name="si_mtbf_hours" widget="float_time"/>
+                        <field name="si_mttr_hours" widget="float_time"/>
+                        <field name="si_downtime_hours_year" widget="float_time"/>
+                        <field name="si_total_maintenance_cost"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Preventive Schedules">
+                        <field name="si_schedule_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="frequency"/>
+                                <field name="frequency_interval"/>
+                                <field name="next_run_date"/>
+                                <field name="last_run_date"/>
+                                <field name="active"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>

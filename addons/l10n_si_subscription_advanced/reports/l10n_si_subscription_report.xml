@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_l10n_si_subscription_summary">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Pregled naročnin</h2>
+                    <table class="table table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Številka</th>
+                                <th>Stranka</th>
+                                <th>Načrt</th>
+                                <th>Cena</th>
+                                <th>Obdobje</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="sub">
+                                <tr>
+                                    <td><span t-field="sub.number"/></td>
+                                    <td><span t-field="sub.partner_id.name"/></td>
+                                    <td><span t-field="sub.plan_id.name"/></td>
+                                    <td><span t-field="sub.recurring_price"/> € / <span t-field="sub.recurring_rule"/></td>
+                                    <td><span t-field="sub.date_start"/> – <span t-field="sub.date_end"/></td>
+                                    <td><span t-field="sub.state"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_report_l10n_si_subscription_summary"
+            model="l10n_si.subscription"
+            string="Pregled naročnin (SI)"
+            report_type="qweb-pdf"
+            name="l10n_si_subscription_advanced.report_l10n_si_subscription_summary"
+            file="l10n_si_subscription_advanced.report_l10n_si_subscription_summary"
+            print_report_name="'Subscriptions_%s' % (fields.Date.today())"/>
+</odoo>

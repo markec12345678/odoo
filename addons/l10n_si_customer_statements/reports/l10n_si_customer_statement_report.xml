@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_l10n_si_customer_statement">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Izpis stanja stranke</h2>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-6">
+                            <strong>Stranka:</strong><br/>
+                            <span t-field="doc.partner_id.name"/><br/>
+                            <span t-field="doc.partner_id.street"/><br/>
+                            <span t-field="doc.partner_id.zip"/>
+                            <span t-field="doc.partner_id.city"/>
+                        </div>
+                        <div class="col-6 text-right">
+                            <strong>Obdobje:</strong>
+                            <span t-field="doc.date_from"/>
+                            –
+                            <span t-field="doc.date_to"/><br/>
+                            <strong>Valuta:</strong>
+                            <span t-field="doc.currency_id.name"/>
+                        </div>
+                    </div>
+                    <table class="table table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Datum</th>
+                                <th>Opis</th>
+                                <th class="text-right">Breme</th>
+                                <th class="text-right">Dobro</th>
+                                <th class="text-right">Saldo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="4"><em>Otvoritveno stanje</em></td><td class="text-right"><strong><span t-field="doc.opening_balance"/></strong></td></tr>
+                            <t t-foreach="doc.line_ids" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.date"/></td>
+                                    <td><span t-field="line.ref"/></td>
+                                    <td class="text-right"><span t-field="line.debit"/></td>
+                                    <td class="text-right"><span t-field="line.credit"/></td>
+                                    <td class="text-right"><span t-field="line.balance"/></td>
+                                </tr>
+                            </t>
+                            <tr class="table-active"><td colspan="4"><strong>Zaključno stanje</strong></td><td class="text-right"><strong><span t-field="doc.closing_balance"/></strong></td></tr>
+                        </tbody>
+                    </table>
+                    <h4 class="mt-4">Aging (po zapadlosti)</h4>
+                    <table class="table table-sm">
+                        <thead><tr>
+                            <th>0-30 dni</th>
+                            <th>31-60 dni</th>
+                            <th>61-90 dni</th>
+                            <th>90+ dni</th>
+                        </tr></thead>
+                        <tbody><tr>
+                            <td><span t-field="doc.aging_0_30"/></td>
+                            <td><span t-field="doc.aging_31_60"/></td>
+                            <td><span t-field="doc.aging_61_90"/></td>
+                            <td><span t-field="doc.aging_90_plus"/></td>
+                        </tr></tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_report_l10n_si_customer_statement"
+            model="l10n_si.customer.statement"
+            string="Izpis stanja (SI)"
+            report_type="qweb-pdf"
+            name="l10n_si_customer_statements.report_l10n_si_customer_statement"
+            file="l10n_si_customer_statements.report_l10n_si_customer_statement"
+            print_report_name="'Statement_%s_%s' % (object.partner_id.name, object.date_to)"/>
+</odoo>

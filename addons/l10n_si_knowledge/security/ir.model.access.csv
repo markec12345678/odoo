@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_knowledge_article_user,l10n_si.knowledge.article.user,model_l10n_si_knowledge_article,base.group_user,1,1,1,0
+access_l10n_si_knowledge_article_manager,l10n_si.knowledge.article.manager,model_l10n_si_knowledge_article,base.group_system,1,1,1,1
+access_l10n_si_knowledge_tag_user,l10n_si.knowledge.tag.user,model_l10n_si_knowledge_tag,base.group_user,1,1,1,0
+access_l10n_si_knowledge_tag_manager,l10n_si.knowledge.tag.manager,model_l10n_si_knowledge_tag,base.group_system,1,1,1,1
+access_l10n_si_knowledge_version_user,l10n_si.knowledge.version.user,model_l10n_si_knowledge_version,base.group_user,1,0,1,0
+access_l10n_si_knowledge_version_manager,l10n_si.knowledge.version.manager,model_l10n_si_knowledge_version,base.group_system,1,1,1,1
+access_l10n_si_knowledge_template_user,l10n_si.knowledge.template.user,model_l10n_si_knowledge_template,base.group_user,1,1,1,0
+access_l10n_si_knowledge_template_manager,l10n_si.knowledge.template.manager,model_l10n_si_knowledge_template,base.group_system,1,1,1,1

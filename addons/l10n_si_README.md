@@ -1,6 +1,6 @@
 # Slovenian Localization Modules for Odoo 19.0
 
-Eleven custom addons developed for the Slovenian market. All installed via the
+Twenty-two custom addons developed for the Slovenian market. All installed via the
 standard `--addons-path` mechanism; each depends on the previous one(s) as
 noted below.
 
@@ -26,6 +26,27 @@ noted below.
 | `l10n_si_bank_sync` | `account`, `l10n_si_bank_parser` | `bank_sync` | Auto-fetch daily statements from NLB/NKBM/Sparkasse/Addiko/Raiffeisen |
 | `l10n_si_helpdesk_simple` | `mail`, `portal`, `rating` | `helpdesk` | Customer ticket system with SLA tracking + customer portal |
 | `l10n_si_fleet` | `fleet`, `hr` | `fleet` (extended) | SI-specific: tehnični pregled, zavarovanje, registracija, vozni listi |
+
+### Tier 3a — Critical for SI business operations
+
+| Module | Depends on | Replaces Enterprise | Purpose |
+|--------|-----------|---------------------|---------|
+| `l10n_si_approvals` | `hr`, `hr_holidays`, `purchase`, `hr_expense` | `approvals` | Multi-step approval workflows (potni nalogi, dopusti, nakupi) |
+| `l10n_si_knowledge` | `mail`, `portal` | `knowledge` | Internal wiki + document templates with version history |
+| `l10n_si_customer_statements` | `account`, `mail` | `account_customer_statements` | Monthly customer statements with aging buckets |
+| `l10n_si_subscription_advanced` | `account`, `sale_management` | `sale_subscription` | Recurring billing (SaaS, memberships, leases) with auto-invoicing |
+| `l10n_si_field_service` | `hr`, `stock`, `account` | `fieldservice` | Work orders + dispatching + customer signature + photo evidence |
+
+### Tier 3b — Important for specific business types
+
+| Module | Depends on | Replaces Enterprise | Purpose |
+|--------|-----------|---------------------|---------|
+| `l10n_si_maintenance_advanced` | `maintenance`, `stock` | `maintenance` (extended) | Preventive schedules, MTBF/MTTR, spare parts, downtime analysis |
+| `l10n_si_quality_control` | `stock`, `mrp` | `quality_control` | Inspection checklists, NCR, CAPA, ISO 9001 audit trail |
+| `l10n_si_timesheet_approval` | `hr_timesheet` | `hr_timesheet_approval` | Weekly timesheet approval workflow with line locking |
+| `l10n_si_ocr_invoice` | `account`, `mail` | `account_ocr` | OCR scan supplier invoices (Tesseract / Google DocAI / AWS Textract) |
+| `l10n_si_marketing_automation` | `mail`, `mass_mailing` | `marketing_automation` | Multi-step email campaigns with branching + triggers |
+| `l10n_si_whatsapp` | `mail`, `base` | `whatsapp` | WhatsApp Cloud API + Twilio integration, templates, GDPR opt-in |
 
 ## Installation
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_subscription_plan_tree" model="ir.ui.view">
+        <field name="name">l10n_si.subscription.plan.tree</field>
+        <field name="model">l10n_si.subscription.plan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="recurring_price"/>
+                <field name="recurring_interval"/>
+                <field name="recurring_rule"/>
+                <field name="auto_renew"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_subscription_plan_form" model="ir.ui.view">
+        <field name="name">l10n_si.subscription.plan.form</field>
+        <field name="model">l10n_si.subscription.plan</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="recurring_price"/>
+                            <field name="recurring_interval"/>
+                            <field name="recurring_rule"/>
+                            <field name="currency_id" groups="base.group_multi_currency"/>
+                        </group>
+                    </group>
+                    <group string="Trial + Zaveza">
+                        <field name="trial_period_days"/>
+                        <field name="auto_renew"/>
+                        <field name="commitment_months"/>
+                    </group>
+                    <group string="Opis">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_subscription_plan" model="ir.actions.act_window">
+        <field name="name">Subscription Plans (SI)</field>
+        <field name="res_model">l10n_si.subscription.plan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

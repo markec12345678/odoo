@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_knowledge_template_tree" model="ir.ui.view">
+        <field name="name">l10n_si.knowledge.template.tree</field>
+        <field name="model">l10n_si.knowledge.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="template_type"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_knowledge_template_form" model="ir.ui.view">
+        <field name="name">l10n_si.knowledge.template.form</field>
+        <field name="model">l10n_si.knowledge.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="template_type"/>
+                            <field name="subject" attrs="{'invisible': [('template_type', '!=', 'email')]}"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group string="Placeholders">
+                        <field name="placeholders" nolabel="1"/>
+                    </group>
+                    <group string="Vsebina">
+                        <field name="body" nolabel="1" widget="html"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_knowledge_template" model="ir.actions.act_window">
+        <field name="name">Templates (SI Knowledge)</field>
+        <field name="res_model">l10n_si.knowledge.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_knowledge_template" name="Templates" parent="menu_si_knowledge_root" action="action_l10n_si_knowledge_template"/>
+</odoo>

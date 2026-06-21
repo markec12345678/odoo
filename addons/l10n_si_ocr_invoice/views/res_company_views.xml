@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_si_ocr" model="ir.ui.view">
+        <field name="name">res.company.form.si.ocr</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="SI OCR Configuration">
+                    <field name="si_ocr_backend"/>
+                    <field name="si_ocr_auto_create_bill"/>
+                    <field name="si_ocr_google_project_id" attrs="{'invisible': [('si_ocr_backend', '!=', 'google_docai')]}"/>
+                    <field name="si_ocr_google_processor_id" attrs="{'invisible': [('si_ocr_backend', '!=', 'google_docai')]}"/>
+                    <field name="si_ocr_google_credentials" attrs="{'invisible': [('si_ocr_backend', '!=', 'google_docai')]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

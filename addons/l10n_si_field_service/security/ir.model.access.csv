@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_field_service_order_user,l10n_si.field.service.order.user,model_l10n_si_field_service_order,base.group_user,1,1,1,0
+access_l10n_si_field_service_order_manager,l10n_si.field.service.order.manager,model_l10n_si_field_service_order,base.group_system,1,1,1,1
+access_l10n_si_field_service_material_user,l10n_si.field.service.material.user,model_l10n_si_field_service_material,base.group_user,1,1,1,0
+access_l10n_si_field_service_material_manager,l10n_si.field.service.material.manager,model_l10n_si_field_service_material,base.group_system,1,1,1,1
+access_l10n_si_field_service_photo_user,l10n_si.field.service.photo.user,model_l10n_si_field_service_photo,base.group_user,1,1,1,0
+access_l10n_si_field_service_photo_manager,l10n_si.field.service.photo.manager,model_l10n_si_field_service_photo,base.group_system,1,1,1,1

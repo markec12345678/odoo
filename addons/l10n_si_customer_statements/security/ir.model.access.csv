@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_customer_statement_invoice,l10n_si.customer.statement.invoice,model_l10n_si_customer_statement,account.group_account_invoice,1,0,1,0
+access_l10n_si_customer_statement_manager,l10n_si.customer.statement.manager,model_l10n_si_customer_statement,account.group_account_manager,1,1,1,1
+access_l10n_si_customer_statement_line_invoice,l10n_si.customer.statement.line.invoice,model_l10n_si_customer_statement_line,account.group_account_invoice,1,0,1,0
+access_l10n_si_customer_statement_line_manager,l10n_si.customer.statement.line.manager,model_l10n_si_customer_statement_line,account.group_account_manager,1,1,1,1
+access_l10n_si_customer_statement_wizard,l10n_si.customer.statement.wizard,model_l10n_si_customer_statement_wizard,account.group_account_invoice,1,1,1,1

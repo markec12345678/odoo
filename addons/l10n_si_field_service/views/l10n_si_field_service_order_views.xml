@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_field_service_order_tree" model="ir.ui.view">
+        <field name="name">l10n_si.field.service.order.tree</field>
+        <field name="model">l10n_si.field.service.order</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="priority == '3'"
+                  decoration-success="state == 'done'"
+                  decoration-info="state == 'in_progress'">
+                <field name="number"/>
+                <field name="scheduled_date"/>
+                <field name="title"/>
+                <field name="partner_id"/>
+                <field name="technician_id"/>
+                <field name="category"/>
+                <field name="priority" widget="priority"/>
+                <field name="state"/>
+                <field name="total_cost" sum="Skupaj"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_field_service_order_form" model="ir.ui.view">
+        <field name="name">l10n_si.field.service.order.form</field>
+        <field name="model">l10n_si.field.service.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_assign" type="object" string="Dodeli" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_start" type="object" string="Začni" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'assigned')]}"/>
+                    <button name="action_complete" type="object" string="Zaključi" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                    <button name="action_generate_invoice" type="object" string="Generiraj račun"
+                            attrs="{'invisible': ['|', ('state', '!=', 'done'), ('invoice_id', '!=', False)]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('done', 'cancelled', 'invoiced'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <field name="priority" widget="priority"/>
+                    <div class="oe_title">
+                        <label for="title" class="oe_edit_only"/>
+                        <h1><field name="title" placeholder="Kratek opis dela..."/></h1>
+                        <h3><field name="number"/></h3>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="contact_phone"/>
+                            <field name="partner_address" readonly="1"/>
+                            <field name="category"/>
+                        </group>
+                        <group>
+                            <field name="scheduled_date"/>
+                            <field name="technician_id"/>
+                            <field name="team_leader_id"/>
+                            <field name="actual_start" readonly="1"/>
+                            <field name="actual_end" readonly="1"/>
+                            <field name="duration" widget="float_time" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Opis">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                        <page string="Material">
+                            <field name="material_line_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_price"/>
+                                    <field name="subtotal"/>
+                                </tree>
+                            </field>
+                            <group class="mt-2">
+                                <field name="labor_cost"/>
+                                <field name="total_material_cost"/>
+                                <field name="total_cost"/>
+                            </group>
+                        </page>
+                        <page string="Slike">
+                            <group string="Pred delom">
+                                <field name="photo_before_ids" nolabel="1" mode="kanban">
+                                    <kanban>
+                                        <field name="image" widget="image"/>
+                                        <field name="caption"/>
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="oe_kanban_card">
+                                                    <img t-att-src="{'data:image/png;base64,' + record.image.raw_value}" style="max-width:200px"/>
+                                                    <div><field name="caption"/></div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+                            </group>
+                            <group string="Po delu">
+                                <field name="photo_after_ids" nolabel="1" mode="kanban"/>
+                            </group>
+                        </page>
+                        <page string="Podpis stranke">
+                            <field name="customer_signature" widget="image"/>
+                        </page>
+                        <page string="Račun">
+                            <field name="invoice_id"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_field_service_order_search" model="ir.ui.view">
+        <field name="name">l10n_si.field.service.order.search</field>
+        <field name="model">l10n_si.field.service.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="number"/>
+                <field name="title"/>
+                <field name="partner_id"/>
+                <field name="technician_id"/>
+                <filter name="filter_today" string="Danes" domain="[('scheduled_date', '>=', context_today().strftime('%Y-%m-%d 00:00:00')), ('scheduled_date', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <filter name="filter_active" string="V izvedbi" domain="[('state', 'in', ['assigned', 'in_progress'])]"/>
+                <filter name="filter_done" string="Opravljeno" domain="[('state', '=', 'done')]"/>
+                <group string="Group By">
+                    <filter name="group_technician" string="Tehnik" context="{'group_by': 'technician_id'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_category" string="Kategorija" context="{'group_by': 'category'}"/>
+                    <filter name="group_date" string="Datum" context="{'group_by': 'scheduled_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_field_service_order" model="ir.actions.act_window">
+        <field name="name">Field Service Orders (SI)</field>
+        <field name="res_model">l10n_si.field.service.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_si_field_service_root" name="SI Field Service" web_icon="l10n_si_field_service,static/description/icon.png" sequence="70"/>
+    <menuitem id="menu_si_field_service_order" name="Work Orders" parent="menu_si_field_service_root" action="action_l10n_si_field_service_order"/>
+</odoo>
