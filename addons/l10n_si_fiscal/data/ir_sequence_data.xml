@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sequence for SI fiscal log entries (informational) -->
+        <record id="seq_l10n_si_fiscal_log" model="ir.sequence">
+            <field name="name">SI Fiscal Log</field>
+            <field name="code">l10n_si.fiscal.log</field>
+            <field name="prefix">FLOG/%(year)s/</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

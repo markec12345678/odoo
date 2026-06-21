@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_report_log_tree" model="ir.ui.view">
+        <field name="name">l10n_si.report.log.tree</field>
+        <field name="model">l10n_si.report.log</field>
+        <field name="arch" type="xml">
+            <tree string="SI Report Logs" decoration-success="state == 'accepted'"
+                  decoration-danger="state == 'rejected'">
+                <field name="report_type"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="version"/>
+                <field name="state"/>
+                <field name="generated_by"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_report_log_form" model="ir.ui.view">
+        <field name="name">l10n_si.report.log.form</field>
+        <field name="model">l10n_si.report.log</field>
+        <field name="arch" type="xml">
+            <form string="SI Report Log">
+                <header>
+                    <button name="action_download_xml" type="object"
+                            string="Download XML" class="btn-primary"
+                            attrs="{'invisible': [('xml_attachment_id', '=', False)]}"/>
+                    <button name="action_download_pdf" type="object"
+                            string="Download PDF" class="btn-secondary"
+                            attrs="{'invisible': [('pdf_attachment_id', '=', False)]}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="report_type"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="state"/>
+                            <field name="version"/>
+                            <field name="generated_by"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="xml_attachment_id"/>
+                            <field name="pdf_attachment_id"/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_report_log" model="ir.actions.act_window">
+        <field name="name">SI Reports History</field>
+        <field name="res_model">l10n_si.report.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_reports_root"
+              name="Slovenian Reports"
+              parent="account.menu_finance_reports"
+              sequence="90"/>
+
+    <menuitem id="menu_l10n_si_report_log"
+              name="Reports History"
+              parent="menu_l10n_si_reports_root"
+              action="action_l10n_si_report_log"
+              sequence="100"/>
+</odoo>

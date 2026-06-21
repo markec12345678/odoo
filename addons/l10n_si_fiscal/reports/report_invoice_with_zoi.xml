@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add ZOI/EOR + QR to the standard invoice PDF -->
+    <template id="report_invoice_with_zoi" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[hasclass('page')]//h2" position="after">
+            <div class="row mt-2 mb-2" t-if="o.l10n_si_zoi">
+                <div class="col-8">
+                    <strong>ZOI:</strong>
+                    <span t-field="o.l10n_si_zoi"/>
+                    <br/>
+                    <strong>EOR:</strong>
+                    <span t-field="o.l10n_si_eor" t-if="o.l10n_si_eor"/>
+                    <span t-else="">(čaka na potrditev FURS)</span>
+                    <br/>
+                    <strong>Status:</strong>
+                    <span t-field="o.l10n_si_fiscal_state"/>
+                </div>
+                <div class="col-4 text-right" t-if="o.l10n_si_fiscal_qr">
+                    <img t-att-src="'data:image/png;base64,%s' % o.l10n_si_fiscal_qr.decode()"
+                         style="max-width: 120px; max-height: 120px;"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

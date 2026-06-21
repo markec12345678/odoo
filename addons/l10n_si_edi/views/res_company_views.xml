@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_si_edi" model="ir.ui.view">
+        <field name="name">res.company.form.si.edi</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Slovenian e-Račun (eSLOG 2.0)"
+                       name="si_edi_group"
+                       attrs="{'invisible': [('country_id', '!=', %(base.si)s)]}">
+                    <group>
+                        <field name="si_edi_enabled"/>
+                        <field name="si_edi_environment"
+                               attrs="{'invisible': [('si_edi_enabled', '=', False)]}"/>
+                        <field name="si_edi_auto_submit"
+                               attrs="{'invisible': [('si_edi_enabled', '=', False)]}"/>
+                        <field name="si_edi_peppol_id"
+                               attrs="{'invisible': [('si_edi_enabled', '=', False)]}"/>
+                    </group>
+                    <group>
+                        <field name="si_edi_certificate" filename="si_edi_certificate_filename"
+                               attrs="{'invisible': [('si_edi_enabled', '=', False)]}"/>
+                        <field name="si_edi_certificate_filename" invisible="1"/>
+                        <field name="si_edi_certificate_password" password="True"
+                               attrs="{'invisible': [('si_edi_enabled', '=', False)]}"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

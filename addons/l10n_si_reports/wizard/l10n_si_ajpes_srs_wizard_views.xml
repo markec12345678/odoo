@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_ajpes_srs_wizard_form" model="ir.ui.view">
+        <field name="name">l10n_si.ajpes.srs.wizard.form</field>
+        <field name="model">l10n_si.ajpes.srs.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate AJPES SRS Report">
+                <group>
+                    <field name="company_id"/>
+                    <field name="year"/>
+                </group>
+                <footer>
+                    <button name="action_generate" type="object"
+                            string="Generate XML" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_ajpes_srs_wizard" model="ir.actions.act_window">
+        <field name="name">AJPES SRS Report</field>
+        <field name="res_model">l10n_si.ajpes.srs.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_ajpes_srs"
+              name="AJPES SRS (Annual)"
+              parent="menu_l10n_si_reports_root"
+              action="action_l10n_si_ajpes_srs_wizard"
+              sequence="10"/>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Default: FURS check disabled until certificate is configured -->
+        <record id="si_vat_default_disabled" model="ir.property">
+            <field name="name">si_vat_check_enabled</field>
+            <field name="fields_id" ref="base.field_res_company__si_vat_check_enabled"/>
+            <field name="value">False</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+    </data>
+</odoo>

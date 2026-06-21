@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add a "Check VAT (FURS)" button on partner form for manual verification -->
+    <record id="view_partner_form_si_vat" model="ir.ui.view">
+        <field name="name">res.partner.form.si.vat</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <button name="action_si_check_vat"
+                        type="object"
+                        string="Check with FURS"
+                        class="btn-sm btn-secondary"
+                        attrs="{'invisible': ['|', ('vat', '=', False), ('country_id', '!=', %(base.si)s)]}"
+                        groups="base.group_user"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

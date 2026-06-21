@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Retry failed FURS submissions every 5 minutes. The cron exits early
+             if there are no pending submissions (state=error + next_retry<=now). -->
+        <record id="cron_si_fiscal_retry_failed" model="ir.cron">
+            <field name="name">SI Fiscal: Retry Failed Submissions</field>
+            <field name="model_id" ref="model_l10n_si_fiscal_log"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_retry_failed_submissions()</field>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>

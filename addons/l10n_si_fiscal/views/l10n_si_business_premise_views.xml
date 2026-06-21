@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Override the stub view from l10n_si_sequence to show real FURS state -->
+    <record id="view_l10n_si_business_premise_form_fiscal" model="ir.ui.view">
+        <field name="name">l10n_si.business.premise.form.fiscal</field>
+        <field name="model">l10n_si.business.premise</field>
+        <field name="inherit_id" ref="l10n_si_sequence.view_l10n_si_business_premise_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_register_with_furs']" position="replace">
+                <button name="action_register_with_furs" type="object"
+                        string="Register with FURS" class="btn-primary"
+                        attrs="{'invisible': [('furs_premise_id', '!=', False)]}"/>
+                <button name="action_register_with_furs" type="object"
+                        string="Re-register with FURS" class="btn-secondary"
+                        attrs="{'invisible': [('furs_premise_id', '=', False)]}"
+                        confirm="Are you sure? Re-registration will invalidate existing EORs."/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

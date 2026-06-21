@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Empty placeholder; the parent wizard view is reused via inheritance. -->
+    <record id="view_account_bank_statement_import_si_form" model="ir.ui.view">
+        <field name="name">account.bank.statement.import.si.form</field>
+        <field name="model">account.bank.statement.import</field>
+        <field name="inherit_id" ref="account_bank_statement_import.account_bank_statement_import_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="string">Import SI Bank Statement (CAMT.053 / MT940)</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

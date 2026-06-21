@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_business_premise_tree" model="ir.ui.view">
+        <field name="name">l10n_si.business.premise.tree</field>
+        <field name="model">l10n_si.business.premise</field>
+        <field name="arch" type="xml">
+            <tree string="Business Premises">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="street"/>
+                <field name="city"/>
+                <field name="device_count"/>
+                <field name="furs_premise_id"/>
+                <field name="furs_registered_on"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_business_premise_form" model="ir.ui.view">
+        <field name="name">l10n_si.business.premise.form</field>
+        <field name="model">l10n_si.business.premise</field>
+        <field name="arch" type="xml">
+            <form string="Business Premise">
+                <header>
+                    <button name="action_register_with_furs" type="object"
+                            string="Register with FURS" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_devices" type="object"
+                                class="oe_stat_button" icon="fa-cash-register">
+                            <field name="device_count" widget="statinfo"
+                                   string="Devices"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="furs_premise_id" readonly="1"/>
+                            <field name="furs_registered_on" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Address">
+                        <group>
+                            <field name="street"/>
+                            <field name="street2"/>
+                        </group>
+                        <group>
+                            <field name="zip"/>
+                            <field name="city"/>
+                            <field name="country_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Electronic Devices" name="devices">
+                            <field name="electronic_device_ids">
+                                <tree editable="bottom">
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="furs_device_id"/>
+                                    <field name="furs_registered_on"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_business_premise" model="ir.actions.act_window">
+        <field name="name">Business Premises (SI)</field>
+        <field name="res_model">l10n_si.business.premise</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Slovenian business premise
+            </p>
+            <p>
+                Each poslovni prostor must be registered with FURS before
+                invoices can be issued from it.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_l10n_si_sequence_root"
+              name="Slovenian"
+              parent="account.menu_finance_configuration"
+              sequence="90"/>
+
+    <menuitem id="menu_l10n_si_business_premise"
+              name="Business Premises"
+              parent="menu_l10n_si_sequence_root"
+              action="action_l10n_si_business_premise"
+              sequence="10"/>
+</odoo>

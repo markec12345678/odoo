@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_fiscal_log_tree" model="ir.ui.view">
+        <field name="name">l10n_si.fiscal.log.tree</field>
+        <field name="model">l10n_si.fiscal.log</field>
+        <field name="arch" type="xml">
+            <tree string="Fiscal Logs" decoration-success="state == 'sent'"
+                  decoration-danger="state == 'error'">
+                <field name="create_date"/>
+                <field name="move_id"/>
+                <field name="request_type"/>
+                <field name="zoi"/>
+                <field name="eor"/>
+                <field name="state"/>
+                <field name="furs_response_code"/>
+                <field name="retry_count"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_fiscal_log_form" model="ir.ui.view">
+        <field name="name">l10n_si.fiscal.log.form</field>
+        <field name="model">l10n_si.fiscal.log</field>
+        <field name="arch" type="xml">
+            <form string="Fiscal Log">
+                <header>
+                    <button name="action_retry" type="object" string="Retry"
+                            class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'error')]}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="move_id"/>
+                            <field name="request_type"/>
+                            <field name="state"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="zoi"/>
+                            <field name="eor"/>
+                            <field name="furs_response_code"/>
+                            <field name="retry_count"/>
+                            <field name="next_retry"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Request">
+                            <field name="furs_request" widget="ace" options="{'mode': 'json'}"/>
+                        </page>
+                        <page string="Response">
+                            <field name="furs_message" widget="ace" options="{'mode': 'json'}"/>
+                        </page>
+                        <page string="Error">
+                            <field name="error_message"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_fiscal_log_search" model="ir.ui.view">
+        <field name="name">l10n_si.fiscal.log.search</field>
+        <field name="model">l10n_si.fiscal.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="move_id"/>
+                <field name="zoi"/>
+                <field name="eor"/>
+                <filter name="filter_error" string="Errors"
+                        domain="[('state', '=', 'error')]"/>
+                <filter name="filter_sent" string="Successfully Sent"
+                        domain="[('state', '=', 'sent')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_state" string="State"
+                            context="{'group_by': 'state'}"/>
+                    <filter name="group_type" string="Request Type"
+                            context="{'group_by': 'request_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_fiscal_log" model="ir.actions.act_window">
+        <field name="name">Fiscal Verification Logs (SI)</field>
+        <field name="res_model">l10n_si.fiscal.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_fiscal_log"
+              name="Fiscal Logs"
+              parent="account.menu_finance_receivables"
+              action="action_l10n_si_fiscal_log"
+              sequence="50"/>
+</odoo>

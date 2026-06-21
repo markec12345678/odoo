@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_edi_log_tree" model="ir.ui.view">
+        <field name="name">l10n_si.edi.log.tree</field>
+        <field name="model">l10n_si.edi.log</field>
+        <field name="arch" type="xml">
+            <tree string="e-Račun Logs" decoration-success="state == 'accepted'"
+                  decoration-danger="state == 'rejected'"
+                  decoration-warning="state == 'error'">
+                <field name="create_date"/>
+                <field name="move_id"/>
+                <field name="furs_message_id"/>
+                <field name="state"/>
+                <field name="furs_response_code"/>
+                <field name="submitted_at"/>
+                <field name="accepted_at"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_edi_log_form" model="ir.ui.view">
+        <field name="name">l10n_si.edi.log.form</field>
+        <field name="model">l10n_si.edi.log</field>
+        <field name="arch" type="xml">
+            <form string="e-Račun Log">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="move_id"/>
+                            <field name="state"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="furs_message_id"/>
+                            <field name="furs_response_code"/>
+                            <field name="submitted_at"/>
+                            <field name="accepted_at"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="XML">
+                            <field name="xml_attachment_id" widget="url"/>
+                        </page>
+                        <page string="Response">
+                            <field name="furs_response" widget="ace" options="{'mode': 'xml'}"/>
+                        </page>
+                        <page string="Error">
+                            <field name="error_message"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_edi_log" model="ir.actions.act_window">
+        <field name="name">e-Račun Logs (SI)</field>
+        <field name="res_model">l10n_si.edi.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_edi_log"
+              name="e-Račun Logs"
+              parent="account.menu_finance_receivables"
+              action="action_l10n_si_edi_log"
+              sequence="55"/>
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_electronic_device_tree" model="ir.ui.view">
+        <field name="name">l10n_si.electronic.device.tree</field>
+        <field name="model">l10n_si.electronic.device</field>
+        <field name="arch" type="xml">
+            <tree string="Electronic Devices">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="business_premise_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="furs_device_id"/>
+                <field name="furs_registered_on"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_electronic_device_form" model="ir.ui.view">
+        <field name="name">l10n_si.electronic.device.form</field>
+        <field name="model">l10n_si.electronic.device</field>
+        <field name="arch" type="xml">
+            <form string="Electronic Device">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="business_premise_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="furs_device_id" readonly="1"/>
+                            <field name="furs_registered_on" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Yearly Sequences" name="sequences">
+                            <field name="sequence_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="l10n_si_year"/>
+                                    <field name="prefix"/>
+                                    <field name="padding"/>
+                                    <field name="number_next"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_electronic_device" model="ir.actions.act_window">
+        <field name="name">Electronic Devices (SI)</field>
+        <field name="res_model">l10n_si.electronic.device</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_electronic_device"
+              name="Electronic Devices"
+              parent="menu_l10n_si_sequence_root"
+              action="action_l10n_si_electronic_device"
+              sequence="20"/>
+</odoo>

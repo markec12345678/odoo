@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_si_sequence" model="ir.ui.view">
+        <field name="name">res.company.form.si.sequence</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Slovenian Invoice Numbering"
+                       name="si_sequence_group"
+                       attrs="{'invisible': [('country_id', '!=', %(base.si)s)]}">
+                    <field name="l10n_si_default_premise_id"/>
+                    <field name="l10n_si_default_device_id"
+                           domain="[('business_premise_id', '=', l10n_si_default_premise_id)]"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
