@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_event_hall_tree" model="ir.ui.view">
+        <field name="name">l10n_si.event.hall.tree</field>
+        <field name="model">l10n_si.event.hall</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'available'"
+                  decoration-danger="state == 'booked'"
+                  decoration-muted="state == 'maintenance'">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="venue_id"/>
+                <field name="hall_type"/>
+                <field name="capacity"/>
+                <field name="capacity_seated"/>
+                <field name="size_sqm"/>
+                <field name="daily_rate"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_event_hall_form" model="ir.ui.view">
+        <field name="name">l10n_si.event.hall.form</field>
+        <field name="model">l10n_si.event.hall</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_set_available" type="object" string="Prosta"
+                            attrs="{'invisible': [('state', '=', 'available')]}"/>
+                    <button name="action_set_maintenance" type="object" string="Vzdrževanje"
+                            attrs="{'invisible': [('state', '=', 'maintenance')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="sequence"/>
+                            <field name="venue_id"/>
+                            <field name="hall_type"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="capacity"/>
+                            <field name="capacity_seated"/>
+                            <field name="capacity_classroom"/>
+                            <field name="size_sqm"/>
+                        </group>
+                    </group>
+                    <group string="Cenik">
+                        <group>
+                            <field name="hourly_rate"/>
+                            <field name="half_day_rate"/>
+                        </group>
+                        <group>
+                            <field name="daily_rate"/>
+                            <field name="min_booking_hours"/>
+                        </group>
+                    </group>
+                    <group string="Vključena oprema">
+                        <group>
+                            <field name="has_projector"/>
+                            <field name="has_screen"/>
+                            <field name="has_microphone"/>
+                            <field name="has_sound_system"/>
+                        </group>
+                        <group>
+                            <field name="has_stage"/>
+                            <field name="has_bar"/>
+                            <field name="has_kitchen_access"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Opis">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                        <page string="Tloris">
+                            <field name="floor_plan" widget="image"/>
+                        </page>
+                        <page string="Rezervacije">
+                            <field name="booking_ids" readonly="1">
+                                <tree>
+                                    <field name="number"/>
+                                    <field name="event_id"/>
+                                    <field name="date_from"/>
+                                    <field name="date_to"/>
+                                    <field name="total_amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_event_hall" model="ir.actions.act_window">
+        <field name="name">Dvorane</field>
+        <field name="res_model">l10n_si.event.hall</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_l10n_si_event_venue_root"
+              name="Dogodki (SI)"
+              web_icon="l10n_si_event_venue,static/description/icon.png"
+              sequence="40"/>
+
+    <menuitem id="menu_l10n_si_event_event"
+              name="Dogodki"
+              parent="menu_l10n_si_event_venue_root"
+              action="action_l10n_si_event_event"
+              sequence="10"/>
+
+    <menuitem id="menu_l10n_si_event_booking"
+              name="Rezervacije dvoran"
+              parent="menu_l10n_si_event_venue_root"
+              action="action_l10n_si_event_booking"
+              sequence="20"/>
+
+    <menuitem id="menu_l10n_si_event_catering"
+              name="Catering postavke"
+              parent="menu_l10n_si_event_venue_root"
+              action="action_l10n_si_event_catering_line"
+              sequence="30"/>
+
+    <menuitem id="menu_l10n_si_event_config"
+              name="Konfiguracija"
+              parent="menu_l10n_si_event_venue_root"
+              sequence="90"/>
+
+    <menuitem id="menu_l10n_si_event_venue"
+              name="Venue-i"
+              parent="menu_l10n_si_event_config"
+              action="action_l10n_si_event_venue"
+              sequence="10"/>
+
+    <menuitem id="menu_l10n_si_event_hall"
+              name="Dvorane"
+              parent="menu_l10n_si_event_config"
+              action="action_l10n_si_event_hall"
+              sequence="20"/>
+
+    <menuitem id="menu_l10n_si_event_package"
+              name="Paketi"
+              parent="menu_l10n_si_event_config"
+              action="action_l10n_si_event_package"
+              sequence="30"/>
+
+    <menuitem id="menu_l10n_si_event_menu_item"
+              name="Catering jedi"
+              parent="menu_l10n_si_event_config"
+              action="action_l10n_si_event_menu_item"
+              sequence="40"/>
+</odoo>

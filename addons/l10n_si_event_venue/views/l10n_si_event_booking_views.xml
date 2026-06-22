@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_event_booking_tree" model="ir.ui.view">
+        <field name="name">l10n_si.event.booking.tree</field>
+        <field name="model">l10n_si.event.booking</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'confirmed'"
+                  decoration-warning="state == 'deposit_paid'"
+                  decoration-success="state == 'completed'">
+                <field name="number"/>
+                <field name="event_id"/>
+                <field name="hall_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="duration_hours" widget="float_time"/>
+                <field name="pricing_type"/>
+                <field name="total_amount" sum="Skupaj"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_event_booking_form" model="ir.ui.view">
+        <field name="name">l10n_si.event.booking.form</field>
+        <field name="model">l10n_si.event.booking</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="number" readonly="1"/>
+                            <field name="event_id"/>
+                            <field name="hall_id"/>
+                        </group>
+                        <group>
+                            <field name="pricing_type"/>
+                            <field name="unit_price"/>
+                            <field name="total_amount" widget="monetary" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Časovni okvir (vključuje pripravo in razstavljanje)">
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="duration_hours" widget="float_time" readonly="1"/>
+                        </group>
+                        <group string="Dejanski čas dogodka">
+                            <field name="event_start"/>
+                            <field name="event_end"/>
+                        </group>
+                    </group>
+                    <group string="Opombe">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_event_booking" model="ir.actions.act_window">
+        <field name="name">Rezervacije dvoran</field>
+        <field name="res_model">l10n_si.event.booking</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

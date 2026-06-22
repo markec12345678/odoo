@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_event_venue_tree" model="ir.ui.view">
+        <field name="name">l10n_si.event.venue.tree</field>
+        <field name="model">l10n_si.event.venue</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="city"/>
+                <field name="hall_count"/>
+                <field name="total_capacity"/>
+                <field name="parking_spaces"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_event_venue_form" model="ir.ui.view">
+        <field name="name">l10n_si.event.venue.form</field>
+        <field name="model">l10n_si.event.venue</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_halls" type="object" class="oe_stat_button" icon="fa-building">
+                            <field name="hall_count" widget="statinfo" string="Dvorane"/>
+                        </button>
+                        <button name="action_view_events" type="object" class="oe_stat_button" icon="fa-calendar">
+                            <field name="event_count" widget="statinfo" string="Dogodki"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="partner_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="total_capacity" readonly="1"/>
+                            <field name="parking_spaces"/>
+                            <field name="has_disabled_access"/>
+                            <field name="has_wifi"/>
+                            <field name="has_air_condition"/>
+                        </group>
+                    </group>
+                    <group string="Naslov">
+                        <group>
+                            <field name="street"/>
+                            <field name="street2"/>
+                        </group>
+                        <group>
+                            <field name="zip"/>
+                            <field name="city"/>
+                            <field name="country_id"/>
+                            <field name="municipality_id"/>
+                        </group>
+                    </group>
+                    <group string="Kontakt">
+                        <group>
+                            <field name="contact_name"/>
+                            <field name="contact_phone"/>
+                        </group>
+                        <group>
+                            <field name="contact_email"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Dvorane">
+                            <field name="hall_ids">
+                                <tree>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="hall_type"/>
+                                    <field name="capacity"/>
+                                    <field name="daily_rate"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Opis">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_event_venue" model="ir.actions.act_window">
+        <field name="name">Venue-i</field>
+        <field name="res_model">l10n_si.event.venue</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

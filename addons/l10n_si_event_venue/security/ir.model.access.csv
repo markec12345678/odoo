@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_event_venue_user,l10n_si.event.venue.user,model_l10n_si_event_venue,base.group_user,1,1,1,0
+access_l10n_si_event_venue_manager,l10n_si.event.venue.manager,model_l10n_si_event_venue,base.group_system,1,1,1,1
+access_l10n_si_event_hall_user,l10n_si.event.hall.user,model_l10n_si_event_hall,base.group_user,1,1,1,0
+access_l10n_si_event_hall_manager,l10n_si.event.hall.manager,model_l10n_si_event_hall,base.group_system,1,1,1,1
+access_l10n_si_event_package_user,l10n_si.event.package.user,model_l10n_si_event_package,base.group_user,1,0,0,0
+access_l10n_si_event_package_manager,l10n_si.event.package.manager,model_l10n_si_event_package,base.group_system,1,1,1,1
+access_l10n_si_event_menu_item_user,l10n_si.event.menu.item.user,model_l10n_si_event_menu_item,base.group_user,1,0,0,0
+access_l10n_si_event_menu_item_manager,l10n_si.event.menu.item.manager,model_l10n_si_event_menu_item,base.group_system,1,1,1,1
+access_l10n_si_event_event_user,l10n_si.event.event.user,model_l10n_si_event_event,base.group_user,1,1,1,0
+access_l10n_si_event_event_manager,l10n_si.event.event.manager,model_l10n_si_event_event,base.group_system,1,1,1,1
+access_l10n_si_event_booking_user,l10n_si.event.booking.user,model_l10n_si_event_booking,base.group_user,1,1,1,0
+access_l10n_si_event_booking_manager,l10n_si.event.booking.manager,model_l10n_si_event_booking,base.group_system,1,1,1,1
+access_l10n_si_event_catering_line_user,l10n_si.event.catering.line.user,model_l10n_si_event_catering_line,base.group_user,1,1,1,0
+access_l10n_si_event_catering_line_manager,l10n_si.event.catering.line.manager,model_l10n_si_event_catering_line,base.group_system,1,1,1,1

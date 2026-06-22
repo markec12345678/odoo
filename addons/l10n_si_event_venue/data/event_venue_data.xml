@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_l10n_si_event_event" model="ir.sequence">
+            <field name="name">SI Event</field>
+            <field name="code">l10n_si.event.event</field>
+            <field name="prefix">EVT/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_l10n_si_event_booking" model="ir.sequence">
+            <field name="name">SI Event Booking</field>
+            <field name="code">l10n_si.event.booking</field>
+            <field name="prefix">BKG/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <!-- Default paketi -->
+        <record id="package_wedding_premium" model="l10n_si.event.package">
+            <field name="name">Premium poročni paket</field>
+            <field name="code">WED-PREMIUM</field>
+            <field name="category">wedding</field>
+            <field name="min_guests">50</field>
+            <field name="max_guests">150</field>
+            <field name="base_price">3500.0</field>
+            <field name="duration_hours">10.0</field>
+            <field name="includes_hall">True</field>
+            <field name="includes_catering">True</field>
+            <field name="includes_equipment">True</field>
+            <field name="includes_service_staff">True</field>
+            <field name="includes_decorations">True</field>
+            <field name="includes_photographer">True</field>
+            <field name="includes_music">True</field>
+            <field name="deposit_percent">30.0</field>
+        </record>
+        <record id="package_wedding_basic" model="l10n_si.event.package">
+            <field name="name">Osnovni poročni paket</field>
+            <field name="code">WED-BASIC</field>
+            <field name="category">wedding</field>
+            <field name="min_guests">20</field>
+            <field name="max_guests">80</field>
+            <field name="base_price">1800.0</field>
+            <field name="duration_hours">8.0</field>
+            <field name="includes_hall">True</field>
+            <field name="includes_catering">True</field>
+            <field name="includes_equipment">True</field>
+            <field name="includes_service_staff">True</field>
+            <field name="deposit_percent">25.0</field>
+        </record>
+        <record id="package_conference_day" model="l10n_si.event.package">
+            <field name="name">Konferenčni dan</field>
+            <field name="code">CONF-DAY</field>
+            <field name="category">conference</field>
+            <field name="min_guests">20</field>
+            <field name="max_guests">300</field>
+            <field name="base_price">1200.0</field>
+            <field name="duration_hours">8.0</field>
+            <field name="includes_hall">True</field>
+            <field name="includes_catering">True</field>
+            <field name="includes_equipment">True</field>
+            <field name="includes_service_staff">True</field>
+            <field name="deposit_percent">30.0</field>
+        </record>
+        <record id="package_meeting_half_day" model="l10n_si.event.package">
+            <field name="name">Poslovni sestanek (pol dneva)</field>
+            <field name="code">MEET-HALF</field>
+            <field name="category">business_meeting</field>
+            <field name="min_guests">5</field>
+            <field name="max_guests">30</field>
+            <field name="base_price">350.0</field>
+            <field name="duration_hours">4.0</field>
+            <field name="includes_hall">True</field>
+            <field name="includes_catering">True</field>
+            <field name="includes_equipment">True</field>
+            <field name="deposit_percent">0.0</field>
+        </record>
+        <record id="package_birthday" model="l10n_si.event.package">
+            <field name="name">Praznovanje rojstnega dne</field>
+            <field name="code">BIRTHDAY</field>
+            <field name="category">birthday</field>
+            <field name="min_guests">10</field>
+            <field name="max_guests">60</field>
+            <field name="base_price">600.0</field>
+            <field name="duration_hours">5.0</field>
+            <field name="includes_hall">True</field>
+            <field name="includes_catering">True</field>
+            <field name="includes_equipment">True</field>
+            <field name="includes_service_staff">True</field>
+            <field name="deposit_percent">20.0</field>
+        </record>
+    </data>
+</odoo>

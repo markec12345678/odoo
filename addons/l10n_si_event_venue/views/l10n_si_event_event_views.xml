@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_event_event_tree" model="ir.ui.view">
+        <field name="name">l10n_si.event.event.tree</field>
+        <field name="model">l10n_si.event.event</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'confirmed'"
+                  decoration-warning="state == 'deposit_paid'"
+                  decoration-success="state == 'completed'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="number"/>
+                <field name="name"/>
+                <field name="event_type"/>
+                <field name="partner_id"/>
+                <field name="venue_id"/>
+                <field name="date_start"/>
+                <field name="expected_guests"/>
+                <field name="total_amount" sum="Skupaj"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_event_event_form" model="ir.ui.view">
+        <field name="name">l10n_si.event.event.form</field>
+        <field name="model">l10n_si.event.event</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_send_quote" type="object" string="Pošlji ponudbo" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'inquiry')]}"/>
+                    <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
+                            attrs="{'invisible': [('state', 'not in', ('quoted', 'inquiry'))]}"/>
+                    <button name="action_register_deposit" type="object" string="Zabeleži avans"
+                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_start" type="object" string="Začni dogodek" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'deposit_paid')]}"/>
+                    <button name="action_complete_pending" type="object" string="Končaj dogodek"
+                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                    <button name="action_create_final_invoice" type="object" string="Izdaj končni račun" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'completed_pending')]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('completed', 'cancelled'))]}"
+                            confirm="Resnično prekliči dogodek?"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="inquiry,quoted,confirmed,deposit_paid,in_progress,completed_pending,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoices" type="object" class="oe_stat_button" icon="fa-file-text-o"
+                                attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                            <field name="invoice_count" widget="statinfo" string="Računi"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="number" readonly="1"/>
+                            <field name="event_type"/>
+                            <field name="partner_id"/>
+                            <field name="contact_name"/>
+                            <field name="contact_phone"/>
+                            <field name="contact_email"/>
+                        </group>
+                        <group>
+                            <field name="venue_id"/>
+                            <field name="package_id"/>
+                            <field name="expected_guests"/>
+                            <field name="confirmed_guests"/>
+                            <field name="actual_guests"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Čas dogodka">
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                        <group string="Priprava/razstavljanje">
+                            <field name="setup_start"/>
+                            <field name="teardown_end"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Dvorane in rezervacije">
+                            <field name="hall_ids" widget="many2many_tags"/>
+                            <field name="booking_ids">
+                                <tree editable="bottom">
+                                    <field name="hall_id"/>
+                                    <field name="date_from"/>
+                                    <field name="date_to"/>
+                                    <field name="pricing_type"/>
+                                    <field name="unit_price"/>
+                                    <field name="duration_hours"/>
+                                    <field name="total_amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Catering">
+                            <field name="catering_line_ids">
+                                <tree editable="bottom">
+                                    <field name="menu_item_id"/>
+                                    <field name="quantity_type"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_price"/>
+                                    <field name="subtotal"/>
+                                    <field name="notes"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Posebne želje">
+                            <field name="special_requests" nolabel="1"/>
+                        </page>
+                        <page string="Interne opombe">
+                            <field name="internal_notes" nolabel="1"/>
+                        </page>
+                        <page string="Opis">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                    </notebook>
+                    <group class="oe_total">
+                        <group/>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="hall_total" widget="monetary"/>
+                            <field name="catering_total" widget="monetary"/>
+                            <field name="extras_total" widget="monetary"/>
+                            <field name="total_amount" widget="monetary" class="oe_subtotal_footer_separator"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_event_event_calendar" model="ir.ui.view">
+        <field name="name">l10n_si.event.event.calendar</field>
+        <field name="model">l10n_si.event.event</field>
+        <field name="arch" type="xml">
+            <calendar string="Dogodki" date_start="date_start" date_stop="date_end"
+                      color="event_type">
+                <field name="name"/>
+                <field name="venue_id"/>
+                <field name="expected_guests"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_event_event_search" model="ir.ui.view">
+        <field name="name">l10n_si.event.event.search</field>
+        <field name="model">l10n_si.event.event</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="number"/>
+                <field name="partner_id"/>
+                <field name="venue_id"/>
+                <filter name="filter_upcoming" string="Prihajajoči"
+                        domain="[('date_start', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                <filter name="filter_today" string="Danes"
+                        domain="[('date_start', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')),
+                                 ('date_start', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <filter name="filter_inquiry" string="Povpraševanja" domain="[('state', '=', 'inquiry')]"/>
+                <filter name="filter_confirmed" string="Potrjeni" domain="[('state', 'in', ['confirmed', 'deposit_paid'])]"/>
+                <group string="Group By">
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_type" string="Vrsta" context="{'group_by': 'event_type'}"/>
+                    <filter name="group_venue" string="Venue" context="{'group_by': 'venue_id'}"/>
+                    <filter name="group_month" string="Mesec" context="{'group_by': 'date_start:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_event_event" model="ir.actions.act_window">
+        <field name="name">Dogodki</field>
+        <field name="res_model">l10n_si.event.event</field>
+        <field name="view_mode">calendar,tree,form</field>
+    </record>
+</odoo>
