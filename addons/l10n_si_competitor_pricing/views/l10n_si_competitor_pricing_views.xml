@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_competitor_pricing_tree" model="ir.ui.view">
+        <field name="name">l10n_si_competitor_pricing.tree</field>
+        <field name="model">l10n_si.competitor</field>
+        <field name="arch" type="xml"><tree><field name="number"/><field name="name"/><field name="create_date"/><field name="active"/></tree></field>
+    </record>
+    <record id="view_l10n_si_competitor_pricing_form" model="ir.ui.view">
+        <field name="name">l10n_si_competitor_pricing.form</field>
+        <field name="model">l10n_si.competitor</field>
+        <field name="arch" type="xml"><form><sheet><group><field name="name"/><field name="number" readonly="1"/><field name="active"/></group><group string="Opombe"><field name="notes" nolabel="1"/></group></sheet></form></field>
+    </record>
+    <record id="action_l10n_si_competitor_pricing" model="ir.actions.act_window">
+        <field name="name">Slovenian Competitor Pricing</field>
+        <field name="res_model">l10n_si.competitor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_l10n_si_competitor_pricing" name="Slovenian Competitor Pricing" parent="l10n_si_hotel.menu_l10n_si_hotel_root" sequence="200" action="action_l10n_si_competitor_pricing"/>
+</odoo>

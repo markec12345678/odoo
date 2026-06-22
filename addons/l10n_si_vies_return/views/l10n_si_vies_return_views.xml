@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_vies_return_tree" model="ir.ui.view">
+        <field name="name">l10n_si_vies_return.tree</field>
+        <field name="model">l10n_si.vies.return</field>
+        <field name="arch" type="xml">
+            <tree><field name="number"/><field name="name"/><field name="total_value"/><field name="state"/></tree>
+        </field>
+    </record>
+    <record id="view_l10n_si_vies_return_form" model="ir.ui.view">
+        <field name="name">l10n_si_vies_return.form</field>
+        <field name="model">l10n_si.vies.return</field>
+        <field name="arch" type="xml">
+            <form><sheet><group><field name="number"/><field name="name"/><field name="total_value"/><field name="state"/></group></sheet></form>
+        </field>
+    </record>
+    <record id="action_l10n_si_vies_return" model="ir.actions.act_window">
+        <field name="name">Slovenian VIES Return</field>
+        <field name="res_model">l10n_si.vies.return</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_l10n_si_vies_return" name="Slovenian VIES Return" parent="account.menu_finance_configuration" sequence="200" action="action_l10n_si_vies_return"/>
+</odoo>

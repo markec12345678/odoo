@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_accessibility_tree" model="ir.ui.view">
+        <field name="name">l10n_si_accessibility.tree</field>
+        <field name="model">l10n_si.accessibility.feature</field>
+        <field name="arch" type="xml"><tree><field name="number"/><field name="name"/><field name="create_date"/><field name="active"/></tree></field>
+    </record>
+    <record id="view_l10n_si_accessibility_form" model="ir.ui.view">
+        <field name="name">l10n_si_accessibility.form</field>
+        <field name="model">l10n_si.accessibility.feature</field>
+        <field name="arch" type="xml"><form><sheet><group><field name="name"/><field name="number" readonly="1"/><field name="active"/></group><group string="Opombe"><field name="notes" nolabel="1"/></group></sheet></form></field>
+    </record>
+    <record id="action_l10n_si_accessibility" model="ir.actions.act_window">
+        <field name="name">Slovenian Accessibility</field>
+        <field name="res_model">l10n_si.accessibility.feature</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_l10n_si_accessibility" name="Slovenian Accessibility" parent="base.menu_administration" sequence="200" action="action_l10n_si_accessibility"/>
+</odoo>

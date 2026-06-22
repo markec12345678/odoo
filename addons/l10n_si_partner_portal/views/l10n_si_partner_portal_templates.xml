@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_stays" name="My Stays">
+        <t t-call="portal.portal_layout">
+            <div class="container"><h1>Moje nočitve</h1>
+                <t t-foreach="folios" t-as="f">
+                    <p><strong t-out="f.name"/> - <span t-out="f.amount_total"/> EUR</p>
+                </t>
+            </div>
+        </t>
+    </template>
+    <template id="portal_loyalty" name="My Loyalty">
+        <t t-call="portal.portal_layout">
+            <div class="container"><h1>Program zvestobe</h1>
+                <t t-if="member">
+                    <p>Nivo: <strong t-out="member.tier"/></p>
+                    <p>Točke: <strong t-out="member.points_balance"/></p>
+                </t>
+                <t t-else=""><p>Niste član programa zvestobe.</p></t>
+            </div>
+        </t>
+    </template>
+</odoo>

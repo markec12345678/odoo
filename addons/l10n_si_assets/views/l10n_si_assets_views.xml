@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_asset_tree" model="ir.ui.view">
+        <field name="name">l10n_si.asset.tree</field>
+        <field name="model">l10n_si.asset</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'active'" decoration-muted="state == 'disposed'">
+                <field name="number"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="acquisition_date"/>
+                <field name="acquisition_value" sum="Skupaj"/>
+                <field name="accumulated_depreciation" sum="Skupaj"/>
+                <field name="book_value" sum="Skupaj"/>
+                <field name="monthly_depreciation"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_si_asset_form" model="ir.ui.view">
+        <field name="name">l10n_si.asset.form</field>
+        <field name="model">l10n_si.asset</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_activate" type="object" string="Aktiviraj" class="btn-primary" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_dispose" type="object" string="Odtuji" attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                    <button name="action_generate_monthly_depreciation" type="object" string="Generiraj amortizacijo"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="number" readonly="1"/>
+                            <field name="code"/>
+                            <field name="category_id"/>
+                            <field name="serial_number"/>
+                            <field name="location"/>
+                            <field name="responsible_id"/>
+                        </group>
+                        <group>
+                            <field name="acquisition_date"/>
+                            <field name="acquisition_value" widget="monetary"/>
+                            <field name="accumulated_depreciation" widget="monetary" readonly="1"/>
+                            <field name="book_value" widget="monetary" readonly="1"/>
+                            <field name="monthly_depreciation" widget="monetary" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Amortizacijske postavke">
+                            <field name="depreciation_line_ids">
+                                <tree>
+                                    <field name="date"/>
+                                    <field name="amount" sum="Skupaj"/>
+                                    <field name="depreciation_type"/>
+                                    <field name="move_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Opombe">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_si_asset" model="ir.actions.act_window">
+        <field name="name">Osnovna sredstva</field>
+        <field name="res_model">l10n_si.asset</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_l10n_si_assets_root" name="Osnovna sredstva (SI)" parent="account.menu_finance_configuration" sequence="120"/>
+    <menuitem id="menu_l10n_si_asset" name="Sredstva" parent="menu_l10n_si_assets_root" action="action_l10n_si_asset"/>
+</odoo>

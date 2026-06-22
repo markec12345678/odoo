@@ -1,6 +1,6 @@
 # Slovenian Localization Modules for Odoo 19.0
 
-Fifty-five custom addons developed for the Slovenian market. All installed via the
+Seventy custom addons developed for the Slovenian market. All installed via the
 standard `--addons-path` mechanism; each depends on the previous one(s) as
 noted below.
 
@@ -99,6 +99,26 @@ noted below.
 | `l10n_si_transport` | `l10n_si_hotel`, `fleet` | Custom | Hotel shuttle, airport transfers, excursions, taxi, car rental, limousine; fleet integration |
 | `l10n_si_sustainability` | `base`, `mail` | Custom | Green Key/EU Ecolabel/Travelife/EKO/ISO 14001 certificates, energy/water/waste/CO2 metrics, per-guest normalization |
 | `l10n_si_data_protection` | `base`, `mail` | Custom | GDPR compliance: consent management (7 types), data subject requests (access/erasure/portability), 30-day deadline, IPP complaint, partner anonymization |
+
+### Tier 8 — Accounting, audit, hotel operations & compliance (15 modules)
+
+| Module | Depends on | Origin | Purpose |
+|--------|-----------|--------|---------|
+| `l10n_si_assets` | `account`, `l10n_si` | Custom | Fixed assets with SI depreciation (linear/declining per ZDD-1), 4 pre-configured categories (IT/furniture/buildings/vehicles), monthly depreciation cron |
+| `l10n_si_intrastat` | `account`, `l10n_si` | Custom | Monthly Intrastat report for EU trade (arrivals + dispatches), auto-compute from invoices, commodity codes, transport modes |
+| `l10n_si_vies_return` | `account`, `l10n_si` | Custom | Monthly VIES (PP ODS) for EU B2B VAT, auto-compute from out_invoices to EU partners |
+| `l10n_si_year_end_close` | `account`, `l10n_si` | Custom | Year-end closing per SRS (accounts 990, 999), compute net profit, create closing journal entry |
+| `l10n_si_audit_trail` | `base`, `mail` | Custom | Audit trail for sensitive field changes (prices, VAT, ZOI/EOR), automatic logging via base.write() override |
+| `l10n_si_gift_voucher` | `account`, `l10n_si_hotel` | Custom | Gift vouchers: sell, redeem (full/partial), track balance, expiry dates |
+| `l10n_si_minibar` | `l10n_si_hotel`, `stock` | Custom | Hotel minibar: item catalog, consumption tracking, auto-charge to folio |
+| `l10n_si_laundry` | `l10n_si_hotel` | Custom | Laundry service: guest + internal, express (1.5x), auto-charge to folio |
+| `l10n_si_partner_portal` | `portal`, `l10n_si_hotel`, `l10n_si_loyalty_program` | Custom | Guest portal: view stays, loyalty points, submit maintenance requests |
+| `l10n_si_multi_company` | `base`, `l10n_si_hotel` | Custom | Hotel chain management: central reservation, shared vendors, multi-company |
+| `l10n_si_weather_integration` | `l10n_si_hotel` | Custom | 14-day weather forecast (open-meteo.com API), occupancy impact, rate adjustment recommendations |
+| `l10n_si_competitor_pricing` | `l10n_si_hotel` | Custom | Competitor price tracking, position analysis (cheapest/most expensive), recommendations |
+| `l10n_si_accessibility` | `l10n_si_hotel`, `l10n_si_event_venue` | Custom | Accessibility features for disabled guests: wheelchair access, elevators, accessible bathrooms, visual alarms |
+| `l10n_si_kitchen_display` | `l10n_si_restaurant` | Custom | Kitchen Display System (KDS): digital screen replacing paper tickets, overdue alerts, prep time tracking |
+| `l10n_si_pets` | `l10n_si_hotel` | Custom | Pet management: species, breed, vaccination records, pet fees, room type pet policies |
 
 ## Installation
 

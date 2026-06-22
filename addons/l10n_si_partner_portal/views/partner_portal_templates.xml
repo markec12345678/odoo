@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Stays list template -->
+        <template id="portal_stays" name="Portal: My Stays">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs">
+                    <li>
+                        <a t-attf-href="/my">My Account</a>
+                    </li>
+                    <li>
+                        <span>My Stays</span>
+                    </li>
+                </t>
+                <div class="container mt-4">
+                    <h2>My Stays</h2>
+                    <t t-if="folios">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Folio</th>
+                                        <th>Check-in</th>
+                                        <th>Check-out</th>
+                                        <th>Status</th>
+                                        <th class="text-end">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="folios" t-as="folio">
+                                        <td>
+                                            <a t-attf-href="/my/stays/#{folio.id}">
+                                                <span t-field="folio.name"/>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <span t-field="folio.check_in" t-options="{'format': 'short'}"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="folio.check_out" t-options="{'format': 'short'}"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="folio.state"/>
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-field="folio.amount_total"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div t-if="pager" class="o_portal_pager text-center">
+                            <t t-call="portal.pager"/>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <p class="text-muted">No stays yet.</p>
+                    </t>
+                </div>
+            </t>
+        </template>
+
+        <!-- Loyalty card template -->
+        <template id="portal_loyalty" name="Portal: My Loyalty">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs">
+                    <li>
+                        <a t-attf-href="/my">My Account</a>
+                    </li>
+                    <li>
+                        <span>My Loyalty</span>
+                    </li>
+                </t>
+                <div class="container mt-4">
+                    <h2>My Loyalty Membership</h2>
+                    <t t-if="member">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <span t-field="member.name"/>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>
+                                            <strong>Number:</strong>
+                                            <span t-field="member.number"/>
+                                        </p>
+                                        <p>
+                                            <strong>Tier:</strong>
+                                            <span t-field="member.tier"/>
+                                        </p>
+                                        <p>
+                                            <strong>State:</strong>
+                                            <span t-field="member.state"/>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>
+                                            <strong>Points:</strong>
+                                            <span t-field="member.points"/>
+                                        </p>
+                                        <p>
+                                            <strong>Lifetime points:</strong>
+                                            <span t-field="member.lifetime_points"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <p class="text-muted">You are not yet a loyalty member.</p>
+                    </t>
+                </div>
+            </t>
+        </template>
+
+        <!-- Add portal menu entries -->
+        <template id="portal_my_home_menu_stays" name="Portal: Stays menu"
+                  inherit_id="portal.portal_my_home" active="True">
+            <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">My Stays</t>
+                    <t t-set="url" t-value="'/my/stays'"/>
+                    <t t-set="count" t-value="stays_count"/>
+                </t>
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">My Loyalty</t>
+                    <t t-set="url" t-value="'/my/loyalty'"/>
+                    <t t-set="count" t-value="loyalty_count"/>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>

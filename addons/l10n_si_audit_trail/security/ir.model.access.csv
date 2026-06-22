@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_audit_user,l10n_si.audit.trail.user,model_l10n_si_audit_trail,base.group_user,1,0,1,0
+access_l10n_si_audit_manager,l10n_si.audit.trail.manager,model_l10n_si_audit_trail,base.group_system,1,1,1,1

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><data noupdate="1">
+    <record id="seq_l10n_si_competitor_pricing" model="ir.sequence">
+        <field name="name">Slovenian Competitor Pricing</field>
+        <field name="code">l10n_si.competitor</field>
+        <field name="prefix">COMP/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</data></odoo>

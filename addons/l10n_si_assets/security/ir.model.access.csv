@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_asset_category_user,l10n_si.asset.category.user,model_l10n_si_asset_category,account.group_account_invoice,1,0,0,0
+access_l10n_si_asset_category_manager,l10n_si.asset.category.manager,model_l10n_si_asset_category,account.group_account_manager,1,1,1,1
+access_l10n_si_asset_user,l10n_si.asset.user,model_l10n_si_asset,account.group_account_invoice,1,1,1,0
+access_l10n_si_asset_manager,l10n_si.asset.manager,model_l10n_si_asset,account.group_account_manager,1,1,1,1
+access_l10n_si_asset_dep_line_user,l10n_si.asset.depreciation.line.user,model_l10n_si_asset_depreciation_line,account.group_account_invoice,1,1,1,0
+access_l10n_si_asset_dep_line_manager,l10n_si.asset.depreciation.line.manager,model_l10n_si_asset_depreciation_line,account.group_account_manager,1,1,1,1
