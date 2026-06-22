@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_l10n_si_loyalty_member" model="ir.sequence">
+            <field name="name">SI Loyalty Member</field>
+            <field name="code">l10n_si.loyalty.member</field>
+            <field name="prefix">LYL/%(year)s/</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <!-- Default nagrade -->
+        <record id="reward_free_night_standard" model="l10n_si.loyalty.reward">
+            <field name="name">Brezplačna nočitev (Standard)</field>
+            <field name="points_required">1000</field>
+            <field name="reward_type">free_night</field>
+            <field name="valid_for_room_type_id" ref="l10n_si_hotel.room_type_standard"/>
+            <field name="expires_in_days">365</field>
+        </record>
+        <record id="reward_free_breakfast" model="l10n_si.loyalty.reward">
+            <field name="name">Brezplačni zajtrk (2 osebi)</field>
+            <field name="points_required">200</field>
+            <field name="reward_type">free_breakfast</field>
+            <field name="expires_in_days">90</field>
+        </record>
+        <record id="reward_free_massage" model="l10n_si.loyalty.reward">
+            <field name="name">Brezplačna masaža (30 min)</field>
+            <field name="points_required">500</field>
+            <field name="reward_type">free_wellness</field>
+            <field name="expires_in_days">180</field>
+        </record>
+        <record id="reward_room_upgrade" model="l10n_si.loyalty.reward">
+            <field name="name">Upgrade sobe (Standard → Deluxe)</field>
+            <field name="points_required">300</field>
+            <field name="reward_type">room_upgrade</field>
+            <field name="valid_days">any</field>
+            <field name="expires_in_days">90</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_rooming_list_tree" model="ir.ui.view">
+        <field name="name">l10n_si.rooming.list.tree</field>
+        <field name="model">l10n_si.rooming.list</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'checked_in'"
+                  decoration-muted="state == 'checked_out'">
+                <field name="group_booking_id"/>
+                <field name="room_number"/>
+                <field name="guest_name"/>
+                <field name="adults"/>
+                <field name="children"/>
+                <field name="is_leader"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_rooming_list_form" model="ir.ui.view">
+        <field name="name">l10n_si.rooming.list.form</field>
+        <field name="model">l10n_si.rooming.list</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_check_in" type="object" string="Prijava"
+                            attrs="{'invisible': [('state', '!=', 'assigned')]}"/>
+                    <button name="action_check_out" type="object" string="Odjava"
+                            attrs="{'invisible': [('state', '!=', 'checked_in')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="group_booking_id"/>
+                            <field name="partner_id"/>
+                            <field name="guest_name"/>
+                            <field name="guest_email"/>
+                            <field name="guest_phone"/>
+                        </group>
+                        <group>
+                            <field name="room_number"/>
+                            <field name="room_id"/>
+                            <field name="adults"/>
+                            <field name="children"/>
+                            <field name="children_ages"/>
+                            <field name="is_leader"/>
+                        </group>
+                    </group>
+                    <group string="Posebne želje">
+                        <field name="special_requests" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_rooming_list" model="ir.actions.act_window">
+        <field name="name">Rooming list</field>
+        <field name="res_model">l10n_si.rooming.list</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_rooming_list" name="Rooming list" parent="menu_l10n_si_group_booking_root" action="action_l10n_si_rooming_list" sequence="20"/>
+</odoo>

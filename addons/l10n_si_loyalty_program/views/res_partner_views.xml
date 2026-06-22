@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_si_loyalty" model="ir.ui.view">
+        <field name="name">res.partner.form.si.loyalty</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Program zvestobe" name="si_loyalty">
+                    <group>
+                        <field name="si_loyalty_member_id"/>
+                        <field name="si_loyalty_tier" readonly="1"/>
+                        <field name="si_loyalty_points" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_dashboard_form" model="ir.ui.view">
+        <field name="name">l10n_si.dashboard.form</field>
+        <field name="model">l10n_si.dashboard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_refresh" type="object" string="Osveži KPI" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Sobe">
+                        <group>
+                            <field name="total_rooms"/>
+                            <field name="occupied_rooms"/>
+                            <field name="available_rooms"/>
+                        </group>
+                        <group>
+                            <field name="occupancy_percent" widget="percentage"/>
+                        </group>
+                    </group>
+                    <group string="Prihodek">
+                        <group>
+                            <field name="rooms_revenue" widget="monetary"/>
+                            <field name="fb_revenue" widget="monetary"/>
+                            <field name="wellness_revenue" widget="monetary"/>
+                            <field name="events_revenue" widget="monetary"/>
+                        </group>
+                        <group>
+                            <field name="total_revenue" widget="monetary"/>
+                            <field name="operating_costs" widget="monetary"/>
+                            <field name="gross_profit" widget="monetary"/>
+                        </group>
+                    </group>
+                    <group string="Kazalniki uspešnosti">
+                        <group>
+                            <field name="adr" widget="monetary"/>
+                            <field name="revpar" widget="monetary"/>
+                            <field name="goppar" widget="monetary"/>
+                        </group>
+                        <group>
+                            <field name="revenue_yoy_percent" widget="percentage"/>
+                            <field name="occupancy_yoy_percent" widget="percentage"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_dashboard_tree" model="ir.ui.view">
+        <field name="name">l10n_si.dashboard.tree</field>
+        <field name="model">l10n_si.dashboard</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="occupancy_percent" widget="percentage"/>
+                <field name="total_revenue" widget="monetary"/>
+                <field name="adr" widget="monetary"/>
+                <field name="revpar" widget="monetary"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_dashboard" model="ir.actions.act_window">
+        <field name="name">Executive Dashboard</field>
+        <field name="res_model">l10n_si.dashboard</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_dashboard_root" name="KPI Dashboard" web_icon="l10n_si_dashboard_executive,static/description/icon.png" sequence="10"/>
+    <menuitem id="menu_l10n_si_dashboard" name="Pregled" parent="menu_l10n_si_dashboard_root" action="action_l10n_si_dashboard"/>
+</odoo>

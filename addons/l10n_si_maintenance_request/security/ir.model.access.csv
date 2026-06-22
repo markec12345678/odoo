@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_maintenance_request_user,l10n_si.maintenance.request.user,model_l10n_si_maintenance_request,base.group_user,1,1,1,0
+access_l10n_si_maintenance_request_manager,l10n_si.maintenance.request.manager,model_l10n_si_maintenance_request,base.group_system,1,1,1,1
+access_l10n_si_maintenance_request_photo_user,l10n_si.maintenance.request.photo.user,model_l10n_si_maintenance_request_photo,base.group_user,1,1,1,0
+access_l10n_si_maintenance_request_photo_manager,l10n_si.maintenance.request.photo.manager,model_l10n_si_maintenance_request_photo,base.group_system,1,1,1,1

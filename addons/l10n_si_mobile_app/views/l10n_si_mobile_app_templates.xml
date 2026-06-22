@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- PWA Main Menu -->
+    <template id="mobile_index" name="Mobile App - Main">
+        <html>
+        <head>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+            <meta name="theme-color" content="#875A7B"/>
+            <link rel="manifest" href="/mobile/manifest.json"/>
+            <title>SI Suite</title>
+            <style>
+                body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+                .header { background: #875A7B; color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+                .header h1 { margin: 0; font-size: 24px; }
+                .header p { margin: 5px 0 0 0; opacity: 0.8; }
+                .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+                .menu-card { background: white; border-radius: 10px; padding: 20px; text-align: center; text-decoration: none; color: #333; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s; }
+                .menu-card:active { transform: scale(0.95); }
+                .menu-card .icon { font-size: 36px; margin-bottom: 10px; display: block; }
+                .menu-card .label { font-weight: 500; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h1>SI Suite</h1>
+                <p>Dobrodošli, <span t-out="user.name"/></p>
+            </div>
+            <div class="menu-grid">
+                <a href="/mobile/housekeeping" class="menu-card">
+                    <span class="icon">🧹</span>
+                    <span class="label">Hišništvo</span>
+                </a>
+                <a href="/mobile/maintenance" class="menu-card">
+                    <span class="icon">🔧</span>
+                    <span class="label">Vzdrževanje</span>
+                </a>
+                <a href="/mobile/reception" class="menu-card">
+                    <span class="icon">🏨</span>
+                    <span class="label">Recepcija</span>
+                </a>
+                <a href="/web" class="menu-card">
+                    <span class="icon">🖥️</span>
+                    <span class="label">Nazaj na Odoo</span>
+                </a>
+            </div>
+            <script>
+                if ('serviceWorker' in navigator) {
+                    // PWA service worker (placeholder)
+                }
+            </script>
+        </body>
+        </html>
+    </template>
+
+    <!-- Housekeeping view -->
+    <template id="mobile_housekeeping" name="Mobile - Housekeeping">
+        <html>
+        <head>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Hišništvo</title>
+            <style>
+                body { font-family: sans-serif; margin: 0; padding: 15px; background: #f5f5f5; }
+                .header { background: #875A7B; color: white; padding: 15px; border-radius: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+                .back { color: white; text-decoration: none; }
+                .task-card { background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+                .task-card.priority-2 { border-left: 5px solid #dc3545; }
+                .task-card.priority-1 { border-left: 5px solid #ffc107; }
+                .task-card.priority-0 { border-left: 5px solid #28a745; }
+                .btn { display: inline-block; padding: 10px 20px; border-radius: 5px; text-decoration: none; color: white; margin-right: 5px; }
+                .btn-primary { background: #875A7B; }
+                .btn-success { background: #28a745; }
+                .empty { text-align: center; padding: 40px; color: #999; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <a href="/mobile" class="back">← Nazaj</a>
+                <h2>Hišništvo</h2>
+                <span/>
+            </div>
+            <t t-if="tasks">
+                <t t-foreach="tasks" t-as="task">
+                    <div t-att-class="'task-card priority-' + task.priority">
+                        <h3>Soba <span t-out="task.room_id.number"/></h3>
+                        <p><strong>Tip:</strong> <span t-out="task.task_type"/></p>
+                        <p><strong>Status:</strong> <span t-out="task.state"/></p>
+                        <p t-if="task.priority == '2'">⚠️ NUJNO</p>
+                        <div>
+                            <t t-if="task.state == 'assigned'">
+                                <button class="btn btn-primary" onclick="startTask({task.id})">Začni</button>
+                            </t>
+                            <t t-if="task.state == 'in_progress'">
+                                <button class="btn btn-success" onclick="completeTask({task.id})">Opravi</button>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+            <t t-else="">
+                <div class="empty">Ni nalog za prikaz.</div>
+            </t>
+            <script>
+                function startTask(id) {
+                    fetch('/mobile/housekeeping/' + id + '/start', {method: 'JSON'}).then(r => r.json()).then(() => location.reload());
+                }
+                function completeTask(id) {
+                    const notes = prompt('Opombe (opcija):') || '';
+                    fetch('/mobile/housekeeping/' + id + '/complete', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({notes: notes}),
+                    }).then(r => r.json()).then(() => location.reload());
+                }
+            </script>
+        </body>
+        </html>
+    </template>
+
+    <!-- Maintenance view -->
+    <template id="mobile_maintenance" name="Mobile - Maintenance">
+        <html>
+        <head>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Vzdrževanje</title>
+            <style>
+                body { font-family: sans-serif; margin: 0; padding: 15px; background: #f5f5f5; }
+                .header { background: #875A7B; color: white; padding: 15px; border-radius: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+                .back { color: white; text-decoration: none; }
+                .req-card { background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; }
+                .req-card.priority-3 { border-left: 5px solid #dc3545; }
+                .btn { display: inline-block; padding: 10px 20px; border-radius: 5px; color: white; margin-right: 5px; }
+                .btn-primary { background: #875A7B; }
+                .btn-success { background: #28a745; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <a href="/mobile" class="back">← Nazaj</a>
+                <h2>Vzdrževanje</h2>
+                <span/>
+            </div>
+            <t t-foreach="requests" t-as="req">
+                <div t-att-class="'req-card priority-' + req.priority">
+                    <h3 t-out="req.name"/>
+                    <p><strong>Kategorija:</strong> <span t-out="req.category"/></p>
+                    <p><strong>Soba:</strong> <span t-out="req.room_id.name or '—'"/></p>
+                    <p><strong>Status:</strong> <span t-out="req.state"/></p>
+                    <p t-if="req.priority == '3'">🚨 KRITIČNO</p>
+                    <div>
+                        <t t-if="req.state == 'reported'">
+                            <button class="btn btn-primary" onclick="startReq({req.id})">Prevzami</button>
+                        </t>
+                        <t t-if="req.state == 'in_progress'">
+                            <button class="btn btn-success" onclick="resolveReq({req.id})">Opravi</button>
+                        </t>
+                    </div>
+                </div>
+            </t>
+            <script>
+                function startReq(id) { fetch('/mobile/maintenance/' + id + '/start', {method: 'JSON'}).then(() => location.reload()); }
+                function resolveReq(id) {
+                    const r = prompt('Opis rešitve:') || '';
+                    fetch('/mobile/maintenance/' + id + '/resolve', {
+                        method: 'POST', headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({resolution: r}),
+                    }).then(() => location.reload());
+                }
+            </script>
+        </body>
+        </html>
+    </template>
+
+    <!-- Reception view -->
+    <template id="mobile_reception" name="Mobile - Reception">
+        <html>
+        <head>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Recepcija</title>
+            <style>
+                body { font-family: sans-serif; margin: 0; padding: 15px; background: #f5f5f5; }
+                .header { background: #875A7B; color: white; padding: 15px; border-radius: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+                .back { color: white; text-decoration: none; }
+                .section { background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
+                .section h3 { margin-top: 0; color: #875A7B; }
+                .res-row { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+                .btn { background: #28a745; color: white; padding: 5px 15px; border-radius: 5px; border: none; }
+                .btn-out { background: #dc3545; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <a href="/mobile" class="back">← Nazaj</a>
+                <h2>Recepcija</h2>
+                <span/>
+            </div>
+            <div class="section">
+                <h3>Prihodi danes (<span t-out="len(arrivals)"/>)</h3>
+                <t t-foreach="arrivals" t-as="res">
+                    <div class="res-row">
+                        <div>
+                            <strong t-out="res.partner_id.name"/>
+                            <br/><small>Soba <span t-out="res.room_id.number"/></small>
+                        </div>
+                        <t t-if="res.state == 'confirmed'">
+                            <button class="btn" onclick="checkIn({res.id})">Check-in</button>
+                        </t>
+                        <t t-elif="res.state == 'checked_in'">
+                            <span style="color: green;">✓ Prijavljen</span>
+                        </t>
+                    </div>
+                </t>
+            </div>
+            <div class="section">
+                <h3>Odhodi danes (<span t-out="len(departures)"/>)</h3>
+                <t t-foreach="departures" t-as="res">
+                    <div class="res-row">
+                        <div>
+                            <strong t-out="res.partner_id.name"/>
+                            <br/><small>Soba <span t-out="res.room_id.number"/></small>
+                        </div>
+                        <button class="btn btn-out" onclick="checkOut({res.id})">Check-out</button>
+                    </div>
+                </t>
+            </div>
+            <script>
+                function checkIn(id) { fetch('/mobile/reception/' + id + '/checkin', {method: 'JSON'}).then(() => location.reload()); }
+                function checkOut(id) { if (confirm('Potrdi odjavo?')) { fetch('/mobile/reception/' + id + '/checkout', {method: 'JSON'}).then(() => location.reload()); } }
+            </script>
+        </body>
+        </html>
+    </template>
+</odoo>

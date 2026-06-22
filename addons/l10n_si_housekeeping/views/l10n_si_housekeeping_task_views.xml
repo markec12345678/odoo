@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_housekeeping_task_tree" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.task.tree</field>
+        <field name="model">l10n_si.housekeeping.task</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="priority == '2'"
+                  decoration-warning="priority == '1'"
+                  decoration-success="state == 'done'"
+                  decoration-muted="state == 'skipped'">
+                <field name="number"/>
+                <field name="room_id"/>
+                <field name="task_type"/>
+                <field name="housekeeper_id"/>
+                <field name="scheduled_date"/>
+                <field name="duration_minutes" widget="float_time"/>
+                <field name="priority" widget="priority"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_housekeeping_task_form" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.task.form</field>
+        <field name="model">l10n_si.housekeeping.task</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_assign" type="object" string="Dodeli"
+                            attrs="{'invisible': [('state', '!=', 'pending')]}"/>
+                    <button name="action_start" type="object" string="Začni" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'assigned')]}"/>
+                    <button name="action_complete" type="object" string="Opravi" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                    <button name="action_inspect" type="object" string="Preglej"
+                            attrs="{'invisible': [('state', '!=', 'done')]}"/>
+                    <button name="action_skip" type="object" string="Preskoči"
+                            attrs="{'invisible': [('state', 'in', ('done', 'inspected', 'skipped'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <field name="priority" widget="priority"/>
+                    <group>
+                        <group>
+                            <field name="number" readonly="1"/>
+                            <field name="room_id"/>
+                            <field name="task_type"/>
+                            <field name="housekeeper_id"/>
+                        </group>
+                        <group>
+                            <field name="scheduled_date"/>
+                            <field name="started_on" readonly="1"/>
+                            <field name="completed_on" readonly="1"/>
+                            <field name="duration_minutes" widget="float_time" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Opombe hišnika">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                        <page string="Inšpekcija">
+                            <field name="inspection_notes" nolabel="1"/>
+                            <field name="inspected_by" readonly="1"/>
+                        </page>
+                        <page string="Najdene težave">
+                            <group>
+                                <field name="found_damages"/>
+                                <field name="found_lost_items"/>
+                                <field name="needs_maintenance"/>
+                            </group>
+                        </page>
+                        <page string="Poraba materiala">
+                            <group>
+                                <field name="towels_used"/>
+                                <field name="sheets_used"/>
+                                <field name="amenity_kits_used"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_housekeeping_task_kanban" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.task.kanban</field>
+        <field name="model">l10n_si.housekeeping.task</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="state"/>
+                <field name="name"/>
+                <field name="room_id"/>
+                <field name="housekeeper_id"/>
+                <field name="priority"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <field name="priority" widget="priority"/>
+                            <div class="o_kanban_record_title"><strong><field name="name"/></strong></div>
+                            <div t-if="record.housekeeper_id.raw_value"><small>Hišnik: <field name="housekeeper_id"/></small></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_housekeeping_task" model="ir.actions.act_window">
+        <field name="name">Hišništvo</field>
+        <field name="res_model">l10n_si.housekeeping.task</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_housekeeping_root" name="Hišništvo" parent="l10n_si_hotel.menu_l10n_si_hotel_root" sequence="40"/>
+    <menuitem id="menu_l10n_si_housekeeping_task" name="Naloge" parent="menu_l10n_si_housekeeping_root" action="action_l10n_si_housekeeping_task"/>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_loyalty_member_user,l10n_si.loyalty.member.user,model_l10n_si_loyalty_member,base.group_user,1,1,1,0
+access_l10n_si_loyalty_member_manager,l10n_si.loyalty.member.manager,model_l10n_si_loyalty_member,base.group_system,1,1,1,1
+access_l10n_si_loyalty_transaction_user,l10n_si.loyalty.transaction.user,model_l10n_si_loyalty_transaction,base.group_user,1,1,1,0
+access_l10n_si_loyalty_transaction_manager,l10n_si.loyalty.transaction.manager,model_l10n_si_loyalty_transaction,base.group_system,1,1,1,1
+access_l10n_si_loyalty_reward_user,l10n_si.loyalty.reward.user,model_l10n_si_loyalty_reward,base.group_user,1,0,0,0
+access_l10n_si_loyalty_reward_manager,l10n_si.loyalty.reward.manager,model_l10n_si_loyalty_reward,base.group_system,1,1,1,1

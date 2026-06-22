@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_maintenance_request_tree" model="ir.ui.view">
+        <field name="name">l10n_si.maintenance.request.tree</field>
+        <field name="model">l10n_si.maintenance.request</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="priority == '3'"
+                  decoration-warning="priority == '2'"
+                  decoration-success="state in ('verified', 'closed')">
+                <field name="number"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="room_id"/>
+                <field name="source"/>
+                <field name="priority" widget="priority"/>
+                <field name="sla_deadline"/>
+                <field name="assigned_technician_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_maintenance_request_form" model="ir.ui.view">
+        <field name="name">l10n_si.maintenance.request.form</field>
+        <field name="model">l10n_si.maintenance.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_assign" type="object" string="Dodeli"
+                            attrs="{'invisible': [('state', '!=', 'reported')]}"/>
+                    <button name="action_start" type="object" string="Začni" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'assigned')]}"/>
+                    <button name="action_waiting_parts" type="object" string="Čaka dele"
+                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                    <button name="action_resolve" type="object" string="Opravi" class="btn-primary"
+                            attrs="{'invisible': [('state', 'not in', ('in_progress', 'waiting_parts'))]}"/>
+                    <button name="action_verify" type="object" string="Preveri"
+                            attrs="{'invisible': [('state', '!=', 'resolved')]}"/>
+                    <button name="action_close" type="object" string="Zapri"
+                            attrs="{'invisible': [('state', '!=', 'verified')]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('closed', 'cancelled', 'verified'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <field name="priority" widget="priority"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="number" readonly="1"/>
+                            <field name="category"/>
+                            <field name="source"/>
+                            <field name="partner_id"/>
+                            <field name="reported_by_user_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="room_id"/>
+                            <field name="venue_id"/>
+                            <field name="location_other"/>
+                            <field name="assigned_technician_id"/>
+                            <field name="reported_on" readonly="1"/>
+                            <field name="sla_deadline" readonly="1"/>
+                            <field name="resolution_time_hours" widget="float_time" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Opis">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                        <page string="Fotografije">
+                            <field name="photos_ids">
+                                <tree>
+                                    <field name="image" widget="image"/>
+                                    <field name="caption"/>
+                                    <field name="taken_on"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Rešitev">
+                            <group>
+                                <field name="resolution_description"/>
+                                <field name="parts_used"/>
+                                <field name="cost"/>
+                                <field name="resolved_on" readonly="1"/>
+                                <field name="verified_by" readonly="1"/>
+                                <field name="verified_on" readonly="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_maintenance_request_search" model="ir.ui.view">
+        <field name="name">l10n_si.maintenance.request.search</field>
+        <field name="model">l10n_si.maintenance.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="number"/>
+                <field name="name"/>
+                <field name="room_id"/>
+                <field name="partner_id"/>
+                <filter name="filter_open" string="Odprte" domain="[('state', 'not in', ('closed', 'cancelled'))]"/>
+                <filter name="filter_critical" string="Kritične" domain="[('priority', '=', '3')]"/>
+                <filter name="filter_sla_breach" string="SLA presežen"
+                        domain="[('sla_deadline', '&lt;', context_today().strftime('%Y-%m-%d %H:%M:%S')), ('state', 'not in', ('resolved', 'verified', 'closed'))]"/>
+                <group string="Group By">
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_priority" string="Prioriteta" context="{'group_by': 'priority'}"/>
+                    <filter name="group_category" string="Kategorija" context="{'group_by': 'category'}"/>
+                    <filter name="group_technician" string="Tehnik" context="{'group_by': 'assigned_technician_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_maintenance_request" model="ir.actions.act_window">
+        <field name="name">Vzdrževalne zahteve</field>
+        <field name="res_model">l10n_si.maintenance.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_maintenance_root" name="Vzdrževanje" parent="l10n_si_hotel.menu_l10n_si_hotel_root" sequence="50"/>
+    <menuitem id="menu_l10n_si_maintenance_request" name="Zahteve" parent="menu_l10n_si_maintenance_root" action="action_l10n_si_maintenance_request"/>
+</odoo>

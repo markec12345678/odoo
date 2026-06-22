@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Guest portal: report form -->
+    <template id="portal_report_form" name="Prijavi napako">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <h1>Prijava napake v sobi <span t-out="room.number"/></h1>
+                <p>Spoštovani gost, tukaj lahko prijavite težave v vaši sobi.
+                Naša tehnična služba bo poskrbela za odpravo.</p>
+                <form action="/maintenance/submit" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="room_id" t-att-value="room.id"/>
+                    <input type="hidden" name="room_number" t-att-value="room.number"/>
+                    <div class="form-group">
+                        <label>Vaše ime (opcija)</label>
+                        <input type="text" name="guest_name" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>E-pošta (opcija - za obvestila o statusu)</label>
+                        <input type="email" name="guest_email" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Kategorija napake</label>
+                        <select name="category" class="form-control">
+                            <option value="electrical">Elektrika</option>
+                            <option value="plumbing">Vodovod</option>
+                            <option value="hvac">Klima/ogrevanje</option>
+                            <option value="furniture">Pohištvo</option>
+                            <option value="appliance">Belotehnika</option>
+                            <option value="cleanliness">Čistoča</option>
+                            <option value="other" selected="selected">Drugo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Prioriteta</label>
+                        <select name="priority" class="form-control">
+                            <option value="0">Nizka (7 dni)</option>
+                            <option value="1" selected="selected">Normalna (24h)</option>
+                            <option value="2">Visoka (4h)</option>
+                            <option value="3">Kritična (1h)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Opis napade *</label>
+                        <textarea name="description" class="form-control" rows="5" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Fotografije (opcija, do 3)</label>
+                        <input type="file" name="photo1" class="form-control"/>
+                        <input type="file" name="photo2" class="form-control"/>
+                        <input type="file" name="photo3" class="form-control"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Pošlji prijavo</button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_success" name="Prijavljeno">
+        <t t-call="portal.portal_layout">
+            <div class="container text-center">
+                <h1>Hvala za prijavo!</h1>
+                <p>Vaša prijava je bila registrirana s številko: <strong t-out="request_number"/></p>
+                <p>Naša tehnična služba jo bo obravnavala v roku, ki ustreza prioriteti.</p>
+                <p>
+                    <a t-att-href="'/maintenance/status/' + request_number" class="btn btn-primary">Preveri status</a>
+                </p>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_status" name="Status prijave">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <h1>Status prijave <span t-out="req.number"/></h1>
+                <table class="table">
+                    <tr><th>Naslov:</th><td t-out="req.name"/></tr>
+                    <tr><th>Prijavljeno:</th><td t-out="req.reported_on"/></tr>
+                    <tr><th>Kategorija:</th><td t-out="req.category"/></tr>
+                    <tr><th>Status:</th><td><strong t-out="state_label"/></td></tr>
+                    <tr><th>Tehnik:</th><td t-out="req.assigned_technician_id.name or 'Še ni dodeljeno'"/></tr>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_error" name="Napaka">
+        <t t-call="portal.portal_layout">
+            <div class="container text-center">
+                <h1>Napaka</h1>
+                <p class="text-danger" t-out="error"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_room_not_found" name="Soba ni najdena">
+        <t t-call="portal.portal_layout">
+            <div class="container text-center">
+                <h1>Soba ni najdena</h1>
+                <p>Soba s številko <span t-out="room_number"/> ne obstaja.</p>
+            </div>
+        </t>
+    </template>
+</odoo>

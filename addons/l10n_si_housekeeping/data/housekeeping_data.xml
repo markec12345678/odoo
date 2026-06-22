@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_l10n_si_housekeeping_task" model="ir.sequence">
+            <field name="name">SI Housekeeping Task</field>
+            <field name="code">l10n_si.housekeeping.task</field>
+            <field name="prefix">HK/%(y)s%(month)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_l10n_si_housekeeping_lost_found" model="ir.sequence">
+            <field name="name">SI Lost &amp; Found</field>
+            <field name="code">l10n_si.housekeeping.lost.found</field>
+            <field name="prefix">LF/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="cron_si_housekeeping_daily_generate" model="ir.cron">
+            <field name="name">SI Housekeeping: Generate Daily Tasks</field>
+            <field name="model_id" ref="model_l10n_si_housekeeping_task"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_generate_daily_tasks()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="nextcall" eval="(DateTime.now().replace(hour=6, minute=0, second=0) + relativedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+    </data>
+</odoo>

@@ -1,6 +1,6 @@
 # Slovenian Localization Modules for Odoo 19.0
 
-Thirty-six custom addons developed for the Slovenian market. All installed via the
+Forty-two custom addons developed for the Slovenian market. All installed via the
 standard `--addons-path` mechanism; each depends on the previous one(s) as
 noted below.
 
@@ -66,6 +66,17 @@ noted below.
 | `l10n_si_channel_manager` | `l10n_si_hotel`, `l10n_si_camping` | Custom | Sync with Booking.com/Airbnb/Expedia via API + webhook for reservations |
 | `l10n_si_pos_advanced` | `point_of_sale`, `l10n_si_fiscal`, `l10n_si_hotel` | Custom | POS extensions: FURS on POS, room charge to folio, tourist tax, X/Z reports |
 | `l10n_si_ai_concierge` | `l10n_si_knowledge`, `l10n_si_whatsapp` | Custom | AI guest assistant (Slovenian) for hotels: chat, WhatsApp, email, 24/7 |
+
+### Tier 5 — Hotel operations, loyalty, executive, mobile
+
+| Module | Depends on | Origin | Purpose |
+|--------|-----------|--------|---------|
+| `l10n_si_housekeeping` | `l10n_si_hotel`, `hr` | Custom | Housekeeping tasks, daily cron for room cleaning schedule, Lost & Found, materials usage |
+| `l10n_si_maintenance_request` | `l10n_si_hotel`, `l10n_si_housekeeping`, `portal` | Custom | Guest portal for reporting issues (QR code in room → URL), SLA tracking, photo evidence |
+| `l10n_si_dashboard_executive` | `l10n_si_hotel`, `l10n_si_restaurant`, `l10n_si_wellness` | Custom | Executive KPI dashboard: ADR, RevPAR, GopPAR, occupancy, YoY comparison |
+| `l10n_si_loyalty_program` | `account`, `l10n_si_hotel` | Custom | Loyalty tiers (Bronze/Silver/Gold/Platinum), points accrual, rewards (4 pre-configured) |
+| `l10n_si_group_booking` | `l10n_si_hotel`, `l10n_si_event_venue` | Custom | Group bookings for travel agencies/schools/teams, agency commission, rooming list, cut-off dates |
+| `l10n_si_mobile_app` | `web`, `l10n_si_hotel`, `l10n_si_housekeeping`, `l10n_si_maintenance_request` | Custom | Progressive Web App (installable) for housekeeping, maintenance, reception staff |
 
 ## Installation
 

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_housekeeping_lost_found_tree" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.lost.found.tree</field>
+        <field name="model">l10n_si.housekeeping.lost.found</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'returned'"
+                  decoration-muted="state in ('disposed', 'donated')">
+                <field name="number"/>
+                <field name="name"/>
+                <field name="found_date"/>
+                <field name="room_id"/>
+                <field name="partner_id"/>
+                <field name="item_category"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_housekeeping_lost_found_form" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.lost.found.form</field>
+        <field name="model">l10n_si.housekeeping.lost.found</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_return_to_guest" type="object" string="Vrni gostu" class="btn-primary"
+                            attrs="{'invisible': [('state', 'in', ('returned', 'disposed', 'donated'))]}"/>
+                    <button name="action_dispose" type="object" string="Odstavi"
+                            attrs="{'invisible': [('state', 'in', ('returned', 'disposed', 'donated'))]}"/>
+                    <button name="action_donate" type="object" string="Doniraj"
+                            attrs="{'invisible': [('state', 'in', ('returned', 'disposed', 'donated'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="number" readonly="1"/>
+                            <field name="item_category"/>
+                            <field name="found_date"/>
+                            <field name="found_by_id"/>
+                        </group>
+                        <group>
+                            <field name="room_id"/>
+                            <field name="location"/>
+                            <field name="partner_id"/>
+                            <field name="hotel_folio_id"/>
+                            <field name="storage_location"/>
+                        </group>
+                    </group>
+                    <group string="Opis predmeta">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                    <group string="Vrnitev" attrs="{'invisible': [('state', '!=', 'returned')]}">
+                        <group>
+                            <field name="returned_on" readonly="1"/>
+                            <field name="returned_to" readonly="1"/>
+                            <field name="return_method" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Opombe">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_housekeeping_lost_found" model="ir.actions.act_window">
+        <field name="name">Izgubljeni predmeti</field>
+        <field name="res_model">l10n_si.housekeeping.lost.found</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_housekeeping_lost_found" name="Izgubljeni predmeti" parent="menu_l10n_si_housekeeping_root" action="action_l10n_si_housekeeping_lost_found"/>
+</odoo>
