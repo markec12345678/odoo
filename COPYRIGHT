@@ -1,15 +1,31 @@
 
-Most of the files are
+Most of the Odoo framework files are
 
-  Copyright (c) 2004-2015 Odoo S.A.
+  Copyright (c) 2004-2026 Odoo S.A.
 
-Many files also contain contributions from third
-parties. In this case the original copyright of
-the contributions can be traced through the
+All custom Slovenian localization modules (l10n_si_*) are
+
+  Copyright (c) 2026 markec12345678
+
+These modules are licensed under the GNU Lesser General Public
+License v3.0 (LGPL-3.0), the same license as Odoo Community Edition.
+
+Many files also contain contributions from third parties. In this case
+the original copyright of the contributions can be traced through the
 history of the source version control system.
 
-When that is not the case, the files contain a prominent
-notice stating the original copyright and applicable
-license, or come with their own dedicated COPYRIGHT
-and/or LICENSE file.
+When that is not the case, the files contain a prominent notice
+stating the original copyright and applicable license, or come with
+their own dedicated COPYRIGHT and/or LICENSE file.
 
+Third-party contributions used in custom modules:
+
+  - l10n_si_hotel: Based on OCA/vertical-hotel by Serpent Consulting
+    Services Pvt. Ltd. (LGPL-3.0)
+    Source: https://github.com/OCA/vertical-hotel/tree/17.0/hotel
+
+  - OCA/pos: Referenced for POS patterns (AGPL-3.0)
+    Source: https://github.com/OCA/pos
+
+  - guohuadeng/app-odoo: Referenced for UI enhancement patterns (LGPL-3.0)
+    Source: https://github.com/guohuadeng/app-odoo
