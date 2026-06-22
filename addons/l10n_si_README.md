@@ -1,6 +1,6 @@
 # Slovenian Localization Modules for Odoo 19.0
 
-Twenty-two custom addons developed for the Slovenian market. All installed via the
+Twenty-seven custom addons developed for the Slovenian market. All installed via the
 standard `--addons-path` mechanism; each depends on the previous one(s) as
 noted below.
 
@@ -47,6 +47,16 @@ noted below.
 | `l10n_si_ocr_invoice` | `account`, `mail` | `account_ocr` | OCR scan supplier invoices (Tesseract / Google DocAI / AWS Textract) |
 | `l10n_si_marketing_automation` | `mail`, `mass_mailing` | `marketing_automation` | Multi-step email campaigns with branching + triggers |
 | `l10n_si_whatsapp` | `mail`, `base` | `whatsapp` | WhatsApp Cloud API + Twilio integration, templates, GDPR opt-in |
+
+### Tier 4 — Tourism vertical (hotels, restaurants, camps, farms)
+
+| Module | Depends on | Origin | Purpose |
+|--------|-----------|--------|---------|
+| `l10n_si_hotel` | `l10n_si_fiscal`, `l10n_si_sequence` | Ported from OCA/vertical-hotel 17.0 (SerpentCS) | Hotel PMS: rooms, reservations, folio, check-in/out with FURS ZOI/EOR |
+| `l10n_si_restaurant` | `pos_restaurant`, `l10n_si_fiscal` | Custom | Menus with 14 allergens (EU 1169/2011), tables, KOT (kitchen order tickets), FURS |
+| `l10n_si_camping` | `l10n_si_fiscal`, `l10n_si_sequence` | Custom | Campsite parcels (tent/RV/cabin/glamping), seasonal pricing, long-stay discounts |
+| `l10n_si_farm_tourism` | `l10n_si_fiscal`, `l10n_si_sequence` | Custom | Sobe na kmetiji, domači izdelki (EKO/SMGT cert), kmečke aktivnosti, agroturizem |
+| `l10n_si_tourist_tax` | `account`, `l10n_si` | Custom | Turistična taksa po občinah (ZTur-1), 12 SI municipalities preconfigured |
 
 ## Installation
 

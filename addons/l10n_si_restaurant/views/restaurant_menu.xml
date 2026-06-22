@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_l10n_si_restaurant_root"
+              name="Restavracija (SI)"
+              web_icon="l10n_si_restaurant,static/description/icon.png"
+              sequence="25"/>
+
+    <menuitem id="menu_l10n_si_restaurant_kot"
+              name="KOT (kuhinja)"
+              parent="menu_l10n_si_restaurant_root"
+              action="action_l10n_si_restaurant_kot"
+              sequence="10"/>
+
+    <menuitem id="menu_l10n_si_restaurant_reservation"
+              name="Rezervacije miz"
+              parent="menu_l10n_si_restaurant_root"
+              action="action_l10n_si_restaurant_reservation"
+              sequence="20"/>
+
+    <menuitem id="menu_l10n_si_restaurant_table"
+              name="Mize"
+              parent="menu_l10n_si_restaurant_root"
+              action="action_l10n_si_restaurant_table"
+              sequence="30"/>
+
+    <menuitem id="menu_l10n_si_restaurant_config"
+              name="Konfiguracija"
+              parent="menu_l10n_si_restaurant_root"
+              sequence="90"/>
+
+    <menuitem id="menu_l10n_si_restaurant_menu"
+              name="Jedilnik"
+              parent="menu_l10n_si_restaurant_config"
+              action="action_l10n_si_restaurant_menu"
+              sequence="10"/>
+</odoo>

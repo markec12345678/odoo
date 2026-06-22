@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_hotel_room_type_user,l10n_si.hotel.room.type.user,model_l10n_si_hotel_room_type,base.group_user,1,0,0,0
+access_l10n_si_hotel_room_type_manager,l10n_si.hotel.room.type.manager,model_l10n_si_hotel_room_type,base.group_system,1,1,1,1
+access_l10n_si_hotel_amenity_user,l10n_si.hotel.amenity.user,model_l10n_si_hotel_amenity,base.group_user,1,0,0,0
+access_l10n_si_hotel_amenity_manager,l10n_si.hotel.amenity.manager,model_l10n_si_hotel_amenity,base.group_system,1,1,1,1
+access_l10n_si_hotel_room_user,l10n_si.hotel.room.user,model_l10n_si_hotel_room,base.group_user,1,1,1,0
+access_l10n_si_hotel_room_manager,l10n_si.hotel.room.manager,model_l10n_si_hotel_room,base.group_system,1,1,1,1
+access_l10n_si_hotel_service_user,l10n_si.hotel.service.user,model_l10n_si_hotel_service,base.group_user,1,1,1,0
+access_l10n_si_hotel_service_manager,l10n_si.hotel.service.manager,model_l10n_si_hotel_service,base.group_system,1,1,1,1
+access_l10n_si_hotel_folio_user,l10n_si.hotel.folio.user,model_l10n_si_hotel_folio,base.group_user,1,1,1,0
+access_l10n_si.hotel.folio_user2,l10n_si.hotel.folio.user2,model_l10n_si_hotel_folio,base.group_user,1,1,1,0
+access_l10n_si_hotel_folio_manager,l10n_si.hotel.folio.manager,model_l10n_si_hotel_folio,base.group_system,1,1,1,1
+access_l10n_si_hotel_folio_line_user,l10n_si.hotel.folio.line.user,model_l10n_si_hotel_folio_line,base.group_user,1,1,1,0
+access_l10n_si_hotel_folio_line_manager,l10n_si.hotel.folio.line.manager,model_l10n_si_hotel_folio_line,base.group_system,1,1,1,1
+access_l10n_si_hotel_reservation_user,l10n_si.hotel.reservation.user,model_l10n_si_hotel_reservation,base.group_user,1,1,1,0
+access_l10n_si_hotel_reservation_manager,l10n_si.hotel.reservation.manager,model_l10n_si_hotel_reservation,base.group_system,1,1,1,1

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_l10n_si_tourist_tax_tx" model="ir.sequence">
+            <field name="name">SI Tourist Tax Transaction</field>
+            <field name="code">l10n_si.tourist.tax.transaction</field>
+            <field name="prefix">TTX/%(year)s/</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Major Slovenian municipalities with tourist traffic (sample - real rates per odlok) -->
+        <record id="mun_ljubljana" model="l10n_si.tourist.tax.municipality">
+            <field name="name">Ljubljana</field>
+            <field name="code">061</field>
+            <field name="rate_adult">2.50</field>
+            <field name="rate_youth">1.25</field>
+        </record>
+        <record id="mun_bled" model="l10n_si.tourist.tax.municipality">
+            <field name="name">Bled</field>
+            <field name="code">006</field>
+            <field name="rate_adult">2.50</field>
+            <field name="rate_youth">1.25</field>
+        </record>
+        <record id="mun_kranjska_gora" model="l10n_si.tourist.tax.municipality">
+            <field name="name">Kranjska Gora</field>
+            <field name="code">053</field>
+            <field name="rate_adult">2.20</field>
+            <field name="rate_youth">1.10</field>
+        </record>
+        <record id="mun_portoroz" model="l10n_si.tourist.tax.municipality">
+            <field name="name">Piran (Portorož)</field>
+            <field name="code">103</field>
+            <field name="rate_adult">2.50</field>
+            <field name="rate_youth">1.25</field>
+        </record>
+        <record id="mun_izola" model="l10n_si.tourist.tax.municipality">
+            <field name="name">Izola</field>
+            <field name="code">036</field>
+            <field name="rate_adult">1.80</field>
+            <field name="rate_youth">0.90</field>
+        </record>
+        <record id="mun_koper" model="l10n_si.tourist.tax.municipality">
+            <field name="name">Koper</field>
+            <field name="code">049</field>
+            <field name="rate_adult">1.80</field>
+            <field name="rate_youth">0.90</field>
+        </record>
+        <record id="maribor" model="l10n_si.tourist.tax.municipality">
+            <field name="name">Maribor</field>
+            <field name="code">081</field>
+            <field name="rate_adult">2.00</field>
+            <field name="rate_youth">1.00</field>
+        </record>
+        <record id="mun_celje" model="l10n_si.tourist.tax.municipality">
+            <field name="name">Celje</field>
+            <field name="code">013</field>
+            <field name="rate_adult">1.80</field>
+            <field name="rate_youth">0.90</field>
+        </record>
+        <record id="mun_novogorica" model="l10n_si.tourist.tax.municipality">
+            <field name="name">Nova Gorica</field>
+            <field name="code">092</field>
+            <field name="rate_adult">2.00</field>
+            <field name="rate_youth">1.00</field>
+        </record>
+        <record id="mun_ptuj" model="l10n_si.tourist.tax.municipality">
+            <field name="name">Ptuj</field>
+            <field name="code">105</field>
+            <field name="rate_adult">1.80</field>
+            <field name="rate_youth">0.90</field>
+        </record>
+        <record id="mun_bohinj" model="l10n_si.tourist.tax.municipality">
+            <field name="name">Bohinj</field>
+            <field name="code">007</field>
+            <field name="rate_adult">2.00</field>
+            <field name="rate_youth">1.00</field>
+        </record>
+        <record id="mun_kobarid" model="l10n_si.tourist.tax.municipality">
+            <field name="name">Kobarid</field>
+            <field name="code">048</field>
+            <field name="rate_adult">1.50</field>
+            <field name="rate_youth">0.75</field>
+        </record>
+    </data>
+</odoo>

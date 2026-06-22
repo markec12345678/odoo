@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_camping_parcel_tree" model="ir.ui.view">
+        <field name="name">l10n_si.camping.parcel.tree</field>
+        <field name="model">l10n_si.camping.parcel</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'available'"
+                  decoration-danger="state == 'occupied'"
+                  decoration-info="state == 'reserved'"
+                  decoration-muted="state == 'maintenance'">
+                <field name="name"/>
+                <field name="zone"/>
+                <field name="parcel_type"/>
+                <field name="max_persons"/>
+                <field name="base_price"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_camping_parcel_form" model="ir.ui.view">
+        <field name="name">l10n_si.camping.parcel.form</field>
+        <field name="model">l10n_si.camping.parcel</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_set_available" type="object" string="Prosta"
+                            attrs="{'invisible': [('state', '=', 'available')]}"/>
+                    <button name="action_set_maintenance" type="object" string="Vzdrževanje"
+                            attrs="{'invisible': [('state', '=', 'maintenance')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="number"/>
+                            <field name="zone"/>
+                            <field name="parcel_type"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="max_persons"/>
+                            <field name="max_tents"/>
+                            <field name="size_sqm"/>
+                        </group>
+                    </group>
+                    <group string="Priključki">
+                        <group>
+                            <field name="has_electricity"/>
+                            <field name="has_water"/>
+                        </group>
+                        <group>
+                            <field name="has_sewage"/>
+                        </group>
+                    </group>
+                    <group string="Cenik">
+                        <group>
+                            <field name="base_price"/>
+                            <field name="extra_person_price"/>
+                        </group>
+                        <group>
+                            <field name="electricity_price"/>
+                            <field name="long_stay_discount_days"/>
+                            <field name="long_stay_discount_percent"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_camping_parcel" model="ir.actions.act_window">
+        <field name="name">Parcele</field>
+        <field name="res_model">l10n_si.camping.parcel</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

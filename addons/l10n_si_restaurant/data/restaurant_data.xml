@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_l10n_si_restaurant_reservation" model="ir.sequence">
+            <field name="name">SI Restaurant Reservation</field>
+            <field name="code">l10n_si.restaurant.reservation</field>
+            <field name="prefix">RRS/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_l10n_si_restaurant_kot" model="ir.sequence">
+            <field name="name">SI Restaurant KOT</field>
+            <field name="code">l10n_si.restaurant.kot</field>
+            <field name="prefix">KOT/%(y)s%(month)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <!-- Menu categories -->
+        <record id="menu_cat_predjedi" model="l10n_si.restaurant.menu.category">
+            <field name="name">Predjedi</field>
+            <field name="code">PRED</field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="menu_cat_juha" model="l10n_si.restaurant.menu.category">
+            <field name="name">Juhe</field>
+            <field name="code">JUHA</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="menu_cat_glavne" model="l10n_si.restaurant.menu.category">
+            <field name="name">Glavne jedi</field>
+            <field name="code">GLAV</field>
+            <field name="sequence">30</field>
+        </record>
+        <record id="menu_cat_sladice" model="l10n_si.restaurant.menu.category">
+            <field name="name">Sladice</field>
+            <field name="code">SLAD</field>
+            <field name="sequence">40</field>
+        </record>
+        <record id="menu_cat_pijaca" model="l10n_si.restaurant.menu.category">
+            <field name="name">Pijača</field>
+            <field name="code">PIJA</field>
+            <field name="sequence">50</field>
+        </record>
+    </data>
+</odoo>

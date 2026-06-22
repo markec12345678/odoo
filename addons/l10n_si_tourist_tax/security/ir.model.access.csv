@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_tourist_tax_municipality_user,l10n_si.tourist.tax.municipality.user,model_l10n_si_tourist_tax_municipality,account.group_account_invoice,1,0,0,0
+access_l10n_si_tourist_tax_municipality_manager,l10n_si.tourist.tax.municipality.manager,model_l10n_si_tourist_tax_municipality,account.group_account_manager,1,1,1,1
+access_l10n_si_tourist_tax_transaction_user,l10n_si.tourist.tax.transaction.user,model_l10n_si_tourist_tax_transaction,account.group_account_invoice,1,1,1,0
+access_l10n_si_tourist_tax_transaction_manager,l10n_si.tourist.tax.transaction.manager,model_l10n_si_tourist_tax_transaction,account.group_account_manager,1,1,1,1

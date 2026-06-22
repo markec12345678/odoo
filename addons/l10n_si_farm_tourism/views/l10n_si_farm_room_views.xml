@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_farm_room_tree" model="ir.ui.view">
+        <field name="name">l10n_si.farm.room.tree</field>
+        <field name="model">l10n_si.farm.room</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="number"/>
+                <field name="beds"/>
+                <field name="extra_beds"/>
+                <field name="price_per_night"/>
+                <field name="breakfast_included"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_farm_room_form" model="ir.ui.view">
+        <field name="name">l10n_si.farm.room.form</field>
+        <field name="model">l10n_si.farm.room</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="number"/>
+                            <field name="beds"/>
+                            <field name="extra_beds"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="has_private_bathroom"/>
+                            <field name="has_kitchen_access"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                    <group string="Cenik">
+                        <group>
+                            <field name="price_per_night"/>
+                            <field name="breakfast_included"/>
+                            <field name="breakfast_price" attrs="{'invisible': [('breakfast_included', '=', True)]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_farm_room" model="ir.actions.act_window">
+        <field name="name">Sobe</field>
+        <field name="res_model">l10n_si.farm.room</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

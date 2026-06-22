@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_restaurant_kot_tree" model="ir.ui.view">
+        <field name="name">l10n_si.restaurant.kot.tree</field>
+        <field name="model">l10n_si.restaurant.kot</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'sent'"
+                  decoration-warning="state == 'preparing'"
+                  decoration-success="state == 'ready'"
+                  decoration-muted="state in ('cancelled', 'invoiced')">
+                <field name="name"/>
+                <field name="table_id"/>
+                <field name="waiter_id"/>
+                <field name="guests"/>
+                <field name="amount_total" sum="Skupaj"/>
+                <field name="create_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_restaurant_kot_form" model="ir.ui.view">
+        <field name="name">l10n_si.restaurant.kot.form</field>
+        <field name="model">l10n_si.restaurant.kot</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_send_to_kitchen" type="object" string="Pošlji v kuhinjo" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_start_preparing" type="object" string="Začni pripravo"
+                            attrs="{'invisible': [('state', '!=', 'sent')]}"/>
+                    <button name="action_mark_ready" type="object" string="Pripravljeno" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'preparing')]}"/>
+                    <button name="action_served" type="object" string="Postreženo"
+                            attrs="{'invisible': [('state', '!=', 'ready')]}"/>
+                    <button name="action_create_invoice" type="object" string="Izdaj račun" class="btn-primary"
+                            attrs="{'invisible': ['|', ('state', '!=', 'served'), ('move_id', '!=', False)]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="table_id"/>
+                            <field name="waiter_id"/>
+                            <field name="guests"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="amount_total" widget="monetary" readonly="1"/>
+                            <field name="move_id" readonly="1"/>
+                            <field name="create_date" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Postavke">
+                            <field name="line_ids" attrs="{'readonly': [('state', 'in', ('sent', 'preparing', 'ready', 'served', 'invoiced'))]}">
+                                <tree editable="bottom">
+                                    <field name="menu_id"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_price"/>
+                                    <field name="subtotal"/>
+                                    <field name="notes"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Opombe za kuhinjo">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_restaurant_kot_search" model="ir.ui.view">
+        <field name="name">l10n_si.restaurant.kot.search</field>
+        <field name="model">l10n_si.restaurant.kot</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="table_id"/>
+                <field name="waiter_id"/>
+                <filter name="filter_active" string="Aktivni"
+                        domain="[('state', 'in', ['sent', 'preparing', 'ready', 'served'])]"/>
+                <filter name="filter_today" string="Danes"
+                        domain="[('create_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                <group string="Group By">
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_table" string="Miza" context="{'group_by': 'table_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_restaurant_kot" model="ir.actions.act_window">
+        <field name="name">KOT (kuhinja)</field>
+        <field name="res_model">l10n_si.restaurant.kot</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

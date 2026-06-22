@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_l10n_si_hotel_folio">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Folio: <span t-field="doc.name"/></h2>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-6">
+                            <strong>Gost:</strong><br/>
+                            <span t-field="doc.partner_id.name"/><br/>
+                            <span t-field="doc.partner_id.street"/><br/>
+                            <span t-field="doc.partner_id.zip"/>
+                            <span t-field="doc.partner_id.city"/>
+                        </div>
+                        <div class="col-6 text-right">
+                            <strong>Prijava:</strong>
+                            <span t-field="doc.check_in"/><br/>
+                            <strong>Odjava:</strong>
+                            <span t-field="doc.check_out"/>
+                        </div>
+                    </div>
+                    <h4>Sobe</h4>
+                    <table class="table table-sm">
+                        <thead><tr>
+                            <th>Soba</th>
+                            <th>Vrsta</th>
+                            <th class="text-right">Nočitve</th>
+                            <th class="text-right">Cena/noč</th>
+                            <th class="text-right">Skupaj</th>
+                        </tr></thead>
+                        <tbody>
+                            <t t-foreach="doc.reservation_ids" t-as="res">
+                                <tr>
+                                    <td><span t-field="res.room_id.number"/></td>
+                                    <td><span t-field="res.room_id.room_type_id.name"/></td>
+                                    <td class="text-right"><span t-field="res.nights"/></td>
+                                    <td class="text-right"><span t-field="res.daily_rate"/></td>
+                                    <td class="text-right"><span t-field="res.total_amount"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <h4 class="mt-3">Storitve</h4>
+                    <table class="table table-sm">
+                        <thead><tr>
+                            <th>Storitev</th>
+                            <th class="text-right">Količina</th>
+                            <th class="text-right">Cena</th>
+                            <th class="text-right">Skupaj</th>
+                        </tr></thead>
+                        <tbody>
+                            <t t-foreach="doc.service_line_ids" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.service_id.name"/></td>
+                                    <td class="text-right"><span t-field="line.quantity"/></td>
+                                    <td class="text-right"><span t-field="line.unit_price"/></td>
+                                    <td class="text-right"><span t-field="line.subtotal"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <div class="row mt-4">
+                        <div class="col-6"/>
+                        <div class="col-6">
+                            <table class="table table-sm">
+                                <tr class="table-active">
+                                    <td><strong>Skupaj za plačilo</strong></td>
+                                    <td class="text-right"><strong><span t-field="doc.amount_total"/> EUR</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-4" t-if="doc.move_id">
+                        <div class="col-12">
+                            <small>
+                                ZOI: <span t-field="doc.move_id.l10n_si_zoi"/><br/>
+                                EOR: <span t-field="doc.move_id.l10n_si_eor"/>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_report_l10n_si_hotel_folio"
+            model="l10n_si.hotel.folio"
+            string="Folio (SI)"
+            report_type="qweb-pdf"
+            name="l10n_si_hotel.report_l10n_si_hotel_folio"
+            file="l10n_si_hotel.report_l10n_si_hotel_folio"
+            print_report_name="'Folio_%s' % (doc.name or 'unknown')"/>
+</odoo>

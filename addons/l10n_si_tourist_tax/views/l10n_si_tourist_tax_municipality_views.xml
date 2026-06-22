@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_tourist_tax_municipality_tree" model="ir.ui.view">
+        <field name="name">l10n_si.tourist.tax.municipality.tree</field>
+        <field name="model">l10n_si.tourist.tax.municipality</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="rate_adult"/>
+                <field name="rate_youth"/>
+                <field name="rate_child"/>
+                <field name="max_chargeable_nights"/>
+                <field name="total_collected" sum="Skupaj zbrano"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_tourist_tax_municipality_form" model="ir.ui.view">
+        <field name="name">l10n_si.tourist.tax.municipality.form</field>
+        <field name="model">l10n_si.tourist.tax.municipality</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="active"/>
+                            <field name="valid_from"/>
+                            <field name="valid_to"/>
+                        </group>
+                        <group>
+                            <field name="rate_adult"/>
+                            <field name="rate_youth"/>
+                            <field name="rate_child"/>
+                            <field name="max_chargeable_nights"/>
+                        </group>
+                    </group>
+                    <group string="Oprostitve">
+                        <group>
+                            <field name="disabled_exempt"/>
+                            <field name="tour_leader_exempt"/>
+                        </group>
+                    </group>
+                    <group string="Knjigovodstvo">
+                        <field name="tax_account_id"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                    <group string="Statistika">
+                        <group>
+                            <field name="transaction_count" readonly="1"/>
+                            <field name="total_collected" widget="monetary" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_tourist_tax_municipality" model="ir.actions.act_window">
+        <field name="name">Občine (turistična taksa)</field>
+        <field name="res_model">l10n_si.tourist.tax.municipality</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_hotel_reservation_tree" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.reservation.tree</field>
+        <field name="model">l10n_si.hotel.reservation</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'confirmed'"
+                  decoration-success="state == 'checked_in'"
+                  decoration-muted="state == 'cancelled'"
+                  decoration-danger="state == 'no_show'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="room_id"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="nights"/>
+                <field name="daily_rate"/>
+                <field name="total_amount" sum="Skupaj"/>
+                <field name="source"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_hotel_reservation_form" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.reservation.form</field>
+        <field name="model">l10n_si.hotel.reservation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_check_in" type="object" string="Prijava (check-in)" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_check_out" type="object" string="Odjava (check-out)" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'checked_in')]}"/>
+                    <button name="action_no_show" type="object" string="Ni prišel"
+                            attrs="{'invisible': [('state', 'not in', ('confirmed',))]}"
+                            confirm="Označi kot no-show?"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('checked_out', 'cancelled', 'no_show'))]}"
+                            confirm="Resnično prekliči rezervacijo?"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="partner_id"/>
+                            <field name="source"/>
+                        </group>
+                        <group>
+                            <field name="folio_id" readonly="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="room_id"
+                                   domain="[('state', 'in', ['available', 'reserved']), ('company_id', '=', company_id)]"/>
+                            <field name="room_type_id" readonly="1"/>
+                            <field name="check_in"/>
+                            <field name="check_out"/>
+                        </group>
+                        <group>
+                            <field name="adults"/>
+                            <field name="children"/>
+                            <field name="daily_rate"/>
+                            <field name="nights" readonly="1"/>
+                            <field name="total_amount" widget="monetary" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Posebne želje">
+                        <field name="special_requests" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_hotel_reservation_search" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.reservation.search</field>
+        <field name="model">l10n_si.hotel.reservation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="room_id"/>
+                <filter name="filter_arrivals_today" string="Prihod danes"
+                        domain="[('check_in', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')),
+                                 ('check_in', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <filter name="filter_departures_today" string="Odhod danes"
+                        domain="[('check_out', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')),
+                                 ('check_out', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <filter name="filter_in_house" string="Trenutno v hotelu" domain="[('state', '=', 'checked_in')]"/>
+                <group string="Group By">
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_source" string="Vir" context="{'group_by': 'source'}"/>
+                    <filter name="group_room" string="Soba" context="{'group_by': 'room_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_hotel_reservation" model="ir.actions.act_window">
+        <field name="name">Rezervacije</field>
+        <field name="res_model">l10n_si.hotel.reservation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

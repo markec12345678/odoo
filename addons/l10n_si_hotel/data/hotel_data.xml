@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Default amenities -->
+        <record id="amenity_wifi" model="l10n_si.hotel.amenity">
+            <field name="name">WiFi</field>
+            <field name="code">WIFI</field>
+            <field name="icon">fa-wifi</field>
+        </record>
+        <record id="amenity_tv" model="l10n_si.hotel.amenity">
+            <field name="name">TV</field>
+            <field name="code">TV</field>
+            <field name="icon">fa-television</field>
+        </record>
+        <record id="amenity_minibar" model="l10n_si.hotel.amenity">
+            <field name="name">Minibar</field>
+            <field name="code">MINIBAR</field>
+            <field name="icon">fa-glass</field>
+        </record>
+        <record id="amenity_ac" model="l10n_si.hotel.amenity">
+            <field name="name">Klima</field>
+            <field name="code">AC</field>
+            <field name="icon">fa-snowflake-o</field>
+        </record>
+        <record id="amenity_safe" model="l10n_si.hotel.amenity">
+            <field name="name">Sef</field>
+            <field name="code">SAFE</field>
+            <field name="icon">fa-lock</field>
+        </record>
+        <record id="amenity_balcony" model="l10n_si.hotel.amenity">
+            <field name="name">Balkon</field>
+            <field name="code">BALCONY</field>
+            <field name="icon">fa-sun-o</field>
+        </record>
+        <!-- Default room type -->
+        <record id="room_type_standard" model="l10n_si.hotel.room.type">
+            <field name="name">Standardna soba</field>
+            <field name="code">STD</field>
+            <field name="list_price">80.0</field>
+            <field name="capacity_adults">2</field>
+            <field name="size_sqm">18.0</field>
+            <field name="amenity_ids" eval="[(6, 0, [ref('amenity_wifi'), ref('amenity_tv'), ref('amenity_safe')])]"/>
+        </record>
+        <record id="room_type_deluxe" model="l10n_si.hotel.room.type">
+            <field name="name">Deluxe soba</field>
+            <field name="code">DLX</field>
+            <field name="list_price">120.0</field>
+            <field name="capacity_adults">2</field>
+            <field name="size_sqm">25.0</field>
+            <field name="amenity_ids" eval="[(6, 0, [ref('amenity_wifi'), ref('amenity_tv'), ref('amenity_minibar'), ref('amenity_ac'), ref('amenity_safe'), ref('amenity_balcony')])]"/>
+        </record>
+        <record id="room_type_suite" model="l10n_si.hotel.room.type">
+            <field name="name">Suite</field>
+            <field name="code">SUITE</field>
+            <field name="list_price">220.0</field>
+            <field name="capacity_adults">2</field>
+            <field name="capacity_extra_beds">2</field>
+            <field name="size_sqm">45.0</field>
+            <field name="amenity_ids" eval="[(6, 0, [ref('amenity_wifi'), ref('amenity_tv'), ref('amenity_minibar'), ref('amenity_ac'), ref('amenity_safe'), ref('amenity_balcony')])]"/>
+        </record>
+    </data>
+</odoo>

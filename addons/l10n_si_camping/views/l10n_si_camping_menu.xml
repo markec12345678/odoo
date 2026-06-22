@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_l10n_si_camping_root"
+              name="Kamp (SI)"
+              web_icon="l10n_si_camping,static/description/icon.png"
+              sequence="30"/>
+
+    <menuitem id="menu_l10n_si_camping_reservation"
+              name="Rezervacije"
+              parent="menu_l10n_si_camping_root"
+              action="action_l10n_si_camping_reservation"
+              sequence="10"/>
+
+    <menuitem id="menu_l10n_si_camping_parcel"
+              name="Parcele"
+              parent="menu_l10n_si_camping_root"
+              action="action_l10n_si_camping_parcel"
+              sequence="20"/>
+
+    <menuitem id="menu_l10n_si_camping_config"
+              name="Konfiguracija"
+              parent="menu_l10n_si_camping_root"
+              sequence="90"/>
+
+    <menuitem id="menu_l10n_si_camping_season"
+              name="Sezone"
+              parent="menu_l10n_si_camping_config"
+              action="action_l10n_si_camping_season"
+              sequence="10"/>
+</odoo>

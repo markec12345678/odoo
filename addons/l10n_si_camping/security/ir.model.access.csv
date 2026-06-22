@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_camping_parcel_user,l10n_si.camping.parcel.user,model_l10n_si_camping_parcel,base.group_user,1,1,1,0
+access_l10n_si_camping_parcel_manager,l10n_si.camping.parcel.manager,model_l10n_si_camping_parcel,base.group_system,1,1,1,1
+access_l10n_si_camping_season_user,l10n_si.camping.season.user,model_l10n_si_camping_season,base.group_user,1,0,0,0
+access_l10n_si_camping_season_manager,l10n_si.camping.season.manager,model_l10n_si_camping_season,base.group_system,1,1,1,1
+access_l10n_si_camping_reservation_user,l10n_si.camping.reservation.user,model_l10n_si_camping_reservation,base.group_user,1,1,1,0
+access_l10n_si_camping_reservation_manager,l10n_si.camping.reservation.manager,model_l10n_si_camping_reservation,base.group_system,1,1,1,1

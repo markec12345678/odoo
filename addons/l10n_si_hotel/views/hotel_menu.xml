@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_l10n_si_hotel_root"
+              name="Hotel (SI)"
+              web_icon="l10n_si_hotel,static/description/icon.png"
+              sequence="20"/>
+
+    <menuitem id="menu_l10n_si_hotel_reservation"
+              name="Rezervacije"
+              parent="menu_l10n_si_hotel_root"
+              action="action_l10n_si_hotel_reservation"
+              sequence="10"/>
+
+    <menuitem id="menu_l10n_si_hotel_folio"
+              name="Foliji"
+              parent="menu_l10n_si_hotel_root"
+              action="action_l10n_si_hotel_folio"
+              sequence="20"/>
+
+    <menuitem id="menu_l10n_si_hotel_room"
+              name="Sobe"
+              parent="menu_l10n_si_hotel_root"
+              action="action_l10n_si_hotel_room"
+              sequence="30"/>
+
+    <menuitem id="menu_l10n_si_hotel_config"
+              name="Konfiguracija"
+              parent="menu_l10n_si_hotel_root"
+              sequence="90"/>
+
+    <menuitem id="menu_l10n_si_hotel_room_type"
+              name="Vrste sob"
+              parent="menu_l10n_si_hotel_config"
+              action="action_l10n_si_hotel_room_type"
+              sequence="10"/>
+
+    <menuitem id="menu_l10n_si_hotel_service"
+              name="Storitve"
+              parent="menu_l10n_si_hotel_config"
+              action="action_l10n_si_hotel_service"
+              sequence="20"/>
+</odoo>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_farm_product_tree" model="ir.ui.view">
+        <field name="name">l10n_si.farm.product.tree</field>
+        <field name="model">l10n_si.farm.product</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="eko_certified == True">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="quantity_in_stock"/>
+                <field name="unit"/>
+                <field name="price_per_unit"/>
+                <field name="eko_certified"/>
+                <field name="slovenian_quality"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_farm_product_form" model="ir.ui.view">
+        <field name="name">l10n_si.farm.product.form</field>
+        <field name="model">l10n_si.farm.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="product_id"/>
+                            <field name="category"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="price_per_unit"/>
+                            <field name="tax_rate"/>
+                            <field name="quantity_in_stock"/>
+                            <field name="unit"/>
+                        </group>
+                    </group>
+                    <group string="Certifikati">
+                        <group>
+                            <field name="eko_certified"/>
+                            <field name="eko_cert_body" attrs="{'invisible': [('eko_certified', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="slovenian_quality"/>
+                            <field name="local_product"/>
+                        </group>
+                    </group>
+                    <group string="Proizvodnja">
+                        <group>
+                            <field name="production_method"/>
+                        </group>
+                        <group string="Prodaja na">
+                            <field name="sold_on_farm"/>
+                            <field name="sold_online"/>
+                            <field name="sold_at_market"/>
+                        </group>
+                    </group>
+                    <group string="Opis">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_farm_product" model="ir.actions.act_window">
+        <field name="name">Domači izdelki</field>
+        <field name="res_model">l10n_si.farm.product</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

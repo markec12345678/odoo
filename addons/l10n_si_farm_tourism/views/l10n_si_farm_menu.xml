@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_l10n_si_farm_root"
+              name="Kmečki turizem (SI)"
+              web_icon="l10n_si_farm_tourism,static/description/icon.png"
+              sequence="35"/>
+
+    <menuitem id="menu_l10n_si_farm_reservation"
+              name="Rezervacije"
+              parent="menu_l10n_si_farm_root"
+              action="action_l10n_si_farm_reservation"
+              sequence="10"/>
+
+    <menuitem id="menu_l10n_si_farm_room"
+              name="Sobe"
+              parent="menu_l10n_si_farm_root"
+              action="action_l10n_si_farm_room"
+              sequence="20"/>
+
+    <menuitem id="menu_l10n_si_farm_product"
+              name="Domači izdelki"
+              parent="menu_l10n_si_farm_root"
+              action="action_l10n_si_farm_product"
+              sequence="30"/>
+</odoo>

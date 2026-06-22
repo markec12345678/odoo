@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_hotel_folio_tree" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.folio.tree</field>
+        <field name="model">l10n_si.hotel.folio</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'open'"
+                  decoration-success="state == 'invoiced'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="amount_total" sum="Skupaj"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_hotel_folio_form" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.folio.form</field>
+        <field name="model">l10n_si.hotel.folio</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_open" type="object" string="Odpri folio" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_close" type="object" string="Zaključi folio" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'open')]}"/>
+                    <button name="action_create_invoice" type="object" string="Izdaj račun" class="btn-primary"
+                            attrs="{'invisible': ['|', ('state', '!=', 'closed'), ('move_id', '!=', False)]}"/>
+                    <button name="action_add_service" type="object" string="Dodaj storitev"
+                            attrs="{'invisible': [('state', 'in', ('draft', 'cancelled'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-file-text-o"
+                                attrs="{'invisible': [('move_id', '=', False)]}">
+                            <div class="o_stat_info"><span class="o_stat_text">Račun</span></div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="partner_id"/>
+                            <field name="vip"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="check_in"/>
+                            <field name="check_out"/>
+                            <field name="adults"/>
+                            <field name="children"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sobe">
+                            <field name="room_ids">
+                                <tree>
+                                    <field name="number"/>
+                                    <field name="room_type_id"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Rezervacije">
+                            <field name="reservation_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="check_in"/>
+                                    <field name="check_out"/>
+                                    <field name="nights"/>
+                                    <field name="daily_rate"/>
+                                    <field name="total_amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Storitve (minibar, ...)">
+                            <field name="service_line_ids">
+                                <tree editable="bottom">
+                                    <field name="service_id"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_price"/>
+                                    <field name="subtotal"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Opombe">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+                    <group class="oe_total">
+                        <group/>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_total" widget="monetary"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_hotel_folio_search" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.folio.search</field>
+        <field name="model">l10n_si.hotel.folio</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <filter name="filter_open" string="Odprti" domain="[('state', '=', 'open')]"/>
+                <filter name="filter_today" string="Danes prijavljeni"
+                        domain="[('check_in', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')),
+                                 ('check_in', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <group string="Group By">
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_partner" string="Gost" context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_hotel_folio" model="ir.actions.act_window">
+        <field name="name">Foliji</field>
+        <field name="res_model">l10n_si.hotel.folio</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_restaurant_table_tree" model="ir.ui.view">
+        <field name="name">l10n_si.restaurant.table.tree</field>
+        <field name="model">l10n_si.restaurant.table</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'free'"
+                  decoration-danger="state == 'occupied'"
+                  decoration-info="state == 'reserved'"
+                  decoration-warning="state == 'cleaning'">
+                <field name="number"/>
+                <field name="floor"/>
+                <field name="capacity"/>
+                <field name="state"/>
+                <field name="current_guests"/>
+                <field name="opened_at"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_restaurant_table_kanban" model="ir.ui.view">
+        <field name="name">l10n_si.restaurant.table.kanban</field>
+        <field name="model">l10n_si.restaurant.table</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="state"/>
+                <field name="name"/>
+                <field name="capacity"/>
+                <field name="current_guests"/>
+                <field name="opened_at"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <div class="o_kanban_record_title">
+                                <strong><field name="name"/></strong>
+                            </div>
+                            <div>Kapaciteta: <field name="capacity"/></div>
+                            <div t-if="record.current_guests.raw_value">
+                                <small>Gostje: <field name="current_guests"/></small>
+                            </div>
+                            <div t-if="record.opened_at.raw_value">
+                                <small>Odprto: <field name="opened_at"/></small>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_restaurant_table_form" model="ir.ui.view">
+        <field name="name">l10n_si.restaurant.table.form</field>
+        <field name="model">l10n_si.restaurant.table</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_free" type="object" string="Prosta" class="btn-primary"
+                            attrs="{'invisible': [('state', '=', 'free')]}"/>
+                    <button name="action_cleaning" type="object" string="Čiščenje"
+                            attrs="{'invisible': [('state', '=', 'cleaning')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="number"/>
+                            <field name="floor"/>
+                            <field name="capacity"/>
+                            <field name="shape"/>
+                        </group>
+                        <group>
+                            <field name="current_kot_id" readonly="1"/>
+                            <field name="current_guests" readonly="1"/>
+                            <field name="opened_at" readonly="1"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_restaurant_table" model="ir.actions.act_window">
+        <field name="name">Mize</field>
+        <field name="res_model">l10n_si.restaurant.table</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_restaurant_menu_user,l10n_si.restaurant.menu.user,model_l10n_si_restaurant_menu,base.group_user,1,1,1,0
+access_l10n_si_restaurant_menu_manager,l10n_si.restaurant.menu.manager,model_l10n_si_restaurant_menu,base.group_system,1,1,1,1
+access_l10n_si_restaurant_menu_cat_user,l10n_si.restaurant.menu.category.user,model_l10n_si_restaurant_menu_category,base.group_user,1,0,0,0
+access_l10n_si_restaurant_menu_cat_manager,l10n_si.restaurant.menu.category.manager,model_l10n_si_restaurant_menu_category,base.group_system,1,1,1,1
+access_l10n_si_restaurant_table_user,l10n_si.restaurant.table.user,model_l10n_si_restaurant_table,base.group_user,1,1,1,0
+access_l10n_si_restaurant_table_manager,l10n_si.restaurant.table.manager,model_l10n_si_restaurant_table,base.group_system,1,1,1,1
+access_l10n_si_restaurant_reservation_user,l10n_si.restaurant.reservation.user,model_l10n_si_restaurant_reservation,base.group_user,1,1,1,0
+access_l10n_si_restaurant_reservation_manager,l10n_si.restaurant.reservation.manager,model_l10n_si_restaurant_reservation,base.group_system,1,1,1,1
+access_l10n_si_restaurant_kot_user,l10n_si.restaurant.kot.user,model_l10n_si_restaurant_kot,base.group_user,1,1,1,0
+access_l10n_si_restaurant_kot_manager,l10n_si.restaurant.kot.manager,model_l10n_si_restaurant_kot,base.group_system,1,1,1,1
+access_l10n_si_restaurant_kot_line_user,l10n_si.restaurant.kot.line.user,model_l10n_si_restaurant_kot_line,base.group_user,1,1,1,0
+access_l10n_si_restaurant_kot_line_manager,l10n_si.restaurant.kot.line.manager,model_l10n_si_restaurant_kot_line,base.group_system,1,1,1,1

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_hotel_room_type_tree" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.room.type.tree</field>
+        <field name="model">l10n_si.hotel.room.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="list_price"/>
+                <field name="capacity_adults"/>
+                <field name="size_sqm"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_hotel_room_type_form" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.room.type.form</field>
+        <field name="model">l10n_si.hotel.room.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="list_price"/>
+                            <field name="weekend_premium"/>
+                            <field name="seasonal_multiplier"/>
+                        </group>
+                    </group>
+                    <group string="Kapaciteta">
+                        <group>
+                            <field name="capacity_adults"/>
+                            <field name="capacity_children"/>
+                        </group>
+                        <group>
+                            <field name="capacity_extra_beds"/>
+                            <field name="size_sqm"/>
+                        </group>
+                    </group>
+                    <group string="Oprema">
+                        <field name="amenity_ids" widget="many2many_tags" nolabel="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Sobe te vrste">
+                            <field name="room_ids" readonly="1">
+                                <tree>
+                                    <field name="number"/>
+                                    <field name="floor"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Opis">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_hotel_room_type" model="ir.actions.act_window">
+        <field name="name">Vrste sob</field>
+        <field name="res_model">l10n_si.hotel.room.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

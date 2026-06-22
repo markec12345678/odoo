@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_restaurant_menu_tree" model="ir.ui.view">
+        <field name="name">l10n_si.restaurant.menu.tree</field>
+        <field name="model">l10n_si.restaurant.menu</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="daily_special == True">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="price"/>
+                <field name="daily_special"/>
+                <field name="vegetarian"/>
+                <field name="vegan"/>
+                <field name="prep_time_minutes"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_restaurant_menu_form" model="ir.ui.view">
+        <field name="name">l10n_si.restaurant.menu.form</field>
+        <field name="model">l10n_si.restaurant.menu</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="category_id"/>
+                            <field name="price"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="daily_special"/>
+                            <field name="valid_from" attrs="{'invisible': [('daily_special', '=', False)]}"/>
+                            <field name="valid_to" attrs="{'invisible': [('daily_special', '=', False)]}"/>
+                            <field name="prep_time_minutes"/>
+                            <field name="station"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Alergeni">
+                            <group>
+                                <group>
+                                    <field name="allergen_gluten"/>
+                                    <field name="allergen_crustaceans"/>
+                                    <field name="allergen_eggs"/>
+                                    <field name="allergen_fish"/>
+                                    <field name="allergen_peanuts"/>
+                                    <field name="allergen_soy"/>
+                                    <field name="allergen_milk"/>
+                                </group>
+                                <group>
+                                    <field name="allergen_nuts"/>
+                                    <field name="allergen_celery"/>
+                                    <field name="allergen_mustard"/>
+                                    <field name="allergen_sesame"/>
+                                    <field name="allergen_sulphites"/>
+                                    <field name="allergen_lupin"/>
+                                    <field name="allergen_molluscs"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Dieta">
+                            <group>
+                                <field name="vegetarian"/>
+                                <field name="vegan"/>
+                                <field name="contains_pork"/>
+                            </group>
+                        </page>
+                        <page string="Opis">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_restaurant_menu" model="ir.actions.act_window">
+        <field name="name">Jedilnik</field>
+        <field name="res_model">l10n_si.restaurant.menu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

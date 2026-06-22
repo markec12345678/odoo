@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_l10n_si_tourist_tax_root"
+              name="Turistična taksa (SI)"
+              parent="account.menu_finance_configuration"
+              sequence="100"/>
+
+    <menuitem id="menu_l10n_si_tourist_tax_transaction"
+              name="Transakcije"
+              parent="menu_l10n_si_tourist_tax_root"
+              action="action_l10n_si_tourist_tax_transaction"
+              sequence="10"/>
+
+    <menuitem id="menu_l10n_si_tourist_tax_municipality"
+              name="Občine"
+              parent="menu_l10n_si_tourist_tax_root"
+              action="action_l10n_si_tourist_tax_municipality"
+              sequence="20"/>
+</odoo>

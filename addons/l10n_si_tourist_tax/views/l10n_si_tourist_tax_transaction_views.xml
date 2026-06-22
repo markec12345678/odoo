@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_tourist_tax_transaction_tree" model="ir.ui.view">
+        <field name="name">l10n_si.tourist.tax.transaction.tree</field>
+        <field name="model">l10n_si.tourist.tax.transaction</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'paid'"
+                  decoration-info="state == 'reported'"
+                  decoration-muted="is_exempt == True">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="municipality_id"/>
+                <field name="guest_name"/>
+                <field name="nights"/>
+                <field name="chargeable_nights"/>
+                <field name="rate"/>
+                <field name="tax_amount" sum="Skupaj"/>
+                <field name="is_exempt"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_tourist_tax_transaction_form" model="ir.ui.view">
+        <field name="name">l10n_si.tourist.tax.transaction.form</field>
+        <field name="model">l10n_si.tourist.tax.transaction</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_post_to_accounting" type="object" string="Knjiži" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_report_to_municipality" type="object" string="Prijavi občini"
+                            attrs="{'invisible': [('state', '!=', 'posted')]}"/>
+                    <button name="action_mark_paid" type="object" string="Označi plačano"
+                            attrs="{'invisible': [('state', '!=', 'reported')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="date"/>
+                            <field name="municipality_id"/>
+                            <field name="partner_id"/>
+                            <field name="guest_name"/>
+                            <field name="guest_age"/>
+                            <field name="guest_country_id"/>
+                        </group>
+                        <group>
+                            <field name="nights"/>
+                            <field name="chargeable_nights" readonly="1"/>
+                            <field name="rate"/>
+                            <field name="tax_amount" widget="monetary" readonly="1"/>
+                            <field name="move_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Oprostitev">
+                        <group>
+                            <field name="is_exempt"/>
+                            <field name="exemption_reason" attrs="{'invisible': [('is_exempt', '=', False)], 'required': [('is_exempt', '=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="exemption_notes"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_tourist_tax_transaction_search" model="ir.ui.view">
+        <field name="name">l10n_si.tourist.tax.transaction.search</field>
+        <field name="model">l10n_si.tourist.tax.transaction</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="municipality_id"/>
+                <field name="partner_id"/>
+                <filter name="filter_draft" string="Osnutki" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_pending" string="Za poročilo" domain="[('state', '=', 'posted')]"/>
+                <filter name="filter_reported" string="Prijavljeno" domain="[('state', '=', 'reported')]"/>
+                <filter name="filter_exempt" string="Oproščeno" domain="[('is_exempt', '=', True)]"/>
+                <group string="Group By">
+                    <filter name="group_municipality" string="Občina" context="{'group_by': 'municipality_id'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_month" string="Mesec" context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_tourist_tax_transaction" model="ir.actions.act_window">
+        <field name="name">Transakcije (turistična taksa)</field>
+        <field name="res_model">l10n_si.tourist.tax.transaction</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_farm_reservation_tree" model="ir.ui.view">
+        <field name="name">l10n_si.farm.reservation.tree</field>
+        <field name="model">l10n_si.farm.reservation</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'confirmed'"
+                  decoration-success="state == 'checked_in'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="room_id"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="nights"/>
+                <field name="adults"/>
+                <field name="total_amount" sum="Skupaj"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_farm_reservation_form" model="ir.ui.view">
+        <field name="name">l10n_si.farm.reservation.form</field>
+        <field name="model">l10n_si.farm.reservation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_check_in" type="object" string="Prijava" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_check_out" type="object" string="Odjava + Račun" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'checked_in')]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('checked_out', 'cancelled'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="partner_id"/>
+                            <field name="room_id"/>
+                        </group>
+                        <group>
+                            <field name="check_in"/>
+                            <field name="check_out"/>
+                            <field name="nights" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Gostje">
+                        <group>
+                            <field name="adults"/>
+                            <field name="children"/>
+                        </group>
+                        <group>
+                            <field name="breakfast"/>
+                            <field name="dinner"/>
+                            <field name="dinner_price" attrs="{'invisible': [('dinner', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <group string="Kmečke aktivnosti">
+                        <field name="farm_activities" widget="many2many_tags" nolabel="1"/>
+                    </group>
+                    <group string="Cena">
+                        <group>
+                            <field name="daily_rate"/>
+                            <field name="total_amount" widget="monetary" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="move_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Opombe">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_farm_reservation" model="ir.actions.act_window">
+        <field name="name">Rezervacije</field>
+        <field name="res_model">l10n_si.farm.reservation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

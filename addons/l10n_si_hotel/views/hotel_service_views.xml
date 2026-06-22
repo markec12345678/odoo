@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_hotel_service_tree" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.service.tree</field>
+        <field name="model">l10n_si.hotel.service</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="default_price"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_hotel_service_form" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.service.form</field>
+        <field name="model">l10n_si.hotel.service</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="category"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="default_price" readonly="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_hotel_service" model="ir.actions.act_window">
+        <field name="name">Storitve</field>
+        <field name="res_model">l10n_si.hotel.service</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

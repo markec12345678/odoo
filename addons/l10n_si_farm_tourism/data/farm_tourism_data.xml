@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_l10n_si_farm_reservation" model="ir.sequence">
+            <field name="name">SI Farm Reservation</field>
+            <field name="code">l10n_si.farm.reservation</field>
+            <field name="prefix">KM/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <!-- Default farm activities -->
+        <record id="activity_milking" model="l10n_si.farm.activity">
+            <field name="name">Mučenje krav</field>
+            <field name="description">Turisti pomagajo pri jutranjem mučenju.</field>
+            <field name="duration_hours">1.5</field>
+            <field name="price_per_person">10.0</field>
+            <field name="season">all_year</field>
+        </record>
+        <record id="activity_bread_making" model="l10n_si.farm.activity">
+            <field name="name">Pekovstvo - domači kruh</field>
+            <field name="description">Priprava in peka domačega kruha v krušni peči.</field>
+            <field name="duration_hours">3.0</field>
+            <field name="price_per_person">25.0</field>
+            <field name="season">all_year</field>
+        </record>
+        <record id="activity_cheese_making" model="l10n_si.farm.activity">
+            <field name="name">Sirarstvo</field>
+            <field name="description">Izdelava sira iz svežega mleka.</field>
+            <field name="duration_hours">4.0</field>
+            <field name="price_per_person">35.0</field>
+            <field name="season">all_year</field>
+        </record>
+        <record id="activity_harvest" model="l10n_si.farm.activity">
+            <field name="name">Trgatev</field>
+            <field name="description">Trgatev grozdja v vinogradu (septembra).</field>
+            <field name="duration_hours">5.0</field>
+            <field name="price_per_person">20.0</field>
+            <field name="season">autumn</field>
+        </record>
+        <record id="activity_haymaking" model="l10n_si.farm.activity">
+            <field name="name">Košnja sena</field>
+            <field name="description">Pomagaj pri košnji in sušenju sena.</field>
+            <field name="duration_hours">4.0</field>
+            <field name="price_per_person">15.0</field>
+            <field name="season">summer</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_restaurant_reservation_tree" model="ir.ui.view">
+        <field name="name">l10n_si.restaurant.reservation.tree</field>
+        <field name="model">l10n_si.restaurant.reservation</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'confirmed'"
+                  decoration-success="state == 'seated'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="table_id"/>
+                <field name="reservation_date"/>
+                <field name="end_datetime"/>
+                <field name="guests"/>
+                <field name="phone"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_restaurant_reservation_form" model="ir.ui.view">
+        <field name="name">l10n_si.restaurant.reservation.form</field>
+        <field name="model">l10n_si.restaurant.reservation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_seat" type="object" string="Sedijo" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_finish" type="object" string="Končano"
+                            attrs="{'invisible': [('state', '!=', 'seated')]}"/>
+                    <button name="action_no_show" type="object" string="Ni prišel"
+                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('finished', 'cancelled', 'no_show'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="partner_id"/>
+                            <field name="table_id"/>
+                            <field name="guests"/>
+                        </group>
+                        <group>
+                            <field name="reservation_date"/>
+                            <field name="duration_hours"/>
+                            <field name="end_datetime" readonly="1"/>
+                            <field name="phone" readonly="1"/>
+                            <field name="email" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Posebne želje">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_restaurant_reservation_search" model="ir.ui.view">
+        <field name="name">l10n_si.restaurant.reservation.search</field>
+        <field name="model">l10n_si.restaurant.reservation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="table_id"/>
+                <filter name="filter_today" string="Danes"
+                        domain="[('reservation_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')),
+                                 ('reservation_date', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <filter name="filter_confirmed" string="Potrjene" domain="[('state', '=', 'confirmed')]"/>
+                <group string="Group By">
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_table" string="Miza" context="{'group_by': 'table_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_restaurant_reservation" model="ir.actions.act_window">
+        <field name="name">Rezervacije miz</field>
+        <field name="res_model">l10n_si.restaurant.reservation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

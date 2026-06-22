@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_farm_room_user,l10n_si.farm.room.user,model_l10n_si_farm_room,base.group_user,1,1,1,0
+access_l10n_si_farm_room_manager,l10n_si.farm.room.manager,model_l10n_si_farm_room,base.group_system,1,1,1,1
+access_l10n_si_farm_product_user,l10n_si.farm.product.user,model_l10n_si_farm_product,base.group_user,1,1,1,0
+access_l10n_si_farm_product_manager,l10n_si.farm.product.manager,model_l10n_si_farm_product,base.group_system,1,1,1,1
+access_l10n_si_farm_reservation_user,l10n_si.farm.reservation.user,model_l10n_si_farm_reservation,base.group_user,1,1,1,0
+access_l10n_si_farm_reservation_manager,l10n_si.farm.reservation.manager,model_l10n_si_farm_reservation,base.group_system,1,1,1,1
+access_l10n_si_farm_activity_user,l10n_si.farm.activity.user,model_l10n_si_farm_activity,base.group_user,1,0,0,0
+access_l10n_si_farm_activity_manager,l10n_si.farm.activity.manager,model_l10n_si_farm_activity,base.group_system,1,1,1,1
