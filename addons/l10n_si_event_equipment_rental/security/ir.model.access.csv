@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_event_equipment_user,l10n_si.event.equipment.user,model_l10n_si_event_equipment,base.group_user,1,1,1,0
+access_l10n_si_event_equipment_manager,l10n_si.event.equipment.manager,model_l10n_si_event_equipment,base.group_system,1,1,1,1
+access_l10n_si_event_eq_rental_user,l10n_si.event.equipment.rental.user,model_l10n_si_event_equipment_rental,base.group_user,1,1,1,0
+access_l10n_si_event_eq_rental_manager,l10n_si.event.equipment.rental.manager,model_l10n_si_event_equipment_rental,base.group_system,1,1,1,1
+access_l10n_si_event_eq_rental_line_user,l10n_si.event.equipment.rental.line.user,model_l10n_si_event_equipment_rental_line,base.group_user,1,1,1,0
+access_l10n_si_event_eq_rental_line_manager,l10n_si.event.equipment.rental.line.manager,model_l10n_si_event_equipment_rental_line,base.group_system,1,1,1,1

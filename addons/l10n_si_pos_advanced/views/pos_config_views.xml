@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_config_form_si" model="ir.ui.view">
+        <field name="name">pos.config.form.si</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Slovenian POS Configuration" name="si_pos_group">
+                    <group>
+                        <field name="si_fiscal_enabled"/>
+                        <field name="si_default_business_premise_id"
+                               attrs="{'invisible': [('si_fiscal_enabled', '=', False)]}"/>
+                        <field name="si_default_device_id"
+                               attrs="{'invisible': [('si_fiscal_enabled', '=', False)]}"/>
+                        <field name="si_print_eor_on_receipt"/>
+                        <field name="si_print_qr_code"/>
+                    </group>
+                    <group>
+                        <field name="si_allow_room_charge"/>
+                        <field name="si_add_tourist_tax"/>
+                        <field name="si_municipality_id"
+                               attrs="{'invisible': [('si_add_tourist_tax', '=', False)],
+                                        'required': [('si_add_tourist_tax', '=', True)]}"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

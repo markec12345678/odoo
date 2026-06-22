@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_event_acc_res_tree" model="ir.ui.view">
+        <field name="name">l10n_si.event.accommodation.reservation.tree</field>
+        <field name="model">l10n_si.event.accommodation.reservation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="event_id"/>
+                <field name="room_id"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="nights"/>
+                <field name="total_amount" sum="Skupaj"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_event_acc_res_form" model="ir.ui.view">
+        <field name="name">l10n_si.event.accommodation.reservation.form</field>
+        <field name="model">l10n_si.event.accommodation.reservation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_check_in" type="object" string="Prijava"
+                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_check_out" type="object" string="Odjava"
+                            attrs="{'invisible': [('state', '!=', 'checked_in')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="partner_id"/>
+                            <field name="block_id"/>
+                            <field name="event_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="room_id" domain="[('id', 'in', block_id and block_id.room_ids.ids or [])]"/>
+                            <field name="check_in"/>
+                            <field name="check_out"/>
+                            <field name="nights" readonly="1"/>
+                            <field name="daily_rate" readonly="1"/>
+                            <field name="total_amount" widget="monetary" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Posebne želje">
+                        <field name="special_requests" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_event_acc_res" model="ir.actions.act_window">
+        <field name="name">Rezervacije gostov</field>
+        <field name="res_model">l10n_si.event.accommodation.reservation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_event_acc_res" name="Rezervacije gostov" parent="menu_l10n_si_event_acc_root" action="action_l10n_si_event_acc_res"/>
+</odoo>

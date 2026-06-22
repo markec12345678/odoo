@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_channel_config_user,l10n_si.channel.config.user,model_l10n_si_channel_config,base.group_user,1,0,0,0
+access_l10n_si_channel_config_manager,l10n_si.channel.config.manager,model_l10n_si_channel_config,base.group_system,1,1,1,1
+access_l10n_si_channel_room_mapping_user,l10n_si.channel.room.mapping.user,model_l10n_si_channel_room_mapping,base.group_user,1,0,0,0
+access_l10n_si_channel_room_mapping_manager,l10n_si.channel.room.mapping.manager,model_l10n_si_channel_room_mapping,base.group_system,1,1,1,1
+access_l10n_si_channel_log_user,l10n_si.channel.log.user,model_l10n_si_channel_log,base.group_user,1,0,1,0
+access_l10n_si_channel_log_manager,l10n_si.channel.log.manager,model_l10n_si_channel_log,base.group_system,1,1,1,1

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_event_vendor_booking_tree" model="ir.ui.view">
+        <field name="name">l10n_si.event.vendor.booking.tree</field>
+        <field name="model">l10n_si.event.vendor.booking</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'confirmed'"
+                  decoration-success="state == 'completed'">
+                <field name="name"/>
+                <field name="vendor_id"/>
+                <field name="event_id"/>
+                <field name="date"/>
+                <field name="total_amount" sum="Skupaj"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_event_vendor_booking_form" model="ir.ui.view">
+        <field name="name">l10n_si.event.vendor.booking.form</field>
+        <field name="model">l10n_si.event.vendor.booking</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_send_inquiry" type="object" string="Pošlji povpraševanje"
+                            attrs="{'invisible': [('state', '!=', 'inquiry')]}"/>
+                    <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'quoted')]}"/>
+                    <button name="action_complete" type="object" string="Opravljeno"
+                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_create_vendor_bill" type="object" string="Ustvari račun dobavitelja" class="btn-primary"
+                            attrs="{'invisible': ['|', ('state', '!=', 'completed'), ('move_id', '!=', False)]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('completed', 'cancelled'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="event_id"/>
+                            <field name="vendor_id"/>
+                            <field name="date" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="duration_hours" widget="float_time"/>
+                            <field name="pricing_type"/>
+                            <field name="agreed_price"/>
+                            <field name="total_amount" widget="monetary" readonly="1"/>
+                            <field name="move_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Opis storitve">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                    <group string="Interne opombe">
+                        <field name="internal_notes" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_event_vendor_booking" model="ir.actions.act_window">
+        <field name="name">Naročila izvajalcev</field>
+        <field name="res_model">l10n_si.event.vendor.booking</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_event_vendor_root" name="Zunanji izvajalci" parent="l10n_si_event_venue.menu_l10n_si_event_venue_root" sequence="60"/>
+    <menuitem id="menu_l10n_si_event_vendor_booking" name="Naročila" parent="menu_l10n_si_event_vendor_root" action="action_l10n_si_event_vendor_booking"/>
+    <menuitem id="menu_l10n_si_event_vendor" name="Izvajalci" parent="menu_l10n_si_event_vendor_root" action="action_l10n_si_event_vendor"/>
+</odoo>

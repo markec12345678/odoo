@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_wellness_service_user,l10n_si.wellness.service.user,model_l10n_si_wellness_service,base.group_user,1,1,1,0
+access_l10n_si_wellness_service_manager,l10n_si.wellness.service.manager,model_l10n_si_wellness_service,base.group_system,1,1,1,1
+access_l10n_si_wellness_booking_user,l10n_si.wellness.booking.user,model_l10n_si_wellness_booking,base.group_user,1,1,1,0
+access_l10n_si_wellness_booking_manager,l10n_si.wellness.booking.manager,model_l10n_si_wellness_booking,base.group_system,1,1,1,1
+access_l10n_si_wellness_pass_user,l10n_si.wellness.pass.user,model_l10n_si_wellness_pass,base.group_user,1,1,1,0
+access_l10n_si_wellness_pass_manager,l10n_si.wellness.pass.manager,model_l10n_si_wellness_pass,base.group_system,1,1,1,1

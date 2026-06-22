@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_event_acc_block_user,l10n_si.event.accommodation.block.user,model_l10n_si_event_accommodation_block,base.group_user,1,1,1,0
+access_l10n_si_event_acc_block_manager,l10n_si.event.accommodation.block.manager,model_l10n_si_event_accommodation_block,base.group_system,1,1,1,1
+access_l10n_si_event_acc_res_user,l10n_si.event.accommodation.reservation.user,model_l10n_si_event_accommodation_reservation,base.group_user,1,1,1,0
+access_l10n_si_event_acc_res_manager,l10n_si.event.accommodation.reservation.manager,model_l10n_si_event_accommodation_reservation,base.group_system,1,1,1,1

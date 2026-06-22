@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_event_contract_tree" model="ir.ui.view">
+        <field name="name">l10n_si.event.contract.tree</field>
+        <field name="model">l10n_si.event.contract</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'sent'"
+                  decoration-warning="state == 'signed_customer'"
+                  decoration-success="state == 'signed_both'">
+                <field name="number"/>
+                <field name="name"/>
+                <field name="event_id"/>
+                <field name="template_id"/>
+                <field name="sent_on"/>
+                <field name="both_signed_on"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_event_contract_form" model="ir.ui.view">
+        <field name="name">l10n_si.event.contract.form</field>
+        <field name="model">l10n_si.event.contract</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_pdf" type="object" string="Generiraj PDF"
+                            attrs="{'invisible': [('pdf_attachment_id', '!=', False)]}"/>
+                    <button name="action_send_to_customer" type="object" string="Pošlji v podpis" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_mark_customer_signed" type="object" string="Stranka podpisala"
+                            attrs="{'invisible': [('state', '!=', 'sent')]}"/>
+                    <button name="action_mark_both_signed" type="object" string="Oboje podpisalo" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'signed_customer')]}"/>
+                    <button name="action_archive" type="object" string="Arhiviraj"
+                            attrs="{'invisible': [('state', '!=', 'signed_both')]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('archived', 'cancelled'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="number" readonly="1"/>
+                            <field name="event_id"/>
+                            <field name="template_id"/>
+                        </group>
+                        <group>
+                            <field name="sent_on" readonly="1"/>
+                            <field name="customer_signed_on" readonly="1"/>
+                            <field name="both_signed_on" readonly="1"/>
+                            <field name="pdf_attachment_id" readonly="1" widget="url"/>
+                            <field name="sign_request_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Vsebina pogodbe">
+                            <field name="body" nolabel="1" widget="html"/>
+                        </page>
+                        <page string="Opombe">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_event_contract" model="ir.actions.act_window">
+        <field name="name">Pogodbe</field>
+        <field name="res_model">l10n_si.event.contract</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_event_contract_root" name="Pogodbe" parent="l10n_si_event_venue.menu_l10n_si_event_venue_root" sequence="70"/>
+    <menuitem id="menu_l10n_si_event_contract" name="Pogodbe" parent="menu_l10n_si_event_contract_root" action="action_l10n_si_event_contract"/>
+    <menuitem id="menu_l10n_si_event_contract_template" name="Predloge" parent="menu_l10n_si_event_contract_root" action="action_l10n_si_event_contract_template"/>
+</odoo>

@@ -1,6 +1,6 @@
 # Slovenian Localization Modules for Odoo 19.0
 
-Twenty-eight custom addons developed for the Slovenian market. All installed via the
+Thirty-six custom addons developed for the Slovenian market. All installed via the
 standard `--addons-path` mechanism; each depends on the previous one(s) as
 noted below.
 
@@ -58,6 +58,14 @@ noted below.
 | `l10n_si_farm_tourism` | `l10n_si_fiscal`, `l10n_si_sequence` | Custom | Sobe na kmetiji, domači izdelki (EKO/SMGT cert), kmečke aktivnosti, agroturizem |
 | `l10n_si_tourist_tax` | `account`, `l10n_si` | Custom | Turistična taksa po občinah (ZTur-1), 12 SI municipalities preconfigured |
 | `l10n_si_event_venue` | `l10n_si_fiscal`, `l10n_si_sequence` | Custom | Venue/hall rental for weddings, conferences, birthdays, galas; packages, catering, FURS |
+| `l10n_si_event_accommodation` | `l10n_si_event_venue`, `l10n_si_hotel` | Custom | Block reservation of rooms for event guests (weddings, conferences) |
+| `l10n_si_event_equipment_rental` | `l10n_si_event_venue` | Custom | Equipment rental (projectors, AV, stages, tables, chairs) with stock management |
+| `l10n_si_event_photographer` | `l10n_si_event_venue` | Custom | External vendor booking (photographer, DJ, florist, decorator, MC) + vendor bills |
+| `l10n_si_event_contract` | `l10n_si_event_venue`, `l10n_si_sign` | Custom | PDF contract generation with placeholder substitution + eIDAS signing |
+| `l10n_si_wellness` | `l10n_si_fiscal`, `l10n_si_sequence` | Custom | Spa/wellness: massages, saunas, pools, day passes, therapist booking, FURS |
+| `l10n_si_channel_manager` | `l10n_si_hotel`, `l10n_si_camping` | Custom | Sync with Booking.com/Airbnb/Expedia via API + webhook for reservations |
+| `l10n_si_pos_advanced` | `point_of_sale`, `l10n_si_fiscal`, `l10n_si_hotel` | Custom | POS extensions: FURS on POS, room charge to folio, tourist tax, X/Z reports |
+| `l10n_si_ai_concierge` | `l10n_si_knowledge`, `l10n_si_whatsapp` | Custom | AI guest assistant (Slovenian) for hotels: chat, WhatsApp, email, 24/7 |
 
 ## Installation
 

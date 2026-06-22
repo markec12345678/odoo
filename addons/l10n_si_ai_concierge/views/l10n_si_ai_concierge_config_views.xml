@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_ai_config_form" model="ir.ui.view">
+        <field name="name">l10n_si.ai.concierge.config.form</field>
+        <field name="model">l10n_si.ai.concierge.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="active"/>
+                            <field name="ai_backend"/>
+                            <field name="model_name"/>
+                            <field name="api_key" password="True"/>
+                        </group>
+                        <group>
+                            <field name="max_tokens"/>
+                            <field name="temperature"/>
+                            <field name="conversation_count" readonly="1"/>
+                            <field name="message_count" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Sistemski prompt">
+                        <field name="system_prompt" nolabel="1"/>
+                    </group>
+                    <group string="Kanali">
+                        <group>
+                            <field name="enabled_website"/>
+                            <field name="enabled_whatsapp"/>
+                            <field name="enabled_email"/>
+                        </group>
+                    </group>
+                    <group string="Baza znanja">
+                        <field name="knowledge_article_ids" widget="many2many_tags" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_ai_config_tree" model="ir.ui.view">
+        <field name="name">l10n_si.ai.concierge.config.tree</field>
+        <field name="model">l10n_si.ai.concierge.config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="ai_backend"/>
+                <field name="model_name"/>
+                <field name="conversation_count"/>
+                <field name="message_count"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_ai_config" model="ir.actions.act_window">
+        <field name="name">AI Concierge</field>
+        <field name="res_model">l10n_si.ai.concierge.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

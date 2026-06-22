@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_event_contract_tmpl_user,l10n_si.event.contract.template.user,model_l10n_si_event_contract_template,base.group_user,1,0,0,0
+access_l10n_si_event_contract_tmpl_manager,l10n_si.event.contract.template.manager,model_l10n_si_event_contract_template,base.group_system,1,1,1,1
+access_l10n_si_event_contract_user,l10n_si.event.contract.user,model_l10n_si_event_contract,base.group_user,1,1,1,0
+access_l10n_si_event_contract_manager,l10n_si.event.contract.manager,model_l10n_si_event_contract,base.group_system,1,1,1,1

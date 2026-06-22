@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_wellness_pass_tree" model="ir.ui.view">
+        <field name="name">l10n_si.wellness.pass.tree</field>
+        <field name="model">l10n_si.wellness.pass</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'paid'"
+                  decoration-muted="state == 'used'">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="pass_type"/>
+                <field name="partner_id"/>
+                <field name="adults"/>
+                <field name="children_7_15"/>
+                <field name="total_amount" sum="Skupaj"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_wellness_pass_form" model="ir.ui.view">
+        <field name="name">l10n_si.wellness.pass.form</field>
+        <field name="model">l10n_si.wellness.pass</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_pay" type="object" string="Plačaj + Račun" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_mark_used" type="object" string="Označi uporabljeno"
+                            attrs="{'invisible': [('state', '!=', 'paid')]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('used', 'cancelled'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="pass_type"/>
+                            <field name="date"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="adults"/>
+                            <field name="children_7_15"/>
+                            <field name="children_0_6"/>
+                        </group>
+                    </group>
+                    <group string="Cena">
+                        <group>
+                            <field name="price_per_adult"/>
+                            <field name="price_per_child"/>
+                        </group>
+                        <group>
+                            <field name="total_amount" widget="monetary" readonly="1"/>
+                            <field name="move_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Opombe">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_wellness_pass" model="ir.actions.act_window">
+        <field name="name">Dnevne karte</field>
+        <field name="res_model">l10n_si.wellness.pass</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_wellness_root" name="Wellness (SI)" web_icon="l10n_si_wellness,static/description/icon.png" sequence="45"/>
+    <menuitem id="menu_l10n_si_wellness_booking" name="Rezervacije" parent="menu_l10n_si_wellness_root" action="action_l10n_si_wellness_booking"/>
+    <menuitem id="menu_l10n_si_wellness_pass" name="Dnevne karte" parent="menu_l10n_si_wellness_root" action="action_l10n_si_wellness_pass"/>
+    <menuitem id="menu_l10n_si_wellness_config" name="Konfiguracija" parent="menu_l10n_si_wellness_root" sequence="90"/>
+    <menuitem id="menu_l10n_si_wellness_service" name="Storitve" parent="menu_l10n_si_wellness_config" action="action_l10n_si_wellness_service"/>
+</odoo>

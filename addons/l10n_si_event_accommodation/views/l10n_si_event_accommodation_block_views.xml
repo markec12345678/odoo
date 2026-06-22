@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_event_acc_block_tree" model="ir.ui.view">
+        <field name="name">l10n_si.event.accommodation.block.tree</field>
+        <field name="model">l10n_si.event.accommodation.block</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="event_id"/>
+                <field name="room_type_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="release_date"/>
+                <field name="special_rate"/>
+                <field name="blocked_room_count"/>
+                <field name="reservation_count"/>
+                <field name="available_rooms"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_event_acc_block_form" model="ir.ui.view">
+        <field name="name">l10n_si.event.accommodation.block.form</field>
+        <field name="model">l10n_si.event.accommodation.block</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_activate" type="object" string="Aktiviraj" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_release" type="object" string="Sprosti neporabljene"
+                            attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="event_id"/>
+                            <field name="room_type_id"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                        <group>
+                            <field name="release_date"/>
+                            <field name="special_rate"/>
+                            <field name="standard_rate" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Blokirane sobe">
+                            <field name="room_ids">
+                                <tree>
+                                    <field name="number"/>
+                                    <field name="floor"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Rezervacije gostov">
+                            <field name="reservation_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="partner_id"/>
+                                    <field name="room_id"/>
+                                    <field name="check_in"/>
+                                    <field name="check_out"/>
+                                    <field name="total_amount"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_event_acc_block" model="ir.actions.act_window">
+        <field name="name">Blok rezervacije</field>
+        <field name="res_model">l10n_si.event.accommodation.block</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_event_acc_root" name="Sobe za dogodke" parent="l10n_si_event_venue.menu_l10n_si_event_venue_root" sequence="40"/>
+    <menuitem id="menu_l10n_si_event_acc_block" name="Bloki" parent="menu_l10n_si_event_acc_root" action="action_l10n_si_event_acc_block"/>
+</odoo>

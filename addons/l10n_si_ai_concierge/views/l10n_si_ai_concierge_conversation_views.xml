@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_ai_conv_tree" model="ir.ui.view">
+        <field name="name">l10n_si.ai.concierge.conversation.tree</field>
+        <field name="model">l10n_si.ai.concierge.conversation</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'active'"
+                  decoration-warning="state == 'escalated'"
+                  decoration-muted="state == 'ended'">
+                <field name="name"/>
+                <field name="channel"/>
+                <field name="partner_id"/>
+                <field name="message_count"/>
+                <field name="create_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_ai_conv_form" model="ir.ui.view">
+        <field name="name">l10n_si.ai.concierge.conversation.form</field>
+        <field name="model">l10n_si.ai.concierge.conversation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_end" type="object" string="Zaključi"
+                            attrs="{'invisible': [('state', '=', 'ended')]}"/>
+                    <button name="action_escalate" type="object" string="Prenesi na človeka" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="config_id"/>
+                            <field name="partner_id"/>
+                            <field name="channel"/>
+                            <field name="hotel_folio_id"/>
+                        </group>
+                        <group>
+                            <field name="message_count" readonly="1"/>
+                            <field name="create_date" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sporočila">
+                            <field name="message_ids" readonly="1">
+                                <tree decoration-info="role == 'user'"
+                                      decoration-success="role == 'assistant'"
+                                      decoration-warning="role == 'human'">
+                                    <field name="create_date"/>
+                                    <field name="role"/>
+                                    <field name="content"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Povzetek">
+                            <field name="summary" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_ai_conv" model="ir.actions.act_window">
+        <field name="name">Pogovori</field>
+        <field name="res_model">l10n_si.ai.concierge.conversation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_ai_root" name="AI Concierge (SI)" web_icon="l10n_si_ai_concierge,static/description/icon.png" sequence="50"/>
+    <menuitem id="menu_l10n_si_ai_conv" name="Pogovori" parent="menu_l10n_si_ai_root" action="action_l10n_si_ai_conv" sequence="10"/>
+    <menuitem id="menu_l10n_si_ai_config" name="Konfiguracija" parent="menu_l10n_si_ai_root" action="action_l10n_si_ai_config" sequence="90"/>
+</odoo>

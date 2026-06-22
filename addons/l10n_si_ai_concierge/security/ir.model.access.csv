@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_ai_config_user,l10n_si.ai.concierge.config.user,model_l10n_si_ai_concierge_config,base.group_user,1,1,1,0
+access_l10n_si_ai_config_manager,l10n_si.ai.concierge.config.manager,model_l10n_si_ai_concierge_config,base.group_system,1,1,1,1
+access_l10n_si_ai_conv_user,l10n_si.ai.concierge.conversation.user,model_l10n_si_ai_concierge_conversation,base.group_user,1,1,1,0
+access_l10n_si_ai_conv_manager,l10n_si.ai.concierge.conversation.manager,model_l10n_si_ai_concierge_conversation,base.group_system,1,1,1,1
+access_l10n_si_ai_msg_user,l10n_si.ai.concierge.message.user,model_l10n_si_ai_concierge_message,base.group_user,1,0,1,0
+access_l10n_si_ai_msg_manager,l10n_si.ai.concierge.message.manager,model_l10n_si_ai_concierge_message,base.group_system,1,1,1,1

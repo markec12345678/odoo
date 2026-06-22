@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_event_equipment_tree" model="ir.ui.view">
+        <field name="name">l10n_si.event.equipment.tree</field>
+        <field name="model">l10n_si.event.equipment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="quantity_total"/>
+                <field name="quantity_available"/>
+                <field name="hourly_rate"/>
+                <field name="daily_rate"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_event_equipment_form" model="ir.ui.view">
+        <field name="name">l10n_si.event.equipment.form</field>
+        <field name="model">l10n_si.event.equipment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="product_id"/>
+                            <field name="category"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="quantity_total"/>
+                            <field name="quantity_available" readonly="1"/>
+                            <field name="hourly_rate"/>
+                            <field name="daily_rate"/>
+                            <field name="deposit"/>
+                        </group>
+                    </group>
+                    <group string="Opis">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_event_equipment" model="ir.actions.act_window">
+        <field name="name">Oprema</field>
+        <field name="res_model">l10n_si.event.equipment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

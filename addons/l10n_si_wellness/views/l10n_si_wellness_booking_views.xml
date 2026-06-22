@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_wellness_booking_tree" model="ir.ui.view">
+        <field name="name">l10n_si.wellness.booking.tree</field>
+        <field name="model">l10n_si.wellness.booking</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'confirmed'"
+                  decoration-success="state == 'completed'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="service_id"/>
+                <field name="partner_id"/>
+                <field name="therapist_employee_id"/>
+                <field name="guest_category"/>
+                <field name="total_amount" sum="Skupaj"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_wellness_booking_form" model="ir.ui.view">
+        <field name="name">l10n_si.wellness.booking.form</field>
+        <field name="model">l10n_si.wellness.booking</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_start" type="object" string="Začni"
+                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_complete" type="object" string="Opravi + Račun" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                    <button name="action_no_show" type="object" string="Ni prišel"
+                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('completed', 'cancelled'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="service_id"/>
+                            <field name="partner_id"/>
+                            <field name="therapist_employee_id"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="duration_minutes" readonly="1"/>
+                            <field name="end_date" readonly="1"/>
+                            <field name="guest_category"/>
+                            <field name="price"/>
+                            <field name="total_amount" widget="monetary" readonly="1"/>
+                            <field name="move_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Opombe (alergije, poškodbe)">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_wellness_booking_calendar" model="ir.ui.view">
+        <field name="name">l10n_si.wellness.booking.calendar</field>
+        <field name="model">l10n_si.wellness.booking</field>
+        <field name="arch" type="xml">
+            <calendar string="Termini" date_start="date" date_stop="end_date" color="service_id">
+                <field name="partner_id"/>
+                <field name="service_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_wellness_booking" model="ir.actions.act_window">
+        <field name="name">Rezervacije</field>
+        <field name="res_model">l10n_si.wellness.booking</field>
+        <field name="view_mode">calendar,tree,form</field>
+    </record>
+</odoo>

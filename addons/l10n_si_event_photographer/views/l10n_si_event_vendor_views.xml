@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_event_vendor_tree" model="ir.ui.view">
+        <field name="name">l10n_si.event.vendor.tree</field>
+        <field name="model">l10n_si.event.vendor</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="rating == '5'">
+                <field name="name"/>
+                <field name="category"/>
+                <field name="partner_id"/>
+                <field name="base_price"/>
+                <field name="hourly_rate"/>
+                <field name="rating" widget="priority"/>
+                <field name="booking_count"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_event_vendor_form" model="ir.ui.view">
+        <field name="name">l10n_si.event.vendor.form</field>
+        <field name="model">l10n_si.event.vendor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="category"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="base_price"/>
+                            <field name="hourly_rate"/>
+                            <field name="package_deal"/>
+                            <field name="rating"/>
+                        </group>
+                    </group>
+                    <group string="Spletna prisotnost">
+                        <group>
+                            <field name="portfolio_url"/>
+                            <field name="instagram"/>
+                            <field name="facebook"/>
+                        </group>
+                    </group>
+                    <group string="Storitve">
+                        <field name="services_description" nolabel="1"/>
+                    </group>
+                    <group string="Izkušnje sodelovanja">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Zgodovina naročil">
+                            <field name="booking_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="event_id"/>
+                                    <field name="date"/>
+                                    <field name="total_amount"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_event_vendor" model="ir.actions.act_window">
+        <field name="name">Zunanji izvajalci</field>
+        <field name="res_model">l10n_si.event.vendor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_l10n_si_event_contract" model="ir.sequence">
+            <field name="name">SI Event Contract</field>
+            <field name="code">l10n_si.event.contract</field>
+            <field name="prefix">CTR/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <!-- Default template: najemna pogodba -->
+        <record id="contract_tmpl_hall_rental" model="l10n_si.event.contract.template">
+            <field name="name">Pogodba o najemu dvorane</field>
+            <field name="code">HALL-RENT</field>
+            <field name="contract_type">hall_rental</field>
+            <field name="body"><![CDATA[
+<h1>POGODBA O NAJEMU DVORANE</h1>
+<p>Številka: <strong>{{event.number}}</strong></p>
+<p>Datum: <strong>{{date.today}}</strong></p>
+
+<h2>1. STRANKI</h2>
+<p><strong>Najemodajalec:</strong><br/>
+{{company.name}}<br/>
+{{company.street}}, {{company.zip}} {{company.city}}<br/>
+Davčna št.: {{company.vat}}<br/>
+Tel: {{company.phone}}, E-pošta: {{company.email}}</p>
+
+<p><strong>Najemnik:</strong><br/>
+{{partner.name}}<br/>
+{{partner.street}}, {{partner.zip}} {{partner.city}}<br/>
+Davčna št.: {{partner.vat}}<br/>
+Tel: {{partner.phone}}, E-pošta: {{partner.email}}</p>
+
+<h2>2. PREDMET POGODBE</h2>
+<p>Najemodajalec daje najemniku v najem dvorano v objektu <strong>{{venue.name}}</strong>,
+{{venue.street}}, {{venue.zip}} {{venue.city}}, za izvedbo dogodka:</p>
+<p><strong>{{event.name}}</strong></p>
+<p>Datum in ura: <strong>{{event.date_start}}</strong> do <strong>{{event.date_end}}</strong></p>
+<p>Pričakovano število gostov: <strong>{{event.expected_guests}}</strong></p>
+
+<h2>3. CENA</h2>
+<p>Skupna cena najema (z DDV): <strong>{{event.total_amount}}</strong></p>
+<p>Avans v višini 30% je dolžan plačati najemnik ob podpisu pogodbe. Preostali znesek
+je dolžan plačati najpozneje na dan dogodka.</p>
+
+<h2>4. POSEBNE ŽELJE</h2>
+<p>{{event.special_requests}}</p>
+
+<h2>5. PODPISI</h2>
+<table style="width:100%">
+<tr>
+<td style="width:50%; vertical-align:top">
+<p>NAJEMODAJALEC<br/><br/><br/><br/>
+__________________________<br/>
+{{company.name}}</p>
+</td>
+<td style="width:50%; vertical-align:top">
+<p>NAJEMNIK<br/><br/><br/><br/>
+__________________________<br/>
+{{partner.name}}</p>
+</td>
+</tr>
+</table>
+]]></field>
+        </record>
+    </data>
+</odoo>
