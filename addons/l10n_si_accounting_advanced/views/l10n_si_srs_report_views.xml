@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_srs_report_tree" model="ir.ui.view">
+        <field name="name">l10n_si.srs.report.tree</field>
+        <field name="model">l10n_si.srs.report</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'accepted'"
+                  decoration-muted="state == 'archived'"
+                  decoration-info="state == 'submitted'">
+                <field name="number"/>
+                <field name="year"/>
+                <field name="report_type"/>
+                <field name="total_assets"/>
+                <field name="total_revenue"/>
+                <field name="net_profit"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_srs_report_form" model="ir.ui.view">
+        <field name="name">l10n_si.srs.report.form</field>
+        <field name="model">l10n_si.srs.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_compute" type="object" string="Izračunaj" class="btn-secondary"
+                            attrs="{'invisible': [('state', 'not in', ('draft', 'computed'))]}"/>
+                    <button name="action_review" type="object" string="Označi pregledano"
+                            attrs="{'invisible': [('state', '!=', 'computed')]}"/>
+                    <button name="action_submit_ajpes" type="object" string="Pošlji AJPES" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'reviewed')]}"/>
+                    <button name="action_mark_accepted" type="object" string="Označi sprejeto"
+                            attrs="{'invisible': [('state', '!=', 'submitted')]}"/>
+                    <button name="action_mark_rejected" type="object" string="Označi zavrnjeno"
+                            attrs="{'invisible': [('state', '!=', 'submitted')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="number" readonly="1"/>
+                            <field name="year"/>
+                            <field name="report_type"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="ajpes_message_id" readonly="1"/>
+                            <field name="ajpes_submitted_on" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Skupne vrednosti">
+                        <group>
+                            <field name="total_assets" widget="monetary"/>
+                            <field name="total_liabilities" widget="monetary"/>
+                            <field name="total_revenue" widget="monetary"/>
+                        </group>
+                        <group>
+                            <field name="total_expenses" widget="monetary"/>
+                            <field name="net_profit" widget="monetary"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Postavke poročila">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="srs_code"/>
+                                    <field name="name"/>
+                                    <field name="balance_section"/>
+                                    <field name="income_section"/>
+                                    <field name="account_codes"/>
+                                    <field name="amount" sum="Skupaj"/>
+                                    <field name="amount_previous_year" sum="Skupaj"/>
+                                    <field name="variance"/>
+                                    <field name="variance_percent"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="AJPES odgovor">
+                            <field name="ajpes_response" nolabel="1"/>
+                        </page>
+                        <page string="Opombe">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_srs_report" model="ir.actions.act_window">
+        <field name="name">SRS poročila</field>
+        <field name="res_model">l10n_si.srs.report</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_procurement_vendor_tree" model="ir.ui.view">
+        <field name="name">l10n_si.procurement.vendor.tree</field>
+        <field name="model">l10n_si.procurement.vendor</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="rating == '5'"
+                  decoration-danger="state == 'blacklisted'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="categories_supplied"/>
+                <field name="delivery_time_days"/>
+                <field name="payment_terms"/>
+                <field name="rating"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_procurement_vendor_form" model="ir.ui.view">
+        <field name="name">l10n_si.procurement.vendor.form</field>
+        <field name="model">l10n_si.procurement.vendor</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_pause" type="object" string="Pavziraj"
+                            attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                    <button name="action_activate" type="object" string="Aktiviraj"
+                            attrs="{'invisible': [('state', '=', 'active')]}"/>
+                    <button name="action_blacklist" type="object" string="Črni seznam" class="btn-danger"
+                            attrs="{'invisible': [('state', '=', 'blacklisted')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="categories_supplied"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="rating"/>
+                            <field name="delivery_time_days"/>
+                            <field name="payment_terms"/>
+                        </group>
+                    </group>
+                    <group string="Cene in popusti">
+                        <group>
+                            <field name="unit_price"/>
+                            <field name="discount_percent"/>
+                        </group>
+                        <group>
+                            <field name="rebate_percent"/>
+                            <field name="min_order_value"/>
+                            <field name="free_delivery_threshold"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Artikli">
+                            <field name="item_ids" readonly="1">
+                                <tree>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="category"/>
+                                    <field name="min_stock"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Pogodbe">
+                            <field name="contract_ids" readonly="1">
+                                <tree>
+                                    <field name="number"/>
+                                    <field name="date_from"/>
+                                    <field name="date_to"/>
+                                    <field name="contract_value"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Izkušnje">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_procurement_vendor" model="ir.actions.act_window">
+        <field name="name">Dobavitelji</field>
+        <field name="res_model">l10n_si.procurement.vendor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

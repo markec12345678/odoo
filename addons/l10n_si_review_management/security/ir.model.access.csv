@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_review_source_user,l10n_si.review.source.user,model_l10n_si_review_source,base.group_user,1,0,0,0
+access_l10n_si_review_source_manager,l10n_si.review.source.manager,model_l10n_si_review_source,base.group_system,1,1,1,1
+access_l10n_si_review_user,l10n_si.review.user,model_l10n_si_review,base.group_user,1,1,1,0
+access_l10n_si_review_manager,l10n_si.review.manager,model_l10n_si_review,base.group_system,1,1,1,1
+access_l10n_si_review_image_user,l10n_si.review.image.user,model_l10n_si_review_image,base.group_user,1,1,1,0
+access_l10n_si_review_image_manager,l10n_si.review.image.manager,model_l10n_si_review_image,base.group_system,1,1,1,1

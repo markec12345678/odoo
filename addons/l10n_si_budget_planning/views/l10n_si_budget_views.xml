@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_budget_tree" model="ir.ui.view">
+        <field name="name">l10n_si.budget.tree</field>
+        <field name="model">l10n_si.budget</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'active'"
+                  decoration-muted="state == 'closed'">
+                <field name="number"/>
+                <field name="year"/>
+                <field name="department"/>
+                <field name="total_revenue_planned" sum="Skupaj"/>
+                <field name="total_expense_planned" sum="Skupaj"/>
+                <field name="total_profit_planned" sum="Skupaj"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_budget_form" model="ir.ui.view">
+        <field name="name">l10n_si.budget.form</field>
+        <field name="model">l10n_si.budget</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit" type="object" string="Predlagaj"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_approve" type="object" string="Odobri" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'submitted')]}"/>
+                    <button name="action_activate" type="object" string="Aktiviraj"
+                            attrs="{'invisible': [('state', '!=', 'approved')]}"/>
+                    <button name="action_close" type="object" string="Zaključi"
+                            attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('state', 'in', ('closed', 'cancelled'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="number" readonly="1"/>
+                            <field name="year"/>
+                            <field name="department"/>
+                            <field name="analytic_account_id"/>
+                        </group>
+                        <group>
+                            <field name="approved_by" readonly="1"/>
+                            <field name="approved_on" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Postavke proračuna">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="line_type"/>
+                                    <field name="category"/>
+                                    <field name="name"/>
+                                    <field name="amount_planned" sum="Skupaj"/>
+                                    <field name="amount_actual" sum="Skupaj"/>
+                                    <field name="variance_amount" sum="Skupaj"/>
+                                    <field name="variance_percent"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Skupaj">
+                            <group class="oe_total">
+                                <group>
+                                    <field name="total_revenue_planned" widget="monetary"/>
+                                    <field name="total_expense_planned" widget="monetary"/>
+                                    <field name="total_profit_planned" widget="monetary"/>
+                                </group>
+                                <group>
+                                    <field name="total_revenue_actual" widget="monetary"/>
+                                    <field name="total_expense_actual" widget="monetary"/>
+                                    <field name="total_profit_actual" widget="monetary"/>
+                                </group>
+                            </group>
+                            <group string="Odstopanja (%)">
+                                <group>
+                                    <field name="revenue_variance_percent" widget="percentage"/>
+                                    <field name="expense_variance_percent" widget="percentage"/>
+                                    <field name="profit_variance_percent" widget="percentage"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Opombe">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_budget_search" model="ir.ui.view">
+        <field name="name">l10n_si.budget.search</field>
+        <field name="model">l10n_si.budget</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="number"/>
+                <field name="year"/>
+                <field name="department"/>
+                <filter name="filter_active" string="Aktivni" domain="[('state', '=', 'active')]"/>
+                <group string="Group By">
+                    <filter name="group_year" string="Leto" context="{'group_by': 'year'}"/>
+                    <filter name="group_dept" string="Oddelek" context="{'group_by': 'department'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_budget" model="ir.actions.act_window">
+        <field name="name">Proračuni</field>
+        <field name="res_model">l10n_si.budget</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_budget_root" name="Proračun (SI)" parent="account.menu_finance_configuration" sequence="100"/>
+    <menuitem id="menu_l10n_si_budget" name="Proračuni" parent="menu_l10n_si_budget_root" action="action_l10n_si_budget"/>
+</odoo>

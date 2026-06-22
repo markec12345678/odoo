@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_procurement_contract_tree" model="ir.ui.view">
+        <field name="name">l10n_si.procurement.contract.tree</field>
+        <field name="model">l10n_si.procurement.contract</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="is_active == True"
+                  decoration-muted="state == 'expired'">
+                <field name="number"/>
+                <field name="name"/>
+                <field name="vendor_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="contract_value" sum="Skupaj"/>
+                <field name="used_value" sum="Skupaj"/>
+                <field name="remaining_value" sum="Skupaj"/>
+                <field name="is_active"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_procurement_contract_form" model="ir.ui.view">
+        <field name="name">l10n_si.procurement.contract.form</field>
+        <field name="model">l10n_si.procurement.contract</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_activate" type="object" string="Aktiviraj" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_terminate" type="object" string="Prekini"
+                            attrs="{'invisible': [('state', 'in', ('terminated', 'expired'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="number" readonly="1"/>
+                            <field name="vendor_id"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="is_active"/>
+                        </group>
+                    </group>
+                    <group string="Vrednost">
+                        <group>
+                            <field name="contract_value" widget="monetary"/>
+                            <field name="used_value" widget="monetary" readonly="1"/>
+                            <field name="remaining_value" widget="monetary" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="po_count" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Pogoji">
+                        <group>
+                            <field name="payment_terms_days"/>
+                            <field name="discount_percent"/>
+                        </group>
+                        <group>
+                            <field name="free_delivery"/>
+                            <field name="delivery_time_days"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Opis">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                        <page string="Naročila">
+                            <field name="purchase_order_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="date_order"/>
+                                    <field name="amount_total"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Pogodba (PDF)">
+                            <field name="pdf_attachment_id" widget="url"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_procurement_contract" model="ir.actions.act_window">
+        <field name="name">Pogodbe z dobavitelji</field>
+        <field name="res_model">l10n_si.procurement.contract</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_procurement_root" name="Nabava (SI)" parent="purchase.menu_purchase_root" sequence="50"/>
+    <menuitem id="menu_l10n_si_procurement_item" name="Artikli" parent="menu_l10n_si_procurement_root" action="action_l10n_si_procurement_item"/>
+    <menuitem id="menu_l10n_si_procurement_vendor" name="Dobavitelji" parent="menu_l10n_si_procurement_root" action="action_l10n_si_procurement_vendor"/>
+    <menuitem id="menu_l10n_si_procurement_contract" name="Pogodbe" parent="menu_l10n_si_procurement_root" action="action_l10n_si_procurement_contract"/>
+</odoo>

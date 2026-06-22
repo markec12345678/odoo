@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_financial_ratio_form" model="ir.ui.view">
+        <field name="name">l10n_si.financial.ratio.form</field>
+        <field name="model">l10n_si.financial.ratio</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_compute_from_accounting" type="object" string="Izračunaj iz SRS" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="year"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Vhodne vrednosti (iz bilance/izida)">
+                            <group>
+                                <group>
+                                    <field name="total_assets" widget="monetary"/>
+                                    <field name="current_assets" widget="monetary"/>
+                                    <field name="inventory" widget="monetary"/>
+                                    <field name="cash" widget="monetary"/>
+                                    <field name="total_liabilities" widget="monetary"/>
+                                </group>
+                                <group>
+                                    <field name="current_liabilities" widget="monetary"/>
+                                    <field name="equity" widget="monetary"/>
+                                    <field name="net_profit" widget="monetary"/>
+                                    <field name="revenue" widget="monetary"/>
+                                    <field name="ebit" widget="monetary"/>
+                                    <field name="interest_expense" widget="monetary"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Likvidnost">
+                            <group>
+                                <field name="current_ratio"/>
+                                <field name="quick_ratio"/>
+                                <field name="cash_ratio"/>
+                            </group>
+                        </page>
+                        <page string="Rentabilnost">
+                            <group>
+                                <field name="roa" widget="percentage"/>
+                                <field name="roe" widget="percentage"/>
+                                <field name="ros" widget="percentage"/>
+                                <field name="roi" widget="percentage"/>
+                            </group>
+                        </page>
+                        <page string="Zadolženost">
+                            <group>
+                                <field name="debt_ratio" widget="percentage"/>
+                                <field name="debt_equity_ratio"/>
+                                <field name="interest_coverage"/>
+                            </group>
+                        </page>
+                        <page string="Aktivnost">
+                            <group>
+                                <field name="asset_turnover"/>
+                                <field name="inventory_turnover"/>
+                                <field name="receivables_turnover"/>
+                                <field name="days_sales_outstanding"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_financial_ratio_tree" model="ir.ui.view">
+        <field name="name">l10n_si.financial.ratio.tree</field>
+        <field name="model">l10n_si.financial.ratio</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="year"/>
+                <field name="current_ratio"/>
+                <field name="roa" widget="percentage"/>
+                <field name="roe" widget="percentage"/>
+                <field name="debt_ratio" widget="percentage"/>
+                <field name="asset_turnover"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_financial_ratio" model="ir.actions.act_window">
+        <field name="name">Kazalci uspešnosti</field>
+        <field name="res_model">l10n_si.financial.ratio</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_accounting_adv_root" name="Napredno knjigovodstvo (SI)" parent="account.menu_finance_reports" sequence="100"/>
+    <menuitem id="menu_l10n_si_srs_report" name="SRS poročila" parent="menu_l10n_si_accounting_adv_root" action="action_l10n_si_srs_report"/>
+    <menuitem id="menu_l10n_si_financial_ratio" name="Kazalci" parent="menu_l10n_si_accounting_adv_root" action="action_l10n_si_financial_ratio"/>
+</odoo>

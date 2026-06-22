@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_l10n_si_roster_assignment" model="ir.sequence">
+            <field name="name">SI Roster Assignment</field>
+            <field name="code">l10n_si.roster.assignment</field>
+            <field name="prefix">RST/%(year)s/</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_l10n_si_roster_swap" model="ir.sequence">
+            <field name="name">SI Roster Swap</field>
+            <field name="code">l10n_si.roster.swap.request</field>
+            <field name="prefix">SWP/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <!-- Default shifts -->
+        <record id="shift_morning" model="l10n_si.roster.shift">
+            <field name="name">Jutranja</field>
+            <field name="code">JUT</field>
+            <field name="shift_type">morning</field>
+            <field name="start_hour">6.0</field>
+            <field name="end_hour">14.0</field>
+            <field name="color">1</field>
+        </record>
+        <record id="shift_afternoon" model="l10n_si.roster.shift">
+            <field name="name">Popoldanska</field>
+            <field name="code">POP</field>
+            <field name="shift_type">afternoon</field>
+            <field name="start_hour">14.0</field>
+            <field name="end_hour">22.0</field>
+            <field name="color">2</field>
+        </record>
+        <record id="shift_night" model="l10n_si.roster.shift">
+            <field name="name">Nočna</field>
+            <field name="code">NOC</field>
+            <field name="shift_type">night</field>
+            <field name="start_hour">22.0</field>
+            <field name="end_hour">6.0</field>
+            <field name="color">3</field>
+            <field name="night_premium_percent">30.0</field>
+        </record>
+        <record id="shift_full_day" model="l10n_si.roster.shift">
+            <field name="name">Celodnevna</field>
+            <field name="code">CD</field>
+            <field name="shift_type">full_day</field>
+            <field name="start_hour">8.0</field>
+            <field name="end_hour">16.0</field>
+            <field name="color">4</field>
+        </record>
+    </data>
+</odoo>

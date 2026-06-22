@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_budget_line_tree" model="ir.ui.view">
+        <field name="name">l10n_si.budget.line.tree</field>
+        <field name="model">l10n_si.budget.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="budget_id"/>
+                <field name="line_type"/>
+                <field name="category"/>
+                <field name="name"/>
+                <field name="amount_planned" sum="Skupaj"/>
+                <field name="amount_actual" sum="Skupaj"/>
+                <field name="variance_amount" sum="Skupaj"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_budget_line_form" model="ir.ui.view">
+        <field name="name">l10n_si.budget.line.form</field>
+        <field name="model">l10n_si.budget.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_distribute_evenly" type="object" string="Porazdeli enakomerno" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="budget_id"/>
+                            <field name="line_type"/>
+                            <field name="category"/>
+                            <field name="name"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="amount_planned" widget="monetary"/>
+                            <field name="amount_actual" widget="monetary" readonly="1"/>
+                            <field name="variance_amount" widget="monetary" readonly="1"/>
+                            <field name="variance_percent" widget="percentage" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Mesečni razcep">
+                        <group>
+                            <field name="jan_amount" widget="monetary"/>
+                            <field name="feb_amount" widget="monetary"/>
+                            <field name="mar_amount" widget="monetary"/>
+                            <field name="apr_amount" widget="monetary"/>
+                            <field name="may_amount" widget="monetary"/>
+                            <field name="jun_amount" widget="monetary"/>
+                        </group>
+                        <group>
+                            <field name="jul_amount" widget="monetary"/>
+                            <field name="aug_amount" widget="monetary"/>
+                            <field name="sep_amount" widget="monetary"/>
+                            <field name="oct_amount" widget="monetary"/>
+                            <field name="nov_amount" widget="monetary"/>
+                            <field name="dec_amount" widget="monetary"/>
+                        </group>
+                    </group>
+                    <group string="Opombe">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_budget_line" model="ir.actions.act_window">
+        <field name="name">Postavke proračuna</field>
+        <field name="res_model">l10n_si.budget.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_budget_line" name="Postavke" parent="menu_l10n_si_budget_root" action="action_l10n_si_budget_line" sequence="20"/>
+</odoo>

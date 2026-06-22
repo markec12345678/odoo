@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_rate_plan_user,l10n_si.rate.plan.user,model_l10n_si_rate_plan,base.group_user,1,0,0,0
+access_l10n_si_rate_plan_manager,l10n_si.rate.plan.manager,model_l10n_si_rate_plan,base.group_system,1,1,1,1
+access_l10n_si_rate_calendar_user,l10n_si.rate.calendar.user,model_l10n_si_rate_calendar,base.group_user,1,1,1,0
+access_l10n_si_rate_calendar_manager,l10n_si.rate.calendar.manager,model_l10n_si_rate_calendar,base.group_system,1,1,1,1
+access_l10n_si_occupancy_forecast_user,l10n_si.occupancy.forecast.user,model_l10n_si_occupancy_forecast,base.group_user,1,0,1,0
+access_l10n_si_occupancy_forecast_manager,l10n_si.occupancy.forecast.manager,model_l10n_si_occupancy_forecast,base.group_system,1,1,1,1

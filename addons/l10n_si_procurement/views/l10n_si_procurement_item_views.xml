@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_procurement_item_tree" model="ir.ui.view">
+        <field name="name">l10n_si.procurement.item.tree</field>
+        <field name="model">l10n_si.procurement.item</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="uom"/>
+                <field name="min_stock"/>
+                <field name="reorder_qty"/>
+                <field name="order_frequency"/>
+                <field name="preferred_vendor_id"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_procurement_item_form" model="ir.ui.view">
+        <field name="name">l10n_si.procurement.item.form</field>
+        <field name="model">l10n_si.procurement.item</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="product_id"/>
+                            <field name="category"/>
+                            <field name="uom"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="preferred_vendor_id"/>
+                            <field name="contract_id"/>
+                        </group>
+                    </group>
+                    <group string="Zaloga">
+                        <group>
+                            <field name="min_stock"/>
+                            <field name="max_stock"/>
+                            <field name="reorder_qty"/>
+                        </group>
+                        <group>
+                            <field name="order_frequency"/>
+                            <field name="storage_location"/>
+                        </group>
+                    </group>
+                    <group string="Sezonskost in hramba">
+                        <group>
+                            <field name="seasonal_demand"/>
+                            <field name="summer_multiplier" attrs="{'invisible': [('seasonal_demand', '=', False)]}"/>
+                            <field name="winter_multiplier" attrs="{'invisible': [('seasonal_demand', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="requires_cold_chain"/>
+                            <field name="expiry_days"/>
+                        </group>
+                    </group>
+                    <group string="Opis">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_procurement_item" model="ir.actions.act_window">
+        <field name="name">Artikli</field>
+        <field name="res_model">l10n_si.procurement.item</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

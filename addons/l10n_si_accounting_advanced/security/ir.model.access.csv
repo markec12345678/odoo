@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_srs_report_user,l10n_si.srs.report.user,model_l10n_si_srs_report,account.group_account_invoice,1,1,1,0
+access_l10n_si_srs_report_manager,l10n_si.srs.report.manager,model_l10n_si_srs_report,account.group_account_manager,1,1,1,1
+access_l10n_si_srs_report_line_user,l10n_si.srs.report.line.user,model_l10n_si_srs_report_line,account.group_account_invoice,1,1,1,0
+access_l10n_si_srs_report_line_manager,l10n_si.srs.report.line.manager,model_l10n_si_srs_report_line,account.group_account_manager,1,1,1,1
+access_l10n_si_financial_ratio_user,l10n_si.financial.ratio.user,model_l10n_si_financial_ratio,account.group_account_invoice,1,1,1,0
+access_l10n_si_financial_ratio_manager,l10n_si.financial.ratio.manager,model_l10n_si_financial_ratio,account.group_account_manager,1,1,1,1

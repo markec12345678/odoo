@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_roster_shift_tree" model="ir.ui.view">
+        <field name="name">l10n_si.roster.shift.tree</field>
+        <field name="model">l10n_si.roster.shift</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="shift_type"/>
+                <field name="start_hour" widget="float_time"/>
+                <field name="end_hour" widget="float_time"/>
+                <field name="duration_hours" widget="float_time"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_roster_shift_form" model="ir.ui.view">
+        <field name="name">l10n_si.roster.shift.form</field>
+        <field name="model">l10n_si.roster.shift</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="shift_type"/>
+                            <field name="color"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="start_hour" widget="float_time"/>
+                            <field name="end_hour" widget="float_time"/>
+                            <field name="duration_hours" widget="float_time" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Premije">
+                        <group>
+                            <field name="night_premium_percent"/>
+                            <field name="weekend_premium_percent"/>
+                        </group>
+                        <group>
+                            <field name="holiday_premium_percent"/>
+                            <field name="required_job_positions"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_roster_shift" model="ir.actions.act_window">
+        <field name="name">Izmene</field>
+        <field name="res_model">l10n_si.roster.shift</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_procurement_item_user,l10n_si.procurement.item.user,model_l10n_si_procurement_item,purchase.group_purchase_user,1,1,1,0
+access_l10n_si_procurement_item_manager,l10n_si.procurement.item.manager,model_l10n_si_procurement_item,purchase.group_purchase_manager,1,1,1,1
+access_l10n_si_procurement_vendor_user,l10n_si.procurement.vendor.user,model_l10n_si_procurement_vendor,purchase.group_purchase_user,1,0,0,0
+access_l10n_si_procurement_vendor_manager,l10n_si.procurement.vendor.manager,model_l10n_si_procurement_vendor,purchase.group_purchase_manager,1,1,1,1
+access_l10n_si_procurement_contract_user,l10n_si.procurement.contract.user,model_l10n_si_procurement_contract,purchase.group_purchase_user,1,1,1,0
+access_l10n_si_procurement_contract_manager,l10n_si.procurement.contract.manager,model_l10n_si_procurement_contract,purchase.group_purchase_manager,1,1,1,1

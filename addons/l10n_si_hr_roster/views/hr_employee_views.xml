@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_si_roster" model="ir.ui.view">
+        <field name="name">hr.employee.form.si.roster</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="SI Razpored" name="si_roster">
+                    <group>
+                        <group string="Izmene">
+                            <field name="si_default_shift_id"/>
+                            <field name="si_can_work_night"/>
+                            <field name="si_can_work_weekend"/>
+                            <field name="si_preferred_days_off"/>
+                        </group>
+                        <group string="Delovne ure">
+                            <field name="si_weekly_hours_target" widget="float_time"/>
+                            <field name="si_weekly_hours_max" widget="float_time"/>
+                            <field name="si_assignments_this_week" readonly="1"/>
+                            <field name="si_hours_this_week" widget="float_time" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

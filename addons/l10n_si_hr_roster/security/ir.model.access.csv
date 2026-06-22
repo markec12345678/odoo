@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_roster_shift_user,l10n_si.roster.shift.user,model_l10n_si_roster_shift,base.group_user,1,0,0,0
+access_l10n_si_roster_shift_manager,l10n_si.roster.shift.manager,model_l10n_si_roster_shift,base.group_system,1,1,1,1
+access_l10n_si_roster_assignment_user,l10n_si.roster.assignment.user,model_l10n_si_roster_assignment,base.group_user,1,1,1,0
+access_l10n_si_roster_assignment_manager,l10n_si.roster.assignment.manager,model_l10n_si_roster_assignment,base.group_system,1,1,1,1
+access_l10n_si_roster_swap_request_user,l10n_si.roster.swap.request.user,model_l10n_si_roster_swap_request,base.group_user,1,1,1,0
+access_l10n_si_roster_swap_request_manager,l10n_si.roster.swap.request.manager,model_l10n_si_roster_swap_request,base.group_system,1,1,1,1

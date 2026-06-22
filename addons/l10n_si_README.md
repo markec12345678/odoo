@@ -1,6 +1,6 @@
 # Slovenian Localization Modules for Odoo 19.0
 
-Forty-two custom addons developed for the Slovenian market. All installed via the
+Forty-nine custom addons developed for the Slovenian market. All installed via the
 standard `--addons-path` mechanism; each depends on the previous one(s) as
 noted below.
 
@@ -77,6 +77,17 @@ noted below.
 | `l10n_si_loyalty_program` | `account`, `l10n_si_hotel` | Custom | Loyalty tiers (Bronze/Silver/Gold/Platinum), points accrual, rewards (4 pre-configured) |
 | `l10n_si_group_booking` | `l10n_si_hotel`, `l10n_si_event_venue` | Custom | Group bookings for travel agencies/schools/teams, agency commission, rooming list, cut-off dates |
 | `l10n_si_mobile_app` | `web`, `l10n_si_hotel`, `l10n_si_housekeeping`, `l10n_si_maintenance_request` | Custom | Progressive Web App (installable) for housekeeping, maintenance, reception staff |
+
+### Tier 6 — Revenue, reviews, HR, procurement, budget, accounting
+
+| Module | Depends on | Origin | Purpose |
+|--------|-----------|--------|---------|
+| `l10n_si_revenue_management` | `l10n_si_hotel`, `l10n_si_camping` | Custom | Dynamic pricing (yield management): seasonal/weekday/occupancy/last-minute/early-bird/LOS factors, rate calendar, 90-day forecast |
+| `l10n_si_review_management` | `mail`, `l10n_si_hotel` | Custom | Booking.com/TripAdvisor/Google/Airbnb review aggregation, AI sentiment analysis, auto-response, webhook endpoints |
+| `l10n_si_hr_roster` | `hr`, `hr_holidays`, `hr_attendance` | Custom | Shift scheduling (morning/afternoon/night/full), ZDR-1 compliance (11h rest, 40h/week), overtime, swap requests, calendar view |
+| `l10n_si_procurement` | `purchase`, `stock`, `account` | Custom | Hotel procurement: 12 item categories (cleaning/cosmetics/linen/food/beverages), vendor ratings, annual contracts, reorder points |
+| `l10n_si_budget_planning` | `account`, `analytic` | Custom | Annual budget by department (11 depts), 12-month breakdown, planned vs actual variance tracking, approval workflow |
+| `l10n_si_accounting_advanced` | `account`, `l10n_si` | Custom | SRS reports (balance sheet, income statement, cash flow), financial ratios (ROA/ROE/ROS/liquidity/debt/activity), AJPES submission |
 
 ## Installation
 

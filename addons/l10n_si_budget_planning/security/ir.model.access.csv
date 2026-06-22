@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_budget_user,l10n_si.budget.user,model_l10n_si_budget,account.group_account_invoice,1,1,1,0
+access_l10n_si_budget_manager,l10n_si.budget.manager,model_l10n_si_budget,account.group_account_manager,1,1,1,1
+access_l10n_si_budget_line_user,l10n_si.budget.line.user,model_l10n_si_budget_line,account.group_account_invoice,1,1,1,0
+access_l10n_si_budget_line_manager,l10n_si.budget.line.manager,model_l10n_si_budget_line,account.group_account_manager,1,1,1,1

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_rate_plan_tree" model="ir.ui.view">
+        <field name="name">l10n_si.rate.plan.tree</field>
+        <field name="model">l10n_si.rate.plan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="applies_to"/>
+                <field name="hotel_room_type_id"/>
+                <field name="base_price"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_rate_plan_form" model="ir.ui.view">
+        <field name="name">l10n_si.rate.plan.form</field>
+        <field name="model">l10n_si.rate.plan</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="applies_to"/>
+                            <field name="hotel_room_type_id" attrs="{'invisible': [('applies_to', '!=', 'hotel_room_type')], 'required': [('applies_to', '=', 'hotel_room_type')]}"/>
+                            <field name="camping_parcel_id" attrs="{'invisible': [('applies_to', '!=', 'camping_parcel')], 'required': [('applies_to', '=', 'camping_parcel')]}"/>
+                            <field name="base_price"/>
+                            <field name="currency_id" groups="base.group_multi_currency"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sezonski faktorji">
+                            <group>
+                                <group>
+                                    <field name="winter_factor"/>
+                                    <field name="shoulder_factor"/>
+                                </group>
+                                <group>
+                                    <field name="high_season_factor"/>
+                                    <field name="peak_factor"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Dan v tednu">
+                            <group>
+                                <group>
+                                    <field name="weekday_factor"/>
+                                    <field name="friday_factor"/>
+                                </group>
+                                <group>
+                                    <field name="saturday_factor"/>
+                                    <field name="sunday_factor"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Zasedenost">
+                            <group>
+                                <field name="occ_0_30_factor"/>
+                                <field name="occ_31_60_factor"/>
+                                <field name="occ_61_85_factor"/>
+                                <field name="occ_86_100_factor"/>
+                            </group>
+                        </page>
+                        <page string="Last-minute / Early-bird">
+                            <group>
+                                <group string="Last-minute">
+                                    <field name="last_minute_days_threshold"/>
+                                    <field name="last_minute_factor"/>
+                                </group>
+                                <group string="Early-bird">
+                                    <field name="early_bird_days_threshold"/>
+                                    <field name="early_bird_factor"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Length of stay">
+                            <group>
+                                <field name="los_7_plus_factor"/>
+                                <field name="los_14_plus_factor"/>
+                                <field name="min_los"/>
+                                <field name="max_los"/>
+                            </group>
+                        </page>
+                        <page string="Omejitve">
+                            <group>
+                                <field name="closed_to_arrival"/>
+                                <field name="closed_to_departure"/>
+                                <field name="cta_dates"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_rate_plan" model="ir.actions.act_window">
+        <field name="name">Cenovni načrti</field>
+        <field name="res_model">l10n_si.rate.plan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
