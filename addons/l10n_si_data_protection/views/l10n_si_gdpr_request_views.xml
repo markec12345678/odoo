@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_gdpr_request_tree" model="ir.ui.view">
+        <field name="name">l10n_si.gdpr.request.tree</field>
+        <field name="model">l10n_si.gdpr.request</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'completed'" decoration-warning="state == 'new'" decoration-danger="deadline &lt; context_today()">
+                <field name="number"/>
+                <field name="partner_id"/>
+                <field name="request_type"/>
+                <field name="received_on"/>
+                <field name="deadline"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_si_gdpr_request_form" model="ir.ui.view">
+        <field name="name">l10n_si.gdpr.request.form</field>
+        <field name="model">l10n_si.gdpr.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_start" type="object" string="Začni obravnavo" attrs="{'invisible': [('state', '!=', 'new')]}"/>
+                    <button name="action_complete" type="object" string="Opravi" class="btn-primary" attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                    <button name="action_reject" type="object" string="Zavrni" attrs="{'invisible': [('state', 'in', ('completed', 'rejected'))]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="number" readonly="1"/>
+                            <field name="partner_id"/>
+                            <field name="request_type"/>
+                            <field name="handled_by"/>
+                        </group>
+                        <group>
+                            <field name="received_on" readonly="1"/>
+                            <field name="deadline" readonly="1"/>
+                            <field name="completed_on" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Opis zahteve">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                    <group string="Rešitev">
+                        <field name="resolution_notes" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_si_gdpr_request" model="ir.actions.act_window">
+        <field name="name">GDPR zahteve</field>
+        <field name="res_model">l10n_si.gdpr.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_l10n_si_gdpr_root" name="GDPR (SI)" web_icon="l10n_si_data_protection,static/description/icon.png" sequence="80"/>
+    <menuitem id="menu_l10n_si_gdpr_consent" name="Soglasja" parent="menu_l10n_si_gdpr_root" action="action_l10n_si_gdpr_consent"/>
+    <menuitem id="menu_l10n_si_gdpr_request" name="Zahteve" parent="menu_l10n_si_gdpr_root" action="action_l10n_si_gdpr_request"/>
+</odoo>

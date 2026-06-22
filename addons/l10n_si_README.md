@@ -1,6 +1,6 @@
 # Slovenian Localization Modules for Odoo 19.0
 
-Forty-nine custom addons developed for the Slovenian market. All installed via the
+Fifty-five custom addons developed for the Slovenian market. All installed via the
 standard `--addons-path` mechanism; each depends on the previous one(s) as
 noted below.
 
@@ -88,6 +88,17 @@ noted below.
 | `l10n_si_procurement` | `purchase`, `stock`, `account` | Custom | Hotel procurement: 12 item categories (cleaning/cosmetics/linen/food/beverages), vendor ratings, annual contracts, reorder points |
 | `l10n_si_budget_planning` | `account`, `analytic` | Custom | Annual budget by department (11 depts), 12-month breakdown, planned vs actual variance tracking, approval workflow |
 | `l10n_si_accounting_advanced` | `account`, `l10n_si` | Custom | SRS reports (balance sheet, income statement, cash flow), financial ratios (ROA/ROE/ROS/liquidity/debt/activity), AJPES submission |
+
+### Tier 7 — Guest services, payments, sustainability, GDPR
+
+| Module | Depends on | Origin | Purpose |
+|--------|-----------|--------|---------|
+| `l10n_si_website_booking` | `website`, `l10n_si_hotel`, `l10n_si_camping`, `l10n_si_revenue_management` | Custom | Direct booking engine on website (/book), promo codes, dynamic rates, multi-step checkout, no OTA commission |
+| `l10n_si_payment_gateway` | `account`, `payment` | Custom | 7 payment providers (Activa/Stripe/PayPal/UPN/TRR/cash/voucher), 3DS, refunds, payment links, webhook endpoints |
+| `l10n_si_concierge_services` | `l10n_si_hotel` | Custom | Concierge desk: excursions, tickets, restaurant bookings, transport, medical, business services, auto-charge to folio |
+| `l10n_si_transport` | `l10n_si_hotel`, `fleet` | Custom | Hotel shuttle, airport transfers, excursions, taxi, car rental, limousine; fleet integration |
+| `l10n_si_sustainability` | `base`, `mail` | Custom | Green Key/EU Ecolabel/Travelife/EKO/ISO 14001 certificates, energy/water/waste/CO2 metrics, per-guest normalization |
+| `l10n_si_data_protection` | `base`, `mail` | Custom | GDPR compliance: consent management (7 types), data subject requests (access/erasure/portability), 30-day deadline, IPP complaint, partner anonymization |
 
 ## Installation
 

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_sust_metric_tree" model="ir.ui.view">
+        <field name="name">l10n_si.sustainability.metric.tree</field>
+        <field name="model">l10n_si.sustainability.metric</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="metric_type"/>
+                <field name="quantity"/>
+                <field name="cost" sum="Skupaj"/>
+                <field name="guests_in_period"/>
+                <field name="per_guest"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_si_sust_metric_form" model="ir.ui.view">
+        <field name="name">l10n_si.sustainability.metric.form</field>
+        <field name="model">l10n_si.sustainability.metric</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="metric_type"/>
+                        </group>
+                        <group>
+                            <field name="quantity"/>
+                            <field name="cost"/>
+                        </group>
+                    </group>
+                    <group string="Na gosta">
+                        <group>
+                            <field name="guests_in_period"/>
+                            <field name="per_guest"/>
+                        </group>
+                    </group>
+                    <group string="Opombe">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_si_sust_metric" model="ir.actions.act_window">
+        <field name="name">Metrike trajnostnosti</field>
+        <field name="res_model">l10n_si.sustainability.metric</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_l10n_si_sust_cert_tree" model="ir.ui.view">
+        <field name="name">l10n_si.sustainability.certificate.tree</field>
+        <field name="model">l10n_si.sustainability.certificate</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="valid_to &gt;= context_today()" decoration-muted="valid_to &lt; context_today()">
+                <field name="name"/>
+                <field name="cert_type"/>
+                <field name="level"/>
+                <field name="valid_from"/>
+                <field name="valid_to"/>
+                <field name="cert_number"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_si_sust_cert_form" model="ir.ui.view">
+        <field name="name">l10n_si.sustainability.certificate.form</field>
+        <field name="model">l10n_si.sustainability.certificate</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cert_type"/>
+                            <field name="level"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="valid_from"/>
+                            <field name="valid_to"/>
+                            <field name="cert_number"/>
+                            <field name="issuing_body"/>
+                        </group>
+                    </group>
+                    <group string="Dokument">
+                        <field name="attachment_id" widget="url"/>
+                    </group>
+                    <group string="Opombe">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_si_sust_cert" model="ir.actions.act_window">
+        <field name="name">Certifikati</field>
+        <field name="res_model">l10n_si.sustainability.certificate</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_sust_root" name="Trajnost (SI)" web_icon="l10n_si_sustainability,static/description/icon.png" sequence="70"/>
+    <menuitem id="menu_l10n_si_sust_metric" name="Metrike" parent="menu_l10n_si_sust_root" action="action_l10n_si_sust_metric"/>
+    <menuitem id="menu_l10n_si_sust_cert" name="Certifikati" parent="menu_l10n_si_sust_root" action="action_l10n_si_sust_cert"/>
+</odoo>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Search page -->
+    <template id="booking_search_page" name="Iskanje prostih sob">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <h1>Rezervirajte svoje bivanje</h1>
+                <form method="GET" action="/book" class="form-inline mb-4">
+                    <div class="form-group mr-2">
+                        <label>Prihod</label>
+                        <input type="date" name="check_in" class="form-control" t-att-value="check_in or ''" required="required"/>
+                    </div>
+                    <div class="form-group mr-2">
+                        <label>Odhod</label>
+                        <input type="date" name="check_out" class="form-control" t-att-value="check_out or ''" required="required"/>
+                    </div>
+                    <div class="form-group mr-2">
+                        <label>Odrasli</label>
+                        <input type="number" name="adults" class="form-control" min="1" max="10" t-att-value="adults or 2"/>
+                    </div>
+                    <div class="form-group mr-2">
+                        <label>Otroci</label>
+                        <input type="number" name="children" class="form-control" min="0" max="10" t-att-value="children or 0"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Išči</button>
+                </form>
+                <t t-if="room_types">
+                    <h2 t-out="'Razpoložljive sobe (' + str(len(room_types)) + ')'"/>
+                    <div class="row">
+                        <t t-foreach="room_types" t-as="rt">
+                            <div class="col-md-4 mb-4" t-if="rt.available_rooms > 0">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title" t-out="rt.name"/>
+                                        <p class="card-text">
+                                            Kapaciteta: <span t-out="rt.capacity_adults"/> odrasli<br/>
+                                            Prosto sob: <span t-out="rt.available_rooms"/><br/>
+                                            <strong t-if="rt.nights">
+                                                <span t-out="rt.nights"/> nočitev: <span t-out="rt.computed_rate"/> EUR
+                                            </strong>
+                                        </p>
+                                        <form action="/book/checkout" method="POST">
+                                            <input type="hidden" name="room_type_id" t-att-value="rt.id"/>
+                                            <input type="hidden" name="check_in" t-att-value="check_in"/>
+                                            <input type="hidden" name="check_out" t-att-value="check_out"/>
+                                            <input type="hidden" name="adults" t-att-value="adults"/>
+                                            <input type="hidden" name="children" t-att-value="children"/>
+                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                            <button type="submit" class="btn btn-primary btn-block">Rezerviraj</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <!-- Checkout page -->
+    <template id="booking_checkout_page" name="Checkout">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <h1>Zaključi rezervacijo</h1>
+                <div class="row">
+                    <div class="col-md-7">
+                        <h3>Vaši podatki</h3>
+                        <form action="/book/confirm" method="POST">
+                            <input type="hidden" name="room_type_id" t-att-value="room_type.id"/>
+                            <input type="hidden" name="check_in" t-att-value="check_in"/>
+                            <input type="hidden" name="check_out" t-att-value="check_out"/>
+                            <input type="hidden" name="adults" t-att-value="adults"/>
+                            <input type="hidden" name="children" t-att-value="children"/>
+                            <input type="hidden" name="total_amount" t-att-value="total_amount"/>
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="form-group">
+                                <label>Ime in priimek *</label>
+                                <input type="text" name="guest_name" class="form-control" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <label>E-pošta *</label>
+                                <input type="email" name="guest_email" class="form-control" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefon</label>
+                                <input type="tel" name="guest_phone" class="form-control"/>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Potrdi rezervacijo</button>
+                        </form>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="card-header"><h4>Povzetek rezervacije</h4></div>
+                            <div class="card-body">
+                                <p><strong>Soba:</strong> <span t-out="room_type.name"/></p>
+                                <p><strong>Prihod:</strong> <span t-out="check_in"/></p>
+                                <p><strong>Odhod:</strong> <span t-out="check_out"/></p>
+                                <p><strong>Nočitve:</strong> <span t-out="nights"/></p>
+                                <hr/>
+                                <p>Osnovna cena: <span t-out="base_amount"/> EUR</p>
+                                <p t-if="discount_amount > 0" class="text-success">
+                                    Popust (<span t-out="promo_code"/>): -<span t-out="discount_amount"/> EUR
+                                </p>
+                                <hr/>
+                                <h4>Skupaj: <span t-out="total_amount"/> EUR</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Success page -->
+    <template id="booking_success" name="Rezervacija potrjena">
+        <t t-call="website.layout">
+            <div class="container mt-5 text-center">
+                <h1 class="text-success">Rezervacija uspešna!</h1>
+                <p>Hvala <strong t-out="guest_name"/>!</p>
+                <p>Številka vaše rezervacije: <strong t-out="reservation.name"/></p>
+                <p>Potrdilo smo poslali na vašo e-pošto.</p>
+                <a href="/book" class="btn btn-primary mt-3">Nazaj na iskanje</a>
+            </div>
+        </t>
+    </template>
+
+    <!-- Error page -->
+    <template id="booking_error" name="Napaka">
+        <t t-call="website.layout">
+            <div class="container mt-5 text-center">
+                <h1 class="text-danger">Napaka pri rezervaciji</h1>
+                <p class="text-danger" t-out="error"/>
+                <a href="/book" class="btn btn-primary mt-3">Nazaj</a>
+            </div>
+        </t>
+    </template>
+</odoo>

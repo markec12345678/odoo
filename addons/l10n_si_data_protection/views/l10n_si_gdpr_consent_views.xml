@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_gdpr_consent_tree" model="ir.ui.view">
+        <field name="name">l10n_si.gdpr.consent.tree</field>
+        <field name="model">l10n_si.gdpr.consent</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'granted'" decoration-danger="state == 'withdrawn'">
+                <field name="partner_id"/>
+                <field name="consent_type"/>
+                <field name="state"/>
+                <field name="granted_on"/>
+                <field name="withdrawn_on"/>
+                <field name="source"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_si_gdpr_consent_form" model="ir.ui.view">
+        <field name="name">l10n_si.gdpr.consent.form</field>
+        <field name="model">l10n_si.gdpr.consent</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_withdraw" type="object" string="Umakni soglasje" class="btn-danger"
+                        attrs="{'invisible': [('state', '!=', 'granted')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="consent_type"/>
+                            <field name="source"/>
+                        </group>
+                        <group>
+                            <field name="granted_on" readonly="1"/>
+                            <field name="withdrawn_on" readonly="1"/>
+                            <field name="valid_until"/>
+                            <field name="ip_address" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Opombe">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_si_gdpr_consent" model="ir.actions.act_window">
+        <field name="name">GDPR soglasja</field>
+        <field name="res_model">l10n_si.gdpr.consent</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

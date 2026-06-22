@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_payment_config_user,l10n_si.payment.config.user,model_l10n_si_payment_config,account.group_account_invoice,1,0,0,0
+access_l10n_si_payment_config_manager,l10n_si.payment.config.manager,model_l10n_si_payment_config,account.group_account_manager,1,1,1,1
+access_l10n_si_payment_transaction_user,l10n_si.payment.transaction.user,model_l10n_si_payment_transaction,account.group_account_invoice,1,1,1,0
+access_l10n_si_payment_transaction_manager,l10n_si.payment.transaction.manager,model_l10n_si_payment_transaction,account.group_account_manager,1,1,1,1

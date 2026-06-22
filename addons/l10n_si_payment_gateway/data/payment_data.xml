@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_l10n_si_payment_tx" model="ir.sequence">
+            <field name="name">SI Payment Transaction</field>
+            <field name="code">l10n_si.payment.transaction</field>
+            <field name="prefix">PAY/%(year)s/</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <!-- Default: TRR (bank transfer) payment method -->
+        <record id="payment_config_trr" model="l10n_si.payment.config">
+            <field name="name">TRR (bančno nakazilo)</field>
+            <field name="provider">trr</field>
+            <field name="sequence">10</field>
+            <field name="supports_3ds">False</field>
+            <field name="supports_refund">False</field>
+            <field name="fee_percent">0.0</field>
+            <field name="fee_fixed">0.0</field>
+        </record>
+        <record id="payment_config_cash" model="l10n_si.payment.config">
+            <field name="name">Gotovina</field>
+            <field name="provider">cash</field>
+            <field name="sequence">20</field>
+            <field name="supports_3ds">False</field>
+            <field name="supports_refund">True</field>
+            <field name="fee_percent">0.0</field>
+            <field name="fee_fixed">0.0</field>
+        </record>
+    </data>
+</odoo>

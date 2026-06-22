@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_si_gdpr" model="ir.ui.view">
+        <field name="name">res.partner.form.si.gdpr</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="GDPR" name="si_gdpr">
+                    <group>
+                        <group>
+                            <field name="si_gdpr_data_erased"/>
+                            <field name="si_data_retention_until"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Soglasja">
+                            <field name="si_gdpr_consent_ids" readonly="1">
+                                <tree>
+                                    <field name="consent_type"/>
+                                    <field name="state"/>
+                                    <field name="granted_on"/>
+                                    <field name="withdrawn_on"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Zahteve">
+                            <field name="si_gdpr_request_ids" readonly="1">
+                                <tree>
+                                    <field name="number"/>
+                                    <field name="request_type"/>
+                                    <field name="state"/>
+                                    <field name="received_on"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

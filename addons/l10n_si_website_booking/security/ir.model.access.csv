@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_booking_promo_user,l10n_si.booking.promo.user,model_l10n_si_booking_promo,base.group_user,1,1,1,0
+access_l10n_si_booking_promo_manager,l10n_si.booking.promo.manager,model_l10n_si_booking_promo,base.group_system,1,1,1,1
+access_l10n_si_booking_promo_usage_user,l10n_si.booking.promo.usage.user,model_l10n_si_booking_promo_usage,base.group_user,1,0,1,0
+access_l10n_si_booking_promo_usage_manager,l10n_si.booking.promo.usage.manager,model_l10n_si_booking_promo_usage,base.group_system,1,1,1,1

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_sust_metric_user,l10n_si.sustainability.metric.user,model_l10n_si_sustainability_metric,base.group_user,1,1,1,0
+access_l10n_si_sust_metric_manager,l10n_si.sustainability.metric.manager,model_l10n_si_sustainability_metric,base.group_system,1,1,1,1
+access_l10n_si_sust_cert_user,l10n_si.sustainability.certificate.user,model_l10n_si_sustainability_certificate,base.group_user,1,0,0,0
+access_l10n_si_sust_cert_manager,l10n_si.sustainability.certificate.manager,model_l10n_si_sustainability_certificate,base.group_system,1,1,1,1

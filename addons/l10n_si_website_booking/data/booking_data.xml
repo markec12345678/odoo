@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="promo_early_bird" model="l10n_si.booking.promo">
+            <field name="name">Early Bird 10%</field>
+            <field name="code">EARLYBIRD10</field>
+            <field name="discount_type">percent</field>
+            <field name="discount_value">10.0</field>
+            <field name="min_nights">2</field>
+            <field name="max_uses">1000</field>
+            <field name="valid_from" eval="Date.today().strftime('%Y-%m-%d')"/>
+            <field name="valid_to" eval="(Date.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="min_days_before_arrival">60</field>
+        </record>
+        <record id="promo_last_minute" model="l10n_si.booking.promo">
+            <field name="name">Last Minute 15%</field>
+            <field name="code">LASTMINUTE15</field>
+            <field name="discount_type">percent</field>
+            <field name="discount_value">15.0</field>
+            <field name="min_nights">1</field>
+            <field name="max_uses">200</field>
+            <field name="valid_from" eval="Date.today().strftime('%Y-%m-%d')"/>
+            <field name="valid_to" eval="(Date.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="max_days_before_arrival">3</field>
+        </record>
+    </data>
+</odoo>

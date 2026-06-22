@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_payment_config_tree" model="ir.ui.view">
+        <field name="name">l10n_si.payment.config.tree</field>
+        <field name="model">l10n_si.payment.config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="provider"/>
+                <field name="environment"/>
+                <field name="currency_id"/>
+                <field name="transaction_count"/>
+                <field name="total_processed"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_payment_config_form" model="ir.ui.view">
+        <field name="name">l10n_si.payment.config.form</field>
+        <field name="model">l10n_si.payment.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_test_connection" type="object" string="Test povezavo" class="btn-secondary"
+                            attrs="{'invisible': [('provider', 'in', ('cash', 'trr'))]}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="provider"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="environment"/>
+                            <field name="currency_id"/>
+                            <field name="journal_id"/>
+                        </group>
+                    </group>
+                    <group string="API poverilnice" attrs="{'invisible': [('provider', 'in', ('cash', 'trr'))]}">
+                        <group>
+                            <field name="api_key" password="True"/>
+                            <field name="api_secret" password="True"/>
+                            <field name="merchant_id"/>
+                        </group>
+                        <group>
+                            <field name="webhook_secret" password="True"/>
+                            <field name="endpoint_url"/>
+                        </group>
+                    </group>
+                    <group string="TRR/UPN" attrs="{'invisible': [('provider', 'not in', ('trr', 'upn'))]}">
+                        <group>
+                            <field name="iban"/>
+                            <field name="bic"/>
+                        </group>
+                    </group>
+                    <group string="Nastavitve">
+                        <group>
+                            <field name="supports_3ds"/>
+                            <field name="supports_refund"/>
+                            <field name="supports_recurring"/>
+                        </group>
+                        <group>
+                            <field name="min_amount"/>
+                            <field name="max_amount"/>
+                            <field name="fee_percent"/>
+                            <field name="fee_fixed"/>
+                        </group>
+                    </group>
+                    <group string="Statistika">
+                        <group>
+                            <field name="transaction_count" readonly="1"/>
+                            <field name="total_processed" widget="monetary" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_payment_config" model="ir.actions.act_window">
+        <field name="name">Plačilni procesorji</field>
+        <field name="res_model">l10n_si.payment.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
