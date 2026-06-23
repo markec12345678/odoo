@@ -5,6 +5,26 @@ All notable changes to the custom `l10n_si_*` modules are documented in this fil
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.8.0] — 2026-06-23
+
+### Added — Tier 8: Accounting, audit & hotel operations (15 modules)
+
+- **l10n_si_assets** — Fixed assets with SI depreciation (linear/declining per ZDD-1), 4 pre-configured categories (IT/furniture/buildings/vehicles), monthly depreciation cron.
+- **l10n_si_intrastat** — Monthly Intrastat report for EU trade (arrivals + dispatches), auto-compute from invoices, commodity codes, transport modes.
+- **l10n_si_vies_return** — Monthly VIES (PP ODS) for EU B2B VAT, auto-compute from out_invoices to EU partners.
+- **l10n_si_year_end_close** — Year-end closing per SRS (accounts 990, 999), compute net profit, create closing journal entry.
+- **l10n_si_audit_trail** — Audit trail for sensitive field changes (prices, VAT, ZOI/EOR), automatic logging via base.write() override.
+- **l10n_si_gift_voucher** — Gift vouchers: sell, redeem (full/partial), track balance, expiry dates.
+- **l10n_si_minibar** — Hotel minibar: item catalog, consumption tracking, auto-charge to folio.
+- **l10n_si_laundry** — Laundry service: guest + internal, express (1.5x), auto-charge to folio.
+- **l10n_si_partner_portal** — Guest portal: view stays, loyalty points, submit maintenance requests.
+- **l10n_si_multi_company** — Hotel chain management: central reservation, shared vendors, multi-company.
+- **l10n_si_weather_integration** — 14-day weather forecast (open-meteo.com API), occupancy impact, rate adjustment recommendations.
+- **l10n_si_competitor_pricing** — Competitor price tracking, position analysis (cheapest/most expensive), recommendations.
+- **l10n_si_accessibility** — Accessibility features for disabled guests: wheelchair access, elevators, accessible bathrooms, visual alarms.
+- **l10n_si_kitchen_display** — Kitchen Display System (KDS): digital screen replacing paper tickets, overdue alerts, prep time tracking.
+- **l10n_si_pets** — Pet management: species, breed, vaccination records, pet fees, room type pet policies.
+
 ## [19.0.7.0] — 2026-06-23
 
 ### Added — Tier 7: Guest services & compliance (6 modules)
@@ -114,4 +134,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 | 19.0.5.0 | 2026-06-22 | 6 (Tier 5b) | 42 |
 | 19.0.6.0 | 2026-06-22 | 6 (Tier 6) | 48 |
 | 19.0.7.0 | 2026-06-23 | 6 (Tier 7) | 54 |
-| + l10n_si | upstream | 1 (chart of accounts) | **55** |
+| 19.0.8.0 | 2026-06-23 | 15 (Tier 8) | 69 |
+| + l10n_si | upstream | 1 (chart of accounts) | **70** |

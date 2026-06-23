@@ -2,11 +2,11 @@
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](./LICENSE)
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0-875A7B.svg)](https://www.odoo.com)
-[![Modules](https://img.shields.io/badge/Custom%20Modules-55-green.svg)](./addons/l10n_si_README.md)
+[![Modules](https://img.shields.io/badge/Custom%20Modules-70-green.svg)](./addons/l10n_si_README.md)
 [![Python](https://img.shields.io/badge/Python-3.10%20%E2%80%93%203.14-blue.svg)](./requirements.txt)
 [![Branch](https://img.shields.io/badge/branch-19.0-blue.svg)]()
 
-> **Fork of Odoo Community Edition 19.0** with 55 custom Slovenian localization modules covering regulatory compliance (FURS, eRačun, AJPES), tourism vertical (hotels, restaurants, camps, farms, wellness, events), enterprise feature replacements (payroll, eIDAS signing, bank sync, helpdesk, fleet), and back-office operations (housekeeping, HR roster, procurement, budget, accounting).
+> **Fork of Odoo Community Edition 19.0** with 70 custom Slovenian localization modules covering regulatory compliance (FURS, eRačun, AJPES, Intrastat, VIES, GDPR), tourism vertical (hotels, restaurants, camps, farms, wellness, events), enterprise feature replacements (payroll, eIDAS signing, bank sync, helpdesk, fleet), back-office operations (housekeeping, HR roster, procurement, budget, accounting), and guest experience (booking engine, payment gateway, AI concierge, mobile PWA, loyalty).
 
 ---
 
@@ -31,7 +31,7 @@
 
 ## Overview
 
-This repository is a **fork of the official Odoo Community 19.0** source tree, extended with **55 custom addons** (`l10n_si_*`) developed specifically for the **Slovenian tourism and hospitality market**.
+This repository is a **fork of the official Odoo Community 19.0** source tree, extended with **70 custom addons** (`l10n_si_*`) developed specifically for the **Slovenian tourism and hospitality market**.
 
 ### What's included
 
@@ -44,7 +44,8 @@ This repository is a **fork of the official Odoo Community 19.0** source tree, e
 | Hotel operations | 6 | Housekeeping, maintenance requests, executive dashboard, loyalty program, group bookings, mobile PWA |
 | Finance & HR | 6 | Revenue management (yield), review aggregation, HR roster (ZDR-1), procurement, budget planning, SRS accounting |
 | Guest services & compliance | 6 | Website booking engine, payment gateway, concierge, transport, sustainability (Green Key), GDPR |
-| **Total custom modules** | **55** | **~19,000 lines of Python** |
+| Accounting, audit & hotel ops | 15 | Fixed assets, Intrastat, VIES, year-end close, audit trail, gift vouchers, minibar, laundry, partner portal, multi-company, weather, competitor pricing, accessibility, kitchen display, pets |
+| **Total custom modules** | **70** | **~20,000 lines of Python** |
 
 ### What this fork is NOT
 
@@ -127,6 +128,10 @@ Revenue management (yield), review aggregation (Booking.com/TripAdvisor), HR ros
 ### Tier 7 — Guest services & compliance (6 modules)
 
 Website booking engine, payment gateway (7 providers), concierge services, transport (airport shuttle), sustainability (Green Key), GDPR compliance.
+
+### Tier 8 — Accounting, audit & hotel operations (15 modules)
+
+Fixed assets (SI depreciation), Intrastat (EU trade), VIES return, year-end close (SRS 990/999), audit trail, gift vouchers, minibar, laundry, partner portal, multi-company (hotel chains), weather integration (14-day forecast), competitor pricing, accessibility (disabled guests), kitchen display system (KDS), pet management.
 
 ---
 
@@ -353,6 +358,7 @@ See [`CHANGELOG.md`](./CHANGELOG.md) for the full changelog.
 
 | Version | Date | Description |
 |---------|------|-------------|
+| 19.0.8.0 | 2026-06-23 | Tier 8: assets, Intrastat, VIES, year-end close, audit trail, gift vouchers, minibar, laundry, portal, multi-company, weather, competitor, accessibility, KDS, pets |
 | 19.0.7.0 | 2026-06-23 | Tier 7: website booking, payment gateway, concierge, transport, sustainability, GDPR |
 | 19.0.6.0 | 2026-06-22 | Tier 6: revenue management, reviews, HR roster, procurement, budget, accounting |
 | 19.0.5.0 | 2026-06-22 | Tier 5: housekeeping, maintenance, dashboard, loyalty, group bookings, mobile PWA |
