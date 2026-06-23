@@ -4,7 +4,12 @@
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0-875A7B.svg)](https://www.odoo.com)
 [![Modules](https://img.shields.io/badge/Custom%20Modules-70-green.svg)](./addons/l10n_si_README.md)
 [![Python](https://img.shields.io/badge/Python-3.10%20%E2%80%93%203.14-blue.svg)](./requirements.txt)
+[![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue.svg)](./.github/workflows/ci.yml)
 [![Branch](https://img.shields.io/badge/branch-19.0-blue.svg)]()
+
+<p align="center">
+  <img src="./static/screenshots/banner.png" alt="Odoo Slovenian Tourism Suite" width="800">
+</p>
 
 > **Fork of Odoo Community Edition 19.0** with 70 custom Slovenian localization modules covering regulatory compliance (FURS, eRačun, AJPES, Intrastat, VIES, GDPR), tourism vertical (hotels, restaurants, camps, farms, wellness, events), enterprise feature replacements (payroll, eIDAS signing, bank sync, helpdesk, fleet), back-office operations (housekeeping, HR roster, procurement, budget, accounting), and guest experience (booking engine, payment gateway, AI concierge, mobile PWA, loyalty).
 
@@ -13,19 +18,20 @@
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [License](#license)
-3. [Module Catalog](#module-catalog)
-4. [System Requirements](#system-requirements)
-5. [Installation](#installation)
-6. [Configuration](#configuration)
-7. [Testing](#testing)
-8. [Deployment](#deployment)
-9. [Contributing](#contributing)
-10. [Security](#security)
-11. [Changelog](#changelog)
-12. [Legal References](#legal-references)
-13. [Support](#support)
-14. [Credits](#credits)
+2. [Screenshots](#screenshots)
+3. [License](#license)
+4. [Module Catalog](#module-catalog)
+5. [System Requirements](#system-requirements)
+6. [Installation](#installation)
+7. [Configuration](#configuration)
+8. [Testing](#testing)
+9. [Deployment](#deployment)
+10. [Contributing](#contributing)
+11. [Security](#security)
+12. [Changelog](#changelog)
+13. [Legal References](#legal-references)
+14. [Support](#support)
+15. [Credits](#credits)
 
 ---
 
@@ -52,6 +58,50 @@ This repository is a **fork of the official Odoo Community 19.0** source tree, e
 - **Not Odoo Enterprise** — Enterprise-only modules are not included. All custom modules are LGPL-3.0 licensed.
 - **Not a security-hardened fork** — No security patches beyond upstream Odoo 19.0. Apply upstream patches via `git merge upstream/19.0`.
 - **Not production-ready out of the box** — Modules require configuration (FURS certificates, bank APIs, etc.) before production use.
+
+---
+
+## Screenshots
+
+### Hotel Management Dashboard
+
+<p align="center">
+  <img src="./static/screenshots/hotel_dashboard.png" alt="Hotel Management Dashboard" width="600">
+</p>
+
+The hotel management module (`l10n_si_hotel`) provides a complete PMS with room management, reservations, folios, and check-in/check-out workflow. FURS davčno potrjevanje (ZOI/EOR) is integrated for every invoice generated from a folio.
+
+### Restaurant KOT (Kitchen Order Tickets)
+
+<p align="center">
+  <img src="./static/screenshots/restaurant_kot.png" alt="Restaurant KOT System" width="600">
+</p>
+
+The restaurant module (`l10n_si_restaurant`) includes a KOT system with 14 EU-mandatory allergens (EU 1169/2011), table management, and kitchen display integration. All invoices are automatically submitted to FURS for davčno potrjevanje.
+
+### Mobile PWA App
+
+<p align="center">
+  <img src="./static/screenshots/mobile_app.png" alt="Mobile PWA App" width="400">
+</p>
+
+The mobile app (`l10n_si_mobile_app`) is a Progressive Web App installable on phones and tablets. It provides housekeeping task management, maintenance requests, and reception check-in/check-out — all touch-optimized and offline-capable.
+
+### Online Booking Engine
+
+<p align="center">
+  <img src="./static/screenshots/booking_engine.png" alt="Online Booking Engine" width="600">
+</p>
+
+The booking engine (`l10n_si_website_booking`) allows direct reservations on the hotel website with dynamic pricing from the revenue management module, promo codes, and multi-step checkout — no OTA commissions.
+
+### Executive KPI Dashboard
+
+<p align="center">
+  <img src="./static/screenshots/executive_dashboard.png" alt="Executive Dashboard" width="600">
+</p>
+
+The executive dashboard (`l10n_si_dashboard_executive`) provides real-time KPIs: ADR (Average Daily Rate), RevPAR (Revenue Per Available Room), GopPAR, occupancy percentage, and year-over-year comparisons.
 
 ---
 
