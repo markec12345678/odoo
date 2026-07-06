@@ -1,16 +1,16 @@
 #!/bin/bash
 # Railway entrypoint — starts Odoo with Railway-provided variables
-# Railway provides: PGUSER, POSTGRES_PASSWORD, RAILWAY_PRIVATE_DOMAIN, PGDATABASE, PORT
+# Railway provides: PGUSER, PGPASSWORD, PGHOST, PGPORT, PGDATABASE, PORT
 set -e
 
 echo "=== SI/HR Odoo 19 on Railway ==="
 echo "PORT: ${PORT:-8080}"
 
-# Railway provides individual PostgreSQL variables
-DB_HOST="${RAILWAY_PRIVATE_DOMAIN:-${PGHOST:-localhost}}"
+# Railway injects standard PG* variables via reference variables
+DB_HOST="${PGHOST:-localhost}"
 DB_PORT="${PGPORT:-5432}"
 DB_USER="${PGUSER:-postgres}"
-DB_PASS="${POSTGRES_PASSWORD:-}"
+DB_PASS="${PGPASSWORD:-}"
 DB_NAME="${PGDATABASE:-postgres}"
 
 echo "DB Host: $DB_HOST"
@@ -41,8 +41,7 @@ exec odoo \
     --db_port="$DB_PORT" \
     --db_user="$DB_USER" \
     --db_password="$DB_PASS" \
-    --database=si_odoo \
-    --db_filter=^si_odoo$ \
+    --database="$DB_NAME" \
     --proxy-mode \
     --workers=2 \
     --max-cron-threads=1 \
