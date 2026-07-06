@@ -1,0 +1,60 @@
+# Hugging Face Spaces Dockerfile for SI/HR Odoo 19
+# 
+# This Dockerfile adapts Odoo 19 to run on Hugging Face Spaces.
+# HF Spaces requires:
+# - App listening on port 7860
+# - Persistent storage in /data
+# - No external services (PostgreSQL must be external)
+#
+# Setup:
+# 1. Create a free PostgreSQL at https://supabase.com or https://neon.tech
+# 2. Create a Hugging Face Space (Docker SDK)
+# 3. Set Space secrets:
+#    - DATABASE_URL=postgresql://user:pass@host:5432/dbname
+#    - MASTER_PWD=your_admin_password
+# 4. Push this Dockerfile to the Space repo
+#
+# Access: https://your-username-si-hr-odoo.hf.space
+
+FROM odoo:19.0
+
+# Install dependencies
+USER root
+RUN pip install --no-cache-dir qrcode pillow cryptography requests
+
+# HF Spaces requires port 7860
+ENV PORT=7860
+EXPOSE 7860
+
+# Persistent storage for HF Spaces
+RUN mkdir -p /data/odoo/filestore /data/odoo/sessions
+RUN chown -R odoo:odoo /data
+
+# Copy custom addons
+COPY --chown=odoo:odoo addons/ /mnt/extra-addons/
+
+# Copy Odoo config adapted for HF Spaces
+COPY --chown=odoo:odoo hf-odoo.conf /etc/odoo/odoo.conf
+
+# Switch to odoo user
+USER odoo
+
+# Start Odoo on port 7860 with external PostgreSQL
+# DATABASE_URL is set as HF Space secret
+CMD ["sh", "-c", "odoo \
+    --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
+    --db_host=$(echo $DATABASE_URL | sed -n 's/.*@\\([^:]*\\).*/\\1/p') \
+    --db_port=$(echo $DATABASE_URL | sed -n 's/.*:\\([0-9]*\\)\\/?.*/\\1/p') \
+    --db_user=$(echo $DATABASE_URL | sed -n 's/postgresql:\\/\\/\\([^:]*\\).*/\\1/p') \
+    --db_password=$(echo $DATABASE_URL | sed -n 's/.*:\\([^@]*\\)@.*/\\1/p') \
+    --database=hf_odoo \
+    --db_filter=^hf_odoo$ \
+    --proxy-mode \
+    --workers=2 \
+    --max-cron-threads=1 \
+    --http-port=7860 \
+    --limit-memory-soft=1073741824 \
+    --limit-memory-hard=1342177280 \
+    --without-demo=all \
+    --save \
+    --init=l10n_si,l10n_si_fiscal,l10n_si_hotel,l10n_si_restaurant,l10n_si_etourism,l10n_hr_fiscal"]
