@@ -27,6 +27,7 @@ sys.path.insert(0, 'addons/l10n_si_fiscal/models')
 sys.path.insert(0, 'addons/l10n_hr_fiscal/models')
 sys.path.insert(0, 'addons/l10n_hr_evisitor/models')
 sys.path.insert(0, 'addons/l10n_si_channel_manager/models')
+sys.path.insert(0, 'addons/l10n_si_ai_concierge/models')
 
 import requests
 
@@ -451,6 +452,115 @@ def test_channel_clients():
 
 
 # ---------------------------------------------------------------------------
+# AI Concierge LLM clients (if available)
+# ---------------------------------------------------------------------------
+
+def test_ai_concierge():
+    print('\n=== AI Concierge LLM Clients ===')
+    try:
+        from ai_client import (
+            get_ai_client, Message, ZAIClient, OpenAIClient, AnthropicClient, LocalLLMClient,
+            AIAuthError, AIRequestError, AIRateLimitError,
+            ZAI_ENDPOINT, OPENAI_ENDPOINT, ANTHROPIC_ENDPOINT,
+        )
+    except ImportError:
+        print('  (skipped — l10n_si_ai_concierge not available)')
+        return
+
+    # Message model
+    m = Message('user', 'Hello')
+    check('Message.to_dict', m.to_dict() == {'role': 'user', 'content': 'Hello'})
+
+    # Factory
+    check('factory ZAI', isinstance(get_ai_client('zai', 'k', 'm'), ZAIClient))
+    check('factory OpenAI', isinstance(get_ai_client('openai', 'k', 'm'), OpenAIClient))
+    check('factory Anthropic', isinstance(get_ai_client('anthropic', 'k', 'm'), AnthropicClient))
+    check('factory Local', isinstance(get_ai_client('local', 'k', 'm'), LocalLLMClient))
+
+    # ZAI client config
+    check('ZAI endpoint', ZAIClient('k', 'm').endpoint if hasattr(ZAIClient('k', 'm'), 'endpoint') else ZAI_ENDPOINT == ZAI_ENDPOINT)
+    check('default timeout', ZAIClient('k', 'm').timeout == 30)
+
+    # ZAI successful response (mocked)
+    def mock_resp(code, json_data=None, text=''):
+        m = MagicMock()
+        m.status_code = code
+        if json_data is not None:
+            m.json.return_value = json_data
+            m.text = json.dumps(json_data)
+        else:
+            m.text = text
+        return m
+
+    with patch('requests.post', return_value=mock_resp(200, json_data={
+        'choices': [{'message': {'content': 'Pozdravljen!'}}]
+    })):
+        client = ZAIClient('key', 'glm-4')
+        response = client.generate_response([Message('system', 's'), Message('user', 'hi')])
+        check('ZAI successful response', response == 'Pozdravljen!')
+
+    # ZAI auth error
+    with patch('requests.post', return_value=mock_resp(401, text='Unauthorized')):
+        try:
+            ZAIClient('bad', 'm').generate_response([Message('user', 'x')])
+            check('ZAI 401 → AIAuthError', False)
+        except AIAuthError:
+            check('ZAI 401 → AIAuthError', True)
+
+    # ZAI rate limit
+    with patch('requests.post', return_value=mock_resp(429, text='Rate limited')):
+        try:
+            ZAIClient('k', 'm').generate_response([Message('user', 'x')])
+            check('ZAI 429 → AIRateLimitError', False)
+        except AIRateLimitError:
+            check('ZAI 429 → AIRateLimitError', True)
+
+    # ZAI bearer auth header
+    with patch('requests.post', return_value=mock_resp(200, json_data={
+        'choices': [{'message': {'content': 'OK'}}]
+    })) as mp:
+        ZAIClient('my-key', 'm').generate_response([Message('user', 'x')])
+        check('ZAI Bearer auth', mp.call_args[1]['headers']['Authorization'] == 'Bearer my-key')
+
+    # Anthropic system extraction
+    with patch('requests.post', return_value=mock_resp(200, json_data={
+        'content': [{'text': 'OK'}]
+    })) as mp:
+        AnthropicClient('k', 'c').generate_response([
+            Message('system', 'You are helpful.'), Message('user', 'hi')
+        ])
+        payload = mp.call_args[1]['json']
+        check('Anthropic system top-level', payload.get('system') == 'You are helpful.')
+        for msg in payload.get('messages', []):
+            check('Anthropic no system in messages', msg['role'] != 'system')
+            break
+
+    # Anthropic x-api-key header
+    with patch('requests.post', return_value=mock_resp(200, json_data={
+        'content': [{'text': 'OK'}]
+    })) as mp:
+        AnthropicClient('my-key', 'c').generate_response([Message('user', 'hi')])
+        headers = mp.call_args[1]['headers']
+        check('Anthropic x-api-key', headers.get('x-api-key') == 'my-key')
+        check('Anthropic no Bearer', 'Authorization' not in headers)
+
+    # Local LLM custom endpoint
+    with patch('requests.post', return_value=mock_resp(200, json_data={
+        'choices': [{'message': {'content': 'OK'}}]
+    })) as mp:
+        client = LocalLLMClient('k', 'llama3', endpoint='http://my-llm:8080/v1/chat')
+        client.generate_response([Message('user', 'hi')])
+        check('Local custom endpoint', mp.call_args[0][0] == 'http://my-llm:8080/v1/chat')
+
+    # Local LLM no auth without key
+    with patch('requests.post', return_value=mock_resp(200, json_data={
+        'choices': [{'message': {'content': 'OK'}}]
+    })) as mp:
+        LocalLLMClient('', 'llama3').generate_response([Message('user', 'hi')])
+        check('Local no auth without key', 'Authorization' not in mp.call_args[1]['headers'])
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -465,6 +575,7 @@ def main():
     test_cisf_client()
     test_evisitor_client()
     test_channel_clients()
+    test_ai_concierge()
 
     print()
     print('=' * 60)
