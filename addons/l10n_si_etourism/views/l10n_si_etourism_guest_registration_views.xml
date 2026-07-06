@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_etourism_guest_registration_tree" model="ir.ui.view">
+        <field name="name">l10n_si.etourism.guest.registration.tree</field>
+        <field name="model">l10n_si.etourism.guest.registration</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="ajpes_status == 'deregistered'" decoration-info="ajpes_status == 'submitted'" decoration-warning="ajpes_status == 'pending'" decoration-danger="ajpes_status == 'error'">
+                <field name="name"/>
+                <field name="establishment_id"/>
+                <field name="partner_id"/>
+                <field name="guest_last_name"/>
+                <field name="arrival_date"/>
+                <field name="nights"/>
+                <field name="ajpes_status" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_si_etourism_guest_registration_form" model="ir.ui.view">
+        <field name="name">l10n_si.etourism.guest.registration.form</field>
+        <field name="model">l10n_si.etourism.guest.registration</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit_to_ajpes" type="object" string="Pošlji prijavo" class="oe_highlight"
+                            attrs="{'invisible': [('ajpes_status', 'in', ['submitted', 'deregistered', 'cancelled'])]}"/>
+                    <button name="action_deregister_with_ajpes" type="object" string="Pošlji odjavo"
+                            attrs="{'invisible': [('ajpes_status', '!=', 'submitted')]}"/>
+                    <button name="action_cancel" type="object" string="Prekliči"
+                            attrs="{'invisible': [('ajpes_status', '!=', 'draft')]}"/>
+                    <field name="ajpes_status" widget="statusbar" statusbar_visible="draft,pending,submitted,deregistered"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><label for="name"/><h1><field name="name" readonly="1"/></h1></div>
+                    <group>
+                        <group string="Obrat">
+                            <field name="establishment_id" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                            <field name="mid" readonly="1"/><field name="sifnas" readonly="1"/>
+                        </group>
+                        <group string="Gost">
+                            <field name="partner_id" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                            <field name="guest_first_name" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                            <field name="guest_last_name" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                            <field name="guest_birth_date" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                            <field name="guest_citizenship_id" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Bivanje">
+                        <group>
+                            <field name="arrival_date" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                            <field name="departure_date"/><field name="nights"/>
+                        </group>
+                        <group>
+                            <field name="purpose" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                            <field name="transport" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="AJPES odgovor" attrs="{'invisible': [('ajpes_status', '=', 'draft')]}">
+                        <group><field name="ajpes_submission_id" readonly="1"/><field name="ajpes_submitted_at" readonly="1"/></group>
+                        <group><field name="ajpes_error_message" readonly="1" colspan="2"/></group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_si_etourism_guest_registration" model="ir.actions.act_window">
+        <field name="name">Prijave gostov</field>
+        <field name="res_model">l10n_si.etourism.guest.registration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

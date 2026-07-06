@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_l10n_hr_fiscal_log" model="ir.sequence">
+            <field name="name">HR Fiscal Log</field>
+            <field name="code">l10n_hr.fiscal.log</field>
+            <field name="prefix">HRFLOG/%(year)s/</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_l10n_hr_invoice" model="ir.sequence">
+            <field name="name">HR Invoice (Fiskalizacija)</field>
+            <field name="code">account.move</field>
+            <field name="prefix">POS1/1/%(year)s/</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

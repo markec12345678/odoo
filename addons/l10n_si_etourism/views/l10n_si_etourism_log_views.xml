@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_etourism_log_tree" model="ir.ui.view">
+        <field name="name">l10n_si.etourism.log.tree</field>
+        <field name="model">l10n_si.etourism.log</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'sent'" decoration-danger="state == 'error'">
+                <field name="submitted_at"/><field name="registration_id"/>
+                <field name="request_type"/><field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_l10n_si_etourism_log" model="ir.actions.act_window">
+        <field name="name">Dnevnik AJPES</field>
+        <field name="res_model">l10n_si.etourism.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

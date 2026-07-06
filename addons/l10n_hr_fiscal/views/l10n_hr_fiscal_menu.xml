@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_l10n_hr_fiscal_root" name="HR Fiskalizacija" sequence="81"/>
+    <menuitem id="menu_l10n_hr_fiscal_configuration" name="Konfiguracija"
+              parent="menu_l10n_hr_fiscal_root" sequence="10"/>
+    <menuitem id="menu_l10n_hr_fiscal_premises" name="Poslovni prostori"
+              parent="menu_l10n_hr_fiscal_configuration"
+              action="action_l10n_hr_business_premise" sequence="10"/>
+    <menuitem id="menu_l10n_hr_fiscal_log" name="Dnevnik fiskalizacije"
+              parent="menu_l10n_hr_fiscal_configuration"
+              action="action_l10n_hr_fiscal_log" sequence="20"/>
+</odoo>

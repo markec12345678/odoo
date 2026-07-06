@@ -160,9 +160,65 @@ jobs:
       - name: Count l10n_si modules
         run: |
           COUNT=$(ls -d addons/l10n_si_* | grep -v "l10n_si_README.md" | wc -l)
-          echo "Module count: $COUNT"
+          echo "SI module count: $COUNT"
           if [ "$COUNT" -lt 60 ]; then
-            echo "ERROR: Expected at least 60 modules, found $COUNT"
+            echo "ERROR: Expected at least 60 SI modules, found $COUNT"
             exit 1
           fi
-          echo "Module count check passed ($COUNT modules)"
+          echo "SI module count check passed ($COUNT modules)"
+
+  hr-module-count:
+    name: HR module count check
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Count l10n_hr modules
+        run: |
+          COUNT=$(ls -d addons/l10n_hr_* 2>/dev/null | wc -l)
+          echo "HR module count: $COUNT"
+          if [ "$COUNT" -lt 3 ]; then
+            echo "ERROR: Expected at least 3 HR modules, found $COUNT"
+            exit 1
+          fi
+          echo "HR module count check passed ($COUNT modules)"
+
+  unit-tests:
+    name: Unit tests (standalone, no Odoo)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependencies
+        run: |
+          pip install requests qrcode pillow
+
+      - name: Run standalone unit tests
+        run: python3 .github/scripts/run_unit_tests.py
+
+  e2e-tests:
+    name: E2E tests (regulatory workflows, mocked)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependencies
+        run: |
+          pip install requests qrcode pillow
+
+      - name: Run E2E workflow tests
+        run: python3 .github/scripts/run_e2e_tests.py

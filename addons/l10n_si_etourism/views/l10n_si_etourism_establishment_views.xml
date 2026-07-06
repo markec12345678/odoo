@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_etourism_establishment_tree" model="ir.ui.view">
+        <field name="name">l10n_si.etourism.establishment.tree</field>
+        <field name="model">l10n_si.etourism.establishment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="mid"/>
+                <field name="sifnas"/>
+                <field name="establishment_type"/>
+                <field name="environment" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_si_etourism_establishment_form" model="ir.ui.view">
+        <field name="name">l10n_si.etourism.establishment.form</field>
+        <field name="model">l10n_si.etourism.establishment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_test_connection" type="object" string="Test povezave" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><label for="name"/><h1><field name="name"/></h1></div>
+                    <group>
+                        <group string="AJPES identifikatorji">
+                            <field name="mid"/><field name="sifnas"/><field name="environment"/>
+                        </group>
+                        <group string="Klasifikacija">
+                            <field name="establishment_type"/><field name="capacity_beds"/><field name="capacity_rooms"/>
+                        </group>
+                    </group>
+                    <group string="Naslov">
+                        <group><field name="partner_id"/><field name="street"/><field name="zip"/><field name="city"/></group>
+                        <group><field name="municipality_id"/><field name="country_id"/></group>
+                    </group>
+                    <group string="Avtentikacija">
+                        <group><field name="si_pass_username"/><field name="si_pass_password" password="True"/></group>
+                    </group>
+                    <group string="Avtomatizacija">
+                        <group><field name="auto_register"/><field name="auto_deregister"/></group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_si_etourism_establishment" model="ir.actions.act_window">
+        <field name="name">Nastanitveni obrati</field>
+        <field name="res_model">l10n_si.etourism.establishment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

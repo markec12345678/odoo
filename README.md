@@ -1,17 +1,19 @@
-# Odoo 19.0 — Slovenian Tourism & Hospitality Suite
+# Odoo 19.0 — Slovenian & Croatian Tourism & Hospitality Suite
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](./LICENSE)
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0-875A7B.svg)](https://www.odoo.com)
-[![Modules](https://img.shields.io/badge/Custom%20Modules-70-green.svg)](./addons/l10n_si_README.md)
+[![Modules](https://img.shields.io/badge/Custom%20Modules-73-green.svg)](./addons/l10n_si_README.md)
 [![Python](https://img.shields.io/badge/Python-3.10%20%E2%80%93%203.14-blue.svg)](./requirements.txt)
 [![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue.svg)](./.github/workflows/ci.yml)
+[![Tests](https://img.shields.io/badge/tests-187%2B-brightgreen.svg)](./.github/scripts/run_unit_tests.py)
 [![Branch](https://img.shields.io/badge/branch-19.0-blue.svg)]()
+[![Countries](https://img.shields.io/badge/countries-SI%20%7C%20HR-red.svg)]()
 
 <p align="center">
   <img src="./static/screenshots/banner.png" alt="Odoo Slovenian Tourism Suite" width="800">
 </p>
 
-> **Fork of Odoo Community Edition 19.0** with 70 custom Slovenian localization modules covering regulatory compliance (FURS, eRačun, AJPES, Intrastat, VIES, GDPR), tourism vertical (hotels, restaurants, camps, farms, wellness, events), enterprise feature replacements (payroll, eIDAS signing, bank sync, helpdesk, fleet), back-office operations (housekeeping, HR roster, procurement, budget, accounting), and guest experience (booking engine, payment gateway, AI concierge, mobile PWA, loyalty).
+> **Fork of Odoo Community Edition 19.0** with 73 custom localization modules (70 SI + 3 HR) covering regulatory compliance (FURS ZOI/EOR, AJPES eTurizem, CISF Fiskalizacija, eVisitor, PDV, eRačun, Intrastat, VIES, GDPR), tourism vertical (hotels, restaurants, camps, farms, wellness, events), enterprise feature replacements (payroll, eIDAS signing, bank sync, helpdesk, fleet), back-office operations (housekeeping, HR roster, procurement, budget, accounting, revenue management), and guest experience (booking engine, payment gateway, AI concierge, mobile PWA, loyalty, channel manager).
 
 ---
 
@@ -43,15 +45,16 @@ This repository is a **fork of the official Odoo Community 19.0** source tree, e
 
 | Category | Count | Highlights |
 |----------|-------|------------|
-| Regulatory compliance | 6 | FURS ZOI/EOR, eSLOG 2.0 e-Račun, CAMT.053 bank parser, AJPES/REK-1/M4 reports, VAT validation, invoice numbering |
-| Enterprise replacement | 5 | Slovenian payroll (ZDoh-2/ZPrD), eIDAS digital signing, bank sync, helpdesk, fleet |
-| Business operations | 11 | Approvals, knowledge base, customer statements, subscriptions, field service, maintenance, quality control, timesheet approval, OCR, marketing automation, WhatsApp |
-| Tourism vertical | 14 | Hotel PMS, restaurant (KOT), camping, farm tourism, tourist tax, event venue, accommodation blocks, equipment rental, vendor booking, contracts, wellness, channel manager, POS, AI concierge |
-| Hotel operations | 6 | Housekeeping, maintenance requests, executive dashboard, loyalty program, group bookings, mobile PWA |
-| Finance & HR | 6 | Revenue management (yield), review aggregation, HR roster (ZDR-1), procurement, budget planning, SRS accounting |
-| Guest services & compliance | 6 | Website booking engine, payment gateway, concierge, transport, sustainability (Green Key), GDPR |
-| Accounting, audit & hotel ops | 15 | Fixed assets, Intrastat, VIES, year-end close, audit trail, gift vouchers, minibar, laundry, partner portal, multi-company, weather, competitor pricing, accessibility, kitchen display, pets |
-| **Total custom modules** | **70** | **~20,000 lines of Python** |
+| SI Regulatory compliance | 6 | FURS ZOI/EOR, eSLOG 2.0 e-Račun, CAMT.053 bank parser, AJPES/REK-1/M4 reports, VAT validation, invoice numbering |
+| SI Enterprise replacement | 5 | Slovenian payroll (ZDoh-2/ZPrD), eIDAS digital signing, bank sync, helpdesk, fleet |
+| SI Business operations | 11 | Approvals, knowledge base, customer statements, subscriptions, field service, maintenance, quality control, timesheet approval, OCR, marketing automation, WhatsApp |
+| SI Tourism vertical | 14 | Hotel PMS, restaurant (KOT), camping, farm tourism, tourist tax (212 občin), event venue, accommodation blocks, equipment rental, vendor booking, contracts, wellness, channel manager, POS, AI concierge |
+| SI Hotel operations | 6 | Housekeeping, maintenance requests, executive dashboard, loyalty program, group bookings, mobile PWA |
+| SI Finance & HR | 6 | Revenue management (yield), review aggregation, HR roster (ZDR-1), procurement, budget planning, SRS accounting (41 kontov) |
+| SI Guest services & compliance | 6 | Website booking engine, payment gateway, concierge, transport, sustainability (Green Key), GDPR |
+| SI Accounting, audit & hotel ops | 16 | Fixed assets, Intrastat, VIES, year-end close, audit trail, gift vouchers, minibar, laundry, partner portal, multi-company, weather, competitor pricing, accessibility, kitchen display, pets, eTurizem (AJPES) |
+| **HR Croatian localization** | **3** | **CISF Fiskalizacija (ZKI/JIR + FINA mTLS), eVisitor (HTZ REST API), PDV (Knjiga PDV-a + ePorezna XML)** |
+| **Total custom modules** | **73** | **~25,000 lines of Python + 187+ tests** |
 
 ### What this fork is NOT
 
@@ -302,6 +305,30 @@ See [`FURS_Checklist.md`](./FURS_Checklist.md) for the full 4-week registration 
 
 ## Testing
 
+### CI Tests (GitHub Actions)
+
+The repository includes a standalone unit test runner that doesn't require
+a running Odoo instance — pure Python logic tests with mocked dependencies.
+
+```bash
+# Run standalone unit tests (155 assertions)
+python3 .github/scripts/run_unit_tests.py
+
+# Run E2E workflow tests (32 assertions, mocked HTTP)
+python3 .github/scripts/run_e2e_tests.py
+```
+
+**Test coverage**:
+- AJPES SOAP client (config, parsing, HTTP error mapping, envelope construction)
+- CISF SOAP client (ZKI algorithm, RacunZahtjev XML, Greske handling)
+- eVisitor REST client (CheckIn/CheckOut payloads, webhook signatures)
+- ZOI/ZKI MD5 algorithm (FURS spec v1.6 / CISF spec v1.8)
+- Guest book XML + Monthly report XML builders
+- Booking.com + Airbnb channel manager clients
+- AI Concierge LLM clients (ZAI, OpenAI, Anthropic, Local)
+
+### Odoo ORM Tests
+
 ```bash
 # Run all tests for a specific module
 ./odoo-bin -d testdb -i l10n_si_fiscal \
@@ -416,6 +443,33 @@ See [`CHANGELOG.md`](./CHANGELOG.md) for the full changelog.
 | 19.0.3.0 | 2026-06-21 | Tier 3: 11 enterprise replacement modules |
 | 19.0.2.0 | 2026-06-21 | Tier 2: payroll, sign, bank sync, helpdesk, fleet |
 | 19.0.1.0 | 2026-06-20 | Tier 1: FURS, eRačun, bank parser, reports, VAT, sequence |
+| 19.0.2.0 | 2026-07-06 | Croatian localization: l10n_hr_fiscal (CISF), l10n_hr_evisitor, l10n_hr_pdv |
+
+---
+
+## SI vs HR Comparison
+
+| Aspect | 🇸🇮 Slovenia | 🇭🇷 Croatia |
+|--------|-------------|-------------|
+| Tax authority | FURS | Porezna uprava |
+| Fiscal signature | ZOI (MD5, 32 hex) | ZKI (MD5, 32 hex) |
+| Receipt ID | EOR (UUID) | JIR (UUID) |
+| Tax ID | VAT (8 digits) | OIB (11 digits) |
+| Auth method | .p12 cert | .pfx (FINA) cert |
+| Date format | ISO 8601 | dd.MM.yyyyHH:mm:ss |
+| Guest registration | AJPES eTurizem (SOAP) | eVisitor (REST, HTZ) |
+| Tourist tax | Turistična taksa (212 občin) | Boravišna pristojba |
+| VAT standard rate | 22% | 25% |
+| VAT reduced rates | 9.5%, 5% | 13%, 5% |
+| VAT reporting | REK-1, M4, SRS (eDavki) | PDV obrazac (ePorezna) |
+| VAT deadline | 30. (eDavki) | 20. (ePorezna) |
+| Penalty (fiscal) | 200-125.000 € | 500-200.000 kn |
+
+### Modules by country
+
+**🇸🇮 Slovenia (70 modules)**: FURS, AJPES eTurizem, REK-1, M4, SRS, tourist tax (212 občin), hotel, restaurant, camping, farm tourism, wellness, channel manager, POS, AI concierge, revenue management, eDavki XML, demo data, backup scripts.
+
+**🇭🇷 Croatia (3 modules)**: CISF Fiskalizacija (ZKI/JIR + FINA mTLS), eVisitor (HTZ REST API), PDV (Knjiga PDV-a + ePorezna XML).
 
 ---
 

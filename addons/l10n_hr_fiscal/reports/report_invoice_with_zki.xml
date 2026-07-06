@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_hr_invoice" model="report.paperformat">
+        <field name="name">HR Invoice with ZKI/JIR</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">25</field>
+        <field name="margin_bottom">20</field>
+        <field name="header_spacing">15</field>
+    </record>
+    <record id="action_report_hr_invoice_with_zki" model="ir.actions.report">
+        <field name="name">Račun (HR — Fiskalizacija)</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_hr_fiscal.report_hr_invoice_document</field>
+        <field name="report_file">l10n_hr_fiscal.report_hr_invoice_document</field>
+        <field name="paperformat_id" ref="paperformat_hr_invoice"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

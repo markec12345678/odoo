@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_l10n_si_etourism_root" name="SI eTurizem" sequence="80"/>
+    <menuitem id="menu_l10n_si_etourism_operations" name="Operacije" parent="menu_l10n_si_etourism_root" sequence="10"/>
+    <menuitem id="menu_l10n_si_etourism_registrations" name="Prijave gostov" parent="menu_l10n_si_etourism_operations"
+              action="action_l10n_si_etourism_guest_registration" sequence="10"/>
+    <menuitem id="menu_l10n_si_etourism_configuration" name="Konfiguracija" parent="menu_l10n_si_etourism_root" sequence="90"/>
+    <menuitem id="menu_l10n_si_etourism_establishments" name="Nastanitveni obrati" parent="menu_l10n_si_etourism_configuration"
+              action="action_l10n_si_etourism_establishment" sequence="10"/>
+    <menuitem id="menu_l10n_si_etourism_log" name="Dnevnik AJPES" parent="menu_l10n_si_etourism_configuration"
+              action="action_l10n_si_etourism_log" sequence="20"/>
+</odoo>

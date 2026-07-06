@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_hr_business_premise_tree" model="ir.ui.view">
+        <field name="name">l10n_hr.business.premise.tree</field>
+        <field name="model">l10n_hr.business.premise</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="cisf_uuid">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="premise_type"/>
+                <field name="city"/>
+                <field name="cisf_uuid"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_l10n_hr_business_premise_form" model="ir.ui.view">
+        <field name="name">l10n_hr.business.premise.form</field>
+        <field name="model">l10n_hr.business.premise</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_register_with_cisf" type="object"
+                            string="Registriraj kod CISF-a" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="premise_type"/>
+                            <field name="active" invisible="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="cisf_uuid" readonly="1"/>
+                            <field name="cisf_registered_at" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Adresa">
+                        <group>
+                            <field name="street"/>
+                            <field name="zip"/>
+                            <field name="city"/>
+                            <field name="country_id"/>
+                        </group>
+                    </group>
+                    <group string="Radno vrijeme">
+                        <group>
+                            <field name="work_mon_start"/><field name="work_mon_end" string="do"/>
+                            <field name="work_tue_start"/><field name="work_tue_end" string="do"/>
+                            <field name="work_wed_start"/><field name="work_wed_end" string="do"/>
+                            <field name="work_thu_start"/><field name="work_thu_end" string="do"/>
+                        </group>
+                        <group>
+                            <field name="work_fri_start"/><field name="work_fri_end" string="do"/>
+                            <field name="work_sat_start"/><field name="work_sat_end" string="do"/>
+                            <field name="work_sun_start"/><field name="work_sun_end" string="do"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_l10n_hr_business_premise" model="ir.actions.act_window">
+        <field name="name">Poslovni prostori</field>
+        <field name="res_model">l10n_hr.business.premise</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
