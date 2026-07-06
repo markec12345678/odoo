@@ -7,12 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [19.0.11.0] — 2026-07-06
 
+### Added — Railway.com deployment (primary cloud option)
+
+- `Dockerfile.railway`: Odoo 19 adapted for Railway (parses DATABASE_URL, port from env)
+- `railway-entrypoint.sh`: Smart entrypoint — parses DATABASE_URL, waits for PostgreSQL, starts Odoo
+- `railway-odoo.conf`: Config tuned for Railway (2 workers, proxy mode, 1GB RAM limit)
+- `railway.toml`: Railway build config (Dockerfile path, healthcheck, restart policy)
+- `RAILWAY_DEPLOY.md`: Complete 5-minute setup guide (no credit card needed)
+- Unified `deploy.yml` workflow: test → deploy-railway (auto) + deploy-huggingface (manual)
+- `HF_DEPLOY.md`: Hugging Face Spaces alternative deployment guide
+
 ### Added — Test coverage expansion (45 auto-generated test files)
 
 - Batch test generator script (`scripts/generate_tests.py`): scans module models, generates test files automatically
 - 45 new `test_auto.py` files covering 100+ models across 45 modules
 - Test coverage: **71/75 modules** (95%) with ORM tests, **77 ORM test files** total
-- New manual tests: camping (13), sequence (7), farm tourism (9), gift voucher (5), accounting (8), housekeeping (6), wellness (7), event venue (10), loyalty (9), tourist tax (8)
+- New manual tests: camping (13), sequence (7), farm tourism (9), gift voucher (5), accounting (8), housekeeping (6), wellness (7), event venue (10), loyalty (9), tourist tax (8), HR fiscal ZKI (10), HR eVisitor (8), HR PDV (14)
 
 ### Added — AI Concierge in standalone test runner
 
@@ -32,7 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `PRODUCTION_CHECKLIST.md` (SI+HR compliance, security, performance)
 - `docs/RECEPTIONIST_MANUAL.md` (Slovenian user guide)
 - GitHub issue templates (bug report, feature request) + PR template
-- `.github/workflows/deploy.yml` (auto-deploy to staging)
+- `.github/FUNDING.yml` (GitHub Sponsors)
 
 ### Fixed
 
@@ -42,12 +52,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `l10n_si_event_venue`: added missing `_` import
 - `l10n_si_hr_roster`: added missing `_` import
 - `l10n_si_review_management`: added missing `_` and `fields` imports
+- `l10n_si_hotel/models/hotel_reservation.py:148`: `for res in res:` → `for res in self:` (NameError)
+- `l10n_si_camping`: tourist tax now auto-added on check-out
+- `l10n_si_etourism/models/ajpes_client.py`: handles missing country fields (False/None)
 
 ### Changed
 
-- README badge: 70 → 75 modules, 74+ → 79+ tests
+- README badge: 70 → 75 modules, 101+ tests
 - CI jobs: merged SI+HR module count into single job (≥70 total)
+- Deploy: Railway as primary, Docker as local, HF Spaces as alternative
 - Standalone test runner: added AI Concierge (17 tests) and eVisitor (10 tests)
+
+### Validation (all passing)
+
+- **602 Python files** — 0 errors
+- **298 XML files** — 0 errors
+- **75 manifests** — 0 missing keys
+- **79/79 unit tests** — 0 failures
+- **22/22 E2E tests** — 0 failures
+- **77 ORM test files** across 71/75 modules
 
 ## [19.0.10.0] — 2026-07-06
 
