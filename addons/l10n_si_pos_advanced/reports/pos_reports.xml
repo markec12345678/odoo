@@ -65,4 +65,91 @@
         <field name="report_name">l10n_si_pos_advanced.report_pos_xz_document</field>
         <field name="report_file">l10n_si_pos_advanced.report_pos_xz_document</field>
     </record>
+
+    <!-- SI POS Receipt with ZOI/EOR/QR code (termal format) -->
+    <template id="report_pos_receipt_si_document">
+        <t t-call="web.html_container">
+            <div class="page" style="font-family: monospace; font-size: 10px; max-width: 300px; margin: 0 auto;">
+                <div class="text-center">
+                    <h2><span t-field="doc.company_id.name"/></h2>
+                    <p>
+                        <span t-field="doc.company_id.street"/>,
+                        <span t-field="doc.company_id.zip"/>
+                        <span t-field="doc.company_id.city"/><br/>
+                        <t t-if="doc.company_id.vat">Davčna št.: <span t-field="doc.company_id.vat"/></t>
+                    </p>
+                    <h4>RAČUN</h4>
+                </div>
+                <hr/>
+                <p>
+                    Številka: <span t-field="doc.l10n_si_invoice_number" t-if="doc.l10n_si_invoice_number"/>
+                    <span t-else="" t-field="doc.pos_reference"/><br/>
+                    Datum: <span t-esc="doc.date_order.strftime('%d.%m.%Y %H:%M') if doc.date_order else ''"/><br/>
+                    POS: <span t-field="doc.config_id.name"/><br/>
+                    Blagajnik: <span t-field="doc.user_id.name"/>
+                </p>
+                <hr/>
+                <table class="table table-sm table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Artikel</th>
+                            <th class="text-right">Kol</th>
+                            <th class="text-right">Cena</th>
+                            <th class="text-right">Skupaj</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="doc.lines" t-as="line">
+                            <td><span t-field="line.product_id.name"/></td>
+                            <td class="text-right"><span t-field="line.qty"/></td>
+                            <td class="text-right"><span t-field="line.price_unit"/></td>
+                            <td class="text-right"><span t-field="line.price_subtotal_incl"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr/>
+                <p class="text-right">
+                    <strong>SKUPAJ: <span t-field="doc.amount_total" t-options='{"widget": "monetary"}'/></strong>
+                </p>
+                <t t-if="doc.l10n_si_tourist_tax_amount and doc.l10n_si_tourist_tax_amount > 0">
+                    <p class="text-right">
+                        Turistična taksa: <span t-esc="doc.l10n_si_tourist_tax_amount" t-options='{"widget": "monetary"}'/>
+                    </p>
+                </t>
+                <hr/>
+                <!-- FURS data -->
+                <div t-if="doc.l10n_si_zoi">
+                    <p>ZOI: <span t-field="doc.l10n_si_zoi"/></p>
+                    <p t-if="doc.l10n_si_eor">EOR: <span t-field="doc.l10n_si_eor"/></p>
+                    <div t-if="doc.l10n_si_qr_code" class="text-center">
+                        <img t-att-src="'data:image/png;base64,%s' % doc.l10n_si_qr_code.decode()"
+                             style="width: 100px; height: 100px;"/>
+                    </div>
+                    <p t-if="doc.l10n_si_fiscal_state == 'pending'" class="text-center">
+                        <small>FURS: čaka na potrditev</small>
+                    </p>
+                    <p t-if="doc.l10n_si_fiscal_state == 'error'" class="text-center text-danger">
+                        <small>FURS: napaka — potrebna ponovna oddaja</small>
+                    </p>
+                </div>
+                <hr/>
+                <p class="text-center" t-if="doc.config_id.si_receipt_footer_text">
+                    <small><span t-esc="doc.config_id.si_receipt_footer_text"/></small>
+                </p>
+                <p class="text-center">
+                    <small>Hvala za obisk!</small>
+                </p>
+            </div>
+        </t>
+    </template>
+
+    <record id="action_report_pos_receipt_si" model="ir.actions.report">
+        <field name="name">POS račun (SI)</field>
+        <field name="model">pos.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_si_pos_advanced.report_pos_receipt_si_document</field>
+        <field name="report_file">l10n_si_pos_advanced.report_pos_receipt_si_document</field>
+        <field name="binding_model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="binding_type">report</field>
+    </record>
 </odoo>
