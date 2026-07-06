@@ -79,7 +79,7 @@ class L10nSiMaintenancePortal(http.Controller):
                     request.env['l10n_si.maintenance.request.photo'].sudo().create({
                         'request_id': req.id,
                         'image': image_data,
-                        'caption': f'Photo from guest',
+                        'caption': 'Photo from guest',
                     })
 
             return request.render('l10n_si_maintenance_request.portal_success', {

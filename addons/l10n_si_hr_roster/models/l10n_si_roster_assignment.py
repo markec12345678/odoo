@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Roster assignment - določena oseba na določeno izmeno na določen dan."""
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 

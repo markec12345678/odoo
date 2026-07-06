@@ -219,9 +219,9 @@ class L10nSiReview(models.Model):
                 )
             else:
                 review.response_text = (
-                    f'Spoštovani,\n\n'
-                    f'Hvala za vaše mnenje. Cenimo vaše povratne informacije.\n\n'
-                    f'Lep pozdrav'
+                    'Spoštovani,\n\n'
+                    'Hvala za vaše mnenje. Cenimo vaše povratne informacije.\n\n'
+                    'Lep pozdrav'
                 )
 
 
