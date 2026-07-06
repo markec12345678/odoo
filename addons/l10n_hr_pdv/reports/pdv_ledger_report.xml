@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================ -->
+    <!-- Paper format                                                 -->
+    <!-- ============================================================ -->
+    <record id="paperformat_hr_pdv_ledger" model="report.paperformat">
+        <field name="name">HR PDV — Knjiga PDV-a (A4 Landscape)</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- QWeb template — Knjiga PDV-a (VAT ledger)                    -->
+    <!-- ============================================================ -->
+    <template id="report_pdv_ledger_document">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2 class="text-center">Knjiga PDV-a</h2>
+                    <div class="text-center mt-2 mb-4">
+                        <span>Razdoblje: </span>
+                        <strong t-field="o.date_from"
+                                t-options="{'format': 'dd.MM.yyyy'}"/>
+                        <span> — </span>
+                        <strong t-field="o.date_to"
+                                t-options="{'format': 'dd.MM.yyyy'}"/>
+                    </div>
+                    <div class="text-center mb-4">
+                        <span>Obveznik: </span>
+                        <strong t-field="o.company_id.partner_id.name"/>
+                        <span>, OIB: </span>
+                        <strong t-field="o.company_id.vat"/>
+                    </div>
+
+                    <table class="table table-sm table-condensed"
+                           style="font-size: 9px;">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" class="text-center">R. br.</th>
+                                <th rowspan="2">Datum</th>
+                                <th rowspan="2">Broj dok.</th>
+                                <th rowspan="2">Partner</th>
+                                <th rowspan="2">Smjer</th>
+                                <th colspan="2" class="text-center">Stopa 25%</th>
+                                <th colspan="2" class="text-center">Stopa 13%</th>
+                                <th colspan="2" class="text-center">Stopa 5%</th>
+                                <th rowspan="2" class="text-right">Oslob.</th>
+                                <th rowspan="2" class="text-right">Ukupno PDV</th>
+                            </tr>
+                            <tr>
+                                <th class="text-right">Osnovica</th>
+                                <th class="text-right">PDV</th>
+                                <th class="text-right">Osnovica</th>
+                                <th class="text-right">PDV</th>
+                                <th class="text-right">Osnovica</th>
+                                <th class="text-right">PDV</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="counter" t-value="0"/>
+                            <tr t-foreach="o.line_ids" t-as="line">
+                                <t t-set="counter" t-value="counter + 1"/>
+                                <td class="text-center"><t t-esc="counter"/></td>
+                                <td>
+                                    <span t-field="line.date"
+                                          t-options="{'format': 'dd.MM.yyyy'}"/>
+                                </td>
+                                <td><span t-field="line.name"/></td>
+                                <td>
+                                    <span t-field="line.partner_id.name"/>
+                                    <t t-if="line.partner_vat">
+                                        <br/><small>(<span t-esc="line.partner_vat"/>)</small>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-esc="(line.direction == 'output' and 'Izlazni') or 'Ulazni'"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.base_25"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.tax_25"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.base_13"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.tax_13"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.base_5"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.tax_5"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.base_exempt"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.tax_total"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="oe_subtotal_footer">
+                                <th colspan="5" class="text-right">Ukupno:</th>
+                                <th class="text-right"><span t-field="o.output_vat_25"/></th>
+                                <th class="text-right"></th>
+                                <th class="text-right"><span t-field="o.output_vat_13"/></th>
+                                <th class="text-right"></th>
+                                <th class="text-right"><span t-field="o.output_vat_5"/></th>
+                                <th class="text-right"></th>
+                                <th class="text-right"></th>
+                                <th class="text-right"><span t-field="o.output_vat_total"/></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <div class="oe_subtotal_footer">
+                                <h4>Sažetak</h4>
+                                <table class="table table-sm">
+                                    <tr>
+                                        <td>Ukupni izlazni PDV:</td>
+                                        <td class="text-right">
+                                            <strong t-field="o.output_vat_total"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ukupni ulazni PDV:</td>
+                                        <td class="text-right">
+                                            <strong t-field="o.input_vat_total"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Obrnuti porezni teret:</td>
+                                        <td class="text-right">
+                                            <strong t-field="o.reverse_charge_amount"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>EU nabave:</td>
+                                        <td class="text-right">
+                                            <strong t-field="o.eu_acquisitions"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>EU isporuke:</td>
+                                        <td class="text-right">
+                                            <strong t-field="o.eu_supplies"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-top">
+                                        <td><strong>PDV za uplatu:</strong></td>
+                                        <td class="text-right">
+                                            <strong t-field="o.vat_payable"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>PDV za povrat:</strong></td>
+                                        <td class="text-right">
+                                            <strong t-field="o.vat_refundable"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============================================================ -->
+    <!-- Action                                                       -->
+    <!-- ============================================================ -->
+    <record id="action_report_pdv_ledger" model="ir.actions.report">
+        <field name="name">Knjiga PDV-a (PDF)</field>
+        <field name="model">l10n_hr.pdv.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_hr_pdv.report_pdv_ledger_document</field>
+        <field name="report_file">l10n_hr_pdv.report_pdv_ledger_document</field>
+        <field name="paperformat_id" ref="paperformat_hr_pdv_ledger"/>
+        <field name="binding_model_id" ref="model_l10n_hr_pdv_report"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

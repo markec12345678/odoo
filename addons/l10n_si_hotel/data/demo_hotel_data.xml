@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Demo data for the Slovenian Hotel module.
+         Partners, room types, rooms, services and sample reservations.
+         Use noupdate="0" so demo records are refreshed on every update. -->
+    <data noupdate="0">
+
+        <!-- ============================================================= -->
+        Partners (guests)
+        <!-- ============================================================= -->
+        <record id="partner_janez_novak" model="res.partner">
+            <field name="name">Janez Novak</field>
+            <field name="street">Slovenska cesta 12</field>
+            <field name="zip">1000</field>
+            <field name="city">Ljubljana</field>
+            <field name="country_id" ref="base.si"/>
+            <field name="phone">+386 31 234 567</field>
+            <field name="email">janez.novak@example.si</field>
+            <field name="vat">SI12345671</field>
+            <field name="customer_rank">1</field>
+        </record>
+
+        <record id="partner_maja_kovac" model="res.partner">
+            <field name="name">Maja Kovač</field>
+            <field name="street">Prešernova 5</field>
+            <field name="zip">2000</field>
+            <field name="city">Maribor</field>
+            <field name="country_id" ref="base.si"/>
+            <field name="phone">+386 41 987 654</field>
+            <field name="email">maja.kovac@example.si</field>
+            <field name="customer_rank">1</field>
+        </record>
+
+        <record id="partner_hans_mueller" model="res.partner">
+            <field name="name">Hans Müller</field>
+            <field name="street">Hauptstraße 42</field>
+            <field name="zip">10115</field>
+            <field name="city">Berlin</field>
+            <field name="country_id" ref="base.de"/>
+            <field name="phone">+49 30 1234567</field>
+            <field name="email">hans.mueller@example.de</field>
+            <field name="customer_rank">1</field>
+        </record>
+
+        <record id="partner_maria_rossi" model="res.partner">
+            <field name="name">Maria Rossi</field>
+            <field name="street">Via Roma 18</field>
+            <field name="zip">00184</field>
+            <field name="city">Roma</field>
+            <field name="country_id" ref="base.it"/>
+            <field name="phone">+39 06 12345678</field>
+            <field name="email">maria.rossi@example.it</field>
+            <field name="customer_rank">1</field>
+        </record>
+
+        <!-- ============================================================= -->
+        Room types
+        <!-- ============================================================= -->
+        <record id="demo_room_type_standard" model="l10n_si.hotel.room.type">
+            <field name="name">Standard</field>
+            <field name="code">STD</field>
+            <field name="list_price">80.0</field>
+            <field name="capacity_adults">2</field>
+            <field name="size_sqm">18.0</field>
+        </record>
+
+        <record id="demo_room_type_deluxe" model="l10n_si.hotel.room.type">
+            <field name="name">Deluxe</field>
+            <field name="code">DLX</field>
+            <field name="list_price">180.0</field>
+            <field name="capacity_adults">2</field>
+            <field name="capacity_extra_beds">1</field>
+            <field name="size_sqm">30.0</field>
+        </record>
+
+        <record id="demo_room_type_family" model="l10n_si.hotel.room.type">
+            <field name="name">Family</field>
+            <field name="code">FAM</field>
+            <field name="list_price">120.0</field>
+            <field name="capacity_adults">2</field>
+            <field name="capacity_children">2</field>
+            <field name="capacity_extra_beds">2</field>
+            <field name="size_sqm">35.0</field>
+        </record>
+
+        <!-- ============================================================= -->
+        Rooms (floor 1: STD 101-103, floor 2: STD 201, FAM 202-203,
+               floor 5: DLX 501-502)
+        <!-- ============================================================= -->
+        <record id="demo_room_101" model="l10n_si.hotel.room">
+            <field name="number">101</field>
+            <field name="floor">1</field>
+            <field name="room_type_id" ref="demo_room_type_standard"/>
+        </record>
+        <record id="demo_room_102" model="l10n_si.hotel.room">
+            <field name="number">102</field>
+            <field name="floor">1</field>
+            <field name="room_type_id" ref="demo_room_type_standard"/>
+        </record>
+        <record id="demo_room_103" model="l10n_si.hotel.room">
+            <field name="number">103</field>
+            <field name="floor">1</field>
+            <field name="room_type_id" ref="demo_room_type_standard"/>
+        </record>
+
+        <record id="demo_room_201" model="l10n_si.hotel.room">
+            <field name="number">201</field>
+            <field name="floor">2</field>
+            <field name="room_type_id" ref="demo_room_type_standard"/>
+        </record>
+        <record id="demo_room_202" model="l10n_si.hotel.room">
+            <field name="number">202</field>
+            <field name="floor">2</field>
+            <field name="room_type_id" ref="demo_room_type_family"/>
+        </record>
+        <record id="demo_room_203" model="l10n_si.hotel.room">
+            <field name="number">203</field>
+            <field name="floor">2</field>
+            <field name="room_type_id" ref="demo_room_type_family"/>
+        </record>
+
+        <record id="demo_room_501" model="l10n_si.hotel.room">
+            <field name="number">501</field>
+            <field name="floor">5</field>
+            <field name="room_type_id" ref="demo_room_type_deluxe"/>
+        </record>
+        <record id="demo_room_502" model="l10n_si.hotel.room">
+            <field name="number">502</field>
+            <field name="floor">5</field>
+            <field name="room_type_id" ref="demo_room_type_deluxe"/>
+        </record>
+
+        <!-- ============================================================= -->
+        Services (need a product.product to fulfil the required M2O).
+        We first create simple product.template records, the
+        product.product is auto-created by Odoo.
+        <!-- ============================================================= -->
+        <record id="demo_product_minibar" model="product.template">
+            <field name="name">Minibar</field>
+            <field name="type">service</field>
+            <field name="list_price">15.0</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_zajtrk" model="product.template">
+            <field name="name">Zajtrk</field>
+            <field name="type">service</field>
+            <field name="list_price">12.0</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_parkirisce" model="product.template">
+            <field name="name">Parkirišče</field>
+            <field name="type">service</field>
+            <field name="list_price">10.0</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_pralnica" model="product.template">
+            <field name="name">Pralnica</field>
+            <field name="type">service</field>
+            <field name="list_price">20.0</field>
+            <field name="invoice_policy">order</field>
+        </record>
+
+        <record id="demo_service_minibar" model="l10n_si.hotel.service">
+            <field name="name">Minibar</field>
+            <field name="code">MIN</field>
+            <field name="category">minibar</field>
+            <field name="product_id" eval="ref('demo_product_minibar').product_variant_id.id"/>
+        </record>
+        <record id="demo_service_zajtrk" model="l10n_si.hotel.service">
+            <field name="name">Zajtrk</field>
+            <field name="code">ZAJ</field>
+            <field name="category">breakfast</field>
+            <field name="product_id" eval="ref('demo_product_zajtrk').product_variant_id.id"/>
+        </record>
+        <record id="demo_service_parkirisce" model="l10n_si.hotel.service">
+            <field name="name">Parkirišče</field>
+            <field name="code">PARK</field>
+            <field name="category">other</field>
+            <field name="product_id" eval="ref('demo_product_parkirisce').product_variant_id.id"/>
+        </record>
+        <record id="demo_service_pralnica" model="l10n_si.hotel.service">
+            <field name="name">Pralnica</field>
+            <field name="code">PRA</field>
+            <field name="category">laundry</field>
+            <field name="product_id" eval="ref('demo_product_pralnica').product_variant_id.id"/>
+        </record>
+
+        <!-- ============================================================= -->
+        Reservations - relative dates so demo always looks fresh.
+          res1: Janez Novak, soba 101 (STD), current stay
+          res2: Hans Müller, soba 501 (DLX), future
+          res3: Maria Rossi, soba 202 (FAM), past stay
+        <!-- ============================================================= -->
+        <record id="demo_reservation_1" model="l10n_si.hotel.reservation">
+            <field name="partner_id" ref="partner_janez_novak"/>
+            <field name="room_id" ref="demo_room_101"/>
+            <field name="check_in" eval="(datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d 14:00:00')"/>
+            <field name="check_out" eval="(datetime.now() + timedelta(days=2)).strftime('%Y-%m-%d 11:00:00')"/>
+            <field name="daily_rate">80.0</field>
+            <field name="adults">2</field>
+            <field name="children">0</field>
+            <field name="source">direct</field>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_reservation_2" model="l10n_si.hotel.reservation">
+            <field name="partner_id" ref="partner_hans_mueller"/>
+            <field name="room_id" ref="demo_room_501"/>
+            <field name="check_in" eval="(datetime.now() + timedelta(days=7)).strftime('%Y-%m-%d 14:00:00')"/>
+            <field name="check_out" eval="(datetime.now() + timedelta(days=10)).strftime('%Y-%m-%d 11:00:00')"/>
+            <field name="daily_rate">180.0</field>
+            <field name="adults">2</field>
+            <field name="children">0</field>
+            <field name="source">website</field>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_reservation_3" model="l10n_si.hotel.reservation">
+            <field name="partner_id" ref="partner_maria_rossi"/>
+            <field name="room_id" ref="demo_room_202"/>
+            <field name="check_in" eval="(datetime.now() - timedelta(days=14)).strftime('%Y-%m-%d 14:00:00')"/>
+            <field name="check_out" eval="(datetime.now() - timedelta(days=10)).strftime('%Y-%m-%d 11:00:00')"/>
+            <field name="daily_rate">120.0</field>
+            <field name="adults">2</field>
+            <field name="children">2</field>
+            <field name="source">booking_com</field>
+            <field name="state">draft</field>
+        </record>
+
+    </data>
+</odoo>

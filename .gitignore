@@ -100,3 +100,18 @@ htmlcov/
 # Deployment scripts (not part of Odoo repo)
 deploy/
 odoo-si-deploy/
+
+# FURS/CISF certificates — never commit
+certs/*.p12
+certs/*.pfx
+certs/*.pem
+certs/*.key
+certs/*.crt
+certs/*password*
+# Odoo filestore
+filestore/
+*.dump
+*.sql
+# Docker volumes
+odoo_db_data/
+odoo_filestore/

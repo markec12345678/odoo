@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Demo data for the Slovenian Camping module.
+         Parcels (tent, RV, cabin, glamping) and reservations.
+         Use noupdate="0" so demo records are refreshed on every update. -->
+    <data noupdate="0">
+
+        <!-- ============================================================= -->
+        Parcels
+          A01 (tent, 25€)        - zone A (ob morju)
+          A02 (RV, 35€)          - zone A
+          A03 (RV, 35€)          - zone A
+          B01 (cabin, 65€)       - zone B
+          B02 (glamping, 95€)    - zone B
+        <!-- ============================================================= -->
+        <record id="demo_parcel_a01" model="l10n_si.camping.parcel">
+            <field name="number">A01</field>
+            <field name="zone">a</field>
+            <field name="parcel_type">tent</field>
+            <field name="max_persons">4</field>
+            <field name="max_tents">2</field>
+            <field name="has_electricity">True</field>
+            <field name="has_water">False</field>
+            <field name="has_sewage">False</field>
+            <field name="size_sqm">60.0</field>
+            <field name="base_price">25.0</field>
+            <field name="extra_person_price">5.0</field>
+            <field name="electricity_price">3.0</field>
+        </record>
+
+        <record id="demo_parcel_a02" model="l10n_si.camping.parcel">
+            <field name="number">A02</field>
+            <field name="zone">a</field>
+            <field name="parcel_type">rv</field>
+            <field name="max_persons">6</field>
+            <field name="max_tents">0</field>
+            <field name="has_electricity">True</field>
+            <field name="has_water">True</field>
+            <field name="has_sewage">True</field>
+            <field name="size_sqm">90.0</field>
+            <field name="base_price">35.0</field>
+            <field name="extra_person_price">5.0</field>
+            <field name="electricity_price">3.0</field>
+        </record>
+
+        <record id="demo_parcel_a03" model="l10n_si.camping.parcel">
+            <field name="number">A03</field>
+            <field name="zone">a</field>
+            <field name="parcel_type">rv</field>
+            <field name="max_persons">6</field>
+            <field name="max_tents">0</field>
+            <field name="has_electricity">True</field>
+            <field name="has_water">True</field>
+            <field name="has_sewage">True</field>
+            <field name="size_sqm">90.0</field>
+            <field name="base_price">35.0</field>
+            <field name="extra_person_price">5.0</field>
+            <field name="electricity_price">3.0</field>
+        </record>
+
+        <record id="demo_parcel_b01" model="l10n_si.camping.parcel">
+            <field name="number">B01</field>
+            <field name="zone">b</field>
+            <field name="parcel_type">cabin</field>
+            <field name="max_persons">4</field>
+            <field name="max_tents">0</field>
+            <field name="has_electricity">True</field>
+            <field name="has_water">True</field>
+            <field name="has_sewage">True</field>
+            <field name="size_sqm">25.0</field>
+            <field name="base_price">65.0</field>
+            <field name="extra_person_price">8.0</field>
+            <field name="electricity_price">0.0</field>
+        </record>
+
+        <record id="demo_parcel_b02" model="l10n_si.camping.parcel">
+            <field name="number">B02</field>
+            <field name="zone">b</field>
+            <field name="parcel_type">glamping</field>
+            <field name="max_persons">2</field>
+            <field name="max_tents">0</field>
+            <field name="has_electricity">True</field>
+            <field name="has_water">True</field>
+            <field name="has_sewage">True</field>
+            <field name="size_sqm">35.0</field>
+            <field name="base_price">95.0</field>
+            <field name="extra_person_price">10.0</field>
+            <field name="electricity_price">0.0</field>
+        </record>
+
+        <!-- ============================================================= -->
+        Demo partners for the camping reservations.
+        <!-- ============================================================= -->
+        <record id="demo_partner_tomaz_horvat" model="res.partner">
+            <field name="name">Tomaž Horvat</field>
+            <field name="street">Partizanska 7</field>
+            <field name="zip">6320</field>
+            <field name="city">Portorož</field>
+            <field name="country_id" ref="base.si"/>
+            <field name="phone">+386 41 555 444</field>
+            <field name="email">tomaz.horvat@example.si</field>
+            <field name="customer_rank">1</field>
+        </record>
+
+        <record id="demo_partner_peter_schmidt" model="res.partner">
+            <field name="name">Peter Schmidt</field>
+            <field name="street">Berggasse 12</field>
+            <field name="zip">8010</field>
+            <field name="city">Graz</field>
+            <field name="country_id" ref="base.at"/>
+            <field name="phone">+43 316 123456</field>
+            <field name="email">peter.schmidt@example.at</field>
+            <field name="customer_rank">1</field>
+        </record>
+
+        <!-- ============================================================= -->
+        Reservations - relative dates so the demo always looks fresh.
+          res1: Tomaž Horvat - parcela A02 (RV) - 3 nočitve, confirmed
+          res2: Peter Schmidt - parcela B02 (glamping) - 5 nočitev, draft
+        <!-- ============================================================= -->
+        <record id="demo_camping_reservation_1" model="l10n_si.camping.reservation">
+            <field name="partner_id" ref="demo_partner_tomaz_horvat"/>
+            <field name="parcel_id" ref="demo_parcel_a02"/>
+            <field name="check_in" eval="(datetime.now() + timedelta(days=2)).strftime('%Y-%m-%d 12:00:00')"/>
+            <field name="check_out" eval="(datetime.now() + timedelta(days=5)).strftime('%Y-%m-%d 10:00:00')"/>
+            <field name="adults">2</field>
+            <field name="children">1</field>
+            <field name="vehicles">1</field>
+            <field name="tents">0</field>
+            <field name="pets">1</field>
+            <field name="source">website</field>
+            <field name="state">confirmed</field>
+        </record>
+
+        <record id="demo_camping_reservation_2" model="l10n_si.camping.reservation">
+            <field name="partner_id" ref="demo_partner_peter_schmidt"/>
+            <field name="parcel_id" ref="demo_parcel_b02"/>
+            <field name="check_in" eval="(datetime.now() + timedelta(days=14)).strftime('%Y-%m-%d 15:00:00')"/>
+            <field name="check_out" eval="(datetime.now() + timedelta(days=19)).strftime('%Y-%m-%d 10:00:00')"/>
+            <field name="adults">2</field>
+            <field name="children">0</field>
+            <field name="vehicles">0</field>
+            <field name="tents">0</field>
+            <field name="pets">0</field>
+            <field name="source">booking_com</field>
+            <field name="state">draft</field>
+        </record>
+
+    </data>
+</odoo>

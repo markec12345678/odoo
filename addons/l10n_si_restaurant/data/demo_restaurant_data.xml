@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Demo data for the Slovenian Restaurant module.
+         Tables, menu categories and menu items with allergens.
+         Use noupdate="0" so demo records are refreshed on every update. -->
+    <data noupdate="0">
+
+        <!-- ============================================================= -->
+        Tables (Mize) - 4 indoor + 2 outdoor (terasa)
+        <!-- ============================================================= -->
+        <record id="demo_table_1" model="l10n_si.restaurant.table">
+            <field name="number">1</field>
+            <field name="floor">indoor</field>
+            <field name="capacity">2</field>
+            <field name="shape">square</field>
+        </record>
+        <record id="demo_table_2" model="l10n_si.restaurant.table">
+            <field name="number">2</field>
+            <field name="floor">indoor</field>
+            <field name="capacity">4</field>
+            <field name="shape">square</field>
+        </record>
+        <record id="demo_table_3" model="l10n_si.restaurant.table">
+            <field name="number">3</field>
+            <field name="floor">indoor</field>
+            <field name="capacity">4</field>
+            <field name="shape">round</field>
+        </record>
+        <record id="demo_table_4" model="l10n_si.restaurant.table">
+            <field name="number">4</field>
+            <field name="floor">indoor</field>
+            <field name="capacity">6</field>
+            <field name="shape">rectangular</field>
+        </record>
+        <record id="demo_table_terasa_1" model="l10n_si.restaurant.table">
+            <field name="number">1</field>
+            <field name="floor">outdoor</field>
+            <field name="capacity">2</field>
+            <field name="shape">round</field>
+        </record>
+        <record id="demo_table_terasa_2" model="l10n_si.restaurant.table">
+            <field name="number">2</field>
+            <field name="floor">outdoor</field>
+            <field name="capacity">4</field>
+            <field name="shape">square</field>
+        </record>
+
+        <!-- ============================================================= -->
+        Menu categories (existing ones are re-declared here for the demo
+        so the demo file is self-contained).
+        <!-- ============================================================= -->
+        <record id="demo_menu_cat_predjedi" model="l10n_si.restaurant.menu.category">
+            <field name="name">Predjedi</field>
+            <field name="code">PRED</field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="demo_menu_cat_juhe" model="l10n_si.restaurant.menu.category">
+            <field name="name">Juhe</field>
+            <field name="code">JUHA</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="demo_menu_cat_glavne" model="l10n_si.restaurant.menu.category">
+            <field name="name">Glavne jedi</field>
+            <field name="code">GLAV</field>
+            <field name="sequence">30</field>
+        </record>
+        <record id="demo_menu_cat_sladice" model="l10n_si.restaurant.menu.category">
+            <field name="name">Sladice</field>
+            <field name="code">SLAD</field>
+            <field name="sequence">40</field>
+        </record>
+        <record id="demo_menu_cat_pijace" model="l10n_si.restaurant.menu.category">
+            <field name="name">Pijače</field>
+            <field name="code">PIJA</field>
+            <field name="sequence">50</field>
+        </record>
+
+        <!-- ============================================================= -->
+        Product templates for each menu item (auto-creates product.product)
+        <!-- ============================================================= -->
+        <record id="demo_product_prsut_melona" model="product.template">
+            <field name="name">Pršut z melono</field>
+            <field name="type">consu</field>
+            <field name="list_price">9.50</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_sunka_testu" model="product.template">
+            <field name="name">Šunka v testu</field>
+            <field name="type">consu</field>
+            <field name="list_price">7.20</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_goveja_juha" model="product.template">
+            <field name="name">Goveja juha</field>
+            <field name="type">consu</field>
+            <field name="list_price">4.50</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_rizota_gobe" model="product.template">
+            <field name="name">Rižota z gobami</field>
+            <field name="type">consu</field>
+            <field name="list_price">8.80</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_dunajski_zrezek" model="product.template">
+            <field name="name">Dunajski zrezek</field>
+            <field name="type">consu</field>
+            <field name="list_price">14.50</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_ljubljanski_zrezek" model="product.template">
+            <field name="name">Ljubljanski zrezek</field>
+            <field name="type">consu</field>
+            <field name="list_price">13.80</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_riba_zar" model="product.template">
+            <field name="name">Riba na žaru</field>
+            <field name="type">consu</field>
+            <field name="list_price">16.50</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_vegan_burger" model="product.template">
+            <field name="name">Vegan burger</field>
+            <field name="type">consu</field>
+            <field name="list_price">11.50</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_prekmurska_gibanica" model="product.template">
+            <field name="name">Prekmurska gibanica</field>
+            <field name="type">consu</field>
+            <field name="list_price">5.20</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_cokoladna_torta" model="product.template">
+            <field name="name">Čokoladna torta</field>
+            <field name="type">consu</field>
+            <field name="list_price">4.80</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_panna_cotta" model="product.template">
+            <field name="name">Panna cotta</field>
+            <field name="type">consu</field>
+            <field name="list_price">4.50</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_lasko_pivo" model="product.template">
+            <field name="name">Laško pivo</field>
+            <field name="type">consu</field>
+            <field name="list_price">3.20</field>
+            <field name="invoice_policy">order</field>
+        </record>
+        <record id="demo_product_hisno_rdece" model="product.template">
+            <field name="name">Hišno rdeče</field>
+            <field name="type">consu</field>
+            <field name="list_price">4.50</field>
+            <field name="invoice_policy">order</field>
+        </record>
+
+        <!-- ============================================================= -->
+        Menu items (l10n_si.restaurant.menu) with allergens.
+        <!-- ============================================================= -->
+        <record id="demo_menu_prsut_melona" model="l10n_si.restaurant.menu">
+            <field name="name">Pršut z melono</field>
+            <field name="category_id" ref="demo_menu_cat_predjedi"/>
+            <field name="product_id" eval="ref('demo_product_prsut_melona').product_variant_id.id"/>
+            <field name="sequence">10</field>
+            <field name="allergen_milk">True</field>
+            <field name="contains_pork">True</field>
+            <field name="prep_time_minutes">5</field>
+            <field name="station">cold</field>
+        </record>
+        <record id="demo_menu_sunka_testu" model="l10n_si.restaurant.menu">
+            <field name="name">Šunka v testu</field>
+            <field name="category_id" ref="demo_menu_cat_predjedi"/>
+            <field name="product_id" eval="ref('demo_product_sunka_testu').product_variant_id.id"/>
+            <field name="sequence">20</field>
+            <field name="allergen_gluten">True</field>
+            <field name="allergen_milk">True</field>
+            <field name="allergen_eggs">True</field>
+            <field name="contains_pork">True</field>
+            <field name="prep_time_minutes">15</field>
+            <field name="station">oven</field>
+        </record>
+        <record id="demo_menu_goveja_juha" model="l10n_si.restaurant.menu">
+            <field name="name">Goveja juha</field>
+            <field name="category_id" ref="demo_menu_cat_juhe"/>
+            <field name="product_id" eval="ref('demo_product_goveja_juha').product_variant_id.id"/>
+            <field name="sequence">10</field>
+            <field name="allergen_celery">True</field>
+            <field name="prep_time_minutes">10</field>
+            <field name="station">oven</field>
+        </record>
+        <record id="demo_menu_rizota_gobe" model="l10n_si.restaurant.menu">
+            <field name="name">Rižota z gobami</field>
+            <field name="category_id" ref="demo_menu_cat_juhe"/>
+            <field name="product_id" eval="ref('demo_product_rizota_gobe').product_variant_id.id"/>
+            <field name="sequence">20</field>
+            <field name="allergen_milk">True</field>
+            <field name="allergen_celery">True</field>
+            <field name="vegetarian">True</field>
+            <field name="prep_time_minutes">20</field>
+            <field name="station">oven</field>
+        </record>
+        <record id="demo_menu_dunajski_zrezek" model="l10n_si.restaurant.menu">
+            <field name="name">Dunajski zrezek</field>
+            <field name="category_id" ref="demo_menu_cat_glavne"/>
+            <field name="product_id" eval="ref('demo_product_dunajski_zrezek').product_variant_id.id"/>
+            <field name="sequence">10</field>
+            <field name="allergen_gluten">True</field>
+            <field name="allergen_eggs">True</field>
+            <field name="contains_pork">True</field>
+            <field name="prep_time_minutes">20</field>
+            <field name="station">grill</field>
+        </record>
+        <record id="demo_menu_ljubljanski_zrezek" model="l10n_si.restaurant.menu">
+            <field name="name">Ljubljanski zrezek</field>
+            <field name="category_id" ref="demo_menu_cat_glavne"/>
+            <field name="product_id" eval="ref('demo_product_ljubljanski_zrezek').product_variant_id.id"/>
+            <field name="sequence">20</field>
+            <field name="allergen_gluten">True</field>
+            <field name="allergen_eggs">True</field>
+            <field name="allergen_milk">True</field>
+            <field name="contains_pork">True</field>
+            <field name="prep_time_minutes">25</field>
+            <field name="station">grill</field>
+        </record>
+        <record id="demo_menu_riba_zar" model="l10n_si.restaurant.menu">
+            <field name="name">Riba na žaru</field>
+            <field name="category_id" ref="demo_menu_cat_glavne"/>
+            <field name="product_id" eval="ref('demo_product_riba_zar').product_variant_id.id"/>
+            <field name="sequence">30</field>
+            <field name="allergen_fish">True</field>
+            <field name="prep_time_minutes">18</field>
+            <field name="station">grill</field>
+        </record>
+        <record id="demo_menu_vegan_burger" model="l10n_si.restaurant.menu">
+            <field name="name">Vegan burger</field>
+            <field name="category_id" ref="demo_menu_cat_glavne"/>
+            <field name="product_id" eval="ref('demo_product_vegan_burger').product_variant_id.id"/>
+            <field name="sequence">40</field>
+            <field name="allergen_gluten">True</field>
+            <field name="allergen_soy">True</field>
+            <field name="vegetarian">True</field>
+            <field name="vegan">True</field>
+            <field name="prep_time_minutes">15</field>
+            <field name="station">grill</field>
+        </record>
+        <record id="demo_menu_prekmurska_gibanica" model="l10n_si.restaurant.menu">
+            <field name="name">Prekmurska gibanica</field>
+            <field name="category_id" ref="demo_menu_cat_sladice"/>
+            <field name="product_id" eval="ref('demo_product_prekmurska_gibanica').product_variant_id.id"/>
+            <field name="sequence">10</field>
+            <field name="allergen_gluten">True</field>
+            <field name="allergen_milk">True</field>
+            <field name="allergen_eggs">True</field>
+            <field name="allergen_nuts">True</field>
+            <field name="vegetarian">True</field>
+            <field name="prep_time_minutes">5</field>
+            <field name="station">cold</field>
+        </record>
+        <record id="demo_menu_cokoladna_torta" model="l10n_si.restaurant.menu">
+            <field name="name">Čokoladna torta</field>
+            <field name="category_id" ref="demo_menu_cat_sladice"/>
+            <field name="product_id" eval="ref('demo_product_cokoladna_torta').product_variant_id.id"/>
+            <field name="sequence">20</field>
+            <field name="allergen_gluten">True</field>
+            <field name="allergen_milk">True</field>
+            <field name="allergen_eggs">True</field>
+            <field name="vegetarian">True</field>
+            <field name="prep_time_minutes">5</field>
+            <field name="station">cold</field>
+        </record>
+        <record id="demo_menu_panna_cotta" model="l10n_si.restaurant.menu">
+            <field name="name">Panna cotta</field>
+            <field name="category_id" ref="demo_menu_cat_sladice"/>
+            <field name="product_id" eval="ref('demo_product_panna_cotta').product_variant_id.id"/>
+            <field name="sequence">30</field>
+            <field name="allergen_milk">True</field>
+            <field name="vegetarian">True</field>
+            <field name="prep_time_minutes">5</field>
+            <field name="station">cold</field>
+        </record>
+        <record id="demo_menu_lasko_pivo" model="l10n_si.restaurant.menu">
+            <field name="name">Laško pivo</field>
+            <field name="category_id" ref="demo_menu_cat_pijace"/>
+            <field name="product_id" eval="ref('demo_product_lasko_pivo').product_variant_id.id"/>
+            <field name="sequence">10</field>
+            <field name="allergen_gluten">True</field>
+            <field name="prep_time_minutes">2</field>
+            <field name="station">bar</field>
+        </record>
+        <record id="demo_menu_hisno_rdece" model="l10n_si.restaurant.menu">
+            <field name="name">Hišno rdeče</field>
+            <field name="category_id" ref="demo_menu_cat_pijace"/>
+            <field name="product_id" eval="ref('demo_product_hisno_rdece').product_variant_id.id"/>
+            <field name="sequence">20</field>
+            <field name="allergen_sulphites">True</field>
+            <field name="vegetarian">True</field>
+            <field name="vegan">True</field>
+            <field name="prep_time_minutes">2</field>
+            <field name="station">bar</field>
+        </record>
+
+    </data>
+</odoo>

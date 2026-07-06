@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Minor extension of the account.move form to surface the
+         reverse-charge flag and link to related PDV reports. -->
+    <record id="view_move_form_hr_pdv" model="ir.ui.view">
+        <field name="name">account.move.form.hr_pdv</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="HR PDV" name="hr_pdv_info"
+                      invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')">
+                    <group>
+                        <group string="PDV značajke">
+                            <field name="l10n_hr_pdv_is_reverse_charge"/>
+                            <field name="l10n_hr_pdv_is_eu_acquisition"
+                                   invisible="move_type not in ('in_invoice', 'in_refund')"/>
+                            <field name="l10n_hr_pdv_is_eu_supply"
+                                   invisible="move_type not in ('out_invoice', 'out_refund')"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

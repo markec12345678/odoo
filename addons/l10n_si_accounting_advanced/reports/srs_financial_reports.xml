@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ===============================================================
+         Bilanca stanja (Balance Sheet) — SRS 99
+         =============================================================== -->
+    <template id="report_balance_sheet_document">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2 class="text-center">Bilanca stanja</h2>
+                    <div class="text-center text-muted">
+                        <span t-field="doc.company_id.name"/> —
+                        Obdobje: <span t-field="doc.date_from"/> do <span t-field="doc.date_to"/>
+                    </div>
+
+                    <h3 class="mt-4">AKTIVA — Sredstva</h3>
+
+                    <h4 class="mt-3">A. SREDSTVA</h4>
+                    <h5 class="mt-2">I. Dolgoročna sredstva</h5>
+                    <table class="table table-sm">
+                        <thead><tr>
+                            <th>Konto</th>
+                            <th>Naziv</th>
+                            <th class="text-right">Tekoče leto</th>
+                            <th class="text-right">Prejšnje leto</th>
+                        </tr></thead>
+                        <tbody>
+                            <t t-foreach="doc.line_ids.filtered(lambda l: l.balance_section == 'assets' and (l.srs_code or '').startswith('A.I'))" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.srs_code"/></td>
+                                    <td><span t-field="line.name"/></td>
+                                    <td class="text-right"><span t-field="line.amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                    <td class="text-right"><span t-field="line.amount_previous_year" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                </tr>
+                            </t>
+                            <tr class="table-active">
+                                <td colspan="2"><strong>Skupaj A.I — Dolgoročna sredstva</strong></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.balance_section == 'assets' and (l.srs_code or '').startswith('A.I')).mapped('amount'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.balance_section == 'assets' and (l.srs_code or '').startswith('A.I')).mapped('amount_previous_year'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h5 class="mt-3">II. Kratkoročna sredstva</h5>
+                    <table class="table table-sm">
+                        <thead><tr>
+                            <th>Konto</th>
+                            <th>Naziv</th>
+                            <th class="text-right">Tekoče leto</th>
+                            <th class="text-right">Prejšnje leto</th>
+                        </tr></thead>
+                        <tbody>
+                            <t t-foreach="doc.line_ids.filtered(lambda l: l.balance_section == 'assets' and (l.srs_code or '').startswith('A.II'))" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.srs_code"/></td>
+                                    <td><span t-field="line.name"/></td>
+                                    <td class="text-right"><span t-field="line.amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                    <td class="text-right"><span t-field="line.amount_previous_year" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                </tr>
+                            </t>
+                            <tr class="table-active">
+                                <td colspan="2"><strong>Skupaj A.II — Kratkoročna sredstva</strong></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.balance_section == 'assets' and (l.srs_code or '').startswith('A.II')).mapped('amount'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.balance_section == 'assets' and (l.srs_code or '').startswith('A.II')).mapped('amount_previous_year'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h5 class="mt-3">III. Razveljavljene terjatve (prikazane bruto)</h5>
+                    <h5 class="mt-1">IV. Vrednostne prilagoditve (korekcije)</h5>
+
+                    <table class="table table-sm table-bordered mt-2">
+                        <tr class="table-primary">
+                            <td colspan="2"><strong>SKUPAJ AKTIVA (A)</strong></td>
+                            <td class="text-right"><strong t-esc="doc.total_assets" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                        </tr>
+                    </table>
+
+                    <h3 class="mt-5">B. SREDSTVA ZA LASTNE DELNICE</h3>
+                    <table class="table table-sm">
+                        <thead><tr>
+                            <th>I. Lastne delnice/deleži</th>
+                            <th class="text-right">Znesek</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr><td>B.I — Lastne delnice</td><td class="text-right">0,00</td></tr>
+                            <tr class="table-active"><td><strong>Skupaj B</strong></td><td class="text-right"><strong>0,00</strong></td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="mt-5">PASIVA — Obveznosti do virov sredstev</h3>
+
+                    <h4 class="mt-3">C. KAPITAL</h4>
+                    <table class="table table-sm">
+                        <thead><tr>
+                            <th>Konto</th>
+                            <th>Naziv</th>
+                            <th class="text-right">Tekoče leto</th>
+                            <th class="text-right">Prejšnje leto</th>
+                        </tr></thead>
+                        <tbody>
+                            <t t-foreach="doc.line_ids.filtered(lambda l: l.balance_section == 'liabilities' and (l.srs_code or '').startswith('C'))" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.srs_code"/></td>
+                                    <td><span t-field="line.name"/></td>
+                                    <td class="text-right"><span t-field="line.amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                    <td class="text-right"><span t-field="line.amount_previous_year" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                </tr>
+                            </t>
+                            <tr class="table-active">
+                                <td colspan="2"><strong>Skupaj C — Kapital</strong></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.balance_section == 'liabilities' and (l.srs_code or '').startswith('C')).mapped('amount'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.balance_section == 'liabilities' and (l.srs_code or '').startswith('C')).mapped('amount_previous_year'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 class="mt-3">D. OBVEZNOSTI</h4>
+                    <table class="table table-sm">
+                        <thead><tr>
+                            <th>Konto</th>
+                            <th>Naziv</th>
+                            <th class="text-right">Tekoče leto</th>
+                            <th class="text-right">Prejšnje leto</th>
+                        </tr></thead>
+                        <tbody>
+                            <t t-foreach="doc.line_ids.filtered(lambda l: l.balance_section == 'liabilities' and (l.srs_code or '').startswith('D'))" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.srs_code"/></td>
+                                    <td><span t-field="line.name"/></td>
+                                    <td class="text-right"><span t-field="line.amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                    <td class="text-right"><span t-field="line.amount_previous_year" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                </tr>
+                            </t>
+                            <tr class="table-active">
+                                <td colspan="2"><strong>Skupaj D — Obveznosti</strong></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.balance_section == 'liabilities' and (l.srs_code or '').startswith('D')).mapped('amount'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.balance_section == 'liabilities' and (l.srs_code or '').startswith('D')).mapped('amount_previous_year'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 class="mt-3">E. PASIVNE ČASOVNE RAZMEJITVE</h4>
+                    <table class="table table-sm">
+                        <thead><tr>
+                            <th>I. Kratkoročne pasivne časovne razmejitve</th>
+                            <th>II. Dolgoročne pasivne časovne razmejitve</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr><td>Znesek</td><td>Znesek</td></tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-sm table-bordered mt-2">
+                        <tr class="table-primary">
+                            <td colspan="2"><strong>SKUPAJ PASIVA (C + D + E)</strong></td>
+                            <td class="text-right"><strong t-esc="doc.total_liabilities" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                        </tr>
+                    </table>
+
+                    <div class="row mt-5">
+                        <div class="col-12 text-center text-muted small">
+                            Vir: Slovenski računovodski standard 99 (SRS 99) — Kontni okvir.
+                            Pripravljeno v programu Odoo (l10n_si_accounting_advanced).
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_report_l10n_si_balance_sheet"
+            model="l10n_si.srs.report"
+            string="Bilanca stanja (SI)"
+            report_type="qweb-pdf"
+            name="l10n_si_accounting_advanced.report_balance_sheet_document"
+            file="l10n_si_accounting_advanced.report_balance_sheet_document"
+            print_report_name="'Bilanca_stanja_%s_%s' % (doc.year, doc.report_type)"/>
+
+    <!-- ===============================================================
+         Izid poslovanja (Income Statement) — SRS 99
+         =============================================================== -->
+    <template id="report_income_statement_document">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2 class="text-center">Izid poslovanja</h2>
+                    <div class="text-center text-muted">
+                        <span t-field="doc.company_id.name"/> —
+                        Obdobje: <span t-field="doc.date_from"/> do <span t-field="doc.date_to"/>
+                    </div>
+
+                    <table class="table table-sm mt-4">
+                        <thead><tr>
+                            <th>Vrsta</th>
+                            <th class="text-right">Tekoče leto</th>
+                            <th class="text-right">Prejšnje leto</th>
+                        </tr></thead>
+                        <tbody>
+                            <!-- I. Poslovni prihodki -->
+                            <tr class="table-light"><td colspan="3"><strong>I. Poslovni prihodki</strong></td></tr>
+                            <t t-foreach="doc.line_ids.filtered(lambda l: l.income_section == 'revenue' and (l.srs_code or '').startswith(('500', '510', '520', '530', '540', '550')))" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.name"/></td>
+                                    <td class="text-right"><span t-field="line.amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                    <td class="text-right"><span t-field="line.amount_previous_year" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                </tr>
+                            </t>
+                            <tr class="table-active">
+                                <td><strong>A. Skupaj poslovni prihodki (I)</strong></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.income_section == 'revenue' and (l.srs_code or '').startswith(('500', '510', '520', '530', '540', '550'))).mapped('amount'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.income_section == 'revenue' and (l.srs_code or '').startswith(('500', '510', '520', '530', '540', '550'))).mapped('amount_previous_year'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                            </tr>
+
+                            <!-- II. Poslovni odhodki -->
+                            <tr class="table-light"><td colspan="3"><strong>II. Poslovni odhodki</strong></td></tr>
+                            <t t-foreach="doc.line_ids.filtered(lambda l: l.income_section == 'expense' and (l.srs_code or '').startswith(('600', '610', '620', '630', '640', '650', '670', '700', '710', '720', '730')))" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.name"/></td>
+                                    <td class="text-right"><span t-field="line.amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                    <td class="text-right"><span t-field="line.amount_previous_year" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                </tr>
+                            </t>
+                            <tr class="table-active">
+                                <td><strong>B. Skupaj poslovni odhodki (II)</strong></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.income_section == 'expense' and (l.srs_code or '').startswith(('600', '610', '620', '630', '640', '650', '670', '700', '710', '720', '730'))).mapped('amount'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.income_section == 'expense' and (l.srs_code or '').startswith(('600', '610', '620', '630', '640', '650', '670', '700', '710', '720', '730'))).mapped('amount_previous_year'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                            </tr>
+
+                            <!-- III. Finančni prihodki -->
+                            <tr class="table-light"><td colspan="3"><strong>III. Finančni prihodki</strong></td></tr>
+                            <t t-foreach="doc.line_ids.filtered(lambda l: l.income_section == 'revenue' and (l.srs_code or '').startswith(('560', '810')))" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.name"/></td>
+                                    <td class="text-right"><span t-field="line.amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                    <td class="text-right"><span t-field="line.amount_previous_year" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                </tr>
+                            </t>
+                            <tr class="table-active">
+                                <td><strong>C. Skupaj finančni prihodki (III)</strong></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.income_section == 'revenue' and (l.srs_code or '').startswith(('560', '810'))).mapped('amount'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.income_section == 'revenue' and (l.srs_code or '').startswith(('560', '810'))).mapped('amount_previous_year'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                            </tr>
+
+                            <!-- IV. Finančni odhodki -->
+                            <tr class="table-light"><td colspan="3"><strong>IV. Finančni odhodki</strong></td></tr>
+                            <t t-foreach="doc.line_ids.filtered(lambda l: l.income_section == 'expense' and (l.srs_code or '').startswith(('660', '820')))" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.name"/></td>
+                                    <td class="text-right"><span t-field="line.amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                    <td class="text-right"><span t-field="line.amount_previous_year" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                </tr>
+                            </t>
+                            <tr class="table-active">
+                                <td><strong>D. Skupaj finančni odhodki (IV)</strong></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.income_section == 'expense' and (l.srs_code or '').startswith(('660', '820'))).mapped('amount'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                <td class="text-right"><strong t-esc="sum(doc.line_ids.filtered(lambda l: l.income_section == 'expense' and (l.srs_code or '').startswith(('660', '820'))).mapped('amount_previous_year'))" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                            </tr>
+
+                            <!-- V. Višje/nizje vrednosti (saldo) -->
+                            <tr class="table-light"><td colspan="3"><strong>V. Popravki vrednosti in rezervacije</strong></td></tr>
+
+                            <!-- VI. Drugi prihodki/odhodki -->
+                            <tr class="table-light"><td colspan="3"><strong>VI. Drugi poslovni prihodki/odhodki</strong></td></tr>
+
+                            <!-- VII. Izredni prihodki -->
+                            <tr class="table-light"><td colspan="3"><strong>VII. Izredni prihodki</strong></td></tr>
+                            <t t-foreach="doc.line_ids.filtered(lambda l: (l.srs_code or '').startswith('900')" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.name"/></td>
+                                    <td class="text-right"><span t-field="line.amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                    <td class="text-right"><span t-field="line.amount_previous_year" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                </tr>
+                            </t>
+
+                            <!-- VIII. Izredni odhodki + Davek -->
+                            <tr class="table-light"><td colspan="3"><strong>VIII. Izredni odhodki in davek iz dobička</strong></td></tr>
+                            <t t-foreach="doc.line_ids.filtered(lambda l: (l.srs_code or '').startswith(('910', '990')))" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.name"/></td>
+                                    <td class="text-right"><span t-field="line.amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                    <td class="text-right"><span t-field="line.amount_previous_year" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                </tr>
+                            </t>
+
+                            <!-- Computed rows A-G -->
+                            <tr class="table-primary">
+                                <td><strong>E. Poslovni izid (A − B)</strong></td>
+                                <td class="text-right"><strong t-esc="doc.total_revenue - doc.total_expenses" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                <td class="text-right">—</td>
+                            </tr>
+                            <tr class="table-primary">
+                                <td><strong>F. Izid poslovanja pred davkom</strong></td>
+                                <td class="text-right"><strong t-esc="doc.net_profit" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                <td class="text-right">—</td>
+                            </tr>
+                            <tr class="table-primary">
+                                <td><strong>G. čisti dobiček/izguba poslovnega leta</strong></td>
+                                <td class="text-right"><strong t-esc="doc.net_profit" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                                <td class="text-right">—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row mt-5">
+                        <div class="col-12 text-center text-muted small">
+                            Vir: Slovenski računovodski standard 99 (SRS 99) — Izid poslovanja.
+                            Pripravljeno v programu Odoo (l10n_si_accounting_advanced).
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_report_l10n_si_income_statement"
+            model="l10n_si.srs.report"
+            string="Izid poslovanja (SI)"
+            report_type="qweb-pdf"
+            name="l10n_si_accounting_advanced.report_income_statement_document"
+            file="l10n_si_accounting_advanced.report_income_statement_document"
+            print_report_name="'Izid_poslovanja_%s_%s' % (doc.year, doc.report_type)"/>
+</odoo>

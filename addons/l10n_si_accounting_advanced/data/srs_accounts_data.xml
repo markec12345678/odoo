@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- SRS 99 reference chart of accounts.
+
+         Each <record> is one Slovenian SRS account (l10n_si.srs.account).
+         noupdate="1" — the records are created once on install and never
+         overwritten by upgrades (so user edits persist).
+
+         The list follows the SRS 99 (Slovenski računovodski standard 99)
+         "Kontni okvir" structure: razredi 0-9.
+    -->
+    <data noupdate="1">
+
+        <!-- ============================================================== -->
+        Razred 0 — Osnovna sredstva (Fixed assets) — balance_sheet / asset
+        <!-- ============================================================== -->
+        <record id="srs_acc_000" model="l10n_si.srs.account">
+            <field name="code">000</field>
+            <field name="name">Nefinancne nepremičnine</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.I.1</field>
+            <field name="account_class">0</field>
+        </record>
+        <record id="srs_acc_010" model="l10n_si.srs.account">
+            <field name="code">010</field>
+            <field name="name">Nehmatična sredstva</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.I.1</field>
+            <field name="account_class">0</field>
+        </record>
+        <record id="srs_acc_020" model="l10n_si.srs.account">
+            <field name="code">020</field>
+            <field name="name">Osnovna sredstva v pripravi</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.I.6</field>
+            <field name="account_class">0</field>
+        </record>
+        <record id="srs_acc_021" model="l10n_si.srs.account">
+            <field name="code">021</field>
+            <field name="name">Stavbe</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.I.2</field>
+            <field name="account_class">0</field>
+        </record>
+        <record id="srs_acc_025" model="l10n_si.srs.account">
+            <field name="code">025</field>
+            <field name="name">Postrojenja in naprave</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.I.2</field>
+            <field name="account_class">0</field>
+        </record>
+        <record id="srs_acc_030" model="l10n_si.srs.account">
+            <field name="code">030</field>
+            <field name="name">Stroji in oprema</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.I.2</field>
+            <field name="account_class">0</field>
+        </record>
+        <record id="srs_acc_040" model="l10n_si.srs.account">
+            <field name="code">040</field>
+            <field name="name">Vozila</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.I.2</field>
+            <field name="account_class">0</field>
+        </record>
+        <record id="srs_acc_050" model="l10n_si.srs.account">
+            <field name="code">050</field>
+            <field name="name">Inventarna oprema</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.I.2</field>
+            <field name="account_class">0</field>
+        </record>
+        <record id="srs_acc_060" model="l10n_si.srs.account">
+            <field name="code">060</field>
+            <field name="name">Biološka sredstva</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.I.2</field>
+            <field name="account_class">0</field>
+        </record>
+        <record id="srs_acc_070" model="l10n_si.srs.account">
+            <field name="code">070</field>
+            <field name="name">Dolgoročne finančne naložbe</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.I.3</field>
+            <field name="account_class">0</field>
+        </record>
+        <record id="srs_acc_080" model="l10n_si.srs.account">
+            <field name="code">080</field>
+            <field name="name">Pozitivne goodwill razlike</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.I.4</field>
+            <field name="account_class">0</field>
+        </record>
+        <record id="srs_acc_090" model="l10n_si.srs.account">
+            <field name="code">090</field>
+            <field name="name">Dolgoročne aktivne časovne razmejitve</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.I.5</field>
+            <field name="account_class">0</field>
+        </record>
+
+        <!-- ============================================================== -->
+        Razred 1 — Zaloge (Inventories) — balance_sheet / asset
+        <!-- ============================================================== -->
+        <record id="srs_acc_110" model="l10n_si.srs.account">
+            <field name="code">110</field>
+            <field name="name">Material</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.1</field>
+            <field name="account_class">1</field>
+        </record>
+        <record id="srs_acc_120" model="l10n_si.srs.account">
+            <field name="code">120</field>
+            <field name="name">Nedokončana proizvodnja</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.1</field>
+            <field name="account_class">1</field>
+        </record>
+        <record id="srs_acc_130" model="l10n_si.srs.account">
+            <field name="code">130</field>
+            <field name="name">Polizdelki</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.1</field>
+            <field name="account_class">1</field>
+        </record>
+        <record id="srs_acc_140" model="l10n_si.srs.account">
+            <field name="code">140</field>
+            <field name="name">Končni izdelki</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.1</field>
+            <field name="account_class">1</field>
+        </record>
+        <record id="srs_acc_150" model="l10n_si.srs.account">
+            <field name="code">150</field>
+            <field name="name">Trgovsko blago</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.1</field>
+            <field name="account_class">1</field>
+        </record>
+        <record id="srs_acc_160" model="l10n_si.srs.account">
+            <field name="code">160</field>
+            <field name="name">Predhodno plačani stroški</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.1</field>
+            <field name="account_class">1</field>
+        </record>
+
+        <!-- ============================================================== -->
+        Razred 2 — Terjatve (Receivables) — balance_sheet / asset
+        <!-- ============================================================== -->
+        <record id="srs_acc_210" model="l10n_si.srs.account">
+            <field name="code">210</field>
+            <field name="name">Terjatve iz prodaje</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.2</field>
+            <field name="account_class">2</field>
+        </record>
+        <record id="srs_acc_220" model="l10n_si.srs.account">
+            <field name="code">220</field>
+            <field name="name">Terjatve iz naslova prejetih vavčerjev</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.2</field>
+            <field name="account_class">2</field>
+        </record>
+        <record id="srs_acc_230" model="l10n_si.srs.account">
+            <field name="code">230</field>
+            <field name="name">Terjatve znotraj skupine</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.2</field>
+            <field name="account_class">2</field>
+        </record>
+        <record id="srs_acc_240" model="l10n_si.srs.account">
+            <field name="code">240</field>
+            <field name="name">Druge terjatve</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.2</field>
+            <field name="account_class">2</field>
+        </record>
+        <record id="srs_acc_250" model="l10n_si.srs.account">
+            <field name="code">250</field>
+            <field name="name">Finančne terjatve</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.3</field>
+            <field name="account_class">2</field>
+        </record>
+        <record id="srs_acc_260" model="l10n_si.srs.account">
+            <field name="code">260</field>
+            <field name="name">Kratkoročne finančne naložbe</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.3</field>
+            <field name="account_class">2</field>
+        </record>
+        <record id="srs_acc_270" model="l10n_si.srs.account">
+            <field name="code">270</field>
+            <field name="name">Kratkoročne aktivne časovne razmejitve</field>
+            <field name="user_type">asset</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">A.II.5</field>
+            <field name="account_class">2</field>
+        </record>
+
+        <!-- ============================================================== -->
+        Razred 3 — Kapital (Equity) — balance_sheet / equity
+        <!-- ============================================================== -->
+        <record id="srs_acc_310" model="l10n_si.srs.account">
+            <field name="code">310</field>
+            <field name="name">Osnovni kapital</field>
+            <field name="user_type">equity</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">C.I</field>
+            <field name="account_class">3</field>
+        </record>
+        <record id="srs_acc_320" model="l10n_si.srs.account">
+            <field name="code">320</field>
+            <field name="name">Lastniški kapital s.p.</field>
+            <field name="user_type">equity</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">C.I</field>
+            <field name="account_class">3</field>
+        </record>
+        <record id="srs_acc_330" model="l10n_si.srs.account">
+            <field name="code">330</field>
+            <field name="name">Rezervni kapital</field>
+            <field name="user_type">equity</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">C.III</field>
+            <field name="account_class">3</field>
+        </record>
+        <record id="srs_acc_340" model="l10n_si.srs.account">
+            <field name="code">340</field>
+            <field name="name">Preneseni čisti dobiček</field>
+            <field name="user_type">equity</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">C.V</field>
+            <field name="account_class">3</field>
+        </record>
+        <record id="srs_acc_350" model="l10n_si.srs.account">
+            <field name="code">350</field>
+            <field name="name">Čisti dobiček/izguba poslovnega leta</field>
+            <field name="user_type">equity</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">C.VI</field>
+            <field name="account_class">3</field>
+        </record>
+        <record id="srs_acc_360" model="l10n_si.srs.account">
+            <field name="code">360</field>
+            <field name="name">Kapitalske rezerve</field>
+            <field name="user_type">equity</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">C.II</field>
+            <field name="account_class">3</field>
+        </record>
+        <record id="srs_acc_370" model="l10n_si.srs.account">
+            <field name="code">370</field>
+            <field name="name">Rezerve iz prevrednotenja</field>
+            <field name="user_type">equity</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">C.IV</field>
+            <field name="account_class">3</field>
+        </record>
+
+        <!-- ============================================================== -->
+        Razred 4 — Obveznosti (Liabilities) — balance_sheet / liability
+        <!-- ============================================================== -->
+        <record id="srs_acc_410" model="l10n_si.srs.account">
+            <field name="code">410</field>
+            <field name="name">Obveznosti do dobaviteljev</field>
+            <field name="user_type">liability</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">D.II</field>
+            <field name="account_class">4</field>
+        </record>
+        <record id="srs_acc_420" model="l10n_si.srs.account">
+            <field name="code">420</field>
+            <field name="name">Obveznosti znotraj skupine</field>
+            <field name="user_type">liability</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">D.II</field>
+            <field name="account_class">4</field>
+        </record>
+        <record id="srs_acc_430" model="l10n_si.srs.account">
+            <field name="code">430</field>
+            <field name="name">Druge obveznosti</field>
+            <field name="user_type">liability</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">D.II</field>
+            <field name="account_class">4</field>
+        </record>
+        <record id="srs_acc_440" model="l10n_si.srs.account">
+            <field name="code">440</field>
+            <field name="name">Kratkoročne pasivne časovne razmejitve</field>
+            <field name="user_type">liability</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">E</field>
+            <field name="account_class">4</field>
+        </record>
+        <record id="srs_acc_450" model="l10n_si.srs.account">
+            <field name="code">450</field>
+            <field name="name">Davčne obveznosti</field>
+            <field name="user_type">liability</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">D.II</field>
+            <field name="account_class">4</field>
+        </record>
+        <record id="srs_acc_460" model="l10n_si.srs.account">
+            <field name="code">460</field>
+            <field name="name">Dolgoročne obveznosti</field>
+            <field name="user_type">liability</field>
+            <field name="srs_category">balance_sheet</field>
+            <field name="balance_sheet_position">D.I</field>
+            <field name="account_class">4</field>
+        </record>
+
+        <!-- ============================================================== -->
+        Razred 5 — Prihodki (Income) — income_statement / income
+        <!-- ============================================================== -->
+        <record id="srs_acc_500" model="l10n_si.srs.account">
+            <field name="code">500</field>
+            <field name="name">Prihodki od prodaje</field>
+            <field name="user_type">income</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">I.A</field>
+            <field name="account_class">5</field>
+        </record>
+        <record id="srs_acc_510" model="l10n_si.srs.account">
+            <field name="code">510</field>
+            <field name="name">Prihodki od prodaje blaga</field>
+            <field name="user_type">income</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">I.A</field>
+            <field name="account_class">5</field>
+        </record>
+        <record id="srs_acc_520" model="l10n_si.srs.account">
+            <field name="code">520</field>
+            <field name="name">Prihodki od prodaje proizvodov in storitev</field>
+            <field name="user_type">income</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">I.A</field>
+            <field name="account_class">5</field>
+        </record>
+        <record id="srs_acc_530" model="l10n_si.srs.account">
+            <field name="code">530</field>
+            <field name="name">Drugi poslovni prihodki</field>
+            <field name="user_type">income</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">I.B</field>
+            <field name="account_class">5</field>
+        </record>
+        <record id="srs_acc_540" model="l10n_si.srs.account">
+            <field name="code">540</field>
+            <field name="name">Prihodki od prodaje osnovnih sredstev</field>
+            <field name="user_type">income</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">I.B</field>
+            <field name="account_class">5</field>
+        </record>
+        <record id="srs_acc_550" model="l10n_si.srs.account">
+            <field name="code">550</field>
+            <field name="name">Prihodki od podjetij v skupini</field>
+            <field name="user_type">income</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">II</field>
+            <field name="account_class">5</field>
+        </record>
+        <record id="srs_acc_560" model="l10n_si.srs.account">
+            <field name="code">560</field>
+            <field name="name">Finančni prihodki</field>
+            <field name="user_type">income</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">III</field>
+            <field name="account_class">5</field>
+        </record>
+
+        <!-- ============================================================== -->
+        Razred 6 — Stroški (Expenses by nature) — income_statement / expense
+        <!-- ============================================================== -->
+        <record id="srs_acc_600" model="l10n_si.srs.account">
+            <field name="code">600</field>
+            <field name="name">Stroški materiala</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">V.A</field>
+            <field name="account_class">6</field>
+        </record>
+        <record id="srs_acc_610" model="l10n_si.srs.account">
+            <field name="code">610</field>
+            <field name="name">Stroški storitev</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">V.B</field>
+            <field name="account_class">6</field>
+        </record>
+        <record id="srs_acc_620" model="l10n_si.srs.account">
+            <field name="code">620</field>
+            <field name="name">Stroški dela</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">V.C</field>
+            <field name="account_class">6</field>
+        </record>
+        <record id="srs_acc_630" model="l10n_si.srs.account">
+            <field name="code">630</field>
+            <field name="name">Stroški amortizacije</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">V.D</field>
+            <field name="account_class">6</field>
+        </record>
+        <record id="srs_acc_640" model="l10n_si.srs.account">
+            <field name="code">640</field>
+            <field name="name">Drugi stroški po naravi</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">V.E</field>
+            <field name="account_class">6</field>
+        </record>
+        <record id="srs_acc_650" model="l10n_si.srs.account">
+            <field name="code">650</field>
+            <field name="name">Drugi poslovni odhodki</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">V.F</field>
+            <field name="account_class">6</field>
+        </record>
+        <record id="srs_acc_660" model="l10n_si.srs.account">
+            <field name="code">660</field>
+            <field name="name">Finančni odhodki</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">VI</field>
+            <field name="account_class">6</field>
+        </record>
+        <record id="srs_acc_670" model="l10n_si.srs.account">
+            <field name="code">670</field>
+            <field name="name">Stroški davkov in drugih dajatev</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">V.G</field>
+            <field name="account_class">6</field>
+        </record>
+
+        <!-- ============================================================== -->
+        Razred 7 — Stroški po namenu (Expenses by function)
+        <!-- ============================================================== -->
+        <record id="srs_acc_700" model="l10n_si.srs.account">
+            <field name="code">700</field>
+            <field name="name">Nabavna vrednost prodanega blaga</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">II.A</field>
+            <field name="account_class">7</field>
+        </record>
+        <record id="srs_acc_710" model="l10n_si.srs.account">
+            <field name="code">710</field>
+            <field name="name">Stroški storitev po namenu</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">II.B</field>
+            <field name="account_class">7</field>
+        </record>
+        <record id="srs_acc_720" model="l10n_si.srs.account">
+            <field name="code">720</field>
+            <field name="name">Stroški materiala po namenu</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">II.C</field>
+            <field name="account_class">7</field>
+        </record>
+        <record id="srs_acc_730" model="l10n_si.srs.account">
+            <field name="code">730</field>
+            <field name="name">Stroški amortizacije po namenu</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">II.D</field>
+            <field name="account_class">7</field>
+        </record>
+
+        <!-- ============================================================== -->
+        Razred 8 — Finančni prihodki/odhodki po namenu (year_end / mixed)
+        <!-- ============================================================== -->
+        <record id="srs_acc_810" model="l10n_si.srs.account">
+            <field name="code">810</field>
+            <field name="name">Finančni prihodki po namenu</field>
+            <field name="user_type">income</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">III</field>
+            <field name="account_class">8</field>
+        </record>
+        <record id="srs_acc_820" model="l10n_si.srs.account">
+            <field name="code">820</field>
+            <field name="name">Finančni odhodki po namenu</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">income_statement</field>
+            <field name="balance_sheet_position">IV</field>
+            <field name="account_class">8</field>
+        </record>
+
+        <!-- ============================================================== -->
+        Razred 9 — Izredni, davki, čisti dobiček/izguba (year_end)
+        <!-- ============================================================== -->
+        <record id="srs_acc_900" model="l10n_si.srs.account">
+            <field name="code">900</field>
+            <field name="name">Izredni prihodki</field>
+            <field name="user_type">income</field>
+            <field name="srs_category">year_end</field>
+            <field name="balance_sheet_position">VII</field>
+            <field name="account_class">9</field>
+        </record>
+        <record id="srs_acc_910" model="l10n_si.srs.account">
+            <field name="code">910</field>
+            <field name="name">Izredni odhodki</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">year_end</field>
+            <field name="balance_sheet_position">VIII</field>
+            <field name="account_class">9</field>
+        </record>
+        <record id="srs_acc_990" model="l10n_si.srs.account">
+            <field name="code">990</field>
+            <field name="name">Davek iz dobička</field>
+            <field name="user_type">expense</field>
+            <field name="srs_category">year_end</field>
+            <field name="balance_sheet_position">VIII</field>
+            <field name="account_class">9</field>
+        </record>
+        <record id="srs_acc_999" model="l10n_si.srs.account">
+            <field name="code">999</field>
+            <field name="name">Čisti dobiček/izguba poslovnega leta</field>
+            <field name="user_type">equity</field>
+            <field name="srs_category">year_end</field>
+            <field name="balance_sheet_position">C.VI</field>
+            <field name="account_class">9</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================ -->
+    <!-- Tree view                                                    -->
+    <!-- ============================================================ -->
+    <record id="view_l10n_hr_pdv_report_tree" model="ir.ui.view">
+        <field name="name">l10n_hr.pdv.report.tree</field>
+        <field name="model">l10n_hr.pdv.report</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'accepted'"
+                  decoration-danger="state == 'rejected'"
+                  decoration-info="state == 'computed'">
+                <field name="name"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="period_type"/>
+                <field name="year"/>
+                <field name="period_number"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="deadline"/>
+                <field name="output_vat_total"/>
+                <field name="input_vat_total"/>
+                <field name="vat_payable"/>
+                <field name="vat_refundable"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- Form view                                                    -->
+    <!-- ============================================================ -->
+    <record id="view_l10n_hr_pdv_report_form" model="ir.ui.view">
+        <field name="name">l10n_hr.pdv.report.form</field>
+        <field name="model">l10n_hr.pdv.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_compute" type="object"
+                            string="Izračunaj"
+                            class="oe_highlight"
+                            invisible="state in ('submitted', 'accepted')"/>
+                    <button name="action_generate_xml" type="object"
+                            string="Generiraj XML"
+                            invisible="state in ('draft', 'submitted', 'accepted')"/>
+                    <button name="action_download_xml" type="object"
+                            string="Preuzmi XML"
+                            invisible="not eporezna_xml"/>
+                    <button name="action_set_accepted" type="object"
+                            string="Označi prihvaćeno"
+                            invisible="state != 'submitted'"/>
+                    <button name="action_set_rejected" type="object"
+                            string="Označi odbijeno"
+                            invisible="state != 'submitted'"/>
+                    <button name="action_reset_to_draft" type="object"
+                            string="Vrati u nacrt"
+                            invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,computed,submitted,accepted"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_lines" type="object"
+                                class="oe_stat_button" icon="fa-list">
+                            <field name="move_count" widget="statinfo"
+                                   string="Dokumenti"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Razdoblje">
+                            <field name="period_type" readonly="state != 'draft'"/>
+                            <field name="year" readonly="state != 'draft'"/>
+                            <field name="period_number" readonly="state != 'draft'"/>
+                            <field name="date_from" readonly="1"/>
+                            <field name="date_to" readonly="1"/>
+                            <field name="deadline" readonly="1"/>
+                        </group>
+                        <group string="Tvrtka">
+                            <field name="company_id"
+                                   groups="base.group_multi_company"
+                                   readonly="state != 'draft'"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="submission_ref" readonly="1"/>
+                            <field name="eporezna_xml_generated_at" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Izlazni PDV" name="output_vat">
+                            <group>
+                                <group>
+                                    <field name="output_vat_25"/>
+                                    <field name="output_vat_13"/>
+                                    <field name="output_vat_5"/>
+                                </group>
+                                <group>
+                                    <field name="output_vat_total"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Ulazni PDV" name="input_vat">
+                            <group>
+                                <group>
+                                    <field name="input_vat_25"/>
+                                    <field name="input_vat_13"/>
+                                    <field name="input_vat_5"/>
+                                </group>
+                                <group>
+                                    <field name="input_vat_total"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Posebne kategorije" name="special">
+                            <group>
+                                <group>
+                                    <field name="reverse_charge_amount"/>
+                                    <field name="eu_acquisitions"/>
+                                    <field name="eu_supplies"/>
+                                </group>
+                                <group>
+                                    <field name="vat_payable"/>
+                                    <field name="vat_refundable"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="ePorezna XML" name="xml">
+                            <field name="eporezna_xml"
+                                   widget="ace" options="{'mode': 'xml'}"
+                                   readonly="1"/>
+                        </page>
+                        <page string="Stavke Knjige PDV-a" name="lines">
+                            <field name="line_ids" readonly="1">
+                                <tree>
+                                    <field name="date"/>
+                                    <field name="name"/>
+                                    <field name="partner_id"/>
+                                    <field name="direction"/>
+                                    <field name="base_25"/>
+                                    <field name="tax_25"/>
+                                    <field name="base_13"/>
+                                    <field name="tax_13"/>
+                                    <field name="base_5"/>
+                                    <field name="tax_5"/>
+                                    <field name="base_exempt"/>
+                                    <field name="tax_total"/>
+                                    <field name="is_reverse_charge" optional="hide"/>
+                                    <field name="is_eu_acquisition" optional="hide"/>
+                                    <field name="is_eu_supply" optional="hide"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- Search view                                                  -->
+    <!-- ============================================================ -->
+    <record id="view_l10n_hr_pdv_report_search" model="ir.ui.view">
+        <field name="name">l10n_hr.pdv.report.search</field>
+        <field name="model">l10n_hr.pdv.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="year"/>
+                <field name="period_number"/>
+                <filter name="filter_draft" string="Nacrt"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_computed" string="Izračunato"
+                        domain="[('state', '=', 'computed')]"/>
+                <filter name="filter_submitted" string="Poslano"
+                        domain="[('state', '=', 'submitted')]"/>
+                <filter name="filter_accepted" string="Prihvaćeno"
+                        domain="[('state', '=', 'accepted')]"/>
+                <filter name="filter_rejected" string="Odbijeno"
+                        domain="[('state', '=', 'rejected')]"/>
+                <separator/>
+                <filter name="filter_monthly" string="Mjesečno"
+                        domain="[('period_type', '=', 'monthly')]"/>
+                <filter name="filter_quarterly" string="Kvartalno"
+                        domain="[('period_type', '=', 'quarterly')]"/>
+                <separator/>
+                <filter name="filter_overdue" string="Rok prekoračen"
+                        domain="[('deadline', '&lt;', context_today().strftime('%Y-%m-%d')), ('state', 'not in', ('accepted', 'submitted'))]"/>
+                <group expand="0" string="Grupiraj po">
+                    <filter name="group_company" string="Tvrtka"
+                            context="{'group_by': 'company_id'}"/>
+                    <filter name="group_period_type" string="Tip razdoblja"
+                            context="{'group_by': 'period_type'}"/>
+                    <filter name="group_year" string="Godina"
+                            context="{'group_by': 'year'}"/>
+                    <filter name="group_state" string="Status"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- Action                                                       -->
+    <!-- ============================================================ -->
+    <record id="action_l10n_hr_pdv_report" model="ir.actions.act_window">
+        <field name="name">PDV izvještaji</field>
+        <field name="res_model">l10n_hr.pdv.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_l10n_hr_pdv_report_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Kreirajte novi PDV izvještaj
+            </p>
+            <p>
+                Izvještaj se može generirati mjesečno ili kvartalno,
+                a zatim izvesti kao ePorezna XML datoteka ili ispisati
+                kao PDF obrazac.
+            </p>
+        </field>
+    </record>
+</odoo>

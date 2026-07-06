@@ -145,7 +145,7 @@ class HotelReservation(models.Model):
 
     def action_no_show(self):
         """Mark guest as not arrived - room becomes available again."""
-        for res in res:
+        for res in self:
             res.state = 'no_show'
             if res.room_id.state == 'reserved':
                 res.room_id.state = 'available'

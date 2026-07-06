@@ -30,6 +30,7 @@ Yield management za hotele:
     'data': [
         'security/ir.model.access.csv',
         'data/revenue_data.xml',
+        'data/ir_cron_data.xml',
         'views/l10n_si_rate_plan_views.xml',
         'views/l10n_si_rate_calendar_views.xml',
         'views/l10n_si_occupancy_forecast_views.xml',

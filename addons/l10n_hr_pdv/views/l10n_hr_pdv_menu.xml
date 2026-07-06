@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_l10n_hr_pdv_root" name="HR PDV" sequence="82"/>
+    <menuitem id="menu_l10n_hr_pdv_reports" name="PDV izvještaji"
+              parent="menu_l10n_hr_pdv_root"
+              action="action_l10n_hr_pdv_report" sequence="10"/>
+    <!-- Knjiga PDV-a and PDV obrazac PDFs are bound to the model via
+         binding_model_id and appear in the form's "Ispis" menu. -->
+</odoo>
