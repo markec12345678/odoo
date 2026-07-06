@@ -5,6 +5,50 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.11.0] — 2026-07-06
+
+### Added — Test coverage expansion (45 auto-generated test files)
+
+- Batch test generator script (`scripts/generate_tests.py`): scans module models, generates test files automatically
+- 45 new `test_auto.py` files covering 100+ models across 45 modules
+- Test coverage: **71/75 modules** (95%) with ORM tests, **77 ORM test files** total
+- New manual tests: camping (13), sequence (7), farm tourism (9), gift voucher (5), accounting (8), housekeeping (6), wellness (7), event venue (10), loyalty (9), tourist tax (8)
+
+### Added — AI Concierge in standalone test runner
+
+- 17 new assertions for LLM clients (ZAI, OpenAI, Anthropic, Local)
+- Factory pattern, message model, auth errors, rate limits, Bearer/x-api-key headers
+- Anthropic-specific: system field extraction, x-api-key (not Bearer)
+- Local LLM: custom endpoint, no-auth mode
+- Total standalone: **79/79 unit + 22/22 E2E = 101 assertions**
+
+### Added — Documentation
+
+- 71 auto-generated README.md files (100% coverage — all 75 modules have README)
+- `ruff.toml` configuration (py310, 120 char, Odoo conventions)
+- `.pre-commit-config.yaml` (ruff, black, isort, trailing whitespace, XML/YAML check)
+- `CONTRIBUTING.md` (open-source contribution guide with conventions)
+- `SECURITY.md` (vulnerability reporting, certificate handling, GDPR compliance)
+- `PRODUCTION_CHECKLIST.md` (SI+HR compliance, security, performance)
+- `docs/RECEPTIONIST_MANUAL.md` (Slovenian user guide)
+- GitHub issue templates (bug report, feature request) + PR template
+- `.github/workflows/deploy.yml` (auto-deploy to staging)
+
+### Fixed
+
+- CI workflow: all jobs now validate both l10n_si_* and l10n_hr_* modules
+- `l10n_hr_kuna`: added missing `installable: True` to manifest
+- Ruff lint: fixed F541 (f-string without placeholders), F821 (undefined name `_`), F821 (undefined name `fields`)
+- `l10n_si_event_venue`: added missing `_` import
+- `l10n_si_hr_roster`: added missing `_` import
+- `l10n_si_review_management`: added missing `_` and `fields` imports
+
+### Changed
+
+- README badge: 70 → 75 modules, 74+ → 79+ tests
+- CI jobs: merged SI+HR module count into single job (≥70 total)
+- Standalone test runner: added AI Concierge (17 tests) and eVisitor (10 tests)
+
 ## [19.0.10.0] — 2026-07-06
 
 ### Added — Croatian localization (3 new modules)
