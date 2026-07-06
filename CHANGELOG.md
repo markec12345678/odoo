@@ -1,9 +1,74 @@
 # Changelog
 
-All notable changes to the custom `l10n_si_*` modules are documented in this file.
+All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [19.0.10.0] — 2026-07-06
+
+### Added — Croatian localization (3 new modules)
+
+- **l10n_hr_fiscal** — Croatian CISF Fiskalizacija 2.0: ZKI generation (MD5 per CISF spec v1.8), JIR submission via SOAP with FINA mTLS cert, QR code on invoice, business premise registration (poslovniProstor), audit log, cron retry. Endpoints: DEMO (cistest.apis-it.hr) / PROD (cis.porezna-uprava.gov.hr).
+- **l10n_hr_evisitor** — Croatian eVisitor (HTZ) REST API client: guest check-in/check-out, tourist tax calculation (boravišna pristojba), accommodation registration with HTZ ID, multi-environment (TEST/PROD), cron retry, audit log.
+- **l10n_hr_pdv** — Croatian PDV (VAT) reporting: Knjiga PDV-a (input/output VAT by rate 25%/13%/5%), PDV obrazac PDF, ePorezna XML export, EU partner detection (reverse charge + Intra-EU), monthly/quarterly periods, auto-generation cron.
+
+### Added — Slovenian eTurizem module
+
+- **l10n_si_etourism** — AJPES eTurizem SOAP client: guest registration (prijava) on hotel/camping check-in, deregistration (odjava) on check-out, monthly report, SI-PASS authentication, audit log (5-year retention), cron retry. Legal basis: ZPPreb-1 (UR. l. RS š. 81/16).
+
+### Added — AI Concierge LLM integration
+
+- **l10n_si_ai_concierge** — AI Concierge now supports 4 LLM backends: ZAI (GLM-4), OpenAI (GPT-4), Anthropic (Claude), Local LLM (Ollama/vLLM). Automatic fallback to rule-based responses on auth/rate-limit/network errors. Knowledge base context injection.
+
+### Added — Channel Manager API clients
+
+- **l10n_si_channel_manager** — Real API clients for Booking.com (XML/JSON API v2.0, Basic Auth) and Airbnb (REST API v2, OAuth2 Bearer). Push availability/rates, pull reservations, webhook signature verification (HMAC-SHA256).
+
+### Added — POS FURS integration
+
+- **l10n_si_pos_advanced** — X/Z report wizard (interim + daily close), POS receipt PDF with ZOI/EOR/QR code, cron retry for failed FURS submissions, SI invoice numbering (PREMISE-DEVICE-YEAR-SEQ), room charge to hotel folio, tourist tax auto-add.
+
+### Added — Revenue Management automation
+
+- **l10n_si_revenue_management** — Daily cron generates rate calendar for next 90 days, 4-hour cron recomputes rates based on occupancy changes. 24 tests for yield management algorithm (seasonal, weekday, occupancy, last-minute, early-bird, LOS factors).
+
+### Added — SRS chart of accounts
+
+- **l10n_si_accounting_advanced** — 41 Slovenian SRS accounts per SRS 99 (Kontni načrt za podjetja, UR. l. RS š. 118/05), covering all 10 account classes (0-9). Bilanca stanja + Izid poslovanja QWeb PDF reports. `l10n_si.srs.account` reference model linked to `account.account`.
+
+### Added — eDavki XML generators
+
+- **l10n_si_reports** — REK-1 (Registracija kupcev) monthly B2B VAT report XML generator per eDavki schema v1.3. M4 (Obračun akontacije dohodnine) monthly income tax XML generator per eDavki schema v2.1. Quick actions for current month generation.
+
+### Added — Tests (74 assertions)
+
+- 52 standalone unit tests (`.github/scripts/run_unit_tests.py`): ZOI/ZKI algorithms, AJPES/CISF/eVisitor clients, Channel Manager, HTTP error mapping
+- 22 E2E workflow tests (`.github/scripts/run_e2e_tests.py`): full regulatory lifecycle (SI FURS + AJPES, HR CISF + eVisitor)
+- 13 Odoo ORM test files: fiscal ZOI, hotel lifecycle, restaurant, KDS, POS, revenue management
+
+### Added — Infrastructure
+
+- `docker-compose.yml` + `odoo.conf` + `DOCKER_QUICKSTART.md`
+- `scripts/backup.sh` + `scripts/restore.sh` (daily backup with 30-day retention)
+- `PRODUCTION_CHECKLIST.md` (SI+HR compliance, security, performance)
+- `docs/RECEPTIONIST_MANUAL.md` (Slovenian user guide for reception staff)
+- `.pre-commit-config.yaml` (ruff, black, isort, trailing whitespace)
+- `CONTRIBUTING.md` (open-source contribution guide)
+- GitHub issue templates (bug report, feature request) + PR template
+- Demo data for hotel (4 partners, 8 rooms, 3 reservations), restaurant (6 tables, 13 menu items), camping (5 parcels, 2 reservations)
+
+### Changed
+
+- README.md updated: title "Slovenian & Croatian Tourism & Hospitality Suite", badges (75 modules, 74+ tests, SI|HR), SI vs HR comparison table
+- CI workflow: added hr-module-count, unit-tests, e2e-tests jobs (8 total)
+- .gitignore: added certs/*.p12, certs/*.pfx, filestore/, *.dump, *.sql
+
+### Fixed
+
+- `l10n_si_hotel/models/hotel_reservation.py:148`: `for res in res:` → `for res in self:` (NameError on no_show action)
+- `l10n_si_camping`: tourist tax now auto-added on check-out via `l10n_si_tourist_tax` integration
+- `l10n_si_etourism/models/ajpes_client.py`: `_build_guest_element` handles missing country fields (False/None) gracefully
 
 ## [19.0.8.0] — 2026-06-23
 

@@ -1,178 +1,159 @@
-# Contributing to Odoo Slovenian Tourism Suite
+# Contributing to SI/HR Odoo Localization
 
-Thank you for your interest in contributing! This document covers guidelines for contributing to the 55 custom `l10n_si_*` modules.
+Hvala za zanimanje za sodelovanje! 🇸🇮🇭🇷
 
-## Quick Start
+## 🚀 Hitri začetek
 
+### 1. Fork & clone
 ```bash
-# Fork and clone
-git clone https://github.com/YOUR_USERNAME/odoo.git
+git clone git@github.com:your-username/odoo.git
 cd odoo
-git remote add upstream https://github.com/markec12345678/odoo.git
-
-# Create a feature branch
-git checkout -b feature/my-new-feature 19.0
-
-# Make changes, test, commit
-python3 -m py_compile addons/l10n_si_my_module/models/*.py
-ruff check addons/l10n_si_my_module/
-git add -A
-git commit -m "[ADD] l10n_si_my_module: new feature description"
-
-# Push and create PR
-git push origin feature/my-new-feature
+git checkout 19.0
+git remote add upstream git@github.com:markec12345678/odoo.git
 ```
 
-## Branching Strategy
-
-| Branch | Purpose |
-|--------|---------|
-| `19.0` | Main development branch (stable) |
-| `feature/*` | New features (merge into `19.0`) |
-| `fix/*` | Bug fixes (merge into `19.0`) |
-| `hotfix/*` | Critical production fixes (merge into `19.0`) |
-
-## Coding Standards
-
-### Python
-
-- Follow [Odoo coding guidelines](https://www.odoo.com/documentation/19.0/developer/reference/coding_guidelines.html)
-- Target Python 3.10+ (use `from __future__ import annotations` where needed)
-- Use `ruff` for linting (config in `ruff.toml`):
-
+### 2. Setup development environment
 ```bash
-ruff check addons/l10n_si_*/
-ruff format addons/l10n_si_*/
+pip install pre-commit ruff black isort
+pre-commit install
+docker compose up -d  # PostgreSQL + Odoo 19
 ```
 
-### XML
-
-- Always validate with `xml.etree.ElementTree` before committing
-- Use `&amp;` `&lt;` `&gt;` for special characters in XML attributes
-- Escape `&` in domain filters: `[('field', '&amp;', 'value')]`
-
-### Module structure
-
+### 3. Create a branch
+```bash
+git checkout -b feature/your-feature-name
 ```
-l10n_si_my_module/
-├── __init__.py
-├── __manifest__.py
-├── models/
-│   ├── __init__.py
-│   └── my_model.py
-├── views/
-│   └── my_model_views.xml
-├── security/
-│   └── ir.model.access.csv
-├── data/
-│   └── my_data.xml
-├── reports/
-│   └── my_report.xml
-├── wizard/
-│   ├── __init__.py
-│   └── my_wizard.py
-└── tests/
-    ├── __init__.py
-    └── test_my_model.py
+
+### 4. Make changes & test
+```bash
+# Run standalone unit tests
+python3 .github/scripts/run_unit_tests.py
+
+# Run E2E tests
+python3 .github/scripts/run_e2e_tests.py
+
+# Lint
+ruff check addons/l10n_si_* addons/l10n_hr_*
 ```
+
+### 5. Commit & push
+```bash
+git add -A
+git commit -m "[IMP] l10n_si_hotel: add feature X"
+git push origin feature/your-feature-name
+```
+
+### 6. Create Pull Request
+- Base: `19.0`
+- Title: `[IMP/MOV/FIX] module_name: description`
+- Fill in the PR template
+
+---
+
+## 📝 Konvencije
+
+### Commit messages
+Uporabljaj [Odoo commit conventions](https://github.com/odoo/odoo/wiki/Contributing#commit):
+- `[IMP]` — improvement to existing feature
+- `[MOV]` — move code (no logic change)
+- `[FIX]` — bug fix
+- `[ADD]` — new module or feature
+- `[REF]` — refactoring
+- `[DOC]` — documentation only
+
+Format: `[TAG] module_name: short description`
+```
+[IMP] l10n_si_hotel: add folio service line wizard
+[FIX] l10n_si_fiscal: correct ZOI computation for storno invoices
+[ADD] l10n_hr_einvoice: UBL 2.1 B2B e-invoice support
+```
+
+### Module naming
+- SI modules: `l10n_si_<name>` (e.g. `l10n_si_hotel`)
+- HR modules: `l10n_hr_<name>` (e.g. `l10n_hr_fiscal`)
 
 ### Manifest requirements
-
-Every `__manifest__.py` must include:
-
+Every `__manifest__.py` must have:
 ```python
 {
     'name': 'Module Name',
-    'summary': 'One-line description',
-    'version': '19.0.1.0.0',  # Must start with 19.0.
-    'category': 'Category/Subcategory',
+    'version': '19.0.1.0.0',
+    'license': 'LGPL-3',
     'author': 'markec12345678',
     'website': 'https://github.com/markec12345678/odoo',
-    'license': 'LGPL-3',
-    'depends': ['base', 'l10n_si'],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/my_views.xml',
-    ],
+    'depends': [...],
+    'data': [...],
     'installable': True,
-    'application': False,
-    'auto_install': False,
-    'countries': ['si'],  # For SI-specific modules
 }
 ```
 
-### Commit messages
-
-Use Odoo conventional commit prefixes:
-
-| Prefix | Usage |
-|--------|-------|
-| `[ADD]` | New module or major feature |
-| `[IMP]` | Improvement to existing code |
-| `[FIX]` | Bug fix |
-| `[REF]` | Refactoring (no functional change) |
-| `[REM]` | Removal of code/files |
-| `[MOV]` | Moving files (no change) |
-| `[MERGE]` | Merge commit |
-| `[CLA]` | Contributor License Agreement |
-| `[I18N]` | Translation updates |
-
-Example: `[IMP] l10n_si_fiscal: add retry logic for FURS submission failures`
+### Code style
+- Python: Black formatting, 120 char line length
+- Imports: isort with black profile
+- Linting: ruff (F + E9 rules)
+- XML: 4-space indentation, no trailing whitespace
 
 ### Testing
+- Standalone tests: `.github/scripts/run_unit_tests.py`
+- E2E tests: `.github/scripts/run_e2e_tests.py`
+- Odoo ORM tests: `tests/test_*.py` with `@tagged('post_install', '-at_install')`
 
-- Every module with business logic must include tests under `tests/`
-- Use `@tagged('post_install', '-at_install')` for tests that need all modules installed
-- Use `TransactionCase` for unit tests, `HttpCase` for controller tests
-- Run tests before every PR:
+---
 
-```bash
-./odoo-bin -d testdb -i l10n_si_my_module \
-    --test-enable --test-tags=/l10n_si_my_module \
-    --stop-after-init
+## 🏗️ Arhitektura
+
+### Moduli po tierjih
+
+| Tier | Category | Modules |
+|------|----------|---------|
+| 1 | SI Regulatory | l10n_si_fiscal, l10n_si_edi, l10n_si_reports, l10n_si_vat_validation, l10n_si_sequence, l10n_si_bank_parser |
+| 2 | SI Enterprise | l10n_si_hr_payroll_community, l10n_si_sign, l10n_si_bank_sync, l10n_si_helpdesk_simple, l10n_si_fleet |
+| 3 | SI Business ops | l10n_si_approvals, l10n_si_knowledge, l10n_si_customer_statements, etc. |
+| 4 | SI Tourism | l10n_si_hotel, l10n_si_restaurant, l10n_si_camping, l10n_si_farm_tourism, l10n_si_tourist_tax, l10n_si_wellness, l10n_si_event_venue, l10n_si_etourism |
+| 5 | SI Hotel ops | l10n_si_housekeeping, l10n_si_loyalty_program, l10n_si_mobile_app, etc. |
+| 6 | SI Finance | l10n_si_revenue_management, l10n_si_review_management, l10n_si_hr_roster, l10n_si_procurement, l10n_si_budget_planning, l10n_si_accounting_advanced |
+| 7 | SI Guest services | l10n_si_website_booking, l10n_si_payment_gateway, l10n_si_concierge_services, l10n_si_transport, l10n_si_sustainability, l10n_si_data_protection |
+| 8 | SI Accounting | l10n_si_assets, l10n_si_intrastat, l10n_si_vies_return, l10n_si_year_end_close, l10n_si_audit_trail, etc. |
+| HR | Croatian | l10n_hr_fiscal (CISF), l10n_hr_evisitor (HTZ), l10n_hr_pdv (VAT) |
+
+### Odvisnosti
+
+```
+l10n_si (base)
+├── l10n_si_vat_validation
+│   └── l10n_si_sequence
+│       └── l10n_si_fiscal (FURS ZOI/EOR)
+│           ├── l10n_si_hotel (PMS)
+│           │   ├── l10n_si_restaurant
+│           │   ├── l10n_si_camping
+│           │   └── l10n_si_etourism (AJPES)
+│           └── l10n_si_pos_advanced
+├── l10n_si_tourist_tax
+│   └── l10n_si_etourism
+└── l10n_si_accounting_advanced
+    └── l10n_si_reports (REK-1, M4)
+
+l10n_hr (base)
+├── l10n_hr_fiscal (CISF ZKI/JIR)
+│   ├── l10n_hr_evisitor (HTZ REST)
+│   └── l10n_hr_pdv (VAT reporting)
 ```
 
-### Security
+---
 
-- **Never commit** API keys, passwords, `.p12` certificates, or tokens
-- Use `ir.config_parameter` for storing secrets at runtime
-- Always add `security/ir.model.access.csv` with proper ACLs
-- Use `groups=` attribute on fields that contain sensitive data
-- Add record rules for multi-company isolation
+## 🔒 Varnost
 
-## Pull Request Process
+- **Nikoli ne committaj certifikatov** (.p12, .pfx, .pem, .key) — so v `.gitignore`
+- **Nikoli ne committaj gesel** ali API ključev
+- **Nikoli ne committaj produkcijskih podatkov**
 
-1. **Search** existing PRs for duplicates
-2. **Create** a PR against the `19.0` branch
-3. **Describe** what changed and why
-4. **Link** any related issues
-5. **Ensure** all tests pass and `ruff check` is clean
-6. **Request** review from a maintainer
-7. **Address** review feedback
-8. **Squash** commits if requested before merge
+---
 
-## Upstream Synchronization
+## 📞 Kontakt
 
-To sync with upstream Odoo:
+- GitHub Issues: https://github.com/markec12345678/odoo/issues
+- Pull Requests: https://github.com/markec12345678/odoo/pulls
 
-```bash
-git remote add upstream https://github.com/odoo/odoo.git
-git fetch upstream
-git checkout 19.0
-git merge upstream/19.0
-# Resolve conflicts
-./odoo-bin -d testdb -u all --stop-after-init
-# Run tests
-git push origin 19.0
-```
+---
 
-## Reporting Issues
-
-- **Bugs**: Use GitHub Issues with the `bug` label
-- **Feature requests**: Use GitHub Issues with the `enhancement` label
-- **Security vulnerabilities**: Use GitHub private vulnerability reporting (do NOT open public issues)
-- **Questions**: Use GitHub Discussions
-
-## License
-
-By contributing, you agree that your contributions will be licensed under the LGPL-3.0 license.
+Hvala za prispevek! 🙏
