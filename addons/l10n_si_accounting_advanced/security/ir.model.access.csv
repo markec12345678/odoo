@@ -5,3 +5,5 @@ access_l10n_si_srs_report_line_user,l10n_si.srs.report.line.user,model_l10n_si_s
 access_l10n_si_srs_report_line_manager,l10n_si.srs.report.line.manager,model_l10n_si_srs_report_line,account.group_account_manager,1,1,1,1
 access_l10n_si_financial_ratio_user,l10n_si.financial.ratio.user,model_l10n_si_financial_ratio,account.group_account_invoice,1,1,1,0
 access_l10n_si_financial_ratio_manager,l10n_si.financial.ratio.manager,model_l10n_si_financial_ratio,account.group_account_manager,1,1,1,1
+srs_account_invoice,l10n_si.srs.account.invoice,model_l10n_si_srs_account,account.group_account_invoice,1,0,0,0
+srs_account_manager,l10n_si.srs.account.manager,model_l10n_si_srs_account,account.group_account_manager,1,1,1,1

@@ -30,8 +30,11 @@ Napredna knjigovodska poročila za slovenska podjetja:
     'data': [
         'security/ir.model.access.csv',
         'data/accounting_data.xml',
+        'data/srs_accounts_data.xml',
+        'views/l10n_si_srs_account_views.xml',
         'views/l10n_si_srs_report_views.xml',
         'views/l10n_si_financial_ratio_views.xml',
+        'reports/srs_financial_reports.xml',
     ],
     'installable': True,
     'application': True,

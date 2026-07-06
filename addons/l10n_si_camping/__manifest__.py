@@ -46,4 +46,7 @@ Standard: po Smaragd (Emerald) kategorizaciji kampov (Zakon o kategorizaciji)
     'application': True,
     'auto_install': False,
     'countries': ['si'],
+    'demo': [
+        'data/demo_camping_data.xml',
+    ],
 }

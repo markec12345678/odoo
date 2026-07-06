@@ -98,8 +98,11 @@ class L10nSiAiConciergeConversation(models.Model):
     def _call_ai_for_response(self, user_message):
         """Klici AI backend za odgovor.
 
-        V produkciji: implementiraj za pravi backend (OpenAI, Anthropic, ZAI, lokalni)
+        Poskusi pravi LLM (ZAI/OpenAI/Anthropic/Local). Če ni konfiguriran
+        ali pa klic spodleti, uporabi rule-based fallback.
         """
+        from .ai_client import get_ai_client, AIAuthError, AIRequestError, AIRateLimitError, Message
+
         cfg = self.config_id
 
         # Zberi kontekst iz knowledge base
@@ -107,8 +110,37 @@ class L10nSiAiConciergeConversation(models.Model):
         for article in cfg.knowledge_article_ids:
             context += f'\n--- {article.name} ---\n{article.body}\n'
 
-        # V produkciji: pravi klic AI
-        # Za zdaj: preprost rule-based odgovor
+        # Poskusi pravi LLM, če je API ključ konfiguriran
+        if cfg.api_key:
+            try:
+                client = get_ai_client(
+                    backend=cfg.ai_backend,
+                    api_key=cfg.api_key,
+                    model=cfg.model_name,
+                )
+                messages = [Message('system', cfg.system_prompt + context)]
+                recent_msgs = self.message_ids[-10:]
+                for msg in recent_msgs:
+                    if msg.role in ('user', 'assistant'):
+                        messages.append(Message(msg.role, msg.content))
+                messages.append(Message('user', user_message))
+
+                response = client.generate_response(
+                    messages=messages,
+                    temperature=cfg.temperature,
+                    max_tokens=cfg.max_tokens,
+                )
+                return response
+            except AIAuthError as e:
+                _logger.warning('AI auth failed: %s — using rule-based fallback', e)
+            except AIRateLimitError as e:
+                _logger.warning('AI rate limited: %s — using rule-based fallback', e)
+            except AIRequestError as e:
+                _logger.warning('AI request failed: %s — using rule-based fallback', e)
+            except Exception as e:
+                _logger.exception('AI call failed: %s — using rule-based fallback', e)
+
+        # Rule-based fallback (deluje tudi brez AI ključa)
         msg_lower = user_message.lower()
 
         if 'wifi' in msg_lower or 'internet' in msg_lower:

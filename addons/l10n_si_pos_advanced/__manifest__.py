@@ -36,6 +36,7 @@ Integrations:
         'views/pos_config_views.xml',
         'views/pos_session_views.xml',
         'wizard/l10n_si_pos_report_wizard_views.xml',
+        'reports/pos_reports.xml',
     ],
     'installable': True,
     'application': True,

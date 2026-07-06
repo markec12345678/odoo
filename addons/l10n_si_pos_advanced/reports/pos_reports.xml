@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- X/Z Report PDF template -->
+    <template id="report_pos_xz_document">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h1 class="text-center">
+                        <t t-if="doc.report_type == 'x_report'">X-poročilo (meddnevno)</t>
+                        <t t-else="">Z-poročilo (dnevni zaključek)</t>
+                    </h1>
+                    <h2 class="text-center text-muted">
+                        <span t-esc="doc.date_from.strftime('%d.%m.%Y %H:%M')"/> — <span t-esc="doc.date_to.strftime('%d.%m.%Y %H:%M')"/>
+                    </h2>
+                    <p class="text-center text-muted">
+                        <t t-if="doc.config_id">
+                            POS: <span t-field="doc.config_id.name"/>
+                        </t>
+                    </p>
+                    <div class="mt-4"/>
+                    <h3>Skupaj</h3>
+                    <table class="table table-bordered table-sm">
+                        <tbody>
+                            <tr><td style="width: 50%">Število računov</td><td class="text-right"><span t-esc="doc.total_orders"/></td></tr>
+                            <tr><td>Skupni promet (z DDV)</td><td class="text-right"><span t-esc="doc.total_amount" t-options='{"widget": "monetary"}'/></td></tr>
+                            <tr><td>DDV skupaj</td><td class="text-right"><span t-esc="doc.total_vat" t-options='{"widget": "monetary"}'/></td></tr>
+                            <tr t-if="doc.total_tourist_tax > 0"><td>Turistična taksa</td><td class="text-right"><span t-esc="doc.total_tourist_tax" t-options='{"widget": "monetary"}'/></td></tr>
+                        </tbody>
+                    </table>
+                    <h3 class="mt-4">Plačila po metodah</h3>
+                    <table class="table table-bordered table-sm">
+                        <thead><tr class="table-active"><th>Metoda</th><th class="text-right">Znesek</th></tr></thead>
+                        <tbody>
+                            <tr><td>Gotovina</td><td class="text-right"><span t-esc="doc.total_cash" t-options='{"widget": "monetary"}'/></td></tr>
+                            <tr><td>Kartica</td><td class="text-right"><span t-esc="doc.total_card" t-options='{"widget": "monetary"}'/></td></tr>
+                            <tr><td>Ostalo</td><td class="text-right"><span t-esc="doc.total_other" t-options='{"widget": "monetary"}'/></td></tr>
+                            <tr class="table-light"><td><strong>Skupaj</strong></td><td class="text-right"><strong><span t-esc="doc.total_cash + doc.total_card + doc.total_other" t-options='{"widget": "monetary"}'/></strong></td></tr>
+                        </tbody>
+                    </table>
+                    <h3 class="mt-4">DDV po stopnjah</h3>
+                    <t t-raw="doc.vat_breakdown_html"/>
+                    <h3 class="mt-4">FURS status</h3>
+                    <table class="table table-bordered table-sm">
+                        <tbody>
+                            <tr><td>Poslano (EOR prejet)</td><td class="text-right"><span t-esc="doc.furs_submitted_count"/></td></tr>
+                            <tr><td>Čaka na pošiljanje</td><td class="text-right"><span t-esc="doc.furs_pending_count"/></td></tr>
+                            <tr t-if="doc.furs_error_count > 0"><td>Napake</td><td class="text-right text-danger"><strong><span t-esc="doc.furs_error_count"/></strong></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-4 alert alert-info">
+                        <p class="mb-0"><small>
+                            <t t-if="doc.report_type == 'x_report'">X-poročilo je meddnevno povzetek — ne zaključi seje.</t>
+                            <t t-else="">Z-poročilo je dnevni zaključek — po njegovem izpisu lahko zaprete sejo.</t>
+                        </small></p>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_pos_xz" model="ir.actions.report">
+        <field name="name">POS X/Z poročilo</field>
+        <field name="model">l10n_si.pos.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_si_pos_advanced.report_pos_xz_document</field>
+        <field name="report_file">l10n_si_pos_advanced.report_pos_xz_document</field>
+    </record>
+</odoo>

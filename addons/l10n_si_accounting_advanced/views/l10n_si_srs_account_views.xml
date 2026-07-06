@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_srs_account_tree" model="ir.ui.view">
+        <field name="name">l10n_si.srs.account.tree</field>
+        <field name="model">l10n_si.srs.account</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="user_type == 'asset'"
+                  decoration-warning="user_type == 'liability'"
+                  decoration-success="user_type == 'income'"
+                  decoration-danger="user_type == 'expense'"
+                  decoration-muted="user_type == 'equity'">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="user_type"/>
+                <field name="srs_category"/>
+                <field name="balance_sheet_position"/>
+                <field name="account_class"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_srs_account_form" model="ir.ui.view">
+        <field name="name">l10n_si.srs.account.form</field>
+        <field name="model">l10n_si.srs.account</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="user_type"/>
+                            <field name="account_class"/>
+                        </group>
+                        <group>
+                            <field name="srs_category"/>
+                            <field name="balance_sheet_position"/>
+                            <field name="active"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_si_srs_account_search" model="ir.ui.view">
+        <field name="name">l10n_si.srs.account.search</field>
+        <field name="model">l10n_si.srs.account</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="name"/>
+                <filter name="filter_active" string="Aktivni"
+                        domain="[('active', '=', True)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_class" string="Razred (0-9)"
+                            context="{'group_by': 'account_class'}"/>
+                    <filter name="group_type" string="Tip"
+                            context="{'group_by': 'user_type'}"/>
+                    <filter name="group_category" string="SRS kategorija"
+                            context="{'group_by': 'srs_category'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_srs_account" model="ir.actions.act_window">
+        <field name="name">SRS konti</field>
+        <field name="res_model">l10n_si.srs.account</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_l10n_si_srs_account_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Dodaj SRS konto
+            </p>
+            <p>
+                Slovenian chart of accounts per SRS 99 (Kontni načrt za podjetja).
+                41 kontov je prednastavljenih (razredi 0-9). Te konti se uporabljajo
+                za Bilanco stanja, Izid poslovanja in druge SRS poročila.
+            </p>
+        </field>
+    </record>
+</odoo>

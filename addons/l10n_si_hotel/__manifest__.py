@@ -60,4 +60,7 @@ License: LGPL-3 (per OCA manifest)
     'application': True,
     'auto_install': False,
     'countries': ['si'],
+    'demo': [
+        'data/demo_hotel_data.xml',
+    ],
 }

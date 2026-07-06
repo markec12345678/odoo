@@ -54,4 +54,7 @@ Replaces Enterprise restaurant extensions.
     'application': True,
     'auto_install': False,
     'countries': ['si'],
+    'demo': [
+        'data/demo_restaurant_data.xml',
+    ],
 }
