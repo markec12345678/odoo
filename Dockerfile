@@ -6,7 +6,8 @@ FROM odoo:19.0
 USER root
 
 # Install Python dependencies for SI/HR modules
-RUN pip install --no-cache-dir qrcode pillow cryptography requests
+# --break-system-packages needed for Debian 12 (PEP 668)
+RUN pip install --no-cache-dir --break-system-packages qrcode pillow cryptography requests
 
 # Copy custom addons
 COPY --chown=odoo:odoo addons/ /mnt/extra-addons/
