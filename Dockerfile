@@ -1,6 +1,5 @@
-# Railway Dockerfile for SI/HR Odoo 19
-# Railway provides DATABASE_URL automatically when PostgreSQL service is added
-# Railway sets PORT env var automatically
+# Dockerfile for Railway — SI/HR Odoo 19
+# Railway auto-detects this Dockerfile and uses it instead of Railpack
 
 FROM odoo:19.0
 
@@ -12,19 +11,14 @@ RUN pip install --no-cache-dir qrcode pillow cryptography requests
 # Copy custom addons
 COPY --chown=odoo:odoo addons/ /mnt/extra-addons/
 
-# Copy Railway-specific Odoo config
-COPY --chown=odoo:odoo railway-odoo.conf /etc/odoo/odoo.conf
-
 # Create data directories
 RUN mkdir -p /var/lib/odoo/filestore /var/lib/odoo/sessions && \
     chown -R odoo:odoo /var/lib/odoo
 
-USER odoo
-
-# Railway entrypoint — parses DATABASE_URL and starts Odoo
-# Railway provides: DATABASE_URL=postgresql://user:pass@host:port/dbname
-# Railway provides: PORT=8080 (or custom)
+# Copy entrypoint
 COPY --chown=odoo:odoo railway-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
+USER odoo
 
 ENTRYPOINT ["/entrypoint.sh"]
