@@ -351,6 +351,33 @@ ruff format --check addons/l10n_si_*
 
 ## Deployment
 
+### 🚂 Railway.com (priporočeno — brez kartice, avto-deploy)
+
+1. Ustvari Railway projekt → dodaj PostgreSQL (1 klik)
+2. Dodaj GitHub repo kot Docker service → Railway zazna `Dockerfile.railway`
+3. Nastavi `DATABASE_URL` + `PORT=8080` + `MASTER_PWD`
+4. Generate domain → dostop preko spleta
+
+```bash
+# Auto-deploy ob vsakem push-u na 19.0
+git push origin 19.0
+```
+
+Podrobna navodila: [`RAILWAY_DEPLOY.md`](./RAILWAY_DEPLOY.md)
+
+### 🐳 Docker (lokalno)
+
+```bash
+docker compose up -d
+# http://localhost:8069
+```
+
+Podrobna navodila: [`DOCKER_QUICKSTART.md`](./DOCKER_QUICKSTART.md)
+
+### 🤗 Hugging Face Spaces (alternativa)
+
+Podrobna navodila: [`HF_DEPLOY.md`](./HF_DEPLOY.md)
+
 ### Production architecture
 
 ```
@@ -370,9 +397,13 @@ total_RAM = workers × 2.5GB + 2GB (PostgreSQL) + 1GB (OS)
 
 ### Backup strategy
 
-- **Daily**: `pg_dump -Fc` + `filestore` tarball (14-day retention)
-- **Weekly**: Full backup to offsite (Hetzner Storage Box)
-- **Quarterly**: Restore test on a clean server
+- **Daily**: `scripts/backup.sh` → `pg_dump` + `filestore` tarball (30-day retention)
+- **Weekly**: Full backup to offsite
+- **Quarterly**: Restore test via `scripts/restore.sh`
+
+### Production checklist
+
+See [`PRODUCTION_CHECKLIST.md`](./PRODUCTION_CHECKLIST.md) for the full pre-launch checklist.
 
 ---
 

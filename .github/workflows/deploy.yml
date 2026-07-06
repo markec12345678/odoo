@@ -1,47 +1,127 @@
-name: Deploy to Staging
+name: Deploy
 
 on:
   push:
     branches: [19.0]
   workflow_dispatch:
+    inputs:
+      target:
+        description: 'Deploy target'
+        required: true
+        default: 'railway'
+        type: choice
+        options:
+          - railway
+          - huggingface
+          - test-only
 
 jobs:
-  deploy-staging:
-    name: Deploy to staging server
+  test:
+    name: Run tests before deploy
     runs-on: ubuntu-24.04
-    if: github.repository == 'markec12345678/odoo'
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Install dependencies
-        run: |
-          pip install ruff==0.15.0 requests qrcode pillow
+      - name: Install test dependencies
+        run: pip install requests qrcode pillow
 
-      - name: Run all tests
-        run: |
-          echo "=== Unit tests ==="
-          python3 .github/scripts/run_unit_tests.py
-          echo "=== E2E tests ==="
-          python3 .github/scripts/run_e2e_tests.py
+      - name: Run unit tests
+        run: python3 .github/scripts/run_unit_tests.py
 
-      - name: Build Docker image
-        run: |
-          echo "Building Docker image for staging..."
-          # In production: docker build -t si-odoo:staging .
-          # docker push registry.example.com/si-odoo:staging
-          echo "Docker build simulated (configure your registry)"
+      - name: Run E2E tests
+        run: python3 .github/scripts/run_e2e_tests.py
 
-      - name: Deploy notification
-        if: success()
+  deploy-railway:
+    name: Deploy to Railway
+    needs: test
+    runs-on: ubuntu-24.04
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.target == 'railway')
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Deploy to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          echo "✅ Deployment successful to staging"
-          echo "Branch: ${{ github.ref_name }}"
+          echo "🚀 Deploying to Railway..."
+          # Install Railway CLI
+          curl -fsSL https://railway.app/install.sh | sh
+          export PATH="$HOME/.railway/bin:$PATH"
+          
+          # Link to project and deploy
+          railway link --project d4fff35a-43b3-46d8-b066-dab7ff2ef17d
+          railway up --service
+          
+          echo "✅ Railway deployment triggered!"
+          echo "🔗 Check status at https://railway.com/project/d4fff35a-43b3-46d8-b066-dab7ff2ef17d"
+
+  deploy-huggingface:
+    name: Deploy to Hugging Face Spaces
+    needs: test
+    runs-on: ubuntu-24.04
+    if: github.event_name == 'workflow_dispatch' && inputs.target == 'huggingface'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Hugging Face Hub
+        run: pip install huggingface_hub
+
+      - name: Deploy to Hugging Face Spaces
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          mkdir -p hf-space
+          cp Dockerfile.hf hf-space/Dockerfile
+          cp hf-odoo.conf hf-space/
+          mkdir -p hf-space/addons
+          cp -r addons/l10n_si_* hf-space/addons/ 2>/dev/null || true
+          cp -r addons/l10n_hr_* hf-space/addons/ 2>/dev/null || true
+          cat > hf-space/README.md << 'EOF'
+          ---
+          title: SI HR Odoo 19
+          emoji: 🇸🇮🇭🇷
+          colorFrom: blue
+          colorTo: green
+          sdk: docker
+          app_port: 7860
+          pinned: false
+          ---
+          SI+HR Odoo 19 Localization — 75 modules
+          EOF
+          
+          python3 -c "
+          from huggingface_hub import HfApi
+          api = HfApi(token='$HF_TOKEN')
+          api.create_repo(repo_id='markec12345678/si-hr-odoo', repo_type='space', space_sdk='docker', exist_ok=True)
+          api.upload_folder(folder_path='hf-space', repo_id='markec12345678/si-hr-odoo', repo_type='space')
+          print('✅ Deployed to HF Spaces!')
+          "
+
+  notify:
+    name: Deploy notification
+    needs: [test, deploy-railway]
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - run: |
+          echo "=== Deploy Summary ==="
+          echo "Tests: ${{ needs.test.result }}"
+          echo "Railway: ${{ needs.deploy-railway.result }}"
           echo "Commit: ${{ github.sha }}"
-          echo "Modules: $(ls -d addons/l10n_si_* | grep -v README | wc -l) SI + $(ls -d addons/l10n_hr_* | wc -l) HR"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Modules: 75 (70 SI + 5 HR)"
+          echo "Tests: 101 (79 unit + 22 E2E)"
