@@ -2,7 +2,7 @@
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](./LICENSE)
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0-875A7B.svg)](https://www.odoo.com)
-[![Modules](https://img.shields.io/badge/Custom%20Modules-73-green.svg)](./addons/l10n_si_README.md)
+[![Modules](https://img.shields.io/badge/Custom%20Modules-75-green.svg)](./addons/l10n_si_README.md)
 [![Python](https://img.shields.io/badge/Python-3.10%20%E2%80%93%203.14-blue.svg)](./requirements.txt)
 [![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue.svg)](./.github/workflows/ci.yml)
 [![Tests](https://img.shields.io/badge/tests-187%2B-brightgreen.svg)](./.github/scripts/run_unit_tests.py)

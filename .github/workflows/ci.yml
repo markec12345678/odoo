@@ -22,9 +22,9 @@ jobs:
       - name: Install ruff
         run: pip install ruff==0.15.0
 
-      - name: Run ruff check on l10n_si modules
+      - name: Run ruff check on all custom modules
         run: |
-          ruff check addons/l10n_si_*/ --select=F,E9 --ignore=E501,F401,F841 || true
+          ruff check addons/l10n_si_*/ addons/l10n_hr_*/ --select=F,E9 --ignore=E501,F401,F841 || true
           echo "Ruff check completed (warnings allowed, errors shown above)"
 
   validate-python:
@@ -39,14 +39,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Compile all l10n_si Python files
+      - name: Compile all custom Python files
         run: |
           python3 -c "
           import py_compile, os, sys
           errors = []
           count = 0
           for d in sorted(os.listdir('addons')):
-              if not d.startswith('l10n_si_') or d == 'l10n_si_README.md':
+              if not (d.startswith('l10n_si_') or d.startswith('l10n_hr_')) or d == 'l10n_si_README.md':
                   continue
               for dp, _, fs in os.walk('addons/' + d):
                   for f in fs:
@@ -79,14 +79,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Parse all l10n_si XML files
+      - name: Parse all custom XML files
         run: |
           python3 -c "
           import xml.etree.ElementTree as ET, os, sys
           errors = []
           count = 0
           for d in sorted(os.listdir('addons')):
-              if not d.startswith('l10n_si_') or d == 'l10n_si_README.md':
+              if not (d.startswith('l10n_si_') or d.startswith('l10n_hr_')) or d == 'l10n_si_README.md':
                   continue
               for dp, _, fs in os.walk('addons/' + d):
                   for f in fs:
@@ -127,7 +127,7 @@ jobs:
           missing = []
           count = 0
           for d in sorted(os.listdir('addons')):
-              if not d.startswith('l10n_si_') or d == 'l10n_si_README.md':
+              if not (d.startswith('l10n_si_') or d.startswith('l10n_hr_')) or d == 'l10n_si_README.md':
                   continue
               manifest_path = 'addons/' + d + '/__manifest__.py'
               if not os.path.exists(manifest_path):
@@ -150,40 +150,26 @@ jobs:
           "
 
   module-count:
-    name: Module count check
+    name: Total module count check
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
-      - name: Count l10n_si modules
+      - name: Count all custom modules
         run: |
-          COUNT=$(ls -d addons/l10n_si_* | grep -v "l10n_si_README.md" | wc -l)
-          echo "SI module count: $COUNT"
-          if [ "$COUNT" -lt 60 ]; then
-            echo "ERROR: Expected at least 60 SI modules, found $COUNT"
+          SI_COUNT=$(ls -d addons/l10n_si_* 2>/dev/null | grep -v "l10n_si_README.md" | wc -l)
+          HR_COUNT=$(ls -d addons/l10n_hr_* 2>/dev/null | wc -l)
+          TOTAL=$((SI_COUNT + HR_COUNT))
+          echo "SI modules: $SI_COUNT"
+          echo "HR modules: $HR_COUNT"
+          echo "Total modules: $TOTAL"
+          if [ "$TOTAL" -lt 70 ]; then
+            echo "ERROR: Expected at least 70 total modules, found $TOTAL"
             exit 1
           fi
-          echo "SI module count check passed ($COUNT modules)"
-
-  hr-module-count:
-    name: HR module count check
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-
-      - name: Count l10n_hr modules
-        run: |
-          COUNT=$(ls -d addons/l10n_hr_* 2>/dev/null | wc -l)
-          echo "HR module count: $COUNT"
-          if [ "$COUNT" -lt 3 ]; then
-            echo "ERROR: Expected at least 3 HR modules, found $COUNT"
-            exit 1
-          fi
-          echo "HR module count check passed ($COUNT modules)"
+          echo "Module count check passed ($TOTAL total modules)"
 
   unit-tests:
     name: Unit tests (standalone, no Odoo)
