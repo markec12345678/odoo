@@ -5,7 +5,7 @@
 [![Modules](https://img.shields.io/badge/Custom%20Modules-75-green.svg)](./addons/l10n_si_README.md)
 [![Python](https://img.shields.io/badge/Python-3.10%20%E2%80%93%203.14-blue.svg)](./requirements.txt)
 [![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue.svg)](./.github/workflows/ci.yml)
-[![Tests](https://img.shields.io/badge/tests-187%2B-brightgreen.svg)](./.github/scripts/run_unit_tests.py)
+[![Tests](https://img.shields.io/badge/tests-74%2B-brightgreen.svg)](./.github/scripts/run_unit_tests.py)
 [![Branch](https://img.shields.io/badge/branch-19.0-blue.svg)]()
 [![Countries](https://img.shields.io/badge/countries-SI%20%7C%20HR-red.svg)]()
 
