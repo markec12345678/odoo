@@ -45,10 +45,11 @@ exec odoo \
     --proxy-mode \
     --workers=2 \
     --max-cron-threads=1 \
+    --http-interface 0.0.0.0 \
     --http-port="$HTTP_PORT" \
     --limit-memory-soft=1073741824 \
     --limit-memory-hard=1342177280 \
     --limit-time-cpu=600 \
     --limit-time-real=1200 \
-    --without-demo=all \
+    --without-demo \
     --log-level=info
