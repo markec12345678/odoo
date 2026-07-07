@@ -22,7 +22,6 @@
             <field name="code">model._cron_generate_daily_tasks()</field>
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
-            <field name="numbercall">-1</field>
             <field name="active" eval="True"/>
             <field name="nextcall" eval="(DateTime.now().replace(hour=6, minute=0, second=0) + relativedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
         </record>

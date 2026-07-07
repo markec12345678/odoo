@@ -15,7 +15,6 @@
             <field name="code">model.action_generate_monthly_depreciation()</field>
             <field name="interval_number">1</field>
             <field name="interval_type">months</field>
-            <field name="numbercall">-1</field>
             <field name="active" eval="True"/>
             <field name="nextcall" eval="(DateTime.now().replace(day=1, hour=1, minute=0, second=0) + relativedelta(months=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
         </record>

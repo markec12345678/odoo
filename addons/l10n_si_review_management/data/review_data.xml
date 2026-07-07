@@ -15,7 +15,6 @@
             <field name="code">model._cron_sync_all_sources()</field>
             <field name="interval_number">6</field>
             <field name="interval_type">hours</field>
-            <field name="numbercall">-1</field>
             <field name="active" eval="True"/>
         </record>
         <!-- Default internal review source -->
