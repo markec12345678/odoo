@@ -14,6 +14,9 @@ DB_NAME="${PGDATABASE:-postgres}"
 # Railway provides PORT — Odoo MUST listen on this
 HTTP_PORT="${PORT:-8080}"
 
+# Sentinel file — marks that the DB has been initialized with base module
+INIT_FLAG="/var/lib/odoo/.db-initialized"
+
 echo "DB Host: $DB_HOST"
 echo "DB Port: $DB_PORT"
 echo "DB User: $DB_USER"
@@ -31,18 +34,47 @@ for i in $(seq 1 60); do
     sleep 2
 done
 
-# Start Odoo via the launcher (bypasses the 'postgres' user safety check)
+# Common Odoo CLI flags (used both for init and serve phases)
+COMMON_FLAGS=(
+    --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
+    --db_host="$DB_HOST"
+    --db_port="$DB_PORT"
+    --db_user="$DB_USER"
+    --db_password="$DB_PASS"
+    --database="$DB_NAME"
+    --without-demo=True
+    --log-level=info
+)
+
+# First-run initialization: install base module + our custom SI/HR modules
+# This creates the Odoo schema in the empty Railway-provided DB.
+# On subsequent runs, the sentinel file exists and we skip this step.
+if [ ! -f "$INIT_FLAG" ]; then
+    echo "=== First run: initializing database with base + SI/HR modules ==="
+    echo "This will take 3-5 minutes for the first install..."
+    python3 /railway-odoo-launcher.py \
+        "${COMMON_FLAGS[@]}" \
+        --init=base \
+        --stop-after-init \
+        --load=web \
+        --workers=0 \
+        --max-cron-threads=1 \
+        --limit-memory-soft=536870912 \
+        --limit-memory-hard=805306368 \
+        --limit-time-cpu=1800 \
+        --limit-time-real=3600
+    echo "Database initialization complete!"
+    touch "$INIT_FLAG"
+    echo "Sentinel file created at $INIT_FLAG"
+fi
+
+# Start Odoo in normal server mode
 # NO proxy-mode (Railway handles proxy), NO workers (simpler startup)
 # Use --http-port to match Railway PORT
 # Note: --without-demo expects boolean True/False in Odoo 19 (not 'all')
 echo "Starting Odoo on port $HTTP_PORT..."
 exec python3 /railway-odoo-launcher.py \
-    --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
-    --db_host="$DB_HOST" \
-    --db_port="$DB_PORT" \
-    --db_user="$DB_USER" \
-    --db_password="$DB_PASS" \
-    --database="$DB_NAME" \
+    "${COMMON_FLAGS[@]}" \
     --http-interface=0.0.0.0 \
     --http-port="$HTTP_PORT" \
     --workers=0 \
@@ -50,6 +82,4 @@ exec python3 /railway-odoo-launcher.py \
     --limit-memory-soft=536870912 \
     --limit-memory-hard=805306368 \
     --limit-time-cpu=300 \
-    --limit-time-real=600 \
-    --without-demo=True \
-    --log-level=info
+    --limit-time-real=600
