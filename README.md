@@ -2,18 +2,30 @@
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](./LICENSE)
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0-875A7B.svg)](https://www.odoo.com)
-[![Modules](https://img.shields.io/badge/Custom%20Modules-75-green.svg)](./addons/l10n_si_README.md)
+[![Modules](https://img.shields.io/badge/Custom%20Modules-82-green.svg)](./addons/l10n_si_README.md)
+[![OCA Modules](https://img.shields.io/badge/OCA%20Modules-13-orange.svg)](https://github.com/OCA/web)
 [![Python](https://img.shields.io/badge/Python-3.10%20%E2%80%93%203.14-blue.svg)](./requirements.txt)
 [![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue.svg)](./.github/workflows/ci.yml)
 [![Tests](https://img.shields.io/badge/tests-101%2B-brightgreen.svg)](./.github/scripts/run_unit_tests.py)
 [![Branch](https://img.shields.io/badge/branch-19.0-blue.svg)]()
 [![Countries](https://img.shields.io/badge/countries-SI%20%7C%20HR-red.svg)]()
+[![Railway Deploy](https://img.shields.io/badge/Railway-Live%20Demo-9B59B6.svg)](https://odoo-production-fa42.up.railway.app/web/login)
+[![Version](https://img.shields.io/badge/version-v19.0.12.0-blue.svg)](https://github.com/markec12345678/odoo/releases/tag/v19.0.12.0)
+[![Status](https://img.shields.io/badge/status-production%20ready-brightgreen.svg)]()
+[![Last Commit](https://img.shields.io/github/last-commit/markec12345678/odoo/19.0)](https://github.com/markec12345678/odoo/commits/19.0)
 
 <p align="center">
   <img src="./static/screenshots/banner.png" alt="Odoo Slovenian Tourism Suite" width="800">
 </p>
 
-> **Fork of Odoo Community Edition 19.0** with 73 custom localization modules (70 SI + 3 HR) covering regulatory compliance (FURS ZOI/EOR, AJPES eTurizem, CISF Fiskalizacija, eVisitor, PDV, eRačun, Intrastat, VIES, GDPR), tourism vertical (hotels, restaurants, camps, farms, wellness, events), enterprise feature replacements (payroll, eIDAS signing, bank sync, helpdesk, fleet), back-office operations (housekeeping, HR roster, procurement, budget, accounting, revenue management), and guest experience (booking engine, payment gateway, AI concierge, mobile PWA, loyalty, channel manager).
+> **Fork of Odoo Community Edition 19.0** with **82 custom modules** (70 SI + 5 HR + 13 OCA/web UI/UX) covering regulatory compliance (FURS ZOI/EOR, AJPES eTurizem, CISF Fiskalizacija, eVisitor, PDV, eRačun, Intrastat, VIES, GDPR), tourism vertical (hotels, restaurants, camps, farms, wellness, events), enterprise feature replacements (payroll, eIDAS signing, bank sync, helpdesk, fleet), back-office operations (housekeeping, HR roster, procurement, budget, accounting, revenue management), guest experience (booking engine, payment gateway, AI concierge, mobile PWA, loyalty, channel manager), and **OCA UI/UX enhancements** (dark mode, responsive mobile, timeline/Gantt views, PWA, alert banners).
+
+## 🚀 Live Demo
+
+**URL**: https://odoo-production-fa42.up.railway.app/web/login  
+**Credentials**: `admin` / `admin` (change immediately after first login)  
+**Hosted on**: Railway Cloud (Postgres 18 + Odoo 19, EU region)  
+**Auto-deploy**: Every push to `19.0` branch triggers Railway rebuild
 
 ---
 
