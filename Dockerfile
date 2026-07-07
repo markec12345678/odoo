@@ -5,9 +5,12 @@ FROM odoo:19.0
 
 USER root
 
-# Install Python dependencies for SI/HR modules in single layer
-RUN pip install --no-cache-dir --break-system-packages \
-    qrcode pillow cryptography requests
+# Install Python dependencies for SI/HR modules + postgresql-client (for psql in entrypoint)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        postgresql-client \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --no-cache-dir --break-system-packages \
+        qrcode pillow cryptography requests
 
 # Copy ONLY custom addons (not entire repo — .dockerignore filters the rest)
 COPY --chown=odoo:odoo addons/ /mnt/extra-addons/

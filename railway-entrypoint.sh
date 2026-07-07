@@ -68,6 +68,16 @@ if [ ! -f "$INIT_FLAG" ]; then
     echo "Sentinel file created at $INIT_FLAG"
 fi
 
+# Asset bundle cleanup — required because Railway ephemeral filesystem
+# loses filestore on every redeploy. Without this, browsers get HTTP 500 on
+# /web/assets/* because the bundle files referenced in DB no longer exist.
+# Fix: delete stale asset bundle references from ir_attachment; Odoo will
+# regenerate them on first request to /web/* endpoints.
+echo "=== Cleaning stale asset bundle references (ephemeral filesystem workaround) ==="
+PGPASSWORD="$DB_PASS" psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME" -c \
+    "DELETE FROM ir_attachment WHERE url LIKE '/web/assets/%';" 2>&1 | grep -v "^DELETE" || true
+echo "Stale asset references cleared — Odoo will regenerate bundles on first request"
+
 # Start Odoo in normal server mode
 # NO proxy-mode (Railway handles proxy), NO workers (simpler startup)
 # Use --http-port to match Railway PORT
