@@ -12,8 +12,9 @@ RUN pip install --no-cache-dir --break-system-packages \
 # Copy ONLY custom addons (not entire repo — .dockerignore filters the rest)
 COPY --chown=odoo:odoo addons/ /mnt/extra-addons/
 
-# Copy entrypoint
+# Copy entrypoint + Python launcher (bypasses Odoo 19 'postgres' user check)
 COPY --chown=odoo:odoo railway-entrypoint.sh /entrypoint.sh
+COPY --chown=odoo:odoo railway-odoo-launcher.py /railway-odoo-launcher.py
 RUN chmod +x /entrypoint.sh
 
 # Odoo filestore — Railway persistent volume mounts here
