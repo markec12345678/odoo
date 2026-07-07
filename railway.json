@@ -6,9 +6,9 @@
   },
   "deploy": {
     "startCommand": "/entrypoint.sh",
-    "healthcheckPath": "/web/login",
-    "healthcheckTimeout": 180,
+    "healthcheckPath": "/",
+    "healthcheckTimeout": 300,
     "restartPolicyType": "ON_FAILURE",
-    "restartPolicyMaxRetries": 3
+    "restartPolicyMaxRetries": 5
   }
 }
