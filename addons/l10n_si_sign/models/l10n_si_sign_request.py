@@ -92,6 +92,18 @@ class L10nSiSignRequest(models.Model):
     def action_reject(self):
         self.write({'state': 'rejected'})
 
+    def action_download_signed(self):
+        """Download the signed document if available."""
+        self.ensure_one()
+        if not self.document_signed_attachment_id:
+            raise UserError(_('The signed document is not yet available.'))
+        return {
+            'type': 'ir.actions.act_url',
+            'url': f"/web/content/{self.document_signed_attachment_id.id}"
+                   f"?download=true&filename={self.document_signed_attachment_id.name}",
+            'target': 'self',
+        }
+
     def _finalize_if_complete(self):
         """If all signatures are complete, mark request as signed + attach signed PDF."""
         for req in self:

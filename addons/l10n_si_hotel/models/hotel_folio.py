@@ -171,6 +171,27 @@ class HotelFolio(models.Model):
             'context': {'default_folio_id': self.id},
         }
 
+    def action_view_invoice(self):
+        """Open the invoice related to this folio."""
+        self.ensure_one()
+        if not self.move_id:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('No invoice'),
+                    'message': _('This folio has not been invoiced yet.'),
+                    'type': 'info',
+                },
+            }
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Invoice'),
+            'res_model': 'account.move',
+            'res_id': self.move_id.id,
+            'view_mode': 'form',
+        }
+
 
 class HotelFolioLine(models.Model):
     _name = 'l10n_si.hotel.folio.line'

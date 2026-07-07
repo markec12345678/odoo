@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Event = konkreten dogodek (poroka, konferenca)."""
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class L10nSiEventEvent(models.Model):
@@ -201,6 +201,21 @@ class L10nSiEventEvent(models.Model):
             for hall in ev.hall_ids:
                 if hall.state == 'booked':
                     hall.state = 'available'
+
+    def action_view_invoices(self):
+        """Open the invoices view filtered by this event."""
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Računi'),
+            'res_model': 'account.move',
+            'view_mode': 'list,form',
+            'domain': [('l10n_si_event_id', '=', self.id)],
+            'context': {
+                'default_l10n_si_event_id': self.id,
+                'default_move_type': 'out_invoice',
+            },
+        }
 
 
 # Add backref on account.move

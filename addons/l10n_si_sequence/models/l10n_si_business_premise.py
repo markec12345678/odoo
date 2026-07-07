@@ -55,6 +55,21 @@ class L10nSiBusinessPremise(models.Model):
         for premise in self:
             premise.device_count = len(premise.electronic_device_ids)
 
+    def action_view_devices(self):
+        """Open the electronic devices view filtered by this premise."""
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Electronic Devices'),
+            'res_model': 'l10n_si.electronic.device',
+            'view_mode': 'list,form',
+            'domain': [('business_premise_id', '=', self.id)],
+            'context': {
+                'default_business_premise_id': self.id,
+                'search_default_business_premise_id': self.id,
+            },
+        }
+
     @api.constrains('code')
     def _check_code_format(self):
         for premise in self:
