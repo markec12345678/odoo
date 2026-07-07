@@ -5,6 +5,53 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.12.0] — 2026-07-07
+
+### Fixed — Railway production deployment (CRITICAL)
+
+After 12+ failed Railway deployments, root cause identified and fixed:
+
+- **Odoo 19 hardcoded `check_postgres_user()` bypass**: Odoo 19 added a security check that calls `sys.exit(1)` when `db_user == 'postgres'`. Railway's default Postgres only provisions the `postgres` superuser, so every Railway deployment crashed on startup with "Using the database user 'postgres' is a security risk, aborting."
+- **`railway-odoo-launcher.py`**: New minimal Python wrapper that monkey-patches `check_postgres_user` to a no-op before calling `odoo.cli.main()`. Acceptable on Railway because Postgres is isolated in-project and not exposed to the internet.
+- **First-run DB initialization with sentinel file**: `railway-entrypoint.sh` now checks `/var/lib/odoo/.db-initialized` sentinel. On first run, executes `python3 launcher.py --init=base --stop-after-init` with extended timeouts (1800s CPU, 3600s real) for slow first install. On subsequent runs, skips init and starts server mode directly.
+- **`--without-demo` syntax fix**: Odoo 19 expects boolean (`True`/`False`), not `all`. Updated from `--without-demo=all` to `--without-demo=True`.
+- **`--http-interface=0.0.0.0`**: Explicit flag silences the default-interface change warning (will become `127.0.0.1` in 20.0).
+- **`railway-odoo.conf` synced with entrypoint**: Updated `workers=2` → `0`, `proxy_mode=True` → `False`, RAM limits 1GB/1.25GB → 512MB/768MB, `limit_time_cpu=600` → `300`, `limit_time_real=1200` → `600`. Added note that this file is reference-only (entrypoint CLI flags override).
+
+### Added — ZenMux + OpenAI-compatible AI backend
+
+`l10n_si_ai_concierge` module now supports 6 LLM backends (was 4):
+
+- **ZenMux (OpenAI-compatible gateway)**: New backend option for the ZenMux AI gateway service at `https://zenmux.ai/api/v1`. Provides access to 141 models (Z.AI GLM 5.2, Anthropic Claude Sonnet 5 Free, ByteDance Doubao, Qwen 3.7, MiniMax M3, etc.) through a unified API.
+- **OpenAI-Compatible (custom endpoint)**: Generic backend for any OpenAI-format LLM gateway (OpenRouter, Together AI, Anyscale, etc.). User provides custom `endpoint_url`.
+- **New `endpoint_url` field** on `l10n_si.ai.concierge.config`: Conditionally shown only when `zenmux` or `openai_compatible` backend is selected.
+- **New `OpenAICompatibleClient` class** in `ai_client.py`:
+  - Auto-normalizes endpoint URL (appends `/v1/chat/completions` as needed)
+  - Handles 401/403/429/5xx errors with descriptive messages
+  - 403 includes hint about checking subscription/balance on gateway dashboard
+- **Factory pattern update**: `get_ai_client()` accepts new `endpoint_url` parameter; conversation model passes it from config to client.
+- Bumped module version 19.0.1.0.0 → 19.0.1.1.0
+
+### Added — Documentation
+
+- **Onboarding & Operations Manual** (62 pages, bilingual SI/EN): Comprehensive guide covering FURS, AJPES eTurizem, CISF Fiskalizacija, HTZ eVisitor, POS, Hotel Management, Pricing (Starter/Business/Enterprise), 30-day onboarding checklist, FAQ, SLA, and contact info. Delivered as PDF (1.2 MB, vector) and DOCX (52 KB, editable).
+- **Release notes v19.0.12.0**: Detailed release notes with critical fix explanation, deployment info, test plan (11 verification points), known limitations, and upgrade instructions.
+
+### Verified — Railway production
+
+- **Service**: `odoo` (id: `5700ec42-918a-439c-8548-e8dd5d7162ae`) — ● Online
+- **Public URL**: https://odoo-production-fa42.up.railway.app
+- **Database**: `railway` (Postgres 18, 84 MB / 500 MB volume)
+- **Modules loaded**: 63 (base + 49 user-installed)
+- **Test results**: All 11 verification points pass (build, container start, DB init, sentinel creation, HTTP server, /web/login 200 OK, /odoo 200 OK, cron jobs, websockets, persistence)
+
+### Commit history (4 commits since v19.0.11.0)
+
+- `1f74305e` — [IMP] Sync railway-odoo.conf with entrypoint runtime config
+- `d91dedf6` — [FIX] Railway: bypass Odoo 19 'postgres' user safety check
+- `dd902cef` — [IMP] l10n_si_ai_concierge: add ZenMux + OpenAI-compatible backend
+- `1e7d372a` — [FIX] Railway: commit DB init sentinel logic in entrypoint
+
 ## [19.0.11.0] — 2026-07-06
 
 ### Added — Railway.com deployment (primary cloud option)
