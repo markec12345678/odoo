@@ -113,9 +113,49 @@ class LocalLLMClient(AIClient):
         except (ValueError, KeyError, IndexError) as e: raise AIRequestError(f'Invalid local LLM response: {e}') from e
 
 
-def get_ai_client(backend, api_key, model, timeout=DEFAULT_TIMEOUT, local_endpoint=None):
+class OpenAICompatibleClient(AIClient):
+    """Generic OpenAI-compatible client for gateway services (ZenMux, Together, Anyscale, OpenRouter, etc.).
+
+    Many LLM gateway services expose an OpenAI-compatible /v1/chat/completions endpoint.
+    Instead of hardcoding each gateway, we accept a custom endpoint URL and reuse the
+    OpenAI request/response format.
+    """
+    def __init__(self, api_key, model, timeout=DEFAULT_TIMEOUT, endpoint=None):
+        super().__init__(api_key, model, timeout)
+        if not endpoint:
+            raise AIConciergeError('OpenAI-compatible backend requires endpoint URL')
+        # Normalize: strip trailing slash, ensure ends with /v1/chat/completions
+        endpoint = endpoint.rstrip('/')
+        if not endpoint.endswith('/v1/chat/completions'):
+            if endpoint.endswith('/v1'):
+                endpoint = endpoint + '/chat/completions'
+            elif '/v1/' not in endpoint and not endpoint.endswith('/v1'):
+                endpoint = endpoint + '/v1/chat/completions'
+            else:
+                endpoint = endpoint + '/chat/completions'
+        self.endpoint = endpoint
+
+    def generate_response(self, messages, temperature=0.7, max_tokens=500):
+        payload = {'model': self.model, 'messages': [m.to_dict() for m in messages],
+                   'temperature': temperature, 'max_tokens': max_tokens}
+        headers = {'Authorization': f'Bearer {self.api_key}', 'Content-Type': 'application/json'}
+        try:
+            response = requests.post(self.endpoint, headers=headers, json=payload, timeout=self.timeout)
+        except requests.Timeout as e: raise AIRequestError(f'OpenAI-compat timeout: {e}') from e
+        except requests.RequestException as e: raise AIRequestError(f'OpenAI-compat network error: {e}') from e
+        if response.status_code == 401: raise AIAuthError('Invalid API key for OpenAI-compatible endpoint')
+        if response.status_code == 403: raise AIAuthError(f'Access denied (403). Check subscription/balance on gateway dashboard: {response.text[:300]}')
+        if response.status_code == 429: raise AIRateLimitError('Rate limit exceeded on OpenAI-compatible endpoint')
+        if response.status_code >= 500: raise AIRequestError(f'OpenAI-compat server error {response.status_code}')
+        if response.status_code != 200: raise AIRequestError(f'OpenAI-compat HTTP {response.status_code}: {response.text[:300]}')
+        try: return response.json()['choices'][0]['message']['content'].strip()
+        except (ValueError, KeyError, IndexError) as e: raise AIRequestError(f'Invalid OpenAI-compat response: {e}') from e
+
+
+def get_ai_client(backend, api_key, model, timeout=DEFAULT_TIMEOUT, local_endpoint=None, endpoint_url=None):
     if backend == 'zai': return ZAIClient(api_key, model, timeout)
     elif backend == 'openai': return OpenAIClient(api_key, model, timeout)
     elif backend == 'anthropic': return AnthropicClient(api_key, model, timeout)
     elif backend == 'local': return LocalLLMClient(api_key, model, timeout, local_endpoint or 'http://localhost:11434/v1/chat/completions')
+    elif backend in ('openai_compatible', 'zenmux'): return OpenAICompatibleClient(api_key, model, timeout, endpoint_url)
     else: raise AIConciergeError(f'Unknown AI backend: {backend}')

@@ -117,6 +117,7 @@ class L10nSiAiConciergeConversation(models.Model):
                     backend=cfg.ai_backend,
                     api_key=cfg.api_key,
                     model=cfg.model_name,
+                    endpoint_url=cfg.endpoint_url,
                 )
                 messages = [Message('system', cfg.system_prompt + context)]
                 recent_msgs = self.message_ids[-10:]

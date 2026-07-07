@@ -19,6 +19,8 @@ class L10nSiAiConciergeConfig(models.Model):
         selection=[('openai', 'OpenAI (GPT-4)'),
                    ('anthropic', 'Anthropic Claude'),
                    ('zai', 'ZAI (GLM)'),
+                   ('zenmux', 'ZenMux (OpenAI-compatible gateway)'),
+                   ('openai_compatible', 'OpenAI-Compatible (custom endpoint)'),
                    ('local', 'Lokalni LLM')],
         default='zai',
         required=True,
@@ -26,7 +28,11 @@ class L10nSiAiConciergeConfig(models.Model):
     api_key = fields.Char(string='API ključ')
     model_name = fields.Char(
         string='Ime modela', default='glm-4-plus',
-        help='npr. gpt-4, claude-3-opus, glm-4-plus',
+        help='npr. gpt-4, claude-3-opus, glm-4-plus, z-ai/glm-5.2 (ZenMux)',
+    )
+    endpoint_url = fields.Char(
+        string='Endpoint URL',
+        help='Za OpenAI-Compatible / ZenMux backend. npr. https://zenmux.ai/api/v1',
     )
 
     # Sistemski prompt
