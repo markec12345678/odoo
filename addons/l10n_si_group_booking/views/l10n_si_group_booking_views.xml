@@ -27,17 +27,17 @@
             <form>
                 <header>
                     <button name="action_send_quote" type="object" string="Pošlji ponudbo"
-                            attrs="{'invisible': [('state', '!=', 'inquiry')]}"/>
+                            invisible="[('state', '!=', 'inquiry')]"/>
                     <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'quoted')]}"/>
+                            invisible="[('state', '!=', 'quoted')]"/>
                     <button name="action_register_deposit" type="object" string="Zabeleži avans"
-                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                            invisible="[('state', '!=', 'confirmed')]"/>
                     <button name="action_set_in_house" type="object" string="V hotelu" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'deposit_paid')]}"/>
+                            invisible="[('state', '!=', 'deposit_paid')]"/>
                     <button name="action_complete" type="object" string="Zaključi"
-                            attrs="{'invisible': [('state', '!=', 'in_house')]}"/>
+                            invisible="[('state', '!=', 'in_house')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('completed', 'cancelled'))]}"/>
+                            invisible="[('state', 'in', ('completed', 'cancelled'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

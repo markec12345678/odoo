@@ -23,7 +23,7 @@
         <field name="name">l10n_si.edi.log.form</field>
         <field name="model">l10n_si.edi.log</field>
         <field name="arch" type="xml">
-            <form string="e-Račun Log">
+            <form>
                 <sheet>
                     <group>
                         <group>

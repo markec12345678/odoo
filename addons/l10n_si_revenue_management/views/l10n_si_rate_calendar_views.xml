@@ -27,9 +27,9 @@
                 <header>
                     <button name="action_recompute" type="object" string="Preračunaj" class="btn-secondary"/>
                     <button name="action_publish" type="object" string="Objavi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_close" type="object" string="Zapri"
-                            attrs="{'invisible': [('state', '=', 'closed')]}"/>
+                            invisible="[('state', '=', 'closed')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

@@ -9,19 +9,18 @@
             <xpath expr="//sheet" position="inside">
                 <group string="Slovenian VAT Validation (FURS)"
                        name="si_vat_group"
-                       attrs="{'invisible': [('country_id', '=', False)]}">
+                       invisible="[('country_id', '=', False)]">
                     <group>
                         <field name="si_vat_check_enabled"/>
                         <field name="si_vat_endpoint"
-                               attrs="{'invisible': [('si_vat_check_enabled', '=', False)],
-                                        'required': [('si_vat_check_enabled', '=', True)]}"/>
+                               invisible="[('si_vat_check_enabled', '=', False)]" required="[('si_vat_check_enabled', '=', True)]"/>
                     </group>
                     <group>
                         <field name="si_furs_certificate" filename="si_furs_certificate_filename"
-                               attrs="{'invisible': [('si_vat_check_enabled', '=', False)]}"/>
+                               invisible="[('si_vat_check_enabled', '=', False)]"/>
                         <field name="si_furs_certificate_filename" invisible="1"/>
                         <field name="si_furs_certificate_password" password="True"
-                               attrs="{'invisible': [('si_vat_check_enabled', '=', False)]}"/>
+                               invisible="[('si_vat_check_enabled', '=', False)]"/>
                     </group>
                 </group>
             </xpath>

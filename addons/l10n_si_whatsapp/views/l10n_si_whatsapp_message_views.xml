@@ -24,7 +24,7 @@
             <form>
                 <header>
                     <button name="action_send" type="object" string="Pošlji" class="btn-primary"
-                            attrs="{'invisible': [('state', 'in', ('sent', 'delivered', 'read', 'received'))]}"/>
+                            invisible="[('state', 'in', ('sent', 'delivered', 'read', 'received'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -37,7 +37,7 @@
                         </group>
                         <group>
                             <field name="message_id" readonly="1"/>
-                            <field name="error_message" attrs="{'invisible': [('error_message', '=', False)]}"/>
+                            <field name="error_message" invisible="[('error_message', '=', False)]"/>
                         </group>
                     </group>
                     <group string="Sporočilo">

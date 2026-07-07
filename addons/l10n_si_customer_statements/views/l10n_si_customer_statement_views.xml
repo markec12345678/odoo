@@ -25,7 +25,7 @@
             <form>
                 <header>
                     <button name="action_send_email" type="object" string="Pošlji e-pošto" class="btn-primary"
-                            attrs="{'invisible': [('sent', '=', True)]}"/>
+                            invisible="[('sent', '=', True)]"/>
                 </header>
                 <sheet>
                     <group>

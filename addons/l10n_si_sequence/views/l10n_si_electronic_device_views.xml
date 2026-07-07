@@ -19,7 +19,7 @@
         <field name="name">l10n_si.electronic.device.form</field>
         <field name="model">l10n_si.electronic.device</field>
         <field name="arch" type="xml">
-            <form string="Electronic Device">
+            <form>
                 <sheet>
                     <group>
                         <group>

@@ -22,7 +22,7 @@
                         <group>
                             <field name="name"/>
                             <field name="template_type"/>
-                            <field name="subject" attrs="{'invisible': [('template_type', '!=', 'email')]}"/>
+                            <field name="subject" invisible="[('template_type', '!=', 'email')]"/>
                             <field name="active"/>
                         </group>
                         <group>

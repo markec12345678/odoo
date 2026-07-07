@@ -15,10 +15,10 @@
                     <group>
                         <button name="action_si_whatsapp_opt_in" type="object"
                                 string="Opt-in" class="btn-sm btn-success"
-                                attrs="{'invisible': [('si_whatsapp_opt_in', '=', True)]}"/>
+                                invisible="[('si_whatsapp_opt_in', '=', True)]"/>
                         <button name="action_si_whatsapp_opt_out" type="object"
                                 string="Opt-out" class="btn-sm btn-danger"
-                                attrs="{'invisible': [('si_whatsapp_opt_in', '=', False)]}"/>
+                                invisible="[('si_whatsapp_opt_in', '=', False)]"/>
                     </group>
                 </page>
             </xpath>

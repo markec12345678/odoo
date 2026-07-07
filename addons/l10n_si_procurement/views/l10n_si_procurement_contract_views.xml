@@ -27,9 +27,9 @@
             <form>
                 <header>
                     <button name="action_activate" type="object" string="Aktiviraj" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_terminate" type="object" string="Prekini"
-                            attrs="{'invisible': [('state', 'in', ('terminated', 'expired'))]}"/>
+                            invisible="[('state', 'in', ('terminated', 'expired'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

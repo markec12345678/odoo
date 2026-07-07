@@ -9,15 +9,15 @@
                 <group string="SI WhatsApp Configuration">
                     <group>
                         <field name="si_whatsapp_backend"/>
-                        <field name="si_whatsapp_phone_number_id" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'cloud_api')]}"/>
-                        <field name="si_whatsapp_business_id" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'cloud_api')]}"/>
-                        <field name="si_whatsapp_access_token" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'cloud_api')]}"/>
-                        <field name="si_whatsapp_verify_token" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'cloud_api')]}"/>
+                        <field name="si_whatsapp_phone_number_id" invisible="[('si_whatsapp_backend', '!=', 'cloud_api')]"/>
+                        <field name="si_whatsapp_business_id" invisible="[('si_whatsapp_backend', '!=', 'cloud_api')]"/>
+                        <field name="si_whatsapp_access_token" invisible="[('si_whatsapp_backend', '!=', 'cloud_api')]"/>
+                        <field name="si_whatsapp_verify_token" invisible="[('si_whatsapp_backend', '!=', 'cloud_api')]"/>
                     </group>
                     <group>
-                        <field name="si_whatsapp_twilio_account_sid" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'twilio')]}"/>
-                        <field name="si_whatsapp_twilio_auth_token" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'twilio')]}"/>
-                        <field name="si_whatsapp_twilio_from" attrs="{'invisible': [('si_whatsapp_backend', '!=', 'twilio')]}"/>
+                        <field name="si_whatsapp_twilio_account_sid" invisible="[('si_whatsapp_backend', '!=', 'twilio')]"/>
+                        <field name="si_whatsapp_twilio_auth_token" invisible="[('si_whatsapp_backend', '!=', 'twilio')]"/>
+                        <field name="si_whatsapp_twilio_from" invisible="[('si_whatsapp_backend', '!=', 'twilio')]"/>
                     </group>
                 </group>
             </xpath>

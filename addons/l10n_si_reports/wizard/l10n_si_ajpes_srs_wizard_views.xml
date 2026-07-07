@@ -4,7 +4,7 @@
         <field name="name">l10n_si.ajpes.srs.wizard.form</field>
         <field name="model">l10n_si.ajpes.srs.wizard</field>
         <field name="arch" type="xml">
-            <form string="Generate AJPES SRS Report">
+            <form>
                 <group>
                     <field name="company_id"/>
                     <field name="year"/>

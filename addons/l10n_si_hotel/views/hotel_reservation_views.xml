@@ -29,16 +29,16 @@
             <form>
                 <header>
                     <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_check_in" type="object" string="Prijava (check-in)" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                            invisible="[('state', '!=', 'confirmed')]"/>
                     <button name="action_check_out" type="object" string="Odjava (check-out)" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'checked_in')]}"/>
+                            invisible="[('state', '!=', 'checked_in')]"/>
                     <button name="action_no_show" type="object" string="Ni prišel"
-                            attrs="{'invisible': [('state', 'not in', ('confirmed',))]}"
+                            invisible="[('state', 'not in', ('confirmed',))]"
                             confirm="Označi kot no-show?"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('checked_out', 'cancelled', 'no_show'))]}"
+                            invisible="[('state', 'in', ('checked_out', 'cancelled', 'no_show'))]"
                             confirm="Resnično prekliči rezervacijo?"/>
                     <field name="state" widget="statusbar"/>
                 </header>

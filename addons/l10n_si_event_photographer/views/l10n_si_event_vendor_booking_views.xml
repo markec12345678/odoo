@@ -23,15 +23,15 @@
             <form>
                 <header>
                     <button name="action_send_inquiry" type="object" string="Pošlji povpraševanje"
-                            attrs="{'invisible': [('state', '!=', 'inquiry')]}"/>
+                            invisible="[('state', '!=', 'inquiry')]"/>
                     <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'quoted')]}"/>
+                            invisible="[('state', '!=', 'quoted')]"/>
                     <button name="action_complete" type="object" string="Opravljeno"
-                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                            invisible="[('state', '!=', 'confirmed')]"/>
                     <button name="action_create_vendor_bill" type="object" string="Ustvari račun dobavitelja" class="btn-primary"
-                            attrs="{'invisible': ['|', ('state', '!=', 'completed'), ('move_id', '!=', False)]}"/>
+                            invisible="['|', ('state', '!=', 'completed'), ('move_id', '!=', False)]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('completed', 'cancelled'))]}"/>
+                            invisible="[('state', 'in', ('completed', 'cancelled'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

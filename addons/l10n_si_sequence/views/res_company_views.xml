@@ -8,7 +8,7 @@
             <xpath expr="//sheet" position="inside">
                 <group string="Slovenian Invoice Numbering"
                        name="si_sequence_group"
-                       attrs="{'invisible': [('country_id', '!=', %(base.si)s)]}">
+                       invisible="[('country_id', '!=', %(base.si)s)]">
                     <field name="l10n_si_default_premise_id"/>
                     <field name="l10n_si_default_device_id"
                            domain="[('business_premise_id', '=', l10n_si_default_premise_id)]"/>

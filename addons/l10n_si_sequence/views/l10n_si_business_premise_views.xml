@@ -21,7 +21,7 @@
         <field name="name">l10n_si.business.premise.form</field>
         <field name="model">l10n_si.business.premise</field>
         <field name="arch" type="xml">
-            <form string="Business Premise">
+            <form>
                 <header>
                     <button name="action_register_with_furs" type="object"
                             string="Register with FURS" class="btn-primary"/>

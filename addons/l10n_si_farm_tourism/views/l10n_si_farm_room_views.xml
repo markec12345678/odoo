@@ -40,7 +40,7 @@
                         <group>
                             <field name="price_per_night"/>
                             <field name="breakfast_included"/>
-                            <field name="breakfast_price" attrs="{'invisible': [('breakfast_included', '=', True)]}"/>
+                            <field name="breakfast_price" invisible="[('breakfast_included', '=', True)]"/>
                         </group>
                     </group>
                 </sheet>

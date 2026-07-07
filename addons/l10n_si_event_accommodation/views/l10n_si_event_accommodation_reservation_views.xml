@@ -25,11 +25,11 @@
             <form>
                 <header>
                     <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_check_in" type="object" string="Prijava"
-                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                            invisible="[('state', '!=', 'confirmed')]"/>
                     <button name="action_check_out" type="object" string="Odjava"
-                            attrs="{'invisible': [('state', '!=', 'checked_in')]}"/>
+                            invisible="[('state', '!=', 'checked_in')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

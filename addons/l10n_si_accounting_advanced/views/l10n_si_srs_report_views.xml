@@ -25,15 +25,15 @@
             <form>
                 <header>
                     <button name="action_compute" type="object" string="Izračunaj" class="btn-secondary"
-                            attrs="{'invisible': [('state', 'not in', ('draft', 'computed'))]}"/>
+                            invisible="[('state', 'not in', ('draft', 'computed'))]"/>
                     <button name="action_review" type="object" string="Označi pregledano"
-                            attrs="{'invisible': [('state', '!=', 'computed')]}"/>
+                            invisible="[('state', '!=', 'computed')]"/>
                     <button name="action_submit_ajpes" type="object" string="Pošlji AJPES" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'reviewed')]}"/>
+                            invisible="[('state', '!=', 'reviewed')]"/>
                     <button name="action_mark_accepted" type="object" string="Označi sprejeto"
-                            attrs="{'invisible': [('state', '!=', 'submitted')]}"/>
+                            invisible="[('state', '!=', 'submitted')]"/>
                     <button name="action_mark_rejected" type="object" string="Označi zavrnjeno"
-                            attrs="{'invisible': [('state', '!=', 'submitted')]}"/>
+                            invisible="[('state', '!=', 'submitted')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

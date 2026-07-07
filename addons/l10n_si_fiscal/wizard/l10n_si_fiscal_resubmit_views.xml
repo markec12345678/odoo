@@ -4,7 +4,7 @@
         <field name="name">l10n_si.fiscal.resubmit.wizard.form</field>
         <field name="model">l10n_si.fiscal.resubmit.wizard</field>
         <field name="arch" type="xml">
-            <form string="Batch Resubmit to FURS">
+            <form>
                 <field name="move_ids"/>
                 <footer>
                     <button name="action_resubmit" type="object"

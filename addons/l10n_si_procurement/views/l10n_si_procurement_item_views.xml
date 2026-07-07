@@ -52,8 +52,8 @@
                     <group string="Sezonskost in hramba">
                         <group>
                             <field name="seasonal_demand"/>
-                            <field name="summer_multiplier" attrs="{'invisible': [('seasonal_demand', '=', False)]}"/>
-                            <field name="winter_multiplier" attrs="{'invisible': [('seasonal_demand', '=', False)]}"/>
+                            <field name="summer_multiplier" invisible="[('seasonal_demand', '=', False)]"/>
+                            <field name="winter_multiplier" invisible="[('seasonal_demand', '=', False)]"/>
                         </group>
                         <group>
                             <field name="requires_cold_chain"/>

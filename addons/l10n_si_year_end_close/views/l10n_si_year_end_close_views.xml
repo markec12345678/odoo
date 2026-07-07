@@ -11,9 +11,9 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_compute" type="object" string="Izračunaj" class="btn-secondary" attrs="{'invisible': [('state','!=','draft')]}"/>
-                    <button name="action_post" type="object" string="Knjiži" class="btn-primary" attrs="{'invisible': [('state','!=','computed')]}"/>
-                    <button name="action_close" type="object" string="Zaključi" attrs="{'invisible': [('state','!=','posted')]}"/>
+                    <button name="action_compute" type="object" string="Izračunaj" class="btn-secondary" invisible="[('state', '!=', 'draft')]"/>
+                    <button name="action_post" type="object" string="Knjiži" class="btn-primary" invisible="[('state', '!=', 'computed')]"/>
+                    <button name="action_close" type="object" string="Zaključi" invisible="[('state', '!=', 'posted')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

@@ -26,15 +26,15 @@
             <form>
                 <header>
                     <button name="action_send_to_kitchen" type="object" string="Pošlji v kuhinjo" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_start_preparing" type="object" string="Začni pripravo"
-                            attrs="{'invisible': [('state', '!=', 'sent')]}"/>
+                            invisible="[('state', '!=', 'sent')]"/>
                     <button name="action_mark_ready" type="object" string="Pripravljeno" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'preparing')]}"/>
+                            invisible="[('state', '!=', 'preparing')]"/>
                     <button name="action_served" type="object" string="Postreženo"
-                            attrs="{'invisible': [('state', '!=', 'ready')]}"/>
+                            invisible="[('state', '!=', 'ready')]"/>
                     <button name="action_create_invoice" type="object" string="Izdaj račun" class="btn-primary"
-                            attrs="{'invisible': ['|', ('state', '!=', 'served'), ('move_id', '!=', False)]}"/>
+                            invisible="['|', ('state', '!=', 'served'), ('move_id', '!=', False)]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -54,7 +54,7 @@
                     </group>
                     <notebook>
                         <page string="Postavke">
-                            <field name="line_ids" attrs="{'readonly': [('state', 'in', ('sent', 'preparing', 'ready', 'served', 'invoiced'))]}">
+                            <field name="line_ids" readonly="[('state', 'in', ('sent', 'preparing', 'ready', 'served', 'invoiced'))]">
                                 <list editable="bottom">
                                     <field name="menu_id"/>
                                     <field name="quantity"/>

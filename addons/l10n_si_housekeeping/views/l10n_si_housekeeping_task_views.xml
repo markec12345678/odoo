@@ -27,15 +27,15 @@
             <form>
                 <header>
                     <button name="action_assign" type="object" string="Dodeli"
-                            attrs="{'invisible': [('state', '!=', 'pending')]}"/>
+                            invisible="[('state', '!=', 'pending')]"/>
                     <button name="action_start" type="object" string="Začni" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'assigned')]}"/>
+                            invisible="[('state', '!=', 'assigned')]"/>
                     <button name="action_complete" type="object" string="Opravi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                            invisible="[('state', '!=', 'in_progress')]"/>
                     <button name="action_inspect" type="object" string="Preglej"
-                            attrs="{'invisible': [('state', '!=', 'done')]}"/>
+                            invisible="[('state', '!=', 'done')]"/>
                     <button name="action_skip" type="object" string="Preskoči"
-                            attrs="{'invisible': [('state', 'in', ('done', 'inspected', 'skipped'))]}"/>
+                            invisible="[('state', 'in', ('done', 'inspected', 'skipped'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

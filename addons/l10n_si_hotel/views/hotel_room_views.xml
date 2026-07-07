@@ -51,11 +51,11 @@
             <form>
                 <header>
                     <button name="action_set_available" type="object" string="Prosta"
-                            attrs="{'invisible': [('state', '=', 'available')]}"/>
+                            invisible="[('state', '=', 'available')]"/>
                     <button name="action_set_cleaning" type="object" string="Čiščenje"
-                            attrs="{'invisible': [('state', '=', 'cleaning')]}"/>
+                            invisible="[('state', '=', 'cleaning')]"/>
                     <button name="action_set_out_of_order" type="object" string="Vzdrževanje"
-                            attrs="{'invisible': [('state', '=', 'out_of_order')]}"/>
+                            invisible="[('state', '=', 'out_of_order')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

@@ -42,7 +42,7 @@
                     <group string="Certifikati">
                         <group>
                             <field name="eko_certified"/>
-                            <field name="eko_cert_body" attrs="{'invisible': [('eko_certified', '=', False)]}"/>
+                            <field name="eko_cert_body" invisible="[('eko_certified', '=', False)]"/>
                         </group>
                         <group>
                             <field name="slovenian_quality"/>

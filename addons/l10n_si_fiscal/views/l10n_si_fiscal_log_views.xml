@@ -23,11 +23,11 @@
         <field name="name">l10n_si.fiscal.log.form</field>
         <field name="model">l10n_si.fiscal.log</field>
         <field name="arch" type="xml">
-            <form string="Fiscal Log">
+            <form>
                 <header>
                     <button name="action_retry" type="object" string="Retry"
                             class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'error')]}"/>
+                            invisible="[('state', '!=', 'error')]"/>
                 </header>
                 <sheet>
                     <group>

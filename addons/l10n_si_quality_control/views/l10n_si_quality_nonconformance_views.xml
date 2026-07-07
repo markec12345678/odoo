@@ -26,13 +26,13 @@
             <form>
                 <header>
                     <button name="action_investigate" type="object" string="Preiskuj" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'open')]}"/>
+                            invisible="[('state', '!=', 'open')]"/>
                     <button name="action_implement" type="object" string="Izvedi CAPA" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'investigation')]}"/>
+                            invisible="[('state', '!=', 'investigation')]"/>
                     <button name="action_verify" type="object" string="Preveri" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'action')]}"/>
+                            invisible="[('state', '!=', 'action')]"/>
                     <button name="action_close" type="object" string="Zapri"
-                            attrs="{'invisible': [('state', '!=', 'verified')]}"/>
+                            invisible="[('state', '!=', 'verified')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

@@ -19,7 +19,7 @@
         <record id="rule_hr_fiscal_company" model="ir.rule">
             <field name="name">HR Fiskalizacija: multi-company</field>
             <field name="model_id" ref="model_l10n_hr_business_premise"/>
-            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+            <field name="domain">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
         </record>
     </data>
 </odoo>

@@ -24,11 +24,11 @@
             <form>
                 <header>
                     <button name="action_return_to_guest" type="object" string="Vrni gostu" class="btn-primary"
-                            attrs="{'invisible': [('state', 'in', ('returned', 'disposed', 'donated'))]}"/>
+                            invisible="[('state', 'in', ('returned', 'disposed', 'donated'))]"/>
                     <button name="action_dispose" type="object" string="Odstavi"
-                            attrs="{'invisible': [('state', 'in', ('returned', 'disposed', 'donated'))]}"/>
+                            invisible="[('state', 'in', ('returned', 'disposed', 'donated'))]"/>
                     <button name="action_donate" type="object" string="Doniraj"
-                            attrs="{'invisible': [('state', 'in', ('returned', 'disposed', 'donated'))]}"/>
+                            invisible="[('state', 'in', ('returned', 'disposed', 'donated'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -51,7 +51,7 @@
                     <group string="Opis predmeta">
                         <field name="description" nolabel="1"/>
                     </group>
-                    <group string="Vrnitev" attrs="{'invisible': [('state', '!=', 'returned')]}">
+                    <group string="Vrnitev" invisible="[('state', '!=', 'returned')]">
                         <group>
                             <field name="returned_on" readonly="1"/>
                             <field name="returned_to" readonly="1"/>

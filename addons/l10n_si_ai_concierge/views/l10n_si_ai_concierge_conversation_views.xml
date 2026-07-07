@@ -24,9 +24,9 @@
             <form>
                 <header>
                     <button name="action_end" type="object" string="Zaključi"
-                            attrs="{'invisible': [('state', '=', 'ended')]}"/>
+                            invisible="[('state', '=', 'ended')]"/>
                     <button name="action_escalate" type="object" string="Prenesi na človeka" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                            invisible="[('state', '!=', 'active')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

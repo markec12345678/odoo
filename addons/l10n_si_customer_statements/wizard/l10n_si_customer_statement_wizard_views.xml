@@ -4,7 +4,7 @@
         <field name="name">l10n_si.customer.statement.wizard.form</field>
         <field name="model">l10n_si.customer.statement.wizard</field>
         <field name="arch" type="xml">
-            <form string="Generiraj izpise stanj">
+            <form>
                 <group>
                     <field name="year"/>
                     <field name="month"/>

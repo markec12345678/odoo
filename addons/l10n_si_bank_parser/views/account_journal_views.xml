@@ -7,9 +7,9 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='bank_acc_number']" position="after">
                 <field name="si_bank_format"
-                       attrs="{'invisible': [('type', '!=', 'bank')]}"/>
+                       invisible="[('type', '!=', 'bank')]"/>
                 <field name="si_bank_identifier"
-                       attrs="{'invisible': [('type', '!=', 'bank')]}"/>
+                       invisible="[('type', '!=', 'bank')]"/>
             </xpath>
         </field>
     </record>

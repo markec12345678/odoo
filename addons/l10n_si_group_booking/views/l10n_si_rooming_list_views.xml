@@ -24,9 +24,9 @@
             <form>
                 <header>
                     <button name="action_check_in" type="object" string="Prijava"
-                            attrs="{'invisible': [('state', '!=', 'assigned')]}"/>
+                            invisible="[('state', '!=', 'assigned')]"/>
                     <button name="action_check_out" type="object" string="Odjava"
-                            attrs="{'invisible': [('state', '!=', 'checked_in')]}"/>
+                            invisible="[('state', '!=', 'checked_in')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

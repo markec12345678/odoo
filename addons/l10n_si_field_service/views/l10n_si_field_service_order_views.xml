@@ -27,15 +27,15 @@
             <form>
                 <header>
                     <button name="action_assign" type="object" string="Dodeli" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_start" type="object" string="Začni" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'assigned')]}"/>
+                            invisible="[('state', '!=', 'assigned')]"/>
                     <button name="action_complete" type="object" string="Zaključi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                            invisible="[('state', '!=', 'in_progress')]"/>
                     <button name="action_generate_invoice" type="object" string="Generiraj račun"
-                            attrs="{'invisible': ['|', ('state', '!=', 'done'), ('invoice_id', '!=', False)]}"/>
+                            invisible="['|', ('state', '!=', 'done'), ('invoice_id', '!=', False)]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('done', 'cancelled', 'invoiced'))]}"/>
+                            invisible="[('state', 'in', ('done', 'cancelled', 'invoiced'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

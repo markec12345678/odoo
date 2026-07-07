@@ -4,7 +4,7 @@
         <field name="name">l10n_si.ocr.upload.wizard.form</field>
         <field name="model">l10n_si.ocr.upload.wizard</field>
         <field name="arch" type="xml">
-            <form string="Upload za OCR">
+            <form>
                 <group>
                     <field name="name"/>
                     <field name="pdf_file" filename="pdf_filename"/>

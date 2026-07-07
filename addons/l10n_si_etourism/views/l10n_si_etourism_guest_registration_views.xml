@@ -22,39 +22,39 @@
             <form>
                 <header>
                     <button name="action_submit_to_ajpes" type="object" string="Pošlji prijavo" class="oe_highlight"
-                            attrs="{'invisible': [('ajpes_status', 'in', ['submitted', 'deregistered', 'cancelled'])]}"/>
+                            invisible="[('ajpes_status', 'in', ['submitted', 'deregistered', 'cancelled'])]"/>
                     <button name="action_deregister_with_ajpes" type="object" string="Pošlji odjavo"
-                            attrs="{'invisible': [('ajpes_status', '!=', 'submitted')]}"/>
+                            invisible="[('ajpes_status', '!=', 'submitted')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('ajpes_status', '!=', 'draft')]}"/>
+                            invisible="[('ajpes_status', '!=', 'draft')]"/>
                     <field name="ajpes_status" widget="statusbar" statusbar_visible="draft,pending,submitted,deregistered"/>
                 </header>
                 <sheet>
                     <div class="oe_title"><label for="name"/><h1><field name="name" readonly="1"/></h1></div>
                     <group>
                         <group string="Obrat">
-                            <field name="establishment_id" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                            <field name="establishment_id" readonly="[('ajpes_status', '!=', 'draft')]"/>
                             <field name="mid" readonly="1"/><field name="sifnas" readonly="1"/>
                         </group>
                         <group string="Gost">
-                            <field name="partner_id" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
-                            <field name="guest_first_name" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
-                            <field name="guest_last_name" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
-                            <field name="guest_birth_date" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
-                            <field name="guest_citizenship_id" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                            <field name="partner_id" readonly="[('ajpes_status', '!=', 'draft')]"/>
+                            <field name="guest_first_name" readonly="[('ajpes_status', '!=', 'draft')]"/>
+                            <field name="guest_last_name" readonly="[('ajpes_status', '!=', 'draft')]"/>
+                            <field name="guest_birth_date" readonly="[('ajpes_status', '!=', 'draft')]"/>
+                            <field name="guest_citizenship_id" readonly="[('ajpes_status', '!=', 'draft')]"/>
                         </group>
                     </group>
                     <group string="Bivanje">
                         <group>
-                            <field name="arrival_date" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                            <field name="arrival_date" readonly="[('ajpes_status', '!=', 'draft')]"/>
                             <field name="departure_date"/><field name="nights"/>
                         </group>
                         <group>
-                            <field name="purpose" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
-                            <field name="transport" attrs="{'readonly': [('ajpes_status', '!=', 'draft')]}"/>
+                            <field name="purpose" readonly="[('ajpes_status', '!=', 'draft')]"/>
+                            <field name="transport" readonly="[('ajpes_status', '!=', 'draft')]"/>
                         </group>
                     </group>
-                    <group string="AJPES odgovor" attrs="{'invisible': [('ajpes_status', '=', 'draft')]}">
+                    <group string="AJPES odgovor" invisible="[('ajpes_status', '=', 'draft')]">
                         <group><field name="ajpes_submission_id" readonly="1"/><field name="ajpes_submitted_at" readonly="1"/></group>
                         <group><field name="ajpes_error_message" readonly="1" colspan="2"/></group>
                     </group>

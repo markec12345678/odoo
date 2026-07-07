@@ -20,9 +20,9 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_start" type="object" string="Začni obravnavo" attrs="{'invisible': [('state', '!=', 'new')]}"/>
-                    <button name="action_complete" type="object" string="Opravi" class="btn-primary" attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
-                    <button name="action_reject" type="object" string="Zavrni" attrs="{'invisible': [('state', 'in', ('completed', 'rejected'))]}"/>
+                    <button name="action_start" type="object" string="Začni obravnavo" invisible="[('state', '!=', 'new')]"/>
+                    <button name="action_complete" type="object" string="Opravi" class="btn-primary" invisible="[('state', '!=', 'in_progress')]"/>
+                    <button name="action_reject" type="object" string="Zavrni" invisible="[('state', 'in', ('completed', 'rejected'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

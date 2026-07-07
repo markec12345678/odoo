@@ -27,9 +27,9 @@
             <form>
                 <header>
                     <button name="action_set_available" type="object" string="Prosta"
-                            attrs="{'invisible': [('state', '=', 'available')]}"/>
+                            invisible="[('state', '=', 'available')]"/>
                     <button name="action_set_maintenance" type="object" string="Vzdrževanje"
-                            attrs="{'invisible': [('state', '=', 'maintenance')]}"/>
+                            invisible="[('state', '=', 'maintenance')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

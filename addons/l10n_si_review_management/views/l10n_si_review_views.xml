@@ -29,15 +29,15 @@
             <form>
                 <header>
                     <button name="action_analyze_sentiment" type="object" string="AI analiza" class="btn-secondary"
-                            attrs="{'invisible': [('state', '!=', 'new')]}"/>
+                            invisible="[('state', '!=', 'new')]"/>
                     <button name="action_generate_ai_response" type="object" string="AI predlog odgovora" class="btn-secondary"
-                            attrs="{'invisible': [('state', 'in', ('responded', 'archived'))]}"/>
+                            invisible="[('state', 'in', ('responded', 'archived'))]"/>
                     <button name="action_respond" type="object" string="Pošlji odgovor" class="btn-primary"
-                            attrs="{'invisible': ['|', ('response_text', '=', False), ('state', '=', 'responded')]}"/>
+                            invisible="['|', ('response_text', '=', False), ('state', '=', 'responded')]"/>
                     <button name="action_escalate" type="object" string="Prenesi na vodjo"
-                            attrs="{'invisible': [('state', 'in', ('responded', 'archived'))]}"/>
+                            invisible="[('state', 'in', ('responded', 'archived'))]"/>
                     <button name="action_archive" type="object" string="Arhiviraj"
-                            attrs="{'invisible': [('state', '=', 'archived')]}"/>
+                            invisible="[('state', '=', 'archived')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

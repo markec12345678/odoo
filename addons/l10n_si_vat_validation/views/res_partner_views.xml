@@ -11,7 +11,7 @@
                         type="object"
                         string="Check with FURS"
                         class="btn-sm btn-secondary"
-                        attrs="{'invisible': ['|', ('vat', '=', False), ('country_id', '!=', %(base.si)s)]}"
+                        invisible="['|', ('vat', '=', False), ('country_id', '!=', %(base.si)s)]"
                         groups="base.group_user"/>
             </xpath>
         </field>

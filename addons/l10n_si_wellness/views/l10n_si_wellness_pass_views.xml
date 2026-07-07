@@ -25,11 +25,11 @@
             <form>
                 <header>
                     <button name="action_pay" type="object" string="Plačaj + Račun" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_mark_used" type="object" string="Označi uporabljeno"
-                            attrs="{'invisible': [('state', '!=', 'paid')]}"/>
+                            invisible="[('state', '!=', 'paid')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('used', 'cancelled'))]}"/>
+                            invisible="[('state', 'in', ('used', 'cancelled'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

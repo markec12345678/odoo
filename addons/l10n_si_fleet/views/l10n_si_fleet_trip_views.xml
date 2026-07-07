@@ -24,7 +24,7 @@
             <form>
                 <header>
                     <button name="action_end_trip" type="object" string="Zaključi vožnjo" class="btn-primary"
-                            attrs="{'invisible': [('date_end', '!=', False)]}"/>
+                            invisible="[('date_end', '!=', False)]"/>
                 </header>
                 <sheet>
                     <group>

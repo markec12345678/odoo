@@ -26,7 +26,7 @@
             <form>
                 <header>
                     <button name="action_complete" type="object" string="Zaključi pregled" class="btn-primary"
-                            attrs="{'invisible': [('state', 'in', ('pass', 'fail', 'partial'))]}"/>
+                            invisible="[('state', 'in', ('pass', 'fail', 'partial'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

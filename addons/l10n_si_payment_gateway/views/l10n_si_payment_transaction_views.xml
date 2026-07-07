@@ -27,17 +27,17 @@
             <form>
                 <header>
                     <button name="action_initiate" type="object" string="Zaženi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_complete" type="object" string="Zaključi"
-                            attrs="{'invisible': [('state', '!=', 'pending')]}"/>
+                            invisible="[('state', '!=', 'pending')]"/>
                     <button name="action_refund" type="object" string="Vrni"
-                            attrs="{'invisible': ['|', ('state', '!=', 'completed'), ('config_id.supports_refund', '=', False)]}"/>
+                            invisible="['|', ('state', '!=', 'completed'), ('config_id.supports_refund', '=', False)]"/>
                     <button name="action_fail" type="object" string="Označi neuspešno"
-                            attrs="{'invisible': [('state', '!=', 'pending')]}"/>
+                            invisible="[('state', '!=', 'pending')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('completed', 'cancelled', 'refunded'))]}"/>
+                            invisible="[('state', 'in', ('completed', 'cancelled', 'refunded'))]"/>
                     <button name="action_generate_payment_link" type="object" string="Generiraj plačilni link"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -67,7 +67,7 @@
                             <field name="_3ds_authenticated"/>
                         </group>
                     </group>
-                    <group string="Napaka" attrs="{'invisible': [('error_message', '=', False)]}">
+                    <group string="Napaka" invisible="[('error_message', '=', False)]">
                         <field name="error_message" nolabel="1"/>
                     </group>
                     <group string="Opombe">

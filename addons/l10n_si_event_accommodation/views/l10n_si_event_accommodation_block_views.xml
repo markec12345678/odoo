@@ -26,9 +26,9 @@
             <form>
                 <header>
                     <button name="action_activate" type="object" string="Aktiviraj" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_release" type="object" string="Sprosti neporabljene"
-                            attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                            invisible="[('state', '!=', 'active')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

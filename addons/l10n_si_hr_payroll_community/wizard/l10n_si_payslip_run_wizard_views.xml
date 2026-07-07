@@ -4,7 +4,7 @@
         <field name="name">l10n_si.payslip.run.wizard.form</field>
         <field name="model">l10n_si.payslip.run.wizard</field>
         <field name="arch" type="xml">
-            <form string="Mesečni obračun plač">
+            <form>
                 <group>
                     <group>
                         <field name="year"/>

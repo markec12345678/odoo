@@ -26,15 +26,15 @@
             <form>
                 <header>
                     <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_seat" type="object" string="Sedijo" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                            invisible="[('state', '!=', 'confirmed')]"/>
                     <button name="action_finish" type="object" string="Končano"
-                            attrs="{'invisible': [('state', '!=', 'seated')]}"/>
+                            invisible="[('state', '!=', 'seated')]"/>
                     <button name="action_no_show" type="object" string="Ni prišel"
-                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                            invisible="[('state', '!=', 'confirmed')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('finished', 'cancelled', 'no_show'))]}"/>
+                            invisible="[('state', 'in', ('finished', 'cancelled', 'no_show'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

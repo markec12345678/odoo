@@ -22,14 +22,14 @@
         <field name="name">l10n_si.report.log.form</field>
         <field name="model">l10n_si.report.log</field>
         <field name="arch" type="xml">
-            <form string="SI Report Log">
+            <form>
                 <header>
                     <button name="action_download_xml" type="object"
                             string="Download XML" class="btn-primary"
-                            attrs="{'invisible': [('xml_attachment_id', '=', False)]}"/>
+                            invisible="[('xml_attachment_id', '=', False)]"/>
                     <button name="action_download_pdf" type="object"
                             string="Download PDF" class="btn-secondary"
-                            attrs="{'invisible': [('pdf_attachment_id', '=', False)]}"/>
+                            invisible="[('pdf_attachment_id', '=', False)]"/>
                 </header>
                 <sheet>
                     <group>

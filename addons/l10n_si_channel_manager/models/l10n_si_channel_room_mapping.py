@@ -19,8 +19,7 @@ class L10nSiChannelRoomMapping(models.Model):
         required=True,
     )
     room_type_id = fields.Many2one('l10n_si.hotel.room.type',
-                                     string='Hotel room type',
-                                     attrs="{}")
+                                     string='Hotel room type')
     parcel_id = fields.Many2one('l10n_si.camping.parcel',
                                   string='Kamp parcela')
 

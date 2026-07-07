@@ -9,9 +9,9 @@
                 <group string="SI OCR Configuration">
                     <field name="si_ocr_backend"/>
                     <field name="si_ocr_auto_create_bill"/>
-                    <field name="si_ocr_google_project_id" attrs="{'invisible': [('si_ocr_backend', '!=', 'google_docai')]}"/>
-                    <field name="si_ocr_google_processor_id" attrs="{'invisible': [('si_ocr_backend', '!=', 'google_docai')]}"/>
-                    <field name="si_ocr_google_credentials" attrs="{'invisible': [('si_ocr_backend', '!=', 'google_docai')]}"/>
+                    <field name="si_ocr_google_project_id" invisible="[('si_ocr_backend', '!=', 'google_docai')]"/>
+                    <field name="si_ocr_google_processor_id" invisible="[('si_ocr_backend', '!=', 'google_docai')]"/>
+                    <field name="si_ocr_google_credentials" invisible="[('si_ocr_backend', '!=', 'google_docai')]"/>
                 </group>
             </xpath>
         </field>

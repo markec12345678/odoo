@@ -19,7 +19,7 @@
         <record id="rule_etourism_company" model="ir.rule">
             <field name="name">SI eTurizem: multi-company</field>
             <field name="model_id" ref="model_l10n_si_etourism_establishment"/>
-            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+            <field name="domain">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
         </record>
     </data>
 </odoo>

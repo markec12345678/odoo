@@ -40,7 +40,7 @@
                             <field name="last_error" readonly="1"/>
                         </group>
                     </group>
-                    <group string="API poverilnice" attrs="{'invisible': [('platform', '=', 'internal')]}">
+                    <group string="API poverilnice" invisible="[('platform', '=', 'internal')]">
                         <group>
                             <field name="api_endpoint"/>
                             <field name="api_username"/>

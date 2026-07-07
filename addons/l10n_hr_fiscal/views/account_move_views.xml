@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="inside">
                 <group string="HR Fiskalizacija"
-                       attrs="{'invisible': [('l10n_hr_fiscal_state', '=', False)]}">
+                       invisible="[('l10n_hr_fiscal_state', '=', False)]">
                     <group>
                         <field name="l10n_hr_zki" readonly="1"/>
                         <field name="l10n_hr_jir" readonly="1"/>

@@ -28,19 +28,19 @@
             <form>
                 <header>
                     <button name="action_send_quote" type="object" string="Pošlji ponudbo" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'inquiry')]}"/>
+                            invisible="[('state', '!=', 'inquiry')]"/>
                     <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
-                            attrs="{'invisible': [('state', 'not in', ('quoted', 'inquiry'))]}"/>
+                            invisible="[('state', 'not in', ('quoted', 'inquiry'))]"/>
                     <button name="action_register_deposit" type="object" string="Zabeleži avans"
-                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                            invisible="[('state', '!=', 'confirmed')]"/>
                     <button name="action_start" type="object" string="Začni dogodek" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'deposit_paid')]}"/>
+                            invisible="[('state', '!=', 'deposit_paid')]"/>
                     <button name="action_complete_pending" type="object" string="Končaj dogodek"
-                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                            invisible="[('state', '!=', 'in_progress')]"/>
                     <button name="action_create_final_invoice" type="object" string="Izdaj končni račun" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'completed_pending')]}"/>
+                            invisible="[('state', '!=', 'completed_pending')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('completed', 'cancelled'))]}"
+                            invisible="[('state', 'in', ('completed', 'cancelled'))]"
                             confirm="Resnično prekliči dogodek?"/>
                     <field name="state" widget="statusbar"
                            statusbar_visible="inquiry,quoted,confirmed,deposit_paid,in_progress,completed_pending,completed"/>
@@ -48,7 +48,7 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="action_view_invoices" type="object" class="oe_stat_button" icon="fa-file-text-o"
-                                attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                                invisible="[('invoice_count', '=', 0)]">
                             <field name="invoice_count" widget="statinfo" string="Računi"/>
                         </button>
                     </div>

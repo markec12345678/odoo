@@ -55,9 +55,9 @@
             <form>
                 <header>
                     <button name="action_free" type="object" string="Prosta" class="btn-primary"
-                            attrs="{'invisible': [('state', '=', 'free')]}"/>
+                            invisible="[('state', '=', 'free')]"/>
                     <button name="action_cleaning" type="object" string="Čiščenje"
-                            attrs="{'invisible': [('state', '=', 'cleaning')]}"/>
+                            invisible="[('state', '=', 'cleaning')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

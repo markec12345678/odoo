@@ -24,13 +24,13 @@
             <form>
                 <header>
                     <button name="action_start" type="object" string="Zaženi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_pause" type="object" string="Pavziraj"
-                            attrs="{'invisible': [('state', '!=', 'running')]}"/>
+                            invisible="[('state', '!=', 'running')]"/>
                     <button name="action_start" type="object" string="Nadaljuj"
-                            attrs="{'invisible': [('state', '!=', 'paused')]}"/>
+                            invisible="[('state', '!=', 'paused')]"/>
                     <button name="action_add_participants" type="object" string="Dodaj udeležence"
-                            attrs="{'invisible': [('state', '=', 'completed')]}"/>
+                            invisible="[('state', '=', 'completed')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -57,8 +57,8 @@
                                     <field name="sequence" widget="handle"/>
                                     <field name="name"/>
                                     <field name="action_type"/>
-                                    <field name="template_id" attrs="{'invisible': [('action_type', '!=', 'email')]}"/>
-                                    <field name="wait_days" attrs="{'invisible': [('action_type', '!=', 'wait')]}"/>
+                                    <field name="template_id" invisible="[('action_type', '!=', 'email')]"/>
+                                    <field name="wait_days" invisible="[('action_type', '!=', 'wait')]"/>
                                 </list>
                             </field>
                         </page>

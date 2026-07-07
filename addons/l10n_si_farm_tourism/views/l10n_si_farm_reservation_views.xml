@@ -26,13 +26,13 @@
             <form>
                 <header>
                     <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_check_in" type="object" string="Prijava" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                            invisible="[('state', '!=', 'confirmed')]"/>
                     <button name="action_check_out" type="object" string="Odjava + Račun" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'checked_in')]}"/>
+                            invisible="[('state', '!=', 'checked_in')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('checked_out', 'cancelled'))]}"/>
+                            invisible="[('state', 'in', ('checked_out', 'cancelled'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -56,7 +56,7 @@
                         <group>
                             <field name="breakfast"/>
                             <field name="dinner"/>
-                            <field name="dinner_price" attrs="{'invisible': [('dinner', '=', False)]}"/>
+                            <field name="dinner_price" invisible="[('dinner', '=', False)]"/>
                         </group>
                     </group>
                     <group string="Kmečke aktivnosti">

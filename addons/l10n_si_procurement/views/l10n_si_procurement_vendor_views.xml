@@ -24,11 +24,11 @@
             <form>
                 <header>
                     <button name="action_pause" type="object" string="Pavziraj"
-                            attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                            invisible="[('state', '!=', 'active')]"/>
                     <button name="action_activate" type="object" string="Aktiviraj"
-                            attrs="{'invisible': [('state', '=', 'active')]}"/>
+                            invisible="[('state', '=', 'active')]"/>
                     <button name="action_blacklist" type="object" string="Črni seznam" class="btn-danger"
-                            attrs="{'invisible': [('state', '=', 'blacklisted')]}"/>
+                            invisible="[('state', '=', 'blacklisted')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

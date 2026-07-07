@@ -4,7 +4,7 @@
         <field name="name">l10n_si.sign.upload.wizard.form</field>
         <field name="model">l10n_si.sign.upload.wizard</field>
         <field name="arch" type="xml">
-            <form string="Hitri podpis dokumenta">
+            <form>
                 <group>
                     <field name="name"/>
                     <field name="partner_id"/>

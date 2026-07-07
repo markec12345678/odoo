@@ -7,9 +7,9 @@
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button name="action_generate_x_report" type="object" string="X-poročilo"
-                        attrs="{'invisible': ['|', ('state', '!=', 'opened'), ('si_x_report_generated', '=', True)]}"/>
+                        invisible="['|', ('state', '!=', 'opened'), ('si_x_report_generated', '=', True)]"/>
                 <button name="action_generate_z_report" type="object" string="Z-poročilo (zaključi dan)" class="btn-primary"
-                        attrs="{'invisible': ['|', ('state', '!=', 'opened'), ('si_z_report_generated', '=', True)]}"/>
+                        invisible="['|', ('state', '!=', 'opened'), ('si_z_report_generated', '=', True)]"/>
             </xpath>
             <xpath expr="//sheet" position="inside">
                 <group string="SI FURS Statistika">

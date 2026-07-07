@@ -27,16 +27,16 @@
             <form>
                 <header>
                     <button name="action_activate" type="object" string="Aktiviraj" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_pause" type="object" string="Pavziraj"
-                            attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                            invisible="[('state', '!=', 'active')]"/>
                     <button name="action_resume" type="object" string="Nadaljuj"
-                            attrs="{'invisible': [('state', '!=', 'paused')]}"/>
+                            invisible="[('state', '!=', 'paused')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('cancelled', 'expired'))]}"
+                            invisible="[('state', 'in', ('cancelled', 'expired'))]"
                             confirm="Resnično preklicati naročnino?"/>
                     <button name="action_generate_invoice" type="object" string="Generiraj račun"
-                            attrs="{'invisible': [('state', 'not in', ('active', 'trial'))]}"/>
+                            invisible="[('state', 'not in', ('active', 'trial'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

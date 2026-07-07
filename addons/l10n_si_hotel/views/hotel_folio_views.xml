@@ -24,19 +24,19 @@
             <form>
                 <header>
                     <button name="action_open" type="object" string="Odpri folio" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_close" type="object" string="Zaključi folio" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'open')]}"/>
+                            invisible="[('state', '!=', 'open')]"/>
                     <button name="action_create_invoice" type="object" string="Izdaj račun" class="btn-primary"
-                            attrs="{'invisible': ['|', ('state', '!=', 'closed'), ('move_id', '!=', False)]}"/>
+                            invisible="['|', ('state', '!=', 'closed'), ('move_id', '!=', False)]"/>
                     <button name="action_add_service" type="object" string="Dodaj storitev"
-                            attrs="{'invisible': [('state', 'in', ('draft', 'cancelled'))]}"/>
+                            invisible="[('state', 'in', ('draft', 'cancelled'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-file-text-o"
-                                attrs="{'invisible': [('move_id', '=', False)]}">
+                                invisible="[('move_id', '=', False)]">
                             <div class="o_stat_info"><span class="o_stat_text">Račun</span></div>
                         </button>
                     </div>

@@ -25,17 +25,17 @@
             <form>
                 <header>
                     <button name="action_generate_pdf" type="object" string="Generiraj PDF"
-                            attrs="{'invisible': [('pdf_attachment_id', '!=', False)]}"/>
+                            invisible="[('pdf_attachment_id', '!=', False)]"/>
                     <button name="action_send_to_customer" type="object" string="Pošlji v podpis" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_mark_customer_signed" type="object" string="Stranka podpisala"
-                            attrs="{'invisible': [('state', '!=', 'sent')]}"/>
+                            invisible="[('state', '!=', 'sent')]"/>
                     <button name="action_mark_both_signed" type="object" string="Oboje podpisalo" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'signed_customer')]}"/>
+                            invisible="[('state', '!=', 'signed_customer')]"/>
                     <button name="action_archive" type="object" string="Arhiviraj"
-                            attrs="{'invisible': [('state', '!=', 'signed_both')]}"/>
+                            invisible="[('state', '!=', 'signed_both')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('archived', 'cancelled'))]}"/>
+                            invisible="[('state', 'in', ('archived', 'cancelled'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

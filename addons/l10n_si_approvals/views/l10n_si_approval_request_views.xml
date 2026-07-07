@@ -27,13 +27,13 @@
             <form>
                 <header>
                     <button name="action_submit" type="object" string="Pošlji v odobritev" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_approve" type="object" string="Odobri" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'pending')]}"/>
+                            invisible="[('state', '!=', 'pending')]"/>
                     <button name="action_reject" type="object" string="Zavrni"
-                            attrs="{'invisible': [('state', '!=', 'pending')]}"/>
+                            invisible="[('state', '!=', 'pending')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('approved', 'rejected', 'cancelled'))]}"/>
+                            invisible="[('state', 'in', ('approved', 'rejected', 'cancelled'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

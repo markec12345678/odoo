@@ -24,7 +24,7 @@
             <form>
                 <header>
                     <button name="action_test_connection" type="object" string="Test povezavo" class="btn-secondary"
-                            attrs="{'invisible': [('provider', 'in', ('cash', 'trr'))]}"/>
+                            invisible="[('provider', 'in', ('cash', 'trr'))]"/>
                 </header>
                 <sheet>
                     <group>
@@ -40,7 +40,7 @@
                             <field name="journal_id"/>
                         </group>
                     </group>
-                    <group string="API poverilnice" attrs="{'invisible': [('provider', 'in', ('cash', 'trr'))]}">
+                    <group string="API poverilnice" invisible="[('provider', 'in', ('cash', 'trr'))]">
                         <group>
                             <field name="api_key" password="True"/>
                             <field name="api_secret" password="True"/>
@@ -51,7 +51,7 @@
                             <field name="endpoint_url"/>
                         </group>
                     </group>
-                    <group string="TRR/UPN" attrs="{'invisible': [('provider', 'not in', ('trr', 'upn'))]}">
+                    <group string="TRR/UPN" invisible="[('provider', 'not in', ('trr', 'upn'))]">
                         <group>
                             <field name="iban"/>
                             <field name="bic"/>

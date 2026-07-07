@@ -25,7 +25,7 @@
                 <header>
                     <button name="action_test_connection" type="object" string="Test povezave" class="btn-secondary"/>
                     <button name="action_sync_now" type="object" string="Sinhoniziraj zdaj" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                            invisible="[('state', '!=', 'active')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -67,8 +67,8 @@
                             <field name="room_mapping_ids">
                                 <list editable="bottom">
                                     <field name="si_model"/>
-                                    <field name="room_type_id" attrs="{'invisible': [('si_model', '!=', 'hotel')], 'required': [('si_model', '=', 'hotel')]}"/>
-                                    <field name="parcel_id" attrs="{'invisible': [('si_model', '!=', 'camping')], 'required': [('si_model', '=', 'camping')]}"/>
+                                    <field name="room_type_id" invisible="[('si_model', '!=', 'hotel')]" required="[('si_model', '=', 'hotel')]"/>
+                                    <field name="parcel_id" invisible="[('si_model', '!=', 'camping')]" required="[('si_model', '=', 'camping')]"/>
                                     <field name="channel_room_type_id"/>
                                     <field name="channel_room_type_name"/>
                                     <field name="price_override"/>

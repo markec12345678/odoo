@@ -28,11 +28,11 @@
             <form>
                 <header>
                     <button name="action_post_to_accounting" type="object" string="Knjiži" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_report_to_municipality" type="object" string="Prijavi občini"
-                            attrs="{'invisible': [('state', '!=', 'posted')]}"/>
+                            invisible="[('state', '!=', 'posted')]"/>
                     <button name="action_mark_paid" type="object" string="Označi plačano"
-                            attrs="{'invisible': [('state', '!=', 'reported')]}"/>
+                            invisible="[('state', '!=', 'reported')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -57,7 +57,7 @@
                     <group string="Oprostitev">
                         <group>
                             <field name="is_exempt"/>
-                            <field name="exemption_reason" attrs="{'invisible': [('is_exempt', '=', False)], 'required': [('is_exempt', '=', True)]}"/>
+                            <field name="exemption_reason" invisible="[('is_exempt', '=', False)]" required="[('is_exempt', '=', True)]"/>
                         </group>
                         <group>
                             <field name="exemption_notes"/>

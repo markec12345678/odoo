@@ -26,8 +26,8 @@
                             <field name="name"/>
                             <field name="code"/>
                             <field name="applies_to"/>
-                            <field name="hotel_room_type_id" attrs="{'invisible': [('applies_to', '!=', 'hotel_room_type')], 'required': [('applies_to', '=', 'hotel_room_type')]}"/>
-                            <field name="camping_parcel_id" attrs="{'invisible': [('applies_to', '!=', 'camping_parcel')], 'required': [('applies_to', '=', 'camping_parcel')]}"/>
+                            <field name="hotel_room_type_id" invisible="[('applies_to', '!=', 'hotel_room_type')]" required="[('applies_to', '=', 'hotel_room_type')]"/>
+                            <field name="camping_parcel_id" invisible="[('applies_to', '!=', 'camping_parcel')]" required="[('applies_to', '=', 'camping_parcel')]"/>
                             <field name="base_price"/>
                             <field name="currency_id" groups="base.group_multi_currency"/>
                             <field name="active"/>

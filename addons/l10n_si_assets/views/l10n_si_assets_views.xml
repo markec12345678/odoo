@@ -24,8 +24,8 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_activate" type="object" string="Aktiviraj" class="btn-primary" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
-                    <button name="action_dispose" type="object" string="Odtuji" attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                    <button name="action_activate" type="object" string="Aktiviraj" class="btn-primary" invisible="[('state', '!=', 'draft')]"/>
+                    <button name="action_dispose" type="object" string="Odtuji" invisible="[('state', '!=', 'active')]"/>
                     <button name="action_generate_monthly_depreciation" type="object" string="Generiraj amortizacijo"/>
                     <field name="state" widget="statusbar"/>
                 </header>

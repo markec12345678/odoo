@@ -12,7 +12,7 @@
                             <field name="active"/>
                             <field name="ai_backend"/>
                             <field name="model_name"/>
-                            <field name="endpoint_url" attrs="{'invisible': [('ai_backend', 'not in', ['zenmux', 'openai_compatible'])], 'required': [('ai_backend', 'in', ['zenmux', 'openai_compatible'])]}"/>
+                            <field name="endpoint_url" invisible="[('ai_backend', 'not in', ['zenmux', 'openai_compatible'])]" required="[('ai_backend', 'in', ['zenmux', 'openai_compatible'])]"/>
                             <field name="api_key" password="True"/>
                         </group>
                         <group>

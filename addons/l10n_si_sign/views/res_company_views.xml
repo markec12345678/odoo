@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="inside">
                 <group string="Slovenian Digital Signing (eIDAS)"
-                       attrs="{'invisible': [('country_id', '!=', %(base.si)s)]}">
+                       invisible="[('country_id', '!=', %(base.si)s)]">
                     <group>
                         <field name="si_sign_certificate" filename="si_sign_certificate_filename"/>
                         <field name="si_sign_certificate_filename" invisible="1"/>

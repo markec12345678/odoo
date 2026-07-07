@@ -21,9 +21,9 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_start" type="object" string="Začni" attrs="{'invisible': [('state', '!=', 'new')]}"/>
-                    <button name="action_complete" type="object" string="Opravi" class="btn-primary" attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
-                    <button name="action_cancel" type="object" string="Prekliči" attrs="{'invisible': [('state', 'in', ('completed', 'cancelled'))]}"/>
+                    <button name="action_start" type="object" string="Začni" invisible="[('state', '!=', 'new')]"/>
+                    <button name="action_complete" type="object" string="Opravi" class="btn-primary" invisible="[('state', '!=', 'in_progress')]"/>
+                    <button name="action_cancel" type="object" string="Prekliči" invisible="[('state', 'in', ('completed', 'cancelled'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

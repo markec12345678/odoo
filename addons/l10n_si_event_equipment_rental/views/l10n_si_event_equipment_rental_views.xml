@@ -25,13 +25,13 @@
             <form>
                 <header>
                     <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_start" type="object" string="Začni najem"
-                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                            invisible="[('state', '!=', 'confirmed')]"/>
                     <button name="action_return" type="object" string="Vrni + Račun" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                            invisible="[('state', '!=', 'in_progress')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('returned', 'cancelled'))]}"/>
+                            invisible="[('state', 'in', ('returned', 'cancelled'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -61,10 +61,10 @@
                         <page string="Tehnična podpora">
                             <group>
                                 <field name="needs_technician"/>
-                                <field name="technician_id" attrs="{'invisible': [('needs_technician', '=', False)], 'required': [('needs_technician', '=', True)]}"/>
-                                <field name="technician_hours" attrs="{'invisible': [('needs_technician', '=', False)]}"/>
-                                <field name="technician_hourly_rate" attrs="{'invisible': [('needs_technician', '=', False)]}"/>
-                                <field name="technician_cost" widget="monetary" readonly="1" attrs="{'invisible': [('needs_technician', '=', False)]}"/>
+                                <field name="technician_id" invisible="[('needs_technician', '=', False)]" required="[('needs_technician', '=', True)]"/>
+                                <field name="technician_hours" invisible="[('needs_technician', '=', False)]"/>
+                                <field name="technician_hourly_rate" invisible="[('needs_technician', '=', False)]"/>
+                                <field name="technician_cost" widget="monetary" readonly="1" invisible="[('needs_technician', '=', False)]"/>
                             </group>
                         </page>
                     </notebook>

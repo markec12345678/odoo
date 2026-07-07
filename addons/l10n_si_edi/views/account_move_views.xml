@@ -9,17 +9,15 @@
                 <button name="action_si_edi_submit" type="object"
                         string="Submit e-Račun"
                         class="oe_stat_button" icon="fa-file-text-o"
-                        attrs="{'invisible': ['|',
-                                   ('move_type', 'not in', ('out_invoice', 'out_refund')),
-                                   ('l10n_si_edi_state', 'in', ('sent', 'accepted'))]}"/>
+                        invisible="['|', ('move_type', 'not in', ('out_invoice', 'out_refund')), ('l10n_si_edi_state', 'in', ('sent', 'accepted'))]"/>
                 <button name="action_si_edi_download_xml" type="object"
                         string="Download XML"
                         class="oe_stat_button" icon="fa-download"
-                        attrs="{'invisible': [('l10n_si_edi_state', '=', False)]}"/>
+                        invisible="[('l10n_si_edi_state', '=', False)]"/>
             </xpath>
             <xpath expr="//sheet" position="inside">
                 <group string="e-Račun (eSLOG 2.0)"
-                       attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund'))]}">
+                       invisible="[('move_type', 'not in', ('out_invoice', 'out_refund'))]">
                     <field name="l10n_si_edi_state" readonly="1"/>
                 </group>
             </xpath>

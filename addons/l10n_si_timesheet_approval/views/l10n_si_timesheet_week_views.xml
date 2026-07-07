@@ -25,13 +25,13 @@
             <form>
                 <header>
                     <button name="action_submit" type="object" string="Pošlji v odobritev" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_approve" type="object" string="Odobri" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'submitted')]}"/>
+                            invisible="[('state', '!=', 'submitted')]"/>
                     <button name="action_reject" type="object" string="Zavrni"
-                            attrs="{'invisible': [('state', '!=', 'submitted')]}"/>
+                            invisible="[('state', '!=', 'submitted')]"/>
                     <button name="action_back_to_draft" type="object" string="Nazaj v osnutek"
-                            attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
+                            invisible="[('state', '!=', 'rejected')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -53,7 +53,7 @@
                     </group>
                     <notebook>
                         <page string="Postavke">
-                            <field name="line_ids" attrs="{'readonly': [('state', 'in', ['submitted', 'approved'])]}">
+                            <field name="line_ids" readonly="[('state', 'in', ['submitted', 'approved'])]">
                                 <list>
                                     <field name="date"/>
                                     <field name="project_id"/>
@@ -63,7 +63,7 @@
                                 </list>
                             </field>
                         </page>
-                        <page string="Razlog zavrnitve" attrs="{'invisible': [('state', '!=', 'rejected')]}">
+                        <page string="Razlog zavrnitve" invisible="[('state', '!=', 'rejected')]">
                             <field name="reject_reason" nolabel="1"/>
                         </page>
                     </notebook>

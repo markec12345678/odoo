@@ -7,13 +7,13 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='l10n_si_sequence_number']" position="after">
                 <group string="Fiscal Verification (FURS)"
-                       attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]}">
+                       invisible="[('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]">
                     <field name="l10n_si_zoi" readonly="1"/>
                     <field name="l10n_si_eor" readonly="1"/>
                     <field name="l10n_si_fiscal_state" readonly="1"/>
                     <field name="l10n_si_fiscal_submitted_at" readonly="1"/>
                     <field name="l10n_si_fiscal_qr" widget="image" readonly="1"
-                           attrs="{'invisible': [('l10n_si_fiscal_qr', '=', False)]}"/>
+                           invisible="[('l10n_si_fiscal_qr', '=', False)]"/>
                 </group>
             </xpath>
         </field>

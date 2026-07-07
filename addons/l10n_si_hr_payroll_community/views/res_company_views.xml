@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="inside">
                 <group string="Slovenian Payroll"
-                       attrs="{'invisible': [('country_id', '!=', %(base.si)s)]}">
+                       invisible="[('country_id', '!=', %(base.si)s)]">
                     <field name="si_payroll_minimum_bruto"/>
                     <field name="si_payroll_injury_rate"/>
                     <field name="si_payroll_auto_m4"/>

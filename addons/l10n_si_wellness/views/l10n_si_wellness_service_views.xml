@@ -52,7 +52,7 @@
                     <group string="Terapevt">
                         <group>
                             <field name="requires_therapist"/>
-                            <field name="therapist_role" attrs="{'invisible': [('requires_therapist', '=', False)]}"/>
+                            <field name="therapist_role" invisible="[('requires_therapist', '=', False)]"/>
                         </group>
                     </group>
                     <group string="Opis">

@@ -24,7 +24,7 @@
             <form>
                 <header>
                     <button name="action_done" type="object" string="Opravi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

@@ -21,7 +21,7 @@
             <form>
                 <header>
                     <button name="action_withdraw" type="object" string="Umakni soglasje" class="btn-danger"
-                        attrs="{'invisible': [('state', '!=', 'granted')]}"/>
+                        invisible="[('state', '!=', 'granted')]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

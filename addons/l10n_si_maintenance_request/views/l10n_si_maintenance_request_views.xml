@@ -27,19 +27,19 @@
             <form>
                 <header>
                     <button name="action_assign" type="object" string="Dodeli"
-                            attrs="{'invisible': [('state', '!=', 'reported')]}"/>
+                            invisible="[('state', '!=', 'reported')]"/>
                     <button name="action_start" type="object" string="Začni" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'assigned')]}"/>
+                            invisible="[('state', '!=', 'assigned')]"/>
                     <button name="action_waiting_parts" type="object" string="Čaka dele"
-                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                            invisible="[('state', '!=', 'in_progress')]"/>
                     <button name="action_resolve" type="object" string="Opravi" class="btn-primary"
-                            attrs="{'invisible': [('state', 'not in', ('in_progress', 'waiting_parts'))]}"/>
+                            invisible="[('state', 'not in', ('in_progress', 'waiting_parts'))]"/>
                     <button name="action_verify" type="object" string="Preveri"
-                            attrs="{'invisible': [('state', '!=', 'resolved')]}"/>
+                            invisible="[('state', '!=', 'resolved')]"/>
                     <button name="action_close" type="object" string="Zapri"
-                            attrs="{'invisible': [('state', '!=', 'verified')]}"/>
+                            invisible="[('state', '!=', 'verified')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('closed', 'cancelled', 'verified'))]}"/>
+                            invisible="[('state', 'in', ('closed', 'cancelled', 'verified'))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

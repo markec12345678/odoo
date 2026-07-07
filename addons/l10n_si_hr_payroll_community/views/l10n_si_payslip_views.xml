@@ -27,11 +27,11 @@
             <form>
                 <header>
                     <button name="action_confirm" type="object" string="Potrdi" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="[('state', '!=', 'draft')]"/>
                     <button name="action_post_to_accounting" type="object" string="Knjiži" class="btn-primary"
-                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                            invisible="[('state', '!=', 'confirmed')]"/>
                     <button name="action_cancel" type="object" string="Prekliči"
-                            attrs="{'invisible': [('state', 'in', ('cancelled',))]}"/>
+                            invisible="[('state', 'in', ('cancelled',))]"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
