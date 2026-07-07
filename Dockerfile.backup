@@ -1,0 +1,38 @@
+# Dockerfile for Railway backup cron service
+# Runs daily PostgreSQL + filestore backup, uploads to S3-compatible storage
+#
+# Deploy as a separate Railway service with cron schedule.
+# Required Railway variables (reference from Postgres service):
+#   PGHOST, PGPORT, PGUSER, PGPASSWORD, PGDATABASE
+# Optional (for offsite storage):
+#   BACKUP_S3_BUCKET + AWS_ACCESS_KEY_ID + AWS_SECRET_ACCESS_KEY + BACKUP_S3_ENDPOINT
+#   BACKUP_WEBHOOK_URL
+#   BACKUP_RETENTION_DAYS (default: 30)
+
+FROM debian:bookworm-slim
+
+# Install PostgreSQL 18 client (matches Railway's Postgres 18 server) + aws-cli + curl
+# Use official PostgreSQL APT repo to get version 18
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        curl \
+        ca-certificates \
+        gnupg \
+        lsb-release \
+        python3 \
+        python3-pip \
+    && install -d /usr/share/postgresql-common/pgdg \
+    && curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc \
+    && echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends postgresql-client-18 \
+    && pip3 install --no-cache-dir --break-system-packages awscli \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Copy backup script
+COPY scripts/railway-backup.sh /usr/local/bin/backup.sh
+RUN chmod +x /usr/local/bin/backup.sh
+
+# No ENTRYPOINT — Railway cron service triggers the script on schedule
+# Schedule is defined in railway.json: deploy.cronSchedule
+CMD ["/usr/local/bin/backup.sh"]
