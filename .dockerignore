@@ -1,0 +1,60 @@
+# .dockerignore — zmanjša Docker build context za Railway
+# Samo addons/ in railway-entrypoint.sh se pošljejo Railway-ju
+
+# Git
+.git
+.gitignore
+.github
+
+# Dokumentacija (ni potrebna v Docker image)
+*.md
+docs/
+CHANGELOG.md
+CONTRIBUTING.md
+SECURITY.md
+PRODUCTION_CHECKLIST.md
+RAILWAY_DEPLOY.md
+HF_DEPLOY.md
+DOCKER_QUICKSTART.md
+GITHUB_PUSH_GUIDE.md
+
+# Ostali deploy datoteke (Railway uporablja samo Dockerfile + railway-entrypoint.sh)
+docker-compose.yml
+odoo.conf
+Dockerfile.hf
+hf-odoo.conf
+railway-odoo.conf
+
+# Skripte (ne potrebne v image)
+scripts/
+
+# Certifikati
+certs/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test runnerji (ne potrebni v produkciji)
+.github/scripts/
+
+# Slike (ne potrebne v image)
+static/screenshots/
+
+# Samo Odoo core in naši addons so potrebni
+# Vse ostalo ignoriramo za hitrejši build
+*.log
+*.sql
+*.dump
+filestore/
