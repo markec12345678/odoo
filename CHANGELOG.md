@@ -52,6 +52,33 @@ After 12+ failed Railway deployments, root cause identified and fixed:
 - `dd902cef` — [IMP] l10n_si_ai_concierge: add ZenMux + OpenAI-compatible backend
 - `1e7d372a` — [FIX] Railway: commit DB init sentinel logic in entrypoint
 
+### Added — OCA/web UI/UX modules (13 total)
+
+13 community UI/UX enhancement modules from OCA/web (19.0 branch) added to enhance user experience across desktop, mobile, and PWA deployments:
+
+**First batch (7 modules, commit f026101b):**
+- `web_dark_mode` (AGPL-3) — Dark mode toggle for backend
+- `web_chatter_position` (LGPL-3) — Move chatter to left/right
+- `web_dialog_size` (AGPL-3) — Expand dialogs to full screen
+- `web_favicon` (AGPL-3) — Custom favicon per company
+- `web_form_banner` (AGPL-3) — Configurable alert banners on forms
+- `web_group_expand` (AGPL-3) — Expand/collapse group buttons in list views
+- `web_m2x_options` (AGPL-3) — Advanced Many2x field options
+
+**Second batch (6 modules, commit 653c81a6):**
+- `web_responsive` (LGPL-3, 8.9MB) — Responsive web client with mobile hamburger menu
+- `web_timeline` (AGPL-3, 2MB) — Interactive Vis.js timeline for Gantt-like views
+- `web_pwa_customize` (AGPL-3) — Progressive Web App customization
+- `web_environment_ribbon` (AGPL-3) — Visual environment indicator (DEV/STAGING/PROD)
+- `web_refresher` (AGPL-3) — Manual refresh button on views
+- `web_search_with_and` (AGPL-3) — AND search by default (more precise)
+
+All modules retain original OCA author credits. Licenses compatible with our project (LGPL-3 / AGPL-3).
+
+### Added — Documentation enhancements
+
+- **README.md** (commit 61d551df): Added 6 new badges (OCA Modules count, Railway Live Demo, Version v19.0.12.0, Status, Last Commit auto-updating), updated module count to 82, added Live Demo section with URL/credentials/hosting info.
+
 ## [19.0.11.0] — 2026-07-06
 
 ### Added — Railway.com deployment (primary cloud option)
