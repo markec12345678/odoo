@@ -4,13 +4,13 @@
         <field name="name">l10n_si.etourism.establishment.tree</field>
         <field name="model">l10n_si.etourism.establishment</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="mid"/>
                 <field name="sifnas"/>
                 <field name="establishment_type"/>
                 <field name="environment" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_l10n_si_etourism_establishment_form" model="ir.ui.view">
@@ -48,6 +48,6 @@
     <record id="action_l10n_si_etourism_establishment" model="ir.actions.act_window">
         <field name="name">Nastanitveni obrati</field>
         <field name="res_model">l10n_si.etourism.establishment</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

@@ -191,7 +191,7 @@ class L10nHrEvisitorAccommodation(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Prijave gosta'),
             'res_model': 'l10n_hr.evisitor.guest.registration',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('accommodation_id', '=', self.id)],
             'context': {'default_accommodation_id': self.id},
         }

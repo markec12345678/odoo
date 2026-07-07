@@ -4,7 +4,7 @@
         <field name="name">l10n_si.booking.promo.tree</field>
         <field name="model">l10n_si.booking.promo</field>
         <field name="arch" type="xml">
-            <tree decoration-success="active == True" decoration-muted="active == False">
+            <list decoration-success="active == True" decoration-muted="active == False">
                 <field name="code"/>
                 <field name="name"/>
                 <field name="discount_type"/>
@@ -14,7 +14,7 @@
                 <field name="uses_count"/>
                 <field name="max_uses"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -59,11 +59,11 @@
                     <notebook>
                         <page string="Zgodovina uporabe">
                             <field name="usage_history_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="create_date"/>
                                     <field name="partner_id"/>
                                     <field name="discount_amount"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Opis">
@@ -78,7 +78,7 @@
     <record id="action_l10n_si_booking_promo" model="ir.actions.act_window">
         <field name="name">Promo kode</field>
         <field name="res_model">l10n_si.booking.promo</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_booking_root" name="Spletni booking" parent="website.menu_website_configuration" sequence="50"/>

@@ -4,7 +4,7 @@
         <field name="name">l10n_si.roster.shift.tree</field>
         <field name="model">l10n_si.roster.shift</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code"/>
                 <field name="name"/>
                 <field name="shift_type"/>
@@ -12,7 +12,7 @@
                 <field name="end_hour" widget="float_time"/>
                 <field name="duration_hours" widget="float_time"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -54,6 +54,6 @@
     <record id="action_l10n_si_roster_shift" model="ir.actions.act_window">
         <field name="name">Izmene</field>
         <field name="res_model">l10n_si.roster.shift</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

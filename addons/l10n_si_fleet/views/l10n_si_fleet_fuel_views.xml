@@ -4,7 +4,7 @@
         <field name="name">l10n_si.fleet.fuel.tree</field>
         <field name="model">l10n_si.fleet.fuel</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="date"/>
                 <field name="vehicle_id"/>
                 <field name="driver_id"/>
@@ -14,7 +14,7 @@
                 <field name="total_cost" sum="Skupaj strošek"/>
                 <field name="odometer"/>
                 <field name="fuel_station"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -48,7 +48,7 @@
     <record id="action_l10n_si_fleet_fuel" model="ir.actions.act_window">
         <field name="name">Gorivo (SI)</field>
         <field name="res_model">l10n_si.fleet.fuel</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_si_fleet_fuel"

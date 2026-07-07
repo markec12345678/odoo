@@ -4,7 +4,7 @@
         <field name="name">l10n_si.event.package.tree</field>
         <field name="model">l10n_si.event.package</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code"/>
                 <field name="name"/>
                 <field name="category"/>
@@ -13,7 +13,7 @@
                 <field name="base_price"/>
                 <field name="duration_hours"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -76,7 +76,7 @@
     <record id="action_l10n_si_event_package" model="ir.actions.act_window">
         <field name="name">Paketi</field>
         <field name="res_model">l10n_si.event.package</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menu item za catering items -->
@@ -84,7 +84,7 @@
         <field name="name">l10n_si.event.menu.item.tree</field>
         <field name="model">l10n_si.event.menu.item</field>
         <field name="arch" type="xml">
-            <tree decoration-success="vegetarian == True">
+            <list decoration-success="vegetarian == True">
                 <field name="code"/>
                 <field name="name"/>
                 <field name="category"/>
@@ -94,7 +94,7 @@
                 <field name="gluten_free"/>
                 <field name="contains_pork"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -146,6 +146,6 @@
     <record id="action_l10n_si_event_menu_item" model="ir.actions.act_window">
         <field name="name">Catering jedi</field>
         <field name="res_model">l10n_si.event.menu.item</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

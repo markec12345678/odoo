@@ -4,7 +4,7 @@
         <field name="name">l10n_si.review.tree</field>
         <field name="model">l10n_si.review</field>
         <field name="arch" type="xml">
-            <tree decoration-success="sentiment in ('very_positive', 'positive')"
+            <list decoration-success="sentiment in ('very_positive', 'positive')"
                   decoration-danger="sentiment in ('very_negative', 'negative')"
                   decoration-warning="state == 'new'">
                 <field name="number"/>
@@ -18,7 +18,7 @@
                 <field name="is_responded"/>
                 <field name="response_time_hours" widget="float_time"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -83,10 +83,10 @@
                         </page>
                         <page string="Slike">
                             <field name="image_ids">
-                                <tree>
+                                <list>
                                     <field name="image" widget="image"/>
                                     <field name="caption"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Povezave">
@@ -131,6 +131,6 @@
     <record id="action_l10n_si_review" model="ir.actions.act_window">
         <field name="name">Ocene gostov</field>
         <field name="res_model">l10n_si.review</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

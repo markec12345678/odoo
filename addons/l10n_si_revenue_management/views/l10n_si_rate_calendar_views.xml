@@ -4,7 +4,7 @@
         <field name="name">l10n_si.rate.calendar.tree</field>
         <field name="model">l10n_si.rate.calendar</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'published'"
+            <list decoration-success="state == 'published'"
                   decoration-muted="state == 'closed'">
                 <field name="date"/>
                 <field name="rate_plan_id"/>
@@ -15,7 +15,7 @@
                 <field name="closed_to_arrival"/>
                 <field name="closed_to_departure"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -84,6 +84,6 @@
     <record id="action_l10n_si_rate_calendar" model="ir.actions.act_window">
         <field name="name">Cenovni koledar</field>
         <field name="res_model">l10n_si.rate.calendar</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

@@ -4,7 +4,7 @@
         <field name="name">l10n_si.event.accommodation.block.tree</field>
         <field name="model">l10n_si.event.accommodation.block</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="event_id"/>
                 <field name="room_type_id"/>
                 <field name="date_from"/>
@@ -15,7 +15,7 @@
                 <field name="reservation_count"/>
                 <field name="available_rooms"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -48,16 +48,16 @@
                     <notebook>
                         <page string="Blokirane sobe">
                             <field name="room_ids">
-                                <tree>
+                                <list>
                                     <field name="number"/>
                                     <field name="floor"/>
                                     <field name="state"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Rezervacije gostov">
                             <field name="reservation_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="partner_id"/>
                                     <field name="room_id"/>
@@ -65,7 +65,7 @@
                                     <field name="check_out"/>
                                     <field name="total_amount"/>
                                     <field name="state"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -77,7 +77,7 @@
     <record id="action_l10n_si_event_acc_block" model="ir.actions.act_window">
         <field name="name">Blok rezervacije</field>
         <field name="res_model">l10n_si.event.accommodation.block</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_event_acc_root" name="Sobe za dogodke" parent="l10n_si_event_venue.menu_l10n_si_event_venue_root" sequence="40"/>

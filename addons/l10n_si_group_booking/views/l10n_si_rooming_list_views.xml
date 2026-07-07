@@ -4,7 +4,7 @@
         <field name="name">l10n_si.rooming.list.tree</field>
         <field name="model">l10n_si.rooming.list</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'checked_in'"
+            <list decoration-success="state == 'checked_in'"
                   decoration-muted="state == 'checked_out'">
                 <field name="group_booking_id"/>
                 <field name="room_number"/>
@@ -13,7 +13,7 @@
                 <field name="children"/>
                 <field name="is_leader"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -58,7 +58,7 @@
     <record id="action_l10n_si_rooming_list" model="ir.actions.act_window">
         <field name="name">Rooming list</field>
         <field name="res_model">l10n_si.rooming.list</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_rooming_list" name="Rooming list" parent="menu_l10n_si_group_booking_root" action="action_l10n_si_rooming_list" sequence="20"/>

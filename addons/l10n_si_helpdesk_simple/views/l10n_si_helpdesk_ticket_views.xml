@@ -4,7 +4,7 @@
         <field name="name">l10n_si.helpdesk.ticket.tree</field>
         <field name="model">l10n_si.helpdesk.ticket</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="priority == '3'"
+            <list decoration-danger="priority == '3'"
                   decoration-warning="priority == '2'"
                   decoration-muted="stage_id.is_close">
                 <field name="number"/>
@@ -17,7 +17,7 @@
                 <field name="create_date"/>
                 <field name="sla_response_deadline" optional="show"/>
                 <field name="sla_resolution_deadline" optional="show"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -60,12 +60,12 @@
                         </page>
                         <page string="Timesheets" name="timesheets">
                             <field name="timesheet_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="date"/>
                                     <field name="employee_id"/>
                                     <field name="name"/>
                                     <field name="unit_amount" widget="float_time"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -145,6 +145,6 @@
     <record id="action_l10n_si_helpdesk_ticket" model="ir.actions.act_window">
         <field name="name">SI Helpdesk Tickets</field>
         <field name="res_model">l10n_si.helpdesk.ticket</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

@@ -4,7 +4,7 @@
         <field name="name">l10n_si.subscription.plan.tree</field>
         <field name="model">l10n_si.subscription.plan</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="recurring_price"/>
@@ -12,7 +12,7 @@
                 <field name="recurring_rule"/>
                 <field name="auto_renew"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -52,6 +52,6 @@
     <record id="action_l10n_si_subscription_plan" model="ir.actions.act_window">
         <field name="name">Subscription Plans (SI)</field>
         <field name="res_model">l10n_si.subscription.plan</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

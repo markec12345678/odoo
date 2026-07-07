@@ -4,7 +4,7 @@
         <field name="name">l10n_si.timesheet.week.tree</field>
         <field name="model">l10n_si.timesheet.week</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'submitted'"
+            <list decoration-info="state == 'submitted'"
                   decoration-success="state == 'approved'"
                   decoration-danger="state == 'rejected'">
                 <field name="date_start"/>
@@ -14,7 +14,7 @@
                 <field name="total_hours" widget="float_time" sum="Skupaj"/>
                 <field name="state"/>
                 <field name="approved_by_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -54,13 +54,13 @@
                     <notebook>
                         <page string="Postavke">
                             <field name="line_ids" attrs="{'readonly': [('state', 'in', ['submitted', 'approved'])]}">
-                                <tree>
+                                <list>
                                     <field name="date"/>
                                     <field name="project_id"/>
                                     <field name="task_id"/>
                                     <field name="name"/>
                                     <field name="unit_amount" widget="float_time" sum="Skupaj"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Razlog zavrnitve" attrs="{'invisible': [('state', '!=', 'rejected')]}">
@@ -98,7 +98,7 @@
     <record id="action_l10n_si_timesheet_week" model="ir.actions.act_window">
         <field name="name">Weekly Timesheets (SI)</field>
         <field name="res_model">l10n_si.timesheet.week</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_si_timesheet_root" name="SI Timesheets" parent="hr_timesheet.menu_hr_time_tracking" sequence="20"/>

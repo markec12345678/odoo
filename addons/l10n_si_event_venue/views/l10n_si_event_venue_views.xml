@@ -4,7 +4,7 @@
         <field name="name">l10n_si.event.venue.tree</field>
         <field name="model">l10n_si.event.venue</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code"/>
                 <field name="name"/>
                 <field name="city"/>
@@ -12,7 +12,7 @@
                 <field name="total_capacity"/>
                 <field name="parking_spaces"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -69,14 +69,14 @@
                     <notebook>
                         <page string="Dvorane">
                             <field name="hall_ids">
-                                <tree>
+                                <list>
                                     <field name="code"/>
                                     <field name="name"/>
                                     <field name="hall_type"/>
                                     <field name="capacity"/>
                                     <field name="daily_rate"/>
                                     <field name="state"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Opis">
@@ -95,6 +95,6 @@
     <record id="action_l10n_si_event_venue" model="ir.actions.act_window">
         <field name="name">Venue-i</field>
         <field name="res_model">l10n_si.event.venue</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

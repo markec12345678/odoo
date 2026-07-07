@@ -4,7 +4,7 @@
         <field name="name">l10n_si.ai.concierge.conversation.tree</field>
         <field name="model">l10n_si.ai.concierge.conversation</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'active'"
+            <list decoration-info="state == 'active'"
                   decoration-warning="state == 'escalated'"
                   decoration-muted="state == 'ended'">
                 <field name="name"/>
@@ -13,7 +13,7 @@
                 <field name="message_count"/>
                 <field name="create_date"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -45,13 +45,13 @@
                     <notebook>
                         <page string="Sporočila">
                             <field name="message_ids" readonly="1">
-                                <tree decoration-info="role == 'user'"
+                                <list decoration-info="role == 'user'"
                                       decoration-success="role == 'assistant'"
                                       decoration-warning="role == 'human'">
                                     <field name="create_date"/>
                                     <field name="role"/>
                                     <field name="content"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Povzetek">
@@ -70,7 +70,7 @@
     <record id="action_l10n_si_ai_conv" model="ir.actions.act_window">
         <field name="name">Pogovori</field>
         <field name="res_model">l10n_si.ai.concierge.conversation</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_ai_root" name="AI Concierge (SI)" web_icon="l10n_si_ai_concierge,static/description/icon.png" sequence="50"/>

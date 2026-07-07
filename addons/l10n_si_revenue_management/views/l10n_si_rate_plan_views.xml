@@ -4,14 +4,14 @@
         <field name="name">l10n_si.rate.plan.tree</field>
         <field name="model">l10n_si.rate.plan</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code"/>
                 <field name="name"/>
                 <field name="applies_to"/>
                 <field name="hotel_room_type_id"/>
                 <field name="base_price"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -102,6 +102,6 @@
     <record id="action_l10n_si_rate_plan" model="ir.actions.act_window">
         <field name="name">Cenovni načrti</field>
         <field name="res_model">l10n_si.rate.plan</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

@@ -69,7 +69,7 @@ class FleetVehicle(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Vozni listi',
             'res_model': 'l10n_si.fleet.trip',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('vehicle_id', '=', self.id)],
         }
 
@@ -79,7 +79,7 @@ class FleetVehicle(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Gorivo',
             'res_model': 'l10n_si.fleet.fuel',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('vehicle_id', '=', self.id)],
         }
 
@@ -89,7 +89,7 @@ class FleetVehicle(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Servisi',
             'res_model': 'l10n_si.fleet.maintenance',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('vehicle_id', '=', self.id)],
         }
 

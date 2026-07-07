@@ -4,7 +4,7 @@
         <field name="name">l10n_si.subscription.tree</field>
         <field name="model">l10n_si.subscription</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'active'"
+            <list decoration-success="state == 'active'"
                   decoration-muted="state in ('cancelled', 'expired')"
                   decoration-warning="state == 'trial'">
                 <field name="number"/>
@@ -16,7 +16,7 @@
                 <field name="next_invoice_date"/>
                 <field name="date_end"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -93,7 +93,7 @@
     <record id="action_l10n_si_subscription" model="ir.actions.act_window">
         <field name="name">Subscriptions (SI)</field>
         <field name="res_model">l10n_si.subscription</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_si_subscription_root" name="SI Subscriptions" parent="sale.sale_menu_root" sequence="20"/>

@@ -4,7 +4,7 @@
         <field name="name">l10n_si.restaurant.table.tree</field>
         <field name="model">l10n_si.restaurant.table</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'free'"
+            <list decoration-success="state == 'free'"
                   decoration-danger="state == 'occupied'"
                   decoration-info="state == 'reserved'"
                   decoration-warning="state == 'cleaning'">
@@ -14,7 +14,7 @@
                 <field name="state"/>
                 <field name="current_guests"/>
                 <field name="opened_at"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -83,6 +83,6 @@
     <record id="action_l10n_si_restaurant_table" model="ir.actions.act_window">
         <field name="name">Mize</field>
         <field name="res_model">l10n_si.restaurant.table</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

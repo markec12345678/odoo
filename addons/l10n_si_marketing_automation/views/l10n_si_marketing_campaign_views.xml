@@ -4,7 +4,7 @@
         <field name="name">l10n_si.marketing.campaign.tree</field>
         <field name="model">l10n_si.marketing.campaign</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'running'"
+            <list decoration-success="state == 'running'"
                   decoration-muted="state == 'completed'"
                   decoration-warning="state == 'paused'">
                 <field name="name"/>
@@ -13,7 +13,7 @@
                 <field name="sent_count"/>
                 <field name="open_count"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -53,24 +53,24 @@
                     <notebook>
                         <page string="Koraki">
                             <field name="step_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="sequence" widget="handle"/>
                                     <field name="name"/>
                                     <field name="action_type"/>
                                     <field name="template_id" attrs="{'invisible': [('action_type', '!=', 'email')]}"/>
                                     <field name="wait_days" attrs="{'invisible': [('action_type', '!=', 'wait')]}"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Udeleženci">
                             <field name="participant_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="partner_id"/>
                                     <field name="state"/>
                                     <field name="email_sent_count"/>
                                     <field name="email_open_count"/>
                                     <field name="added_on"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -86,7 +86,7 @@
     <record id="action_l10n_si_marketing_campaign" model="ir.actions.act_window">
         <field name="name">Marketing Campaigns (SI)</field>
         <field name="res_model">l10n_si.marketing.campaign</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_si_marketing_root" name="SI Marketing" parent="mass_mailing.mass_mailing_menu_root" sequence="20"/>

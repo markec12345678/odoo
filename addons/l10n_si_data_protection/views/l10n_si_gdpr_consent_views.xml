@@ -4,14 +4,14 @@
         <field name="name">l10n_si.gdpr.consent.tree</field>
         <field name="model">l10n_si.gdpr.consent</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'granted'" decoration-danger="state == 'withdrawn'">
+            <list decoration-success="state == 'granted'" decoration-danger="state == 'withdrawn'">
                 <field name="partner_id"/>
                 <field name="consent_type"/>
                 <field name="state"/>
                 <field name="granted_on"/>
                 <field name="withdrawn_on"/>
                 <field name="source"/>
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_l10n_si_gdpr_consent_form" model="ir.ui.view">
@@ -48,6 +48,6 @@
     <record id="action_l10n_si_gdpr_consent" model="ir.actions.act_window">
         <field name="name">GDPR soglasja</field>
         <field name="res_model">l10n_si.gdpr.consent</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

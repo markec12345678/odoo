@@ -4,12 +4,12 @@
         <field name="name">l10n_si.whatsapp.template.tree</field>
         <field name="model">l10n_si.whatsapp.template</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="language"/>
                 <field name="category"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -38,7 +38,7 @@
     <record id="action_l10n_si_whatsapp_template" model="ir.actions.act_window">
         <field name="name">SI WhatsApp Templates</field>
         <field name="res_model">l10n_si.whatsapp.template</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_si_whatsapp_template" name="Templates" parent="menu_si_whatsapp_root" action="action_l10n_si_whatsapp_template"/>

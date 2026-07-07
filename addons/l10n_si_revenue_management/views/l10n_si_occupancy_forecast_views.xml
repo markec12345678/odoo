@@ -4,7 +4,7 @@
         <field name="name">l10n_si.occupancy.forecast.tree</field>
         <field name="model">l10n_si.occupancy.forecast</field>
         <field name="arch" type="xml">
-            <tree decoration-success="actual_occupancy &gt;= 80"
+            <list decoration-success="actual_occupancy &gt;= 80"
                   decoration-warning="actual_occupancy &gt;= 50 and actual_occupancy &lt; 80"
                   decoration-danger="actual_occupancy &lt; 50">
                 <field name="date"/>
@@ -15,14 +15,14 @@
                 <field name="actual_occupancy" widget="percentage"/>
                 <field name="variance" widget="percentage"/>
                 <field name="forecast_method"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="action_l10n_si_occupancy_forecast" model="ir.actions.act_window">
         <field name="name">Napoved zasedenosti</field>
         <field name="res_model">l10n_si.occupancy.forecast</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_revenue_root" name="Revenue Management" parent="l10n_si_hotel.menu_l10n_si_hotel_root" sequence="70"/>

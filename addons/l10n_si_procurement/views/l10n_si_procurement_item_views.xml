@@ -4,7 +4,7 @@
         <field name="name">l10n_si.procurement.item.tree</field>
         <field name="model">l10n_si.procurement.item</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code"/>
                 <field name="name"/>
                 <field name="category"/>
@@ -14,7 +14,7 @@
                 <field name="order_frequency"/>
                 <field name="preferred_vendor_id"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -71,6 +71,6 @@
     <record id="action_l10n_si_procurement_item" model="ir.actions.act_window">
         <field name="name">Artikli</field>
         <field name="res_model">l10n_si.procurement.item</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

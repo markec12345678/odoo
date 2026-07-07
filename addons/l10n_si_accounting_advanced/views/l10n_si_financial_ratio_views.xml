@@ -75,21 +75,21 @@
         <field name="name">l10n_si.financial.ratio.tree</field>
         <field name="model">l10n_si.financial.ratio</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="year"/>
                 <field name="current_ratio"/>
                 <field name="roa" widget="percentage"/>
                 <field name="roe" widget="percentage"/>
                 <field name="debt_ratio" widget="percentage"/>
                 <field name="asset_turnover"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="action_l10n_si_financial_ratio" model="ir.actions.act_window">
         <field name="name">Kazalci uspešnosti</field>
         <field name="res_model">l10n_si.financial.ratio</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_accounting_adv_root" name="Napredno knjigovodstvo (SI)" parent="account.menu_finance_reports" sequence="100"/>

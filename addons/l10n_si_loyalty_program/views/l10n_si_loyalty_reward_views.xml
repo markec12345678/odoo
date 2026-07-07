@@ -4,7 +4,7 @@
         <field name="name">l10n_si.loyalty.reward.tree</field>
         <field name="model">l10n_si.loyalty.reward</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="reward_type"/>
                 <field name="points_required"/>
@@ -12,7 +12,7 @@
                 <field name="expires_in_days"/>
                 <field name="quantity_redeemed"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -48,7 +48,7 @@
     <record id="action_l10n_si_loyalty_reward" model="ir.actions.act_window">
         <field name="name">Nagrade</field>
         <field name="res_model">l10n_si.loyalty.reward</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_loyalty_root" name="Program zvestobe" web_icon="l10n_si_loyalty_program,static/description/icon.png" sequence="55"/>

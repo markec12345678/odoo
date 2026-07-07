@@ -4,7 +4,7 @@
         <field name="name">l10n_si.roster.assignment.tree</field>
         <field name="model">l10n_si.roster.assignment</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'confirmed'"
+            <list decoration-info="state == 'confirmed'"
                   decoration-success="state == 'completed'"
                   decoration-danger="state == 'no_show'"
                   decoration-muted="state == 'cancelled'">
@@ -17,7 +17,7 @@
                 <field name="overtime_hours" widget="float_time"/>
                 <field name="is_overtime"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -119,7 +119,7 @@
     <record id="action_l10n_si_roster_assignment" model="ir.actions.act_window">
         <field name="name">Razpored</field>
         <field name="res_model">l10n_si.roster.assignment</field>
-        <field name="view_mode">calendar,tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_roster_root" name="Razpored" parent="hr.menu_hr_root" sequence="40"/>

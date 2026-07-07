@@ -4,7 +4,7 @@
         <field name="name">l10n_si.asset.tree</field>
         <field name="model">l10n_si.asset</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'active'" decoration-muted="state == 'disposed'">
+            <list decoration-success="state == 'active'" decoration-muted="state == 'disposed'">
                 <field name="number"/>
                 <field name="code"/>
                 <field name="name"/>
@@ -15,7 +15,7 @@
                 <field name="book_value" sum="Skupaj"/>
                 <field name="monthly_depreciation"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_l10n_si_asset_form" model="ir.ui.view">
@@ -51,12 +51,12 @@
                     <notebook>
                         <page string="Amortizacijske postavke">
                             <field name="depreciation_line_ids">
-                                <tree>
+                                <list>
                                     <field name="date"/>
                                     <field name="amount" sum="Skupaj"/>
                                     <field name="depreciation_type"/>
                                     <field name="move_id"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Opombe">
@@ -74,7 +74,7 @@
     <record id="action_l10n_si_asset" model="ir.actions.act_window">
         <field name="name">Osnovna sredstva</field>
         <field name="res_model">l10n_si.asset</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem id="menu_l10n_si_assets_root" name="Osnovna sredstva (SI)" parent="account.menu_finance_configuration" sequence="120"/>
     <menuitem id="menu_l10n_si_asset" name="Sredstva" parent="menu_l10n_si_assets_root" action="action_l10n_si_asset"/>

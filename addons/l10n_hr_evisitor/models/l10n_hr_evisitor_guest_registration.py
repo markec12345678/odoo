@@ -354,7 +354,7 @@ class L10nHrEvisitorGuestRegistration(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Dnevnik eVisitor'),
             'res_model': 'l10n_hr.evisitor.log',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('registration_id', '=', self.id)],
         }
 

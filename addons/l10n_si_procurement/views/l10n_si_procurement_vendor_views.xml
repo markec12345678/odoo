@@ -4,7 +4,7 @@
         <field name="name">l10n_si.procurement.vendor.tree</field>
         <field name="model">l10n_si.procurement.vendor</field>
         <field name="arch" type="xml">
-            <tree decoration-success="rating == '5'"
+            <list decoration-success="rating == '5'"
                   decoration-danger="state == 'blacklisted'">
                 <field name="name"/>
                 <field name="partner_id"/>
@@ -13,7 +13,7 @@
                 <field name="payment_terms"/>
                 <field name="rating"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -59,23 +59,23 @@
                     <notebook>
                         <page string="Artikli">
                             <field name="item_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="code"/>
                                     <field name="name"/>
                                     <field name="category"/>
                                     <field name="min_stock"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Pogodbe">
                             <field name="contract_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="number"/>
                                     <field name="date_from"/>
                                     <field name="date_to"/>
                                     <field name="contract_value"/>
                                     <field name="state"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Izkušnje">
@@ -94,6 +94,6 @@
     <record id="action_l10n_si_procurement_vendor" model="ir.actions.act_window">
         <field name="name">Dobavitelji</field>
         <field name="res_model">l10n_si.procurement.vendor</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

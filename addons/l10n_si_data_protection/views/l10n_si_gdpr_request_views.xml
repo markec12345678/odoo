@@ -4,14 +4,14 @@
         <field name="name">l10n_si.gdpr.request.tree</field>
         <field name="model">l10n_si.gdpr.request</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'completed'" decoration-warning="state == 'new'" decoration-danger="deadline &lt; context_today()">
+            <list decoration-success="state == 'completed'" decoration-warning="state == 'new'" decoration-danger="deadline &lt; context_today()">
                 <field name="number"/>
                 <field name="partner_id"/>
                 <field name="request_type"/>
                 <field name="received_on"/>
                 <field name="deadline"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_l10n_si_gdpr_request_form" model="ir.ui.view">
@@ -56,7 +56,7 @@
     <record id="action_l10n_si_gdpr_request" model="ir.actions.act_window">
         <field name="name">GDPR zahteve</field>
         <field name="res_model">l10n_si.gdpr.request</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem id="menu_l10n_si_gdpr_root" name="GDPR (SI)" web_icon="l10n_si_data_protection,static/description/icon.png" sequence="80"/>
     <menuitem id="menu_l10n_si_gdpr_consent" name="Soglasja" parent="menu_l10n_si_gdpr_root" action="action_l10n_si_gdpr_consent"/>

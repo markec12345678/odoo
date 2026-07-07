@@ -4,14 +4,14 @@
         <field name="name">l10n_si.channel.log.tree</field>
         <field name="model">l10n_si.channel.log</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'success'"
+            <list decoration-success="state == 'success'"
                   decoration-danger="state == 'error'">
                 <field name="create_date"/>
                 <field name="channel_config_id"/>
                 <field name="log_type"/>
                 <field name="state"/>
                 <field name="message"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -41,7 +41,7 @@
     <record id="action_l10n_si_channel_log" model="ir.actions.act_window">
         <field name="name">Logi sinhronizacije</field>
         <field name="res_model">l10n_si.channel.log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_channel_log" name="Logi" parent="menu_l10n_si_channel_root" action="action_l10n_si_channel_log"/>

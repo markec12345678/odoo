@@ -70,7 +70,7 @@ class L10nSiEventVenue(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Dvorane',
             'res_model': 'l10n_si.event.hall',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('venue_id', '=', self.id)],
         }
 
@@ -80,6 +80,6 @@ class L10nSiEventVenue(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Dogodki',
             'res_model': 'l10n_si.event.event',
-            'view_mode': 'tree,form,calendar',
+            'view_mode': 'list,form,calendar',
             'domain': [('venue_id', '=', self.id)],
         }

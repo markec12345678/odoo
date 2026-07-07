@@ -7,7 +7,7 @@
         <field name="name">l10n_hr.pdv.report.tree</field>
         <field name="model">l10n_hr.pdv.report</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'accepted'"
+            <list decoration-success="state == 'accepted'"
                   decoration-danger="state == 'rejected'"
                   decoration-info="state == 'computed'">
                 <field name="name"/>
@@ -23,7 +23,7 @@
                 <field name="vat_payable"/>
                 <field name="vat_refundable"/>
                 <field name="state" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -133,7 +133,7 @@
                         </page>
                         <page string="Stavke Knjige PDV-a" name="lines">
                             <field name="line_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="date"/>
                                     <field name="name"/>
                                     <field name="partner_id"/>
@@ -149,7 +149,7 @@
                                     <field name="is_reverse_charge" optional="hide"/>
                                     <field name="is_eu_acquisition" optional="hide"/>
                                     <field name="is_eu_supply" optional="hide"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -213,7 +213,7 @@
     <record id="action_l10n_hr_pdv_report" model="ir.actions.act_window">
         <field name="name">PDV izvještaji</field>
         <field name="res_model">l10n_hr.pdv.report</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_l10n_hr_pdv_report_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

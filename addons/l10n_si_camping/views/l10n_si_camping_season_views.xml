@@ -4,14 +4,14 @@
         <field name="name">l10n_si.camping.season.tree</field>
         <field name="model">l10n_si.camping.season</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="code"/>
                 <field name="date_from"/>
                 <field name="date_to"/>
                 <field name="multiplier"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -41,6 +41,6 @@
     <record id="action_l10n_si_camping_season" model="ir.actions.act_window">
         <field name="name">Sezone</field>
         <field name="res_model">l10n_si.camping.season</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

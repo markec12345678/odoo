@@ -641,7 +641,7 @@ class L10nHrPdvReport(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Knjiga PDV-a — %s') % self.name,
             'res_model': 'l10n_hr.pdv.report.line',
-            'view_mode': 'tree',
+            'view_mode': 'list',
             'domain': [('report_id', '=', self.id)],
             'context': {'default_report_id': self.id},
         }

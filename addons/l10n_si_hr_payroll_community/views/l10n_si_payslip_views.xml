@@ -4,7 +4,7 @@
         <field name="name">l10n_si.payslip.tree</field>
         <field name="model">l10n_si.payslip</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'draft'"
+            <list decoration-info="state == 'draft'"
                   decoration-success="state == 'paid'"
                   decoration-muted="state == 'cancelled'">
                 <field name="date_from"/>
@@ -16,7 +16,7 @@
                 <field name="net_amount" sum="Skupaj neto"/>
                 <field name="total_cost_employer" sum="Skupaj strošek"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -112,7 +112,7 @@
     <record id="action_l10n_si_payslip" model="ir.actions.act_window">
         <field name="name">Payslips (SI)</field>
         <field name="res_model">l10n_si.payslip</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_si_payslip"

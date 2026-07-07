@@ -16,22 +16,22 @@
                     <notebook>
                         <page string="Soglasja">
                             <field name="si_gdpr_consent_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="consent_type"/>
                                     <field name="state"/>
                                     <field name="granted_on"/>
                                     <field name="withdrawn_on"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Zahteve">
                             <field name="si_gdpr_request_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="number"/>
                                     <field name="request_type"/>
                                     <field name="state"/>
                                     <field name="received_on"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>

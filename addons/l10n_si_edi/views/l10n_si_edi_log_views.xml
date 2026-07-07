@@ -4,7 +4,7 @@
         <field name="name">l10n_si.edi.log.tree</field>
         <field name="model">l10n_si.edi.log</field>
         <field name="arch" type="xml">
-            <tree string="e-Račun Logs" decoration-success="state == 'accepted'"
+            <list decoration-success="state == 'accepted'"
                   decoration-danger="state == 'rejected'"
                   decoration-warning="state == 'error'">
                 <field name="create_date"/>
@@ -15,7 +15,7 @@
                 <field name="submitted_at"/>
                 <field name="accepted_at"/>
                 <field name="company_id" groups="base.group_multi_company"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -57,7 +57,7 @@
     <record id="action_l10n_si_edi_log" model="ir.actions.act_window">
         <field name="name">e-Račun Logs (SI)</field>
         <field name="res_model">l10n_si.edi.log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_edi_log"

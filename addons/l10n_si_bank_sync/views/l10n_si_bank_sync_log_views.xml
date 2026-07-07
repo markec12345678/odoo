@@ -4,7 +4,7 @@
         <field name="name">l10n_si.bank.sync.log.tree</field>
         <field name="model">l10n_si.bank.sync.log</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'success'"
+            <list decoration-success="state == 'success'"
                   decoration-danger="state == 'error'">
                 <field name="create_date"/>
                 <field name="config_id"/>
@@ -13,7 +13,7 @@
                 <field name="state"/>
                 <field name="statement_count"/>
                 <field name="company_id" groups="base.group_multi_company"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -41,7 +41,7 @@
     <record id="action_l10n_si_bank_sync_log" model="ir.actions.act_window">
         <field name="name">SI Bank Sync Logs</field>
         <field name="res_model">l10n_si.bank.sync.log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_si_bank_sync_log"

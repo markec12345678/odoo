@@ -73,6 +73,6 @@ class L10nSiHelpdeskTeam(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Tickets',
             'res_model': 'l10n_si.helpdesk.ticket',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('team_id', '=', self.id)],
         }

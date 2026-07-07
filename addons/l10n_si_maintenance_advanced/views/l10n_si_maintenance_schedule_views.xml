@@ -4,7 +4,7 @@
         <field name="name">l10n_si.maintenance.schedule.tree</field>
         <field name="model">l10n_si.maintenance.schedule</field>
         <field name="arch" type="xml">
-            <tree decoration-warning="next_run_date &lt; context_today()">
+            <list decoration-warning="next_run_date &lt; context_today()">
                 <field name="name"/>
                 <field name="equipment_id"/>
                 <field name="frequency"/>
@@ -13,7 +13,7 @@
                 <field name="last_run_date"/>
                 <field name="technician_id"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -44,11 +44,11 @@
                     <notebook>
                         <page string="Generirani zahtevki">
                             <field name="request_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="schedule_date"/>
                                     <field name="stage_id"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -60,7 +60,7 @@
     <record id="action_l10n_si_maintenance_schedule" model="ir.actions.act_window">
         <field name="name">Preventive Schedules (SI)</field>
         <field name="res_model">l10n_si.maintenance.schedule</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_si_maintenance_schedule" name="Preventive Schedules"

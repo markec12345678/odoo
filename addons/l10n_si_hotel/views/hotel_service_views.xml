@@ -4,13 +4,13 @@
         <field name="name">l10n_si.hotel.service.tree</field>
         <field name="model">l10n_si.hotel.service</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code"/>
                 <field name="name"/>
                 <field name="category"/>
                 <field name="default_price"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -41,6 +41,6 @@
     <record id="action_l10n_si_hotel_service" model="ir.actions.act_window">
         <field name="name">Storitve</field>
         <field name="res_model">l10n_si.hotel.service</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

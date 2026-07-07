@@ -17,11 +17,11 @@
                 </group>
                 <group string="Zaposleni (prazno = vsi aktivni)">
                     <field name="employee_ids" nolabel="1">
-                        <tree>
+                        <list>
                             <field name="name"/>
                             <field name="department_id"/>
                             <field name="job_title"/>
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <footer>

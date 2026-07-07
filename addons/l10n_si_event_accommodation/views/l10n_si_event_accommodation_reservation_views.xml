@@ -4,7 +4,7 @@
         <field name="name">l10n_si.event.accommodation.reservation.tree</field>
         <field name="model">l10n_si.event.accommodation.reservation</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="event_id"/>
@@ -14,7 +14,7 @@
                 <field name="nights"/>
                 <field name="total_amount" sum="Skupaj"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -60,7 +60,7 @@
     <record id="action_l10n_si_event_acc_res" model="ir.actions.act_window">
         <field name="name">Rezervacije gostov</field>
         <field name="res_model">l10n_si.event.accommodation.reservation</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_event_acc_res" name="Rezervacije gostov" parent="menu_l10n_si_event_acc_root" action="action_l10n_si_event_acc_res"/>

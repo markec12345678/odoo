@@ -4,7 +4,7 @@
         <field name="name">l10n_si.knowledge.article.tree</field>
         <field name="model">l10n_si.knowledge.article</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="category"/>
@@ -13,7 +13,7 @@
                 <field name="view_count"/>
                 <field name="last_updated"/>
                 <field name="author_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -50,19 +50,19 @@
                     <notebook>
                         <page string="Sub-articles">
                             <field name="child_ids">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="category"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Version history">
                             <field name="version_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="snapshot_on"/>
                                     <field name="snapshot_by"/>
                                     <button name="action_restore" type="object" string="Restavriraj" class="btn-sm btn-secondary"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -97,7 +97,7 @@
     <record id="action_l10n_si_knowledge_article" model="ir.actions.act_window">
         <field name="name">Articles (SI Knowledge)</field>
         <field name="res_model">l10n_si.knowledge.article</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_si_knowledge_root" name="SI Knowledge" web_icon="l10n_si_knowledge,static/description/icon.png" sequence="65"/>

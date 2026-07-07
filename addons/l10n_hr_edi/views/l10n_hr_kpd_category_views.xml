@@ -4,7 +4,7 @@
         <field name="name">l10n_hr.kpd.category.list</field>
         <field name="model">l10n_hr.kpd.category</field>
         <field name="arch" type="xml">
-            <list string="KPD Category">
+            <list>
                 <field name="name"/>
                 <field name="sector"/>
                 <field name="description"/>

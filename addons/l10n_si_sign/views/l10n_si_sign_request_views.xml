@@ -4,7 +4,7 @@
         <field name="name">l10n_si.sign.request.tree</field>
         <field name="model">l10n_si.sign.request</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'pending'"
+            <list decoration-info="state == 'pending'"
                   decoration-success="state == 'signed'"
                   decoration-danger="state == 'rejected'">
                 <field name="name"/>
@@ -13,7 +13,7 @@
                 <field name="state"/>
                 <field name="signed_on"/>
                 <field name="signed_by"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -61,7 +61,7 @@
                         </page>
                         <page string="Podpisniki">
                             <field name="signature_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="sequence" widget="handle"/>
                                     <field name="signer_user_id"/>
                                     <field name="role"/>
@@ -70,7 +70,7 @@
                                     <button name="action_sign" type="object" string="Podpiši"
                                             class="btn-sm btn-primary"
                                             attrs="{'invisible': [('state', '!=', 'pending')]}"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Opombe">
@@ -89,7 +89,7 @@
     <record id="action_l10n_si_sign_request" model="ir.actions.act_window">
         <field name="name">SI Sign Requests</field>
         <field name="res_model">l10n_si.sign.request</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_si_sign_root"

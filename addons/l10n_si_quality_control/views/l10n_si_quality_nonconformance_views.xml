@@ -4,7 +4,7 @@
         <field name="name">l10n_si.quality.nonconformance.tree</field>
         <field name="model">l10n_si.quality.nonconformance</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="severity == 'critical'"
+            <list decoration-danger="severity == 'critical'"
                   decoration-warning="severity == 'major'"
                   decoration-success="state == 'closed'">
                 <field name="number"/>
@@ -15,7 +15,7 @@
                 <field name="responsible_id"/>
                 <field name="action_deadline"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -83,7 +83,7 @@
     <record id="action_l10n_si_quality_nonconformance" model="ir.actions.act_window">
         <field name="name">Non-Conformances (SI)</field>
         <field name="res_model">l10n_si.quality.nonconformance</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_si_quality_nonconformance" name="Non-Conformances"

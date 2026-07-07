@@ -4,7 +4,7 @@
         <field name="name">l10n_si.event.vendor.booking.tree</field>
         <field name="model">l10n_si.event.vendor.booking</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'confirmed'"
+            <list decoration-info="state == 'confirmed'"
                   decoration-success="state == 'completed'">
                 <field name="name"/>
                 <field name="vendor_id"/>
@@ -12,7 +12,7 @@
                 <field name="date"/>
                 <field name="total_amount" sum="Skupaj"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -68,7 +68,7 @@
     <record id="action_l10n_si_event_vendor_booking" model="ir.actions.act_window">
         <field name="name">Naročila izvajalcev</field>
         <field name="res_model">l10n_si.event.vendor.booking</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_event_vendor_root" name="Zunanji izvajalci" parent="l10n_si_event_venue.menu_l10n_si_event_venue_root" sequence="60"/>

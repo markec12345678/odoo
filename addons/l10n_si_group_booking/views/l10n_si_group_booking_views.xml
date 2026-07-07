@@ -4,7 +4,7 @@
         <field name="name">l10n_si.group.booking.tree</field>
         <field name="model">l10n_si.group.booking</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'confirmed'"
+            <list decoration-info="state == 'confirmed'"
                   decoration-success="state == 'completed'"
                   decoration-muted="state == 'cancelled'">
                 <field name="number"/>
@@ -16,7 +16,7 @@
                 <field name="room_count_booked"/>
                 <field name="total_amount" sum="Skupaj"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -85,14 +85,14 @@
                     <notebook>
                         <page string="Rooming list">
                             <field name="rooming_list_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="room_number"/>
                                     <field name="guest_name"/>
                                     <field name="adults"/>
                                     <field name="children"/>
                                     <field name="is_leader"/>
                                     <field name="state"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Posebne zahteve">
@@ -114,7 +114,7 @@
     <record id="action_l10n_si_group_booking" model="ir.actions.act_window">
         <field name="name">Skupinske rezervacije</field>
         <field name="res_model">l10n_si.group.booking</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_group_booking_root" name="Skupinske rezervacije" parent="l10n_si_hotel.menu_l10n_si_hotel_root" sequence="60"/>

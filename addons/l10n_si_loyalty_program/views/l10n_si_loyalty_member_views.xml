@@ -4,7 +4,7 @@
         <field name="name">l10n_si.loyalty.member.tree</field>
         <field name="model">l10n_si.loyalty.member</field>
         <field name="arch" type="xml">
-            <tree decoration-warning="tier == 'silver'"
+            <list decoration-warning="tier == 'silver'"
                   decoration-success="tier == 'gold'"
                   decoration-info="tier == 'platinum'">
                 <field name="number"/>
@@ -15,7 +15,7 @@
                 <field name="stay_count"/>
                 <field name="joined_on"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -57,13 +57,13 @@
                     <notebook>
                         <page string="Transakcije">
                             <field name="transaction_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="create_date"/>
                                     <field name="points"/>
                                     <field name="transaction_type"/>
                                     <field name="source"/>
                                     <field name="reference"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Statistika">
@@ -88,6 +88,6 @@
     <record id="action_l10n_si_loyalty_member" model="ir.actions.act_window">
         <field name="name">Člani programa zvestobe</field>
         <field name="res_model">l10n_si.loyalty.member</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

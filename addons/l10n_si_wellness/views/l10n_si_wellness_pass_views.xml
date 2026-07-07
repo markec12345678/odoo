@@ -4,7 +4,7 @@
         <field name="name">l10n_si.wellness.pass.tree</field>
         <field name="model">l10n_si.wellness.pass</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'paid'"
+            <list decoration-success="state == 'paid'"
                   decoration-muted="state == 'used'">
                 <field name="name"/>
                 <field name="date"/>
@@ -14,7 +14,7 @@
                 <field name="children_7_15"/>
                 <field name="total_amount" sum="Skupaj"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -67,7 +67,7 @@
     <record id="action_l10n_si_wellness_pass" model="ir.actions.act_window">
         <field name="name">Dnevne karte</field>
         <field name="res_model">l10n_si.wellness.pass</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_wellness_root" name="Wellness (SI)" web_icon="l10n_si_wellness,static/description/icon.png" sequence="45"/>

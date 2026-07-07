@@ -12,10 +12,10 @@
                 </group>
                 <group string="Stranke (prazno = vse)">
                     <field name="partner_ids" nolabel="1">
-                        <tree>
+                        <list>
                             <field name="name"/>
                             <field name="email"/>
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <footer>

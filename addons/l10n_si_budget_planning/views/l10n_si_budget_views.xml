@@ -4,7 +4,7 @@
         <field name="name">l10n_si.budget.tree</field>
         <field name="model">l10n_si.budget</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'active'"
+            <list decoration-success="state == 'active'"
                   decoration-muted="state == 'closed'">
                 <field name="number"/>
                 <field name="year"/>
@@ -13,7 +13,7 @@
                 <field name="total_expense_planned" sum="Skupaj"/>
                 <field name="total_profit_planned" sum="Skupaj"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -51,7 +51,7 @@
                     <notebook>
                         <page string="Postavke proračuna">
                             <field name="line_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="line_type"/>
                                     <field name="category"/>
                                     <field name="name"/>
@@ -59,7 +59,7 @@
                                     <field name="amount_actual" sum="Skupaj"/>
                                     <field name="variance_amount" sum="Skupaj"/>
                                     <field name="variance_percent"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Skupaj">
@@ -117,7 +117,7 @@
     <record id="action_l10n_si_budget" model="ir.actions.act_window">
         <field name="name">Proračuni</field>
         <field name="res_model">l10n_si.budget</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_budget_root" name="Proračun (SI)" parent="account.menu_finance_configuration" sequence="100"/>

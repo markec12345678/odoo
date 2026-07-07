@@ -4,7 +4,7 @@
         <field name="name">l10n_si.budget.line.tree</field>
         <field name="model">l10n_si.budget.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="budget_id"/>
                 <field name="line_type"/>
                 <field name="category"/>
@@ -12,7 +12,7 @@
                 <field name="amount_planned" sum="Skupaj"/>
                 <field name="amount_actual" sum="Skupaj"/>
                 <field name="variance_amount" sum="Skupaj"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -69,7 +69,7 @@
     <record id="action_l10n_si_budget_line" model="ir.actions.act_window">
         <field name="name">Postavke proračuna</field>
         <field name="res_model">l10n_si.budget.line</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_l10n_si_budget_line" name="Postavke" parent="menu_l10n_si_budget_root" action="action_l10n_si_budget_line" sequence="20"/>

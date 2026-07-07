@@ -4,7 +4,7 @@
         <field name="name">l10n_si.wellness.booking.tree</field>
         <field name="model">l10n_si.wellness.booking</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'confirmed'"
+            <list decoration-info="state == 'confirmed'"
                   decoration-success="state == 'completed'"
                   decoration-muted="state == 'cancelled'">
                 <field name="name"/>
@@ -15,7 +15,7 @@
                 <field name="guest_category"/>
                 <field name="total_amount" sum="Skupaj"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -81,6 +81,6 @@
     <record id="action_l10n_si_wellness_booking" model="ir.actions.act_window">
         <field name="name">Rezervacije</field>
         <field name="res_model">l10n_si.wellness.booking</field>
-        <field name="view_mode">calendar,tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

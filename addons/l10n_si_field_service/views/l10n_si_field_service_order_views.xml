@@ -4,7 +4,7 @@
         <field name="name">l10n_si.field.service.order.tree</field>
         <field name="model">l10n_si.field.service.order</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="priority == '3'"
+            <list decoration-danger="priority == '3'"
                   decoration-success="state == 'done'"
                   decoration-info="state == 'in_progress'">
                 <field name="number"/>
@@ -16,7 +16,7 @@
                 <field name="priority" widget="priority"/>
                 <field name="state"/>
                 <field name="total_cost" sum="Skupaj"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -67,13 +67,13 @@
                         </page>
                         <page string="Material">
                             <field name="material_line_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="product_id"/>
                                     <field name="description"/>
                                     <field name="quantity"/>
                                     <field name="unit_price"/>
                                     <field name="subtotal"/>
-                                </tree>
+                                </list>
                             </field>
                             <group class="mt-2">
                                 <field name="labor_cost"/>
@@ -143,7 +143,7 @@
     <record id="action_l10n_si_field_service_order" model="ir.actions.act_window">
         <field name="name">Field Service Orders (SI)</field>
         <field name="res_model">l10n_si.field.service.order</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_si_field_service_root" name="SI Field Service" web_icon="l10n_si_field_service,static/description/icon.png" sequence="70"/>

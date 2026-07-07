@@ -25,14 +25,14 @@
                 <notebook>
                     <page string="Preventive Schedules">
                         <field name="si_schedule_ids">
-                            <tree>
+                            <list>
                                 <field name="name"/>
                                 <field name="frequency"/>
                                 <field name="frequency_interval"/>
                                 <field name="next_run_date"/>
                                 <field name="last_run_date"/>
                                 <field name="active"/>
-                            </tree>
+                            </list>
                         </field>
                     </page>
                 </notebook>

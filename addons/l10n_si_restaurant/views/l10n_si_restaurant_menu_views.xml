@@ -4,7 +4,7 @@
         <field name="name">l10n_si.restaurant.menu.tree</field>
         <field name="model">l10n_si.restaurant.menu</field>
         <field name="arch" type="xml">
-            <tree decoration-info="daily_special == True">
+            <list decoration-info="daily_special == True">
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="category_id"/>
@@ -14,7 +14,7 @@
                 <field name="vegan"/>
                 <field name="prep_time_minutes"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -82,6 +82,6 @@
     <record id="action_l10n_si_restaurant_menu" model="ir.actions.act_window">
         <field name="name">Jedilnik</field>
         <field name="res_model">l10n_si.restaurant.menu</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

@@ -44,20 +44,20 @@
         <field name="name">l10n_si.ai.concierge.config.tree</field>
         <field name="model">l10n_si.ai.concierge.config</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="ai_backend"/>
                 <field name="model_name"/>
                 <field name="conversation_count"/>
                 <field name="message_count"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="action_l10n_si_ai_config" model="ir.actions.act_window">
         <field name="name">AI Concierge</field>
         <field name="res_model">l10n_si.ai.concierge.config</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>
