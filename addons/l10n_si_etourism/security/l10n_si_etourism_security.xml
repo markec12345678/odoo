@@ -12,7 +12,6 @@
         <record id="group_etourism_manager" model="res.groups">
             <field name="name">SI eTurizem / Manager</field>
             <field name="implied_ids" eval="[(4, ref('group_etourism_user'))]"/>
-            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         </record>
         <record id="rule_etourism_company" model="ir.rule">
             <field name="name">SI eTurizem: multi-company</field>

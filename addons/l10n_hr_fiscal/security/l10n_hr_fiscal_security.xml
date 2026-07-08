@@ -12,7 +12,6 @@
         <record id="group_hr_fiscal_manager" model="res.groups">
             <field name="name">HR Fiskalizacija / Manager</field>
             <field name="implied_ids" eval="[(4, ref('group_hr_fiscal_user'))]"/>
-            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         </record>
         <record id="rule_hr_fiscal_company" model="ir.rule">
             <field name="name">HR Fiskalizacija: multi-company</field>
