@@ -35,7 +35,7 @@ class L10nSiPayslipRunWizard(models.TransientModel):
         ])
 
         for emp in employees:
-            contract = self.env['hr.contract'].search([
+            contract = self.env['l10n_si.hr.contract'].search([
                 ('employee_id', '=', emp.id),
                 ('state', '=', 'open'),
                 ('date_start', '<=', date_to),

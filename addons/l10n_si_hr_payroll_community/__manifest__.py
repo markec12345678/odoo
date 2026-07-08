@@ -63,7 +63,6 @@ License: LGPL-3.0
         'views/l10n_si_payroll_structure_views.xml',
         'views/l10n_si_payslip_views.xml',
         'views/hr_employee_views.xml',
-        'views/hr_contract_views.xml',
         'views/res_company_views.xml',
         'wizard/l10n_si_payslip_run_wizard_views.xml',
     ],

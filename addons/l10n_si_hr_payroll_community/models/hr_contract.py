@@ -3,7 +3,8 @@ from odoo import fields, models
 
 
 class HrContract(models.Model):
-    _inherit = 'hr.contract'
+    _name = 'l10n_si.hr.contract'
+    _description = 'SI HR Contract (standalone)'
 
     si_work_hours_per_week = fields.Float(
         string='Tedenske ure',
