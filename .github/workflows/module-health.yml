@@ -1,0 +1,103 @@
+name: "Module Health Check"
+
+on:
+  push:
+    branches: ["19.0"]
+  pull_request:
+    branches: ["19.0"]
+  schedule:
+    - cron: "0 4 * * *"  # Daily at 04:00 UTC
+
+jobs:
+  module-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install ruff xmlschema lxml
+
+      - name: Run Odoo 19 migration scanner
+        run: |
+          python scripts/scan_odoo19_issues.py addons/ 2>&1 | tee scan-results.txt
+          # Fail if CRITICAL issues found
+          if grep -q "CRITICAL: [1-9]" scan-results.txt; then
+            echo "❌ Critical issues found!"
+            cat scan-results.txt
+            exit 1
+          fi
+          echo "✅ No critical issues found"
+
+      - name: Run missing methods scanner
+        run: |
+          python scripts/scan_missing_methods.py addons/ 2>&1 | tee methods-results.txt
+          if grep -q "missing methods found: [1-9]" methods-results.txt; then
+            echo "❌ Missing methods found!"
+            cat methods-results.txt
+            exit 1
+          fi
+          echo "✅ No missing methods"
+
+      - name: Validate XML well-formedness
+        run: |
+          python -c "
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          errors = []
+          for f in Path('addons').rglob('*.xml'):
+              if 'l10n_si_' not in str(f) and 'l10n_hr_' not in str(f):
+                  continue
+              if 'static/' in str(f):
+                  continue
+              try:
+                  ET.parse(f)
+              except ET.ParseError as e:
+                  errors.append(f'{f}: {e}')
+          if errors:
+              print(f'❌ {len(errors)} XML errors:')
+              for e in errors[:10]:
+                  print(f'  {e}')
+              exit(1)
+          print('✅ All XML files well-formed')
+          "
+
+      - name: Validate Python syntax
+        run: |
+          python -c "
+          import ast
+          from pathlib import Path
+          errors = []
+          for f in Path('addons').rglob('*.py'):
+              if 'l10n_si_' not in str(f) and 'l10n_hr_' not in str(f):
+                  continue
+              try:
+                  ast.parse(f.read_text())
+              except SyntaxError as e:
+                  errors.append(f'{f}: {e}')
+          if errors:
+              print(f'❌ {len(errors)} Python syntax errors:')
+              for e in errors[:10]:
+                  print(f'  {e}')
+              exit(1)
+          print('✅ All Python files valid')
+          "
+
+      - name: Run ruff linter
+        run: |
+          ruff check addons/l10n_si_*/ addons/l10n_hr_*/ --select E9,F63,F7,F82 --exit-zero
+
+      - name: Upload scan results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: module-health-report
+          path: |
+            scan-results.txt
+            methods-results.txt

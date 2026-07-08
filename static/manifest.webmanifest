@@ -1,0 +1,29 @@
+{
+  "name": "SI/HR Tourism Suite",
+  "short_name": "SI/HR ERP",
+  "description": "Slovenian & Croatian Tourism ERP built on Odoo 19",
+  "start_url": "/web/login",
+  "display": "standalone",
+  "background_color": "#1E40AF",
+  "theme_color": "#1E40AF",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/web/binary/company_logo",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/web/binary/company_logo",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "finance"],
+  "lang": "sl",
+  "dir": "ltr",
+  "scope": "/",
+  "id": "/web/login"
+}

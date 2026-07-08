@@ -1,0 +1,112 @@
+name: "Auto Module Install Test"
+
+on:
+  push:
+    branches: ["19.0"]
+  workflow_dispatch:
+
+jobs:
+  test-install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: odoo
+          POSTGRES_USER: odoo
+          POSTGRES_PASSWORD: odoo
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Odoo dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client libxml2-dev libxslt1-dev \
+            libldap2-dev libsasl2-dev libffi-dev libjpeg-dev zlib1g-dev \
+            libpq-dev libxml2-dev libxslt1-dev
+          pip install -r requirements.txt
+          pip install qrcode pillow cryptography requests
+
+      - name: Initialize Odoo database
+        run: |
+          python odoo-bin \
+            --addons-path=addons \
+            --db_host=localhost --db_port=5432 \
+            --db_user=odoo --db_password=odoo \
+            --database=odoo \
+            --init=base \
+            --stop-after-init \
+            --without-demo=True \
+            --workers=0 \
+            --limit-time-cpu=600 \
+            --limit-time-real=1200
+        env:
+          PGPASSWORD: odoo
+
+      - name: Install core SI modules
+        run: |
+          for mod in l10n_si l10n_si_sequence l10n_si_fiscal l10n_si_accounting_advanced l10n_si_vat_validation; do
+            echo "Installing $mod..."
+            python odoo-bin \
+              --addons-path=addons \
+              --db_host=localhost --db_port=5432 \
+              --db_user=odoo --db_password=odoo \
+              --database=odoo \
+              --init=$mod \
+              --stop-after-init \
+              --without-demo=True \
+              --workers=0 \
+              --limit-time-cpu=600 \
+              --limit-time-real=1200 || {
+                echo "❌ Failed to install $mod"
+                exit 1
+              }
+            echo "✅ $mod installed"
+          done
+        env:
+          PGPASSWORD: odoo
+
+      - name: Install HR modules
+        run: |
+          for mod in l10n_hr l10n_hr_fiscal l10n_hr_pdv; do
+            echo "Installing $mod..."
+            python odoo-bin \
+              --addons-path=addons \
+              --db_host=localhost --db_port=5432 \
+              --db_user=odoo --db_password=odoo \
+              --database=odoo \
+              --init=$mod \
+              --stop-after-init \
+              --without-demo=True \
+              --workers=0 \
+              --limit-time-cpu=600 \
+              --limit-time-real=1200 || {
+                echo "❌ Failed to install $mod"
+                exit 1
+              }
+            echo "✅ $mod installed"
+          done
+        env:
+          PGPASSWORD: odoo
+
+      - name: Summary
+        run: |
+          echo "✅ All core SI/HR modules installed successfully in CI!"
+          echo "Modules tested: l10n_si, l10n_si_sequence, l10n_si_fiscal,"
+          echo "  l10n_si_accounting_advanced, l10n_si_vat_validation,"
+          echo "  l10n_hr, l10n_hr_fiscal, l10n_hr_pdv"

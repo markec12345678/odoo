@@ -1,0 +1,56 @@
+version: "3.9"
+
+services:
+  odoo:
+    image: ghcr.io/markec12345678/odoo:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8069:8069"
+    environment:
+      - PGHOST=db
+      - PGPORT=5432
+      - PGUSER=odoo
+      - PGPASSWORD=odoo
+      - PGDATABASE=odoo
+      - PORT=8069
+    volumes:
+      - odoo-filestore:/var/lib/odoo
+      - ./addons:/mnt/extra-addons:ro
+    restart: unless-stopped
+
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backup:
+    image: ghcr.io/markec12345678/odoo-backup:latest
+    depends_on:
+      - db
+    environment:
+      - PGHOST=db
+      - PGPORT=5432
+      - PGUSER=odoo
+      - PGPASSWORD=odoo
+      - PGDATABASE=odoo
+      - BACKUP_RETENTION_DAYS=30
+      - BACKUP_LOCAL_ONLY=1
+    profiles:
+      - backup
+    restart: "no"
+
+volumes:
+  odoo-filestore:
+  pg-data:
