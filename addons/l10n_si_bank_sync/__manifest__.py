@@ -57,7 +57,6 @@ References
         'data/ir_cron_data.xml',
         'views/l10n_si_bank_sync_config_views.xml',
         'views/l10n_si_bank_sync_log_views.xml',
-        'views/account_journal_views.xml',
     ],
     'installable': True,
     'application': True,
