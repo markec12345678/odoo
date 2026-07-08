@@ -8,8 +8,8 @@
                 <field name="first_name"/>
                 <field name="last_name"/>
                 <field name="accommodation_id"/>
-                <field name="check_in_date"/>
-                <field name="check_out_date"/>
+                <field name="arrival_date"/>
+                <field name="departure_date"/>
                 <field name="state"/>
             </list>
         </field>
@@ -28,8 +28,8 @@
                         <field name="first_name"/>
                         <field name="last_name"/>
                         <field name="accommodation_id"/>
-                        <field name="check_in_date"/>
-                        <field name="check_out_date"/>
+                        <field name="arrival_date"/>
+                        <field name="departure_date"/>
                         <field name="state"/>
                     </group>
                 </sheet>

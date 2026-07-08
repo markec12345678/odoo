@@ -62,7 +62,6 @@
                             <field name="timesheet_ids">
                                 <list editable="bottom">
                                     <field name="date"/>
-                                    <field name="employee_id"/>
                                     <field name="name"/>
                                     <field name="unit_amount" widget="float_time"/>
                                 </list>
