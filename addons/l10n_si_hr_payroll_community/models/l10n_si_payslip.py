@@ -51,7 +51,6 @@ class L10nSiPayslip(models.Model):
     employee_id = fields.Many2one('hr.employee', required=True, ondelete='restrict')
     contract_id = fields.Many2one(
         'l10n_si.hr.contract', required=True, ondelete='restrict',
-        domain="[('employee_id', '=', employee_id), ('state', '=', 'open')]",
     )
     structure_id = fields.Many2one('l10n_si.payroll.structure', required=True)
     company_id = fields.Many2one(

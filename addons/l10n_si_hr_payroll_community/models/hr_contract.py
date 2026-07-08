@@ -26,6 +26,7 @@ class HrContract(models.Model):
         string='Tip zaposlitve',
     )
     si_probation_until = fields.Date(string='Preizkusna doba do')
+    employee_id = fields.Many2one('hr.employee', string='Employee', required=True)
     state = fields.Selection([
         ('draft', 'Draft'),
         ('open', 'Running'),
