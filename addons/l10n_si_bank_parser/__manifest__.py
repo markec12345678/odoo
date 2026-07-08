@@ -51,7 +51,6 @@ Configuration
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/account_journal_views.xml',
     ],
     'installable': True,
     'application': True,
