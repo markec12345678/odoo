@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
     <record id="view_l10n_si_housekeeping_task_tree" model="ir.ui.view">
         <field name="name">l10n_si.housekeeping.task.tree</field>
         <field name="model">l10n_si.housekeeping.task</field>
@@ -117,4 +118,5 @@
 
     <menuitem id="menu_l10n_si_housekeeping_root" name="Hišništvo" parent="l10n_si_hotel.menu_l10n_si_hotel_root" sequence="40"/>
     <menuitem id="menu_l10n_si_housekeeping_task" name="Naloge" parent="menu_l10n_si_housekeeping_root" action="action_l10n_si_housekeeping_task"/>
+</data>
 </odoo>

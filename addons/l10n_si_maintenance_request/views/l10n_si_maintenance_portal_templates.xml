@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
     <!-- Guest portal: report form -->
     <template id="portal_report_form" name="Prijavi napako">
         <t t-call="portal.portal_layout">
@@ -100,4 +101,5 @@
             </div>
         </t>
     </template>
+</data>
 </odoo>

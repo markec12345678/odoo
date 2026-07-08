@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
     <!-- ===============================================================
          Bilanca stanja (Balance Sheet) — SRS 99
          =============================================================== -->
@@ -320,4 +321,5 @@
             name="l10n_si_accounting_advanced.report_income_statement_document"
             file="l10n_si_accounting_advanced.report_income_statement_document"
             print_report_name="'Izid_poslovanja_%s_%s' % (doc.year, doc.report_type)"/>
+</data>
 </odoo>

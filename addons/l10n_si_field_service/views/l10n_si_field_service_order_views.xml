@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
     <record id="view_l10n_si_field_service_order_tree" model="ir.ui.view">
         <field name="name">l10n_si.field.service.order.tree</field>
         <field name="model">l10n_si.field.service.order</field>
@@ -148,4 +149,5 @@
 
     <menuitem id="menu_si_field_service_root" name="SI Field Service" web_icon="l10n_si_field_service,static/description/icon.png" sequence="70"/>
     <menuitem id="menu_si_field_service_order" name="Work Orders" parent="menu_si_field_service_root" action="action_l10n_si_field_service_order"/>
+</data>
 </odoo>

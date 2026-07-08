@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
     <!-- Search page -->
     <template id="booking_search_page" name="Iskanje prostih sob">
         <t t-call="website.layout">
@@ -135,4 +136,5 @@
             </div>
         </t>
     </template>
+</data>
 </odoo>

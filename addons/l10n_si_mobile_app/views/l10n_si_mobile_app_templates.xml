@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
     <!-- PWA Main Menu -->
     <template id="mobile_index" name="Mobile App - Main">
         <html>
@@ -233,4 +234,5 @@
         </body>
         </html>
     </template>
+</data>
 </odoo>

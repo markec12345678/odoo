@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
     <record id="view_l10n_si_restaurant_table_tree" model="ir.ui.view">
         <field name="name">l10n_si.restaurant.table.tree</field>
         <field name="model">l10n_si.restaurant.table</field>
@@ -85,4 +86,5 @@
         <field name="res_model">l10n_si.restaurant.table</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

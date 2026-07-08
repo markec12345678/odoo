@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
     <!-- ============================================================ -->
     <!-- Paper format                                                 -->
     <!-- ============================================================ -->
@@ -274,4 +275,5 @@
         <field name="binding_model_id" ref="model_l10n_hr_pdv_report"/>
         <field name="binding_type">report</field>
     </record>
+</data>
 </odoo>

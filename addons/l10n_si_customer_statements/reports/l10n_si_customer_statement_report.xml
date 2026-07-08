@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
     <template id="report_l10n_si_customer_statement">
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
@@ -73,4 +74,5 @@
             name="l10n_si_customer_statements.report_l10n_si_customer_statement"
             file="l10n_si_customer_statements.report_l10n_si_customer_statement"
             print_report_name="'Statement_%s_%s' % (object.partner_id.name, object.date_to)"/>
+</data>
 </odoo>
