@@ -10,7 +10,6 @@
                 <field name="accommodation_id"/>
                 <field name="arrival_date"/>
                 <field name="departure_date"/>
-                <field name="state"/>
             </list>
         </field>
     </record>
@@ -30,7 +29,6 @@
                         <field name="accommodation_id"/>
                         <field name="arrival_date"/>
                         <field name="departure_date"/>
-                        <field name="state"/>
                     </group>
                 </sheet>
             </form>
