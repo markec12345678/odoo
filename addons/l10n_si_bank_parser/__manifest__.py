@@ -51,7 +51,6 @@ Configuration
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/account_bank_statement_views.xml',
         'views/account_journal_views.xml',
     ],
     'installable': True,
