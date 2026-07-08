@@ -6,7 +6,7 @@ import shutil
 
 import requests
 
-from odoo import _, fields, models
+from odoo import api, _, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -41,7 +41,7 @@ class L10nSiEdiLog(models.Model):
     accepted_at = fields.Datetime(string='Accepted At', readonly=True)
     retry_count = fields.Integer(default=0)
 
-    @models.model
+    @api.model
     def _cron_poll_acceptance_status(self):
         """Poll FURS for acceptance status of recently-submitted (not yet accepted) logs."""
         pending = self.search([
