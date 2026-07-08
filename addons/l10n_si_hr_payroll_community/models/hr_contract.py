@@ -26,3 +26,9 @@ class HrContract(models.Model):
         string='Tip zaposlitve',
     )
     si_probation_until = fields.Date(string='Preizkusna doba do')
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('open', 'Running'),
+        ('close', 'Expired'),
+        ('cancel', 'Cancelled'),
+    ], default='open', string='Status')
