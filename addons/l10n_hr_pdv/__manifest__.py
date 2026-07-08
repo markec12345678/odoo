@@ -74,5 +74,7 @@ References
     'qweb': [
         'reports/pdv_ledger_report.xml',
         'reports/pdv_form_report.xml',
+        'reports/pdv_form_report_templates.xml',
+        'reports/pdv_ledger_report_templates.xml',
     ],
 }

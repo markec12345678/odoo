@@ -54,12 +54,12 @@ References
         'views/l10n_si_helpdesk_stage_views.xml',
         'views/l10n_si_helpdesk_canned_response_views.xml',
         'views/l10n_si_helpdesk_menu.xml',
+        'views/l10n_si_helpdesk_ticket_views.xml',
     ],
     'installable': True,
     'application': True,
     'auto_install': False,
     'qweb': [
-        'views/l10n_si_helpdesk_ticket_views.xml',
         'views/l10n_si_helpdesk_portal_templates.xml',
     ],
 }

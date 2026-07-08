@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_pdv_form_document">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2 class="text-center">PDV obrazac</h2>
+                    <div class="text-center mb-2">
+                        <t t-if="o.period_type == 'monthly'">
+                            <span>Mjesečni izvještaj — </span>
+                        </t>
+                        <t t-else="">
+                            <span>Kvartalni izvještaj — </span>
+                        </t>
+                        <strong>
+                            <span t-esc="o.period_number"/>/<span t-esc="o.year"/>
+                        </strong>
+                    </div>
+                    <div class="text-center mb-4">
+                        <span>Razdoblje: </span>
+                        <strong t-field="o.date_from"
+                                t-options="{'format': 'dd.MM.yyyy'}"/>
+                        <span> — </span>
+                        <strong t-field="o.date_to"
+                                t-options="{'format': 'dd.MM.yyyy'}"/>
+                    </div>
+
+                    <!-- Obveznik -->
+                    <table class="table table-sm">
+                        <tr>
+                            <th style="width: 30%;">Obveznik (naziv):</th>
+                            <td><strong t-field="o.company_id.partner_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <th>OIB:</th>
+                            <td><strong t-field="o.company_id.vat"/></td>
+                        </tr>
+                        <tr>
+                            <th>Rok predaje:</th>
+                            <td>
+                                <strong t-field="o.deadline"
+                                        t-options="{'format': 'dd.MM.yyyy'}"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- I. Izlazni PDV -->
+                    <h4 class="mt-4">I. IZLAZNI PDV (porez na isporuke)</h4>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr class="active">
+                                <th>Stopa</th>
+                                <th class="text-right">Porezna osnovica</th>
+                                <th class="text-right">Iznos PDV-a</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>25%</td>
+                                <td class="text-right">
+                                    <span t-field="o.line_ids.tax_25" t-if="False"/>
+                                    <t t-set="b25" t-value="0.0"/>
+                                    <t t-foreach="o.line_ids.filtered(lambda l: l.direction == 'output')" t-as="l">
+                                        <t t-set="b25" t-value="b25 + l.base_25"/>
+                                    </t>
+                                    <span t-esc="b25" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.output_vat_25"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>13%</td>
+                                <td class="text-right">
+                                    <t t-set="b13" t-value="0.0"/>
+                                    <t t-foreach="o.line_ids.filtered(lambda l: l.direction == 'output')" t-as="l">
+                                        <t t-set="b13" t-value="b13 + l.base_13"/>
+                                    </t>
+                                    <span t-esc="b13" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.output_vat_13"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5%</td>
+                                <td class="text-right">
+                                    <t t-set="b5" t-value="0.0"/>
+                                    <t t-foreach="o.line_ids.filtered(lambda l: l.direction == 'output')" t-as="l">
+                                        <t t-set="b5" t-value="b5 + l.base_5"/>
+                                    </t>
+                                    <span t-esc="b5" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.output_vat_5"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="oe_subtotal_footer">
+                                <th>Ukupni izlazni PDV</th>
+                                <th></th>
+                                <th class="text-right">
+                                    <span t-field="o.output_vat_total"/>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <!-- II. Ulazni PDV -->
+                    <h4 class="mt-4">II. ULAZNI PDV (porez na nabave)</h4>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr class="active">
+                                <th>Stopa</th>
+                                <th class="text-right">Porezna osnovica</th>
+                                <th class="text-right">Iznos PDV-a</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>25%</td>
+                                <td class="text-right">
+                                    <t t-set="inb25" t-value="0.0"/>
+                                    <t t-foreach="o.line_ids.filtered(lambda l: l.direction == 'input')" t-as="l">
+                                        <t t-set="inb25" t-value="inb25 + l.base_25"/>
+                                    </t>
+                                    <span t-esc="inb25" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.input_vat_25"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>13%</td>
+                                <td class="text-right">
+                                    <t t-set="inb13" t-value="0.0"/>
+                                    <t t-foreach="o.line_ids.filtered(lambda l: l.direction == 'input')" t-as="l">
+                                        <t t-set="inb13" t-value="inb13 + l.base_13"/>
+                                    </t>
+                                    <span t-esc="inb13" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.input_vat_13"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5%</td>
+                                <td class="text-right">
+                                    <t t-set="inb5" t-value="0.0"/>
+                                    <t t-foreach="o.line_ids.filtered(lambda l: l.direction == 'input')" t-as="l">
+                                        <t t-set="inb5" t-value="inb5 + l.base_5"/>
+                                    </t>
+                                    <span t-esc="inb5" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.input_vat_5"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="oe_subtotal_footer">
+                                <th>Ukupni ulazni PDV</th>
+                                <th></th>
+                                <th class="text-right">
+                                    <span t-field="o.input_vat_total"/>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <!-- III. Posebne kategorije -->
+                    <h4 class="mt-4">III. POSEBNE KATEGORIJE</h4>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Obrnuti porezni teret (domaći reverse charge)</td>
+                                <td class="text-right">
+                                    <span t-field="o.reverse_charge_amount"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>EU nabave (intra-Community acquisitions)</td>
+                                <td class="text-right">
+                                    <span t-field="o.eu_acquisitions"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>EU isporuke (intra-Community supplies)</td>
+                                <td class="text-right">
+                                    <span t-field="o.eu_supplies"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- IV. Zbroj -->
+                    <h4 class="mt-4">IV. ZBROJ</h4>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Ukupni izlazni PDV</td>
+                                <td class="text-right">
+                                    <span t-field="o.output_vat_total"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Ukupni ulazni PDV</td>
+                                <td class="text-right">
+                                    <span t-field="o.input_vat_total"/>
+                                </td>
+                            </tr>
+                            <tr class="oe_subtotal_footer">
+                                <td><strong>PDV za uplatu</strong></td>
+                                <td class="text-right">
+                                    <strong t-field="o.vat_payable"/>
+                                </td>
+                            </tr>
+                            <tr class="oe_subtotal_footer">
+                                <td><strong>PDV za povrat</strong></td>
+                                <td class="text-right">
+                                    <strong t-field="o.vat_refundable"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row mt-5">
+                        <div class="col-6 text-center">
+                            <div style="border-top: 1px solid #000; padding-top: 4px;">
+                                Obveznik (ime i prezime / potpis)
+                            </div>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div style="border-top: 1px solid #000; padding-top: 4px;">
+                                Datum podnošenja
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

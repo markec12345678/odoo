@@ -48,6 +48,7 @@ Replaces Enterprise restaurant extensions.
         'views/l10n_si_restaurant_reservation_views.xml',
         'views/l10n_si_restaurant_kot_views.xml',
         'views/restaurant_menu.xml',
+        'views/l10n_si_restaurant_table_views.xml',
     ],
     'installable': True,
     'application': True,
@@ -57,6 +58,5 @@ Replaces Enterprise restaurant extensions.
         'data/demo_restaurant_data.xml',
     ],
     'qweb': [
-        'views/l10n_si_restaurant_table_views.xml',
     ],
 }

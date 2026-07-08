@@ -42,5 +42,6 @@ Integrations:
     'auto_install': False,
     'qweb': [
         'reports/pos_reports.xml',
+        'reports/pos_reports_templates.xml',
     ],
 }

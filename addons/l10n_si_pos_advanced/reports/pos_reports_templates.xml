@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_pos_xz_document">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h1 class="text-center">
+                        <t t-if="doc.report_type == 'x_report'">X-poročilo (meddnevno)</t>
+                        <t t-else="">Z-poročilo (dnevni zaključek)</t>
+                    </h1>
+                    <h2 class="text-center text-muted">
+                        <span t-esc="doc.date_from.strftime('%d.%m.%Y %H:%M')"/> — <span t-esc="doc.date_to.strftime('%d.%m.%Y %H:%M')"/>
+                    </h2>
+                    <p class="text-center text-muted">
+                        <t t-if="doc.config_id">
+                            POS: <span t-field="doc.config_id.name"/>
+                        </t>
+                    </p>
+                    <div class="mt-4"/>
+                    <h3>Skupaj</h3>
+                    <table class="table table-bordered table-sm">
+                        <tbody>
+                            <tr><td style="width: 50%">Število računov</td><td class="text-right"><span t-esc="doc.total_orders"/></td></tr>
+                            <tr><td>Skupni promet (z DDV)</td><td class="text-right"><span t-esc="doc.total_amount" t-options='{"widget": "monetary"}'/></td></tr>
+                            <tr><td>DDV skupaj</td><td class="text-right"><span t-esc="doc.total_vat" t-options='{"widget": "monetary"}'/></td></tr>
+                            <tr t-if="doc.total_tourist_tax > 0"><td>Turistična taksa</td><td class="text-right"><span t-esc="doc.total_tourist_tax" t-options='{"widget": "monetary"}'/></td></tr>
+                        </tbody>
+                    </table>
+                    <h3 class="mt-4">Plačila po metodah</h3>
+                    <table class="table table-bordered table-sm">
+                        <thead><tr class="table-active"><th>Metoda</th><th class="text-right">Znesek</th></tr></thead>
+                        <tbody>
+                            <tr><td>Gotovina</td><td class="text-right"><span t-esc="doc.total_cash" t-options='{"widget": "monetary"}'/></td></tr>
+                            <tr><td>Kartica</td><td class="text-right"><span t-esc="doc.total_card" t-options='{"widget": "monetary"}'/></td></tr>
+                            <tr><td>Ostalo</td><td class="text-right"><span t-esc="doc.total_other" t-options='{"widget": "monetary"}'/></td></tr>
+                            <tr class="table-light"><td><strong>Skupaj</strong></td><td class="text-right"><strong><span t-esc="doc.total_cash + doc.total_card + doc.total_other" t-options='{"widget": "monetary"}'/></strong></td></tr>
+                        </tbody>
+                    </table>
+                    <h3 class="mt-4">DDV po stopnjah</h3>
+                    <t t-raw="doc.vat_breakdown_html"/>
+                    <h3 class="mt-4">FURS status</h3>
+                    <table class="table table-bordered table-sm">
+                        <tbody>
+                            <tr><td>Poslano (EOR prejet)</td><td class="text-right"><span t-esc="doc.furs_submitted_count"/></td></tr>
+                            <tr><td>Čaka na pošiljanje</td><td class="text-right"><span t-esc="doc.furs_pending_count"/></td></tr>
+                            <tr t-if="doc.furs_error_count > 0"><td>Napake</td><td class="text-right text-danger"><strong><span t-esc="doc.furs_error_count"/></strong></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-4 alert alert-info">
+                        <p class="mb-0"><small>
+                            <t t-if="doc.report_type == 'x_report'">X-poročilo je meddnevno povzetek — ne zaključi seje.</t>
+                            <t t-else="">Z-poročilo je dnevni zaključek — po njegovem izpisu lahko zaprete sejo.</t>
+                        </small></p>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+    <template id="report_pos_receipt_si_document">
+        <t t-call="web.html_container">
+            <div class="page" style="font-family: monospace; font-size: 10px; max-width: 300px; margin: 0 auto;">
+                <div class="text-center">
+                    <h2><span t-field="doc.company_id.name"/></h2>
+                    <p>
+                        <span t-field="doc.company_id.street"/>,
+                        <span t-field="doc.company_id.zip"/>
+                        <span t-field="doc.company_id.city"/><br/>
+                        <t t-if="doc.company_id.vat">Davčna št.: <span t-field="doc.company_id.vat"/></t>
+                    </p>
+                    <h4>RAČUN</h4>
+                </div>
+                <hr/>
+                <p>
+                    Številka: <span t-field="doc.l10n_si_invoice_number" t-if="doc.l10n_si_invoice_number"/>
+                    <span t-else="" t-field="doc.pos_reference"/><br/>
+                    Datum: <span t-esc="doc.date_order.strftime('%d.%m.%Y %H:%M') if doc.date_order else ''"/><br/>
+                    POS: <span t-field="doc.config_id.name"/><br/>
+                    Blagajnik: <span t-field="doc.user_id.name"/>
+                </p>
+                <hr/>
+                <table class="table table-sm table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Artikel</th>
+                            <th class="text-right">Kol</th>
+                            <th class="text-right">Cena</th>
+                            <th class="text-right">Skupaj</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="doc.lines" t-as="line">
+                            <td><span t-field="line.product_id.name"/></td>
+                            <td class="text-right"><span t-field="line.qty"/></td>
+                            <td class="text-right"><span t-field="line.price_unit"/></td>
+                            <td class="text-right"><span t-field="line.price_subtotal_incl"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr/>
+                <p class="text-right">
+                    <strong>SKUPAJ: <span t-field="doc.amount_total" t-options='{"widget": "monetary"}'/></strong>
+                </p>
+                <t t-if="doc.l10n_si_tourist_tax_amount and doc.l10n_si_tourist_tax_amount > 0">
+                    <p class="text-right">
+                        Turistična taksa: <span t-esc="doc.l10n_si_tourist_tax_amount" t-options='{"widget": "monetary"}'/>
+                    </p>
+                </t>
+                <hr/>
+                <!-- FURS data -->
+                <div t-if="doc.l10n_si_zoi">
+                    <p>ZOI: <span t-field="doc.l10n_si_zoi"/></p>
+                    <p t-if="doc.l10n_si_eor">EOR: <span t-field="doc.l10n_si_eor"/></p>
+                    <div t-if="doc.l10n_si_qr_code" class="text-center">
+                        <img t-att-src="'data:image/png;base64,%s' % doc.l10n_si_qr_code.decode()"
+                             style="width: 100px; height: 100px;"/>
+                    </div>
+                    <p t-if="doc.l10n_si_fiscal_state == 'pending'" class="text-center">
+                        <small>FURS: čaka na potrditev</small>
+                    </p>
+                    <p t-if="doc.l10n_si_fiscal_state == 'error'" class="text-center text-danger">
+                        <small>FURS: napaka — potrebna ponovna oddaja</small>
+                    </p>
+                </div>
+                <hr/>
+                <p class="text-center" t-if="doc.config_id.si_receipt_footer_text">
+                    <small><span t-esc="doc.config_id.si_receipt_footer_text"/></small>
+                </p>
+                <p class="text-center">
+                    <small>Hvala za obisk!</small>
+                </p>
+            </div>
+        </t>
+    </template>
+</odoo>
