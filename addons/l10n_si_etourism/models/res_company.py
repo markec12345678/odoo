@@ -12,4 +12,4 @@ class ResCompany(models.Model):
     l10n_si_etourism_auto_register = fields.Boolean(string='Samodejna prijava gostov', default=True)
     l10n_si_etourism_auto_deregister = fields.Boolean(string='Samodejna odjava gostov', default=True)
     l10n_si_etourism_notify_on_error = fields.Boolean(string='Obvesti ob napaki', default=True)
-    l10n_si_etourism_notify_user_ids = fields.Many2many('res.users', string='Prejemniki obvestil o napakah')
+    l10n_si_etourism_notify_user_ids = fields.Many2many('res.users', string='Prejemniki obvestil o napakah', relation='l10n_si_etourism_company_notify_rel', column1='company_id', column2='user_id')
