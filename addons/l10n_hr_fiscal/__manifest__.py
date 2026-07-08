@@ -38,7 +38,6 @@ References
     ],
     'data': [
         'security/ir.model.access.csv',
-        'security/l10n_hr_fiscal_security.xml',
         'data/ir_sequence_data.xml',
         'data/ir_cron_data.xml',
         'views/res_company_views.xml',
@@ -46,6 +45,7 @@ References
         'views/account_move_views.xml',
         'views/l10n_hr_fiscal_log_views.xml',
         'views/l10n_hr_fiscal_menu.xml',
+        'security/l10n_hr_fiscal_security.xml',
         'reports/report_invoice_with_zki.xml',
     ],
     'installable': True,
