@@ -38,9 +38,11 @@ Routes:
     'depends': ['web', 'l10n_si_hotel', 'l10n_si_housekeeping', 'l10n_si_maintenance_request'],
     'data': [
         'security/ir.model.access.csv',
-        'views/l10n_si_mobile_app_templates.xml',
     ],
     'installable': True,
     'application': True,
     'auto_install': False,
+    'qweb': [
+        'views/l10n_si_mobile_app_templates.xml',
+    ],
 }

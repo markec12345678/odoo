@@ -33,9 +33,11 @@ Features:
         'data/ir_cron_data.xml',
         'views/l10n_si_subscription_plan_views.xml',
         'views/l10n_si_subscription_views.xml',
-        'reports/l10n_si_subscription_report.xml',
     ],
     'installable': True,
     'application': True,
     'auto_install': False,
+    'qweb': [
+        'reports/l10n_si_subscription_report.xml',
+    ],
 }

@@ -28,10 +28,12 @@ Replaces Enterprise `fieldservice`.
     'data': [
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
-        'views/l10n_si_field_service_order_views.xml',
         'views/hr_employee_views.xml',
     ],
     'installable': True,
     'application': True,
     'auto_install': False,
+    'qweb': [
+        'views/l10n_si_field_service_order_views.xml',
+    ],
 }

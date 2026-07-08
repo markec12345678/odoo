@@ -9,6 +9,9 @@
     'website': 'https://github.com/markec12345678/odoo',
     'license': 'LGPL-3',
     'depends': ['portal', 'l10n_si_hotel', 'l10n_si_loyalty_program', 'l10n_si_maintenance_request'],
-    'data': ['views/l10n_si_partner_portal_templates.xml'],
+    'data': [],
     'installable': True, 'application': True, 'auto_install': False,
+    'qweb': [
+        'views/l10n_si_partner_portal_templates.xml',
+    ],
 }

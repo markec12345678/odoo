@@ -48,13 +48,11 @@ License: LGPL-3 (per OCA manifest)
         'security/hotel_security.xml',
         'data/hotel_sequence.xml',
         'data/hotel_data.xml',
-        'views/hotel_room_views.xml',
         'views/hotel_room_type_views.xml',
         'views/hotel_folio_views.xml',
         'views/hotel_reservation_views.xml',
         'views/hotel_service_views.xml',
         'views/hotel_menu.xml',
-        'reports/hotel_folio_report.xml',
     ],
     'installable': True,
     'application': True,
@@ -62,5 +60,9 @@ License: LGPL-3 (per OCA manifest)
     'countries': ['si'],
     'demo': [
         'data/demo_hotel_data.xml',
+    ],
+    'qweb': [
+        'views/hotel_room_views.xml',
+        'reports/hotel_folio_report.xml',
     ],
 }

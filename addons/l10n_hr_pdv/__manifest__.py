@@ -66,11 +66,13 @@ References
         'views/l10n_hr_pdv_report_views.xml',
         'views/account_move_views.xml',
         'views/l10n_hr_pdv_menu.xml',
-        'reports/pdv_ledger_report.xml',
-        'reports/pdv_form_report.xml',
     ],
     'installable': True,
     'application': True,
     'auto_install': False,
     'countries': ['hr'],
+    'qweb': [
+        'reports/pdv_ledger_report.xml',
+        'reports/pdv_form_report.xml',
+    ],
 }

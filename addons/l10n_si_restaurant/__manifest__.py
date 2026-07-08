@@ -45,7 +45,6 @@ Replaces Enterprise restaurant extensions.
         'security/ir.model.access.csv',
         'data/restaurant_data.xml',
         'views/l10n_si_restaurant_menu_views.xml',
-        'views/l10n_si_restaurant_table_views.xml',
         'views/l10n_si_restaurant_reservation_views.xml',
         'views/l10n_si_restaurant_kot_views.xml',
         'views/restaurant_menu.xml',
@@ -56,5 +55,8 @@ Replaces Enterprise restaurant extensions.
     'countries': ['si'],
     'demo': [
         'data/demo_restaurant_data.xml',
+    ],
+    'qweb': [
+        'views/l10n_si_restaurant_table_views.xml',
     ],
 }

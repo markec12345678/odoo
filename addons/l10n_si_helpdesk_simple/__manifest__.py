@@ -51,13 +51,15 @@ References
         'security/helpdesk_security.xml',
         'data/l10n_si_helpdesk_data.xml',
         'views/l10n_si_helpdesk_team_views.xml',
-        'views/l10n_si_helpdesk_ticket_views.xml',
         'views/l10n_si_helpdesk_stage_views.xml',
         'views/l10n_si_helpdesk_canned_response_views.xml',
-        'views/l10n_si_helpdesk_portal_templates.xml',
         'views/l10n_si_helpdesk_menu.xml',
     ],
     'installable': True,
     'application': True,
     'auto_install': False,
+    'qweb': [
+        'views/l10n_si_helpdesk_ticket_views.xml',
+        'views/l10n_si_helpdesk_portal_templates.xml',
+    ],
 }

@@ -66,11 +66,13 @@ License: LGPL-3.0
         'views/hr_employee_views.xml',
         'views/hr_contract_views.xml',
         'views/res_company_views.xml',
-        'reports/l10n_si_payslip_report.xml',
         'wizard/l10n_si_payslip_run_wizard_views.xml',
     ],
     'installable': True,
     'application': True,
     'auto_install': False,
     'countries': ['si'],
+    'qweb': [
+        'reports/l10n_si_payslip_report.xml',
+    ],
 }

@@ -26,9 +26,11 @@ Prijave napak in težav:
     'data': [
         'security/ir.model.access.csv',
         'views/l10n_si_maintenance_request_views.xml',
-        'views/l10n_si_maintenance_portal_templates.xml',
     ],
     'installable': True,
     'application': True,
     'auto_install': False,
+    'qweb': [
+        'views/l10n_si_maintenance_portal_templates.xml',
+    ],
 }

@@ -28,9 +28,11 @@ Lastni booking engine na spletni strani (brez provizij OTAs):
         'security/ir.model.access.csv',
         'data/booking_data.xml',
         'views/l10n_si_booking_promo_views.xml',
-        'views/l10n_si_website_booking_templates.xml',
     ],
     'installable': True,
     'application': True,
     'auto_install': False,
+    'qweb': [
+        'views/l10n_si_website_booking_templates.xml',
+    ],
 }

@@ -20,7 +20,6 @@ e-invoicing for Croatia
         'views/account_tax_views.xml',
         'views/l10n_hr_kpd_category_views.xml',
         'views/product_views.xml',
-        'views/report_invoice_views.xml',
         'views/res_config_settings_views.xml',
         'views/res_partner_views.xml',
         'wizard/l10n_hr_edi_mojeracun_reject_wizard_views.xml',
@@ -33,4 +32,7 @@ e-invoicing for Croatia
     'website': 'https://www.odoo.com/app/accounting',
     'author': 'Odoo S.A.',
     'license': 'OEEL-1',
+    'qweb': [
+        'views/report_invoice_views.xml',
+    ],
 }

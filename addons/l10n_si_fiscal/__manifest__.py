@@ -64,10 +64,12 @@ fine between 200 € and 125.000 € (ZDavPR-1, 35. člen).
         'views/account_move_views.xml',
         'views/l10n_si_fiscal_log_views.xml',
         'wizard/l10n_si_fiscal_resubmit_views.xml',
-        'reports/report_invoice_with_zoi.xml',
     ],
     'installable': True,
     'application': True,
     'auto_install': False,
     'countries': ['si'],
+    'qweb': [
+        'reports/report_invoice_with_zoi.xml',
+    ],
 }

@@ -34,9 +34,11 @@ Napredna knjigovodska poročila za slovenska podjetja:
         'views/l10n_si_srs_account_views.xml',
         'views/l10n_si_srs_report_views.xml',
         'views/l10n_si_financial_ratio_views.xml',
-        'reports/srs_financial_reports.xml',
     ],
     'installable': True,
     'application': True,
     'auto_install': False,
+    'qweb': [
+        'reports/srs_financial_reports.xml',
+    ],
 }

@@ -27,10 +27,12 @@ Replaces Enterprise `account_customer_statements`.
         'data/ir_cron_data.xml',
         'views/l10n_si_customer_statement_views.xml',
         'wizard/l10n_si_customer_statement_wizard_views.xml',
-        'reports/l10n_si_customer_statement_report.xml',
     ],
     'installable': True,
     'application': True,
     'auto_install': False,
     'countries': ['si'],
+    'qweb': [
+        'reports/l10n_si_customer_statement_report.xml',
+    ],
 }
