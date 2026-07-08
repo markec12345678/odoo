@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
-        <!-- Default: FURS check disabled until certificate is configured -->
-        <record id="si_vat_default_disabled" model="ir.property">
-            <field name="name">si_vat_check_enabled</field>
-            <field name="fields_id" ref="base.field_res_company__si_vat_check_enabled"/>
-            <field name="value">False</field>
-            <field name="company_id" ref="base.main_company"/>
-        </record>
-    </data>
+    <!--
+        ir.property was removed in Odoo 17+.
+        The si_vat_check_enabled field on res.company has default=False
+        in the Python definition, so no XML data record is needed.
+        This file is intentionally empty to maintain backward compatibility
+        with the manifest's 'data' list entry.
+    -->
 </odoo>
