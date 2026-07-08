@@ -342,3 +342,44 @@ All modules retain original OCA author credits. Licenses compatible with our pro
 | 19.0.7.0 | 2026-06-23 | 6 (Tier 7) | 54 |
 | 19.0.8.0 | 2026-06-23 | 15 (Tier 8) | 69 |
 | + l10n_si | upstream | 1 (chart of accounts) | **70** |
+
+## [19.0.13.0] — 2026-07-08
+
+### Added — Complete Odoo 19 migration (17 breaking changes fixed)
+
+Comprehensive Odoo 17→19 migration across all 75 l10n_si/l10n_hr modules:
+- `<tree>` → `<list>` (135 files)
+- `attrs=` → direct invisible/required/readonly (102 files)
+- `numbercall` removed from ir.cron (22 files)
+- `ir.property` model removed (1 file)
+- `expand=` + `string=` in search views (21 files)
+- `category_id` removed from res.groups (4 files)
+- `users` removed from res.groups (5 files)
+- `<template>` → qweb in manifests (17 files)
+- `domain_force` → domain on ir.rule (2 files)
+- `@models.model` → `@api.model` (1 file)
+- Missing button methods added (4 files)
+- `@api.depends('id')` removed (1 file)
+- `hr.contract` → standalone model (3 files)
+- M2M table conflicts fixed (1 file)
+- MRO conflicts (rating.mixin) fixed (2 files)
+- Manifest ordering fixes (3 files)
+- `account_bank_statement_import` dependency removed (1 file)
+
+### Added — 6 reusable migration scripts
+
+- `scripts/migrate_tree_to_list.py`
+- `scripts/migrate_attrs_to_direct.py`
+- `scripts/migrate_search_group_string.py`
+- `scripts/scan_missing_methods.py`
+- `scripts/scan_odoo19_issues.py`
+- `scripts/auto_install_modules.py`
+
+### Verified — Production deployment
+
+- 211 modules installed in production (75 l10n + 136 Odoo/OCA)
+- 99% l10n coverage (75/76 modules)
+- Railway auto-deploy pipeline verified (45+ deployments)
+- Daily backup cron service operational
+- HTTP 100% success rate
+- 62-page bilingual onboarding manual (PDF + DOCX)
