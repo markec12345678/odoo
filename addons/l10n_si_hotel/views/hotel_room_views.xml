@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
     <record id="view_l10n_si_hotel_room_tree" model="ir.ui.view">
         <field name="name">l10n_si.hotel.room.tree</field>
         <field name="model">l10n_si.hotel.room</field>
@@ -99,5 +98,4 @@
         <field name="res_model">l10n_si.hotel.room</field>
         <field name="view_mode">list,form</field>
     </record>
-</data>
 </odoo>
