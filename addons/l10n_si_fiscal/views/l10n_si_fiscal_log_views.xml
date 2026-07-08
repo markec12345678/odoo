@@ -73,7 +73,7 @@
                         domain="[('state', '=', 'error')]"/>
                 <filter name="filter_sent" string="Successfully Sent"
                         domain="[('state', '=', 'sent')]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_state" string="State"
                             context="{'group_by': 'state'}"/>
                     <filter name="group_type" string="Request Type"

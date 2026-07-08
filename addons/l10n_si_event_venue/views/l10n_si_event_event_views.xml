@@ -164,7 +164,7 @@
                                  ('date_start', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
                 <filter name="filter_inquiry" string="Povpraševanja" domain="[('state', '=', 'inquiry')]"/>
                 <filter name="filter_confirmed" string="Potrjeni" domain="[('state', 'in', ['confirmed', 'deposit_paid'])]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
                     <filter name="group_type" string="Vrsta" context="{'group_by': 'event_type'}"/>
                     <filter name="group_venue" string="Venue" context="{'group_by': 'venue_id'}"/>

@@ -130,7 +130,7 @@
                 <filter name="filter_today" string="Danes" domain="[('scheduled_date', '>=', context_today().strftime('%Y-%m-%d 00:00:00')), ('scheduled_date', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
                 <filter name="filter_active" string="V izvedbi" domain="[('state', 'in', ['assigned', 'in_progress'])]"/>
                 <filter name="filter_done" string="Opravljeno" domain="[('state', '=', 'done')]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_technician" string="Tehnik" context="{'group_by': 'technician_id'}"/>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
                     <filter name="group_category" string="Kategorija" context="{'group_by': 'category'}"/>

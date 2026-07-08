@@ -54,7 +54,7 @@
                 <field name="name"/>
                 <filter name="filter_active" string="Aktivni"
                         domain="[('active', '=', True)]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_class" string="Razred (0-9)"
                             context="{'group_by': 'account_class'}"/>
                     <filter name="group_type" string="Tip"

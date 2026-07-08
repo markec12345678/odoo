@@ -82,7 +82,7 @@
                 <filter name="filter_trial" string="Trial" domain="[('state', '=', 'trial')]"/>
                 <filter name="filter_cancelled" string="Preklicane" domain="[('state', '=', 'cancelled')]"/>
                 <filter name="filter_due_today" string="Račun danes" domain="[('next_invoice_date', '=', context_today())]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
                     <filter name="group_plan" string="Načrt" context="{'group_by': 'plan_id'}"/>
                 </group>

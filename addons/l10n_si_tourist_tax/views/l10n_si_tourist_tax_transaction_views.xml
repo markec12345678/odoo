@@ -80,7 +80,7 @@
                 <filter name="filter_pending" string="Za poročilo" domain="[('state', '=', 'posted')]"/>
                 <filter name="filter_reported" string="Prijavljeno" domain="[('state', '=', 'reported')]"/>
                 <filter name="filter_exempt" string="Oproščeno" domain="[('is_exempt', '=', True)]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_municipality" string="Občina" context="{'group_by': 'municipality_id'}"/>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
                     <filter name="group_month" string="Mesec" context="{'group_by': 'date:month'}"/>

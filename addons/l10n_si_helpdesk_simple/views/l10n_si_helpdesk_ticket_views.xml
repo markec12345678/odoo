@@ -132,7 +132,7 @@
                                      ('sla_response_deadline', '&lt;', context_today()),
                             '&amp;', ('closed_date', '=', False),
                                      ('sla_resolution_deadline', '&lt;', context_today())]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_team" string="Ekipa" context="{'group_by': 'team_id'}"/>
                     <filter name="group_user" string="Zadolženi" context="{'group_by': 'user_id'}"/>
                     <filter name="group_stage" string="Faza" context="{'group_by': 'stage_id'}"/>

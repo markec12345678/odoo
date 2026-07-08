@@ -72,7 +72,7 @@
                         domain="[('date', '&gt;=', context_today()), ('date', '&lt;=', (context_today() + relativedelta(days=7)).strftime('%Y-%m-%d'))]"/>
                 <filter name="filter_next_30" string="Naslednjih 30 dni"
                         domain="[('date', '&gt;=', context_today()), ('date', '&lt;=', (context_today() + relativedelta(days=30)).strftime('%Y-%m-%d'))]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_plan" string="Cenovni načrt" context="{'group_by': 'rate_plan_id'}"/>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
                     <filter name="group_month" string="Mesec" context="{'group_by': 'date:month'}"/>

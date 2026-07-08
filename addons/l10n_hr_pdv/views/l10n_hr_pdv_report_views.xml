@@ -193,7 +193,7 @@
                 <separator/>
                 <filter name="filter_overdue" string="Rok prekoračen"
                         domain="[('deadline', '&lt;', context_today().strftime('%Y-%m-%d')), ('state', 'not in', ('accepted', 'submitted'))]"/>
-                <group expand="0" string="Grupiraj po">
+                <group>
                     <filter name="group_company" string="Tvrtka"
                             context="{'group_by': 'company_id'}"/>
                     <filter name="group_period_type" string="Tip razdoblja"

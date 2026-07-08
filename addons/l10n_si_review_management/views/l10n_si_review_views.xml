@@ -118,7 +118,7 @@
                 <filter name="filter_not_responded" string="Brez odgovora" domain="[('is_responded', '=', False)]"/>
                 <filter name="filter_negative" string="Negativne" domain="[('sentiment', 'in', ('negative', 'very_negative'))]"/>
                 <filter name="filter_low_rating" string="Nizka ocena (1-3)" domain="[('rating', 'in', ('1', '2', '3'))]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_platform" string="Platforma" context="{'group_by': 'source_platform'}"/>
                     <filter name="group_sentiment" string="Sentiment" context="{'group_by': 'sentiment'}"/>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>

@@ -106,7 +106,7 @@
                         domain="[('date', '&gt;=', (context_today() - relativedelta(days=context_today().weekday())).strftime('%Y-%m-%d')),
                                  ('date', '&lt;=', (context_today() + relativedelta(days=6-context_today().weekday())).strftime('%Y-%m-%d'))]"/>
                 <filter name="filter_overtime" string="Nadure" domain="['|', ('is_overtime', '=', True), ('overtime_hours', '&gt;', 0)]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_employee" string="Zaposleni" context="{'group_by': 'employee_id'}"/>
                     <filter name="group_shift" string="Izmena" context="{'group_by': 'shift_id'}"/>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>

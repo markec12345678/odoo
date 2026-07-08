@@ -86,7 +86,7 @@
                 <filter name="filter_faq" string="FAQ" domain="[('category', '=', 'faq')]"/>
                 <filter name="filter_procedure" string="Postopki" domain="[('category', '=', 'procedure')]"/>
                 <filter name="filter_onboarding" string="Onboarding" domain="[('category', '=', 'onboarding')]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_category" string="Kategorija" context="{'group_by': 'category'}"/>
                     <filter name="group_visibility" string="Vidnost" context="{'group_by': 'visibility'}"/>
                 </group>

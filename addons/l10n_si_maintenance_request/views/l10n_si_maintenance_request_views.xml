@@ -109,7 +109,7 @@
                 <filter name="filter_critical" string="Kritične" domain="[('priority', '=', '3')]"/>
                 <filter name="filter_sla_breach" string="SLA presežen"
                         domain="[('sla_deadline', '&lt;', context_today().strftime('%Y-%m-%d %H:%M:%S')), ('state', 'not in', ('resolved', 'verified', 'closed'))]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
                     <filter name="group_priority" string="Prioriteta" context="{'group_by': 'priority'}"/>
                     <filter name="group_category" string="Kategorija" context="{'group_by': 'category'}"/>

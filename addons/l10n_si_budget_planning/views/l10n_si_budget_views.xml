@@ -105,7 +105,7 @@
                 <field name="year"/>
                 <field name="department"/>
                 <filter name="filter_active" string="Aktivni" domain="[('state', '=', 'active')]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_year" string="Leto" context="{'group_by': 'year'}"/>
                     <filter name="group_dept" string="Oddelek" context="{'group_by': 'department'}"/>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>

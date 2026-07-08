@@ -93,7 +93,7 @@
                 <filter name="filter_mine" string="Moji zahtevki" domain="[('requester_user_id', '=', uid)]"/>
                 <filter name="filter_to_approve" string="Za odobritev" domain="[('current_approver_id.user_id', '=', uid)]"/>
                 <filter name="filter_sla_breach" string="SLA presežen" domain="[('sla_breached', '=', True)]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
                     <filter name="group_category" string="Kategorija" context="{'group_by': 'category'}"/>
                 </group>

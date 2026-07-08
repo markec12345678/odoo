@@ -116,7 +116,7 @@
                 <filter name="filter_today" string="Danes prijavljeni"
                         domain="[('check_in', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')),
                                  ('check_in', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
                     <filter name="group_partner" string="Gost" context="{'group_by': 'partner_id'}"/>
                 </group>

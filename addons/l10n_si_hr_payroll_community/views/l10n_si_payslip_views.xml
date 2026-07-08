@@ -100,7 +100,7 @@
                 <filter name="filter_draft" string="Osnutki" domain="[('state', '=', 'draft')]"/>
                 <filter name="filter_confirmed" string="Potrjene" domain="[('state', '=', 'confirmed')]"/>
                 <filter name="filter_paid" string="Plačane" domain="[('state', '=', 'paid')]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_employee" string="Zaposleni" context="{'group_by': 'employee_id'}"/>
                     <filter name="group_month" string="Mesec" context="{'group_by': 'date_from:month'}"/>
                     <filter name="group_structure" string="Struktura" context="{'group_by': 'structure_id'}"/>

@@ -90,7 +90,7 @@
                         domain="[('state', 'in', ['sent', 'preparing', 'ready', 'served'])]"/>
                 <filter name="filter_today" string="Danes"
                         domain="[('create_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
                     <filter name="group_table" string="Miza" context="{'group_by': 'table_id'}"/>
                 </group>

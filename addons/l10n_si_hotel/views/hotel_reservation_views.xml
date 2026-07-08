@@ -97,7 +97,7 @@
                         domain="[('check_out', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')),
                                  ('check_out', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
                 <filter name="filter_in_house" string="Trenutno v hotelu" domain="[('state', '=', 'checked_in')]"/>
-                <group string="Group By">
+                <group>
                     <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
                     <filter name="group_source" string="Vir" context="{'group_by': 'source'}"/>
                     <filter name="group_room" string="Soba" context="{'group_by': 'room_id'}"/>
