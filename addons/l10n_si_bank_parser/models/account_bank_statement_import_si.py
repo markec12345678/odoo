@@ -39,7 +39,8 @@ class AccountBankStatementImportSi(models.TransientModel):
     * NKBM concatenates partner name into a single field with no separators
     * Sparkase uses CSTP/NTRY structures differently from the standard
     """
-    _inherit = 'account.bank.statement.import'
+    _name = 'l10n_si.bank.statement.import'
+    _description = 'SI Bank Statement Import Wizard'
 
     def _parse_si_camt053(self, xml_bytes):
         """Parse an ISO 20022 CAMT.053 statement file.

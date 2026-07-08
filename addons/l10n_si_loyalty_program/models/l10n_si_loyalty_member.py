@@ -50,7 +50,7 @@ class L10nSiLoyaltyMember(models.Model):
     last_activity = fields.Datetime(readonly=True, copy=False)
 
     # Personal info
-    birth_date = fields.Date(related='partner_id.birthdate_date', store=False)
+    birth_date = fields.Date(string='Birth Date')
     preferred_room_type_id = fields.Many2one('l10n_si.hotel.room.type')
     dietary_preferences = fields.Char(string='Dieta (alergije)')
     notes = fields.Text()

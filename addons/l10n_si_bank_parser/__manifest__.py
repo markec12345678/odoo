@@ -53,7 +53,6 @@ Configuration
         'security/ir.model.access.csv',
         'views/account_bank_statement_views.xml',
         'views/account_journal_views.xml',
-        'wizard/account_bank_statement_import_si_views.xml',
     ],
     'installable': True,
     'application': True,
