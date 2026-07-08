@@ -19,8 +19,8 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_submit" type="object" string="Submit" class="btn-primary"/>
-                    <button name="action_cancel" type="object" string="Cancel" class="btn-danger"/>
+                    <button name="action_submit_to_evisitor" type="object" string="Submit" class="btn-primary"/>
+                    <button name="action_reset_to_draft" type="object" string="Cancel" class="btn-danger"/>
                 </header>
                 <sheet>
                     <group>
