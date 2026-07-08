@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
         <record id="module_category_l10n_hr_fiscal" model="ir.module.category">
             <field name="name">HR Fiskalizacija (CISF)</field>
             <field name="sequence">21</field>
@@ -12,11 +11,4 @@
         <record id="group_hr_fiscal_manager" model="res.groups">
             <field name="name">HR Fiskalizacija / Manager</field>
             <field name="implied_ids" eval="[(4, ref('group_hr_fiscal_user'))]"/>
-        </record>
-        <record id="rule_hr_fiscal_company" model="ir.rule">
-            <field name="name">HR Fiskalizacija: multi-company</field>
-            <field name="model_id" ref="model_l10n_hr_business_premise"/>
-            <field name="domain">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
-        </record>
-    </data>
-</odoo>
+        </record></odoo>
