@@ -53,8 +53,6 @@ Reference
         'l10n_hr_fiscal',
     ],
     'data': [
-        'security/ir.model.access.csv',
-        'security/l10n_hr_evisitor_security.xml',
         'data/ir_sequence_data.xml',
         'data/ir_cron_data.xml',
         'views/res_company_views.xml',
