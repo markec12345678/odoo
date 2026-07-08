@@ -5,7 +5,7 @@ from odoo import api, fields, models
 class L10nSiHelpdeskTeam(models.Model):
     _name = 'l10n_si.helpdesk.team'
     _description = 'Slovenian Helpdesk Team'
-    _inherit = ['mail.alias.mixin', 'mail.thread']
+    _inherit = ['mail.thread']
     _order = 'sequence, name'
 
     name = fields.Char(required=True, translate=True, tracking=True)

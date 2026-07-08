@@ -30,6 +30,8 @@ class ResCompany(models.Model):
     )
     notify_user_ids = fields.Many2many(
         'res.users', string='Primatelji obavijesti',
+        relation='l10n_hr_evisitor_company_notify_user_rel',
+        column1='company_id', column2='user_id',
         help='Korisnici koji primaju obavijesti o greškama u integraciji s '
              'eVisitor sustavom.',
     )

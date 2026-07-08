@@ -8,7 +8,7 @@ from odoo import _, api, fields, models
 class L10nSiHelpdeskTicket(models.Model):
     _name = 'l10n_si.helpdesk.ticket'
     _description = 'Slovenian Helpdesk Ticket'
-    _inherit = ['mail.thread', 'rating.mixin']
+    _inherit = ['mail.thread']
     _order = 'priority DESC, create_date DESC'
 
     name = fields.Char(string='Subject', required=True, tracking=True)
