@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_l10n_hr_evisitor_root" name="HR eVisitor" sequence="90"/>
+    <menuitem id="menu_l10n_hr_evisitor_accommodation" name="Accommodations"
+              parent="menu_l10n_hr_evisitor_root" action="action_l10n_hr_evisitor_accommodation" sequence="10"/>
+    <menuitem id="menu_l10n_hr_evisitor_registration" name="Guest Registrations"
+              parent="menu_l10n_hr_evisitor_root" action="action_l10n_hr_evisitor_guest_registration" sequence="20"/>
+    <menuitem id="menu_l10n_hr_evisitor_log" name="Logs"
+              parent="menu_l10n_hr_evisitor_root" action="action_l10n_hr_evisitor_log" sequence="30"/>
+</odoo>
