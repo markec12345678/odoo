@@ -7,8 +7,7 @@
         <field name="inherit_id" ref="account.view_bank_statement_form"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="before">
-                <div class="alert alert-info" role="alert"
-                     invisible="[('name', 'not like', 'NLB')]">
+                <div class="alert alert-info" role="alert">
                     NLB statement imported. Auto-matching will run on save.
                 </div>
             </xpath>
