@@ -49,7 +49,7 @@ class FleetVehicle(models.Model):
     )
     si_total_cost = fields.Float(compute='_compute_si_costs', store=False)
 
-    @api.depends('id')
+    @api.depends()
     def _compute_si_costs(self):
         FuelLog = self.env['l10n_si.fleet.fuel']
         MaintLog = self.env['l10n_si.fleet.maintenance']

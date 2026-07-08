@@ -18,7 +18,7 @@ class L10nSiGroupBooking(models.Model):
 
     # Stranka (agency)
     partner_id = fields.Many2one('res.partner', string='Agencija/Stranka', required=True, tracking=True)
-    is_travel_agency = fields.Boolean(related='partner_id.is_agency', store=False)
+    is_travel_agency = fields.Boolean(string='Travel Agency', default=False)
 
     # Skupina
     group_name = fields.Char(string='Ime skupine', help='npr. "Izlet srednje šole XY"')

@@ -25,7 +25,12 @@ class L10nSiSustainabilityMetric(models.Model):
         required=True, default='electricity')
 
     quantity = fields.Float(required=True)
-    unit = fields.Char(related='metric_type', store=False)  # simplified
+    unit = fields.Char(compute='_compute_unit', store=False)
+
+    def _compute_unit(self):
+        units = {'electricity': 'kWh', 'water': 'm³', 'gas': 'm³', 'waste': 'kg', 'co2': 'kg'}
+        for m in self:
+            m.unit = units.get(m.metric_type, '')
     cost = fields.Float(default=0.0, string='Strošek (EUR)')
 
     # Per guest normalization

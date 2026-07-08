@@ -51,7 +51,6 @@ License: LGPL-3.0
     'license': 'LGPL-3',
     'depends': [
         'hr',
-        'hr_contract',
         'hr_holidays',
         'account',
         'l10n_si',

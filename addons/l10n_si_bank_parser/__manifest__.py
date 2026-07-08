@@ -47,7 +47,6 @@ Configuration
     'license': 'LGPL-3',
     'depends': [
         'account',
-        'account_bank_statement_import',
         'l10n_si',
     ],
     'data': [

@@ -27,9 +27,9 @@ Hišništvo za hotele:
     'data': [
         'security/ir.model.access.csv',
         'data/housekeeping_data.xml',
-        'views/l10n_si_housekeeping_lost_found_views.xml',
-        'views/hr_employee_views.xml',
         'views/l10n_si_housekeeping_task_views.xml',
+        'views/hr_employee_views.xml',
+        'views/l10n_si_housekeeping_lost_found_views.xml',
     ],
     'installable': True,
     'application': True,
