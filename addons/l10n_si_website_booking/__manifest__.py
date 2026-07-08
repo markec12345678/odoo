@@ -26,7 +26,6 @@ Lastni booking engine na spletni strani (brez provizij OTAs):
     'depends': ['website', 'l10n_si_hotel', 'l10n_si_camping', 'l10n_si_revenue_management'],
     'data': [
         'security/ir.model.access.csv',
-        'data/booking_data.xml',
         'views/l10n_si_booking_promo_views.xml',
     ],
     'installable': True,
