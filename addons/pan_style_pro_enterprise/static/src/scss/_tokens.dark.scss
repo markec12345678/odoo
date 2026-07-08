@@ -1,0 +1,32 @@
+// Pantalytics dark mode — minimalist approach
+// Laat Odoo's eigen dark theme de neutrale basis doen.
+// Wij overschrijven ALLEEN de accent kleur en interactieve states.
+// Resultaat: clean neutral dark + één herkenbare brand kleur.
+
+:root {
+  // Accent — lichter in dark mode voor contrast op donkere teal basis
+  --pan-accent:         #9b99ff;
+  --pan-accent-hover:   #7370ff;
+
+  // Backgrounds — Pantalytics brand teal
+  --pan-bg:             #001d21;
+  --pan-bg-secondary:   #002328;
+
+  // Text — wit op donker
+  --pan-text:           #ffffff;
+  --pan-text-secondary: rgba(255, 255, 255, 0.6);
+
+  // Borders
+  --pan-border:         rgba(255, 255, 255, 0.1);
+  --pan-border-strong:  rgba(255, 255, 255, 0.2);
+
+  // Navbar
+  --pan-navbar-bg:      #001d21;
+  --pan-navbar-border:  rgba(255, 255, 255, 0.1);
+
+  // Shadows — zwaarder in dark mode
+  --pan-shadow-xs:  0 1px 2px rgba(0, 0, 0, 0.4);
+  --pan-shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --pan-shadow-md:  0 4px 6px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --pan-shadow-lg:  0 10px 24px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.3);
+}
