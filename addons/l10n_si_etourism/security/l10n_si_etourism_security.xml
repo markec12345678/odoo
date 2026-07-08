@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
         <record id="module_category_l10n_si_etourism" model="ir.module.category">
             <field name="name">SI eTurizem (AJPES)</field>
             <field name="sequence">20</field>
@@ -17,6 +16,4 @@
             <field name="name">SI eTurizem: multi-company</field>
             <field name="model_id" ref="model_l10n_si_etourism_establishment"/>
             <field name="domain">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
-        </record>
-    </data>
-</odoo>
+        </record></odoo>

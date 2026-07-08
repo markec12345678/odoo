@@ -21,8 +21,8 @@ ZPPreb-1 (Zakon o prijavi prebivališča, UR. l. RS š. 81/16) and ZTur-1.
         'l10n_si_tourist_tax',
     ],
     'data': [
-        'security/ir.model.access.csv',
         'security/l10n_si_etourism_security.xml',
+        'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'data/ir_cron_data.xml',
         'views/l10n_si_etourism_establishment_views.xml',
