@@ -124,6 +124,18 @@ class OpenAICompatibleClient(AIClient):
         super().__init__(api_key, model, timeout)
         if not endpoint:
             raise AIConciergeError('OpenAI-compatible backend requires endpoint URL')
+        # Parse extra headers from endpoint URL format: URL|Header:Value|Header2:Value2
+        self._extra_headers = {}
+        if '|' in endpoint:
+            parts = endpoint.split('|')
+            endpoint = parts[0]
+            for part in parts[1:]:
+                if ':' in part:
+                    h_name, h_value = part.split(':', 1)
+                    self._extra_headers[h_name.strip()] = h_value.strip()
+        # Also add X-Z-AI-From header for Z.AI compatibility
+        if 'internal-api.z.ai' in endpoint:
+            self._extra_headers['X-Z-AI-From'] = 'Z'
         # Normalize: strip trailing slash, ensure ends with /v1/chat/completions
         endpoint = endpoint.rstrip('/')
         if not endpoint.endswith('/v1/chat/completions'):
@@ -139,6 +151,10 @@ class OpenAICompatibleClient(AIClient):
         payload = {'model': self.model, 'messages': [m.to_dict() for m in messages],
                    'temperature': temperature, 'max_tokens': max_tokens}
         headers = {'Authorization': f'Bearer {self.api_key}', 'Content-Type': 'application/json'}
+        # Support custom headers via endpoint_url format: URL|Header:Value
+        # e.g. https://internal-api.z.ai/v1|X-Token:eyJhbGc...
+        if hasattr(self, '_extra_headers'):
+            headers.update(self._extra_headers)
         try:
             response = requests.post(self.endpoint, headers=headers, json=payload, timeout=self.timeout)
         except requests.Timeout as e: raise AIRequestError(f'OpenAI-compat timeout: {e}') from e
