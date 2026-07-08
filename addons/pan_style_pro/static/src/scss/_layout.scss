@@ -1,0 +1,152 @@
+// Pantalytics layout overrides
+
+// ─── Navbar ───────────────────────────────────────────────────────────────────
+
+// Override Odoo's navbar CSS custom properties
+.o_main_navbar {
+  --NavBar-entry-color: var(--pan-text);
+  --NavBar-entry-color--hover: var(--pan-text);
+  --NavBar-entry-backgroundColor: transparent;
+  --NavBar-entry-backgroundColor--hover: rgba(0, 0, 0, 0.04);
+  --NavBar-entry-backgroundColor--focus: rgba(0, 0, 0, 0.04);
+  --NavBar-entry-backgroundColor--active: rgba(155, 153, 255, 0.12);
+  --NavBar-entry-borderColor-active: var(--pan-accent);
+  --NavBar-brand-color: var(--pan-text);
+
+  height: var(--pan-navbar-height) !important;
+  min-height: var(--pan-navbar-height) !important;
+  background-color: var(--pan-navbar-bg) !important;
+  color: var(--pan-text) !important;
+  border-bottom: 1px solid var(--pan-navbar-border) !important;
+  box-shadow: var(--pan-shadow-xs) !important;
+  padding: 0 var(--pan-space-3) !important;
+  display: flex !important;
+  align-items: center !important;
+
+  // Override all text/link colors — needed for Community's white-on-purple defaults
+  a, button, .o_nav_entry, .o_menu_brand, .dropdown-toggle, .o_menu_toggle {
+    color: var(--pan-text) !important;
+  }
+
+  // Menu entries
+  .o_nav_entry,
+  .o_menu_brand,
+  .dropdown-toggle {
+    border-radius: var(--pan-radius-md) !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04) !important;
+    }
+  }
+
+  // Active entry accent
+  .o_nav_entry.active,
+  .o_nav_entry[aria-expanded="true"] {
+    background-color: rgba(155, 153, 255, 0.12) !important;
+    color: var(--pan-accent) !important;
+  }
+
+  // Systray icons
+  .o_menu_systray {
+    .dropdown-toggle, a, button {
+      color: var(--pan-text-secondary) !important;
+
+      &:hover {
+        color: var(--pan-text) !important;
+      }
+    }
+  }
+
+  .o_menu_toggle,
+  .o_nav_entry,
+  .o_menu_sections,
+  .o_menu_brand {
+    align-self: center !important;
+  }
+}
+
+// Override Odoo's own navbar height variable at root level
+:root {
+  --o-navbar-height: var(--pan-navbar-height);
+}
+
+// ─── Home menu background ─────────────────────────────────────────────────────
+
+// Verwijder Odoo Enterprise's lavendel gradient — clean achtergrond
+.o_home_menu_background {
+  background-image: none !important;
+}
+
+// ─── List / table views ───────────────────────────────────────────────────────
+
+.o_list_table {
+  // Subtielere borders
+  --ListRenderer-border-color: var(--pan-border);
+
+  thead th {
+    border-bottom: 1px solid var(--pan-border-strong) !important;
+    font-weight: 600 !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    color: var(--pan-text-secondary) !important;
+    padding-top: var(--pan-space-2) !important;
+    padding-bottom: var(--pan-space-2) !important;
+  }
+
+  tbody td {
+    border-bottom: 1px solid var(--pan-border) !important;
+    padding-top: var(--pan-space-2) !important;
+    padding-bottom: var(--pan-space-2) !important;
+    color: var(--pan-text) !important;
+  }
+
+  tbody tr:hover td {
+    background-color: rgba(155, 153, 255, 0.04) !important;
+  }
+
+  tfoot td {
+    border-top: 1px solid var(--pan-border-strong) !important;
+  }
+}
+
+// ─── Form views ───────────────────────────────────────────────────────────────
+
+.o_form_view {
+  background-color: var(--pan-bg-secondary, #f5f5f5) !important;
+}
+
+.o_form_sheet_bg {
+  padding: 0 var(--pan-space-5) var(--pan-space-5) !important;
+  background-color: var(--pan-bg-secondary, #f5f5f5) !important;
+
+  // Statusbar sticks below control panel — solid bg prevents content bleed-through
+  .o_form_statusbar {
+    background-color: var(--pan-bg-secondary, #f5f5f5) !important;
+    padding-top: var(--pan-space-3) !important;
+  }
+
+  // If there's no statusbar, add top padding to the sheet directly
+  &:not(:has(.o_form_statusbar)) {
+    padding-top: var(--pan-space-5) !important;
+  }
+}
+
+.o_form_sheet {
+  border-radius: var(--pan-radius-lg) !important;
+  border: 1px solid var(--pan-border) !important;
+  box-shadow: var(--pan-shadow-sm) !important;
+}
+
+// Sectie headers in formulieren
+.o_horizontal_separator {
+  color: var(--pan-text-secondary) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid var(--pan-border) !important;
+  padding-bottom: var(--pan-space-2) !important;
+  margin-bottom: var(--pan-space-3) !important;
+}
