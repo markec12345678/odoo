@@ -6,15 +6,15 @@
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](./LICENSE)
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0-875A7B.svg)](https://www.odoo.com)
-[![Modules](https://img.shields.io/badge/Modules-88-green.svg)](#module-catalog)
-[![OCA UI/UX](https://img.shields.io/badge/OCA%20UI%2FUX-13-orange.svg)](https://github.com/OCA/web)
+[![Modules](https://img.shields.io/badge/Modules-95-green.svg)](#module-catalog)
+[![OCA](https://img.shields.io/badge/OCA%20Modules-37-orange.svg)](https://github.com/OCA)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](./requirements.txt)
 [![Railway](https://img.shields.io/badge/Railway-Live%20Demo-9B59B6.svg)](https://odoo-production-fa42.up.railway.app/web/login)
-[![Version](https://img.shields.io/badge/version-v19.0.13.0-blue.svg)](https://github.com/markec12345678/odoo/releases)
+[![Version](https://img.shields.io/badge/version-v19.0.14.0-blue.svg)](https://github.com/markec12345678/odoo/releases)
 [![Status](https://img.shields.io/badge/status-production%20ready-brightgreen.svg)]()
-[![Modules Installed](https://img.shields.io/badge/installed-211-brightgreen.svg)]()
+[![Modules Installed](https://img.shields.io/badge/installed-237-brightgreen.svg)]()
 [![Last Commit](https://img.shields.io/github/last-commit/markec12345678/odoo/19.0)](https://github.com/markec12345678/odoo/commits/19.0)
-[![Coverage](https://img.shields.io/badge/l10n%20coverage-99%25-brightgreen.svg)]()
+[![Coverage](https://img.shields.io/badge/l10n%20coverage-100%25-brightgreen.svg)]()
 
 </div>
 
@@ -237,11 +237,11 @@ python odoo-bin --addons-path=addons -d testdb --init=base
 
 | Metric | Value |
 |--------|-------|
-| Total custom modules | 88 (75 l10n + 13 OCA) |
+| Total custom + OCA modules | 95 (77 l10n + 37 OCA + 1 Pantalytics) |
 | Python LOC | 31,500+ |
 | XML views | 300+ |
-| Modules installed in production | 211 |
-| l10n coverage | 99% (75/76) |
+| Modules installed in production | 237 |
+| l10n coverage | 100% (77/77) |
 | GitHub commits (session) | 40+ |
 | Files migrated to Odoo 19 | 360+ |
 | Railway deployments | 45+ (all SUCCESS) |
