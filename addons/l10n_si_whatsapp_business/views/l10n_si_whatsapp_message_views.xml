@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wa_msg_list" model="ir.ui.view">
+        <field name="name">l10n_si.whatsapp.message.list</field>
+        <field name="model">l10n_si.whatsapp.message</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="partner_id"/>
+                <field name="phone_number"/>
+                <field name="direction"/>
+                <field name="message_type"/>
+                <field name="state"/>
+                <field name="create_date"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_wa_msg_form" model="ir.ui.view">
+        <field name="name">l10n_si.whatsapp.message.form</field>
+        <field name="model">l10n_si.whatsapp.message</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_send" type="object" string="Pošlji" class="btn-primary" invisible="[('state', 'in', ('sent', 'delivered', 'read'))]"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="phone_number"/>
+                        <field name="direction"/>
+                        <field name="message_type"/>
+                        <field name="template_id" invisible="[('message_type', '!=', 'template')]"/>
+                        <field name="state"/>
+                        <field name="wa_message_id" readonly="1"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                    <group string="Vsebina">
+                        <field name="body" nolabel="1"/>
+                    </group>
+                    <group string="Napaka" invisible="[('state', '!=', 'failed')]">
+                        <field name="error_message" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_wa_msg" model="ir.actions.act_window">
+        <field name="name">WhatsApp Messages</field>
+        <field name="res_model">l10n_si.whatsapp.message</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

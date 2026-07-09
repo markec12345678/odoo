@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="template_reservation_confirm" model="l10n_si.whatsapp.template">
+            <field name="name">reservation_confirmation</field>
+            <field name="language">sl</field>
+            <field name="body">Spoštovani {{1}}, vaša rezervacija {{2}} je potrjena. Prihod: {{3}}, odhod: {{4}}. Lep pozdrav, {{5}}.</field>
+        </record>
+        <record id="template_checkin_reminder" model="l10n_si.whatsapp.template">
+            <field name="name">checkin_reminder</field>
+            <field name="language">sl</field>
+            <field name="body">Opomnik: Vaš check-in je jutri ob 14:00. Naslov: {{1}}. Vprašanja? Pokličite {{2}}.</field>
+        </record>
+        <record id="template_checkout_reminder" model="l10n_si.whatsapp.template">
+            <field name="name">checkout_reminder</field>
+            <field name="language">sl</field>
+            <field name="body">Opomnik: Vaš check-out je danes ob 11:00. Hvala za obisk!</field>
+        </record>
+    </data>
+</odoo>

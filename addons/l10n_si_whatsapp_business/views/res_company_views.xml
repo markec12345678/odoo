@@ -8,10 +8,10 @@
             <xpath expr="//sheet" position="inside">
                 <group string="WhatsApp Business API">
                     <field name="wa_enabled"/>
-                    <field name="wa_business_phone" invisible="not wa_enabled"/>
-                    <field name="wa_phone_number_id" invisible="not wa_enabled"/>
-                    <field name="wa_access_token" invisible="not wa_enabled" password="True"/>
-                    <field name="wa_verify_token" invisible="not wa_enabled"/>
+                    <field name="wa_business_phone" placeholder="38641234567" invisible="[('wa_enabled', '=', False)]"/>
+                    <field name="wa_phone_number_id" invisible="[('wa_enabled', '=', False)]"/>
+                    <field name="wa_access_token" password="True" invisible="[('wa_enabled', '=', False)]"/>
+                    <field name="wa_verify_token" invisible="[('wa_enabled', '=', False)]"/>
                 </group>
             </xpath>
         </field>

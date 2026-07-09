@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="chatbot_widget" name="AI Concierge Chat Widget" inherit_id="website.layout">
+        <xpath expr="//body" position="inside">
+            <div id="si_chatbot_container" class="si-chatbot-hidden">
+                <div id="si_chatbot_window">
+                    <div id="si_chatbot_header">
+                        <span>🤖 AI Asistent</span>
+                        <button id="si_chatbot_close" type="button">✕</button>
+                    </div>
+                    <div id="si_chatbot_messages"></div>
+                    <div id="si_chatbot_input">
+                        <input type="text" id="si_chatbot_text" placeholder="Vprašajte..." maxlength="1000"/>
+                        <button id="si_chatbot_send" type="button">➤</button>
+                    </div>
+                </div>
+                <button id="si_chatbot_button" title="Vprašaj AI asistenta">
+                    <span>💬</span>
+                </button>
+            </div>
+            <script type="text/javascript" src="/l10n_si_chatbot_widget/static/src/js/chatbot.js"/>
+            <link rel="stylesheet" href="/l10n_si_chatbot_widget/static/src/css/chatbot.css"/>
+        </xpath>
+    </template>
+</odoo>

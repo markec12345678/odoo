@@ -1,4 +1,3 @@
 from . import res_company
-from . import whatsapp_message
-from . import whatsapp_template
-from . import account_move
+from . import l10n_si_whatsapp_message
+from . import l10n_si_whatsapp_template

@@ -1,42 +1,32 @@
+# -*- coding: utf-8 -*-
 {
-    'name': 'AI Chatbot Widget (SI)',
-    'summary': 'Website chat widget powered by AI Concierge',
+    'name': 'AI Concierge Website Chat Widget',
+    'summary': 'Spletni chat widget za AI Concierge na spletni strani',
     'version': '19.0.1.0.0',
     'category': 'Website',
     'description': """
-AI Chatbot Widget (SI)
-======================
+AI Concierge Website Chat Widget
+=================================
 
-Adds a floating chat widget to the website that connects to the AI Concierge.
-Guests can ask questions about the hotel, services, check-in times, etc.
+Prikaže plavajoči chat gumb na spletni strani ki odpre AI Concierge.
 
-Features:
-* Floating chat bubble in bottom-right corner
-* Real-time AI responses (via l10n_si_ai_concierge)
-* Conversation history per session
-* Multi-language support
-* Customizable welcome message
+Funkcionalnosti:
+* Plavajoči chat gumb v spodnjem desnem kotu
+* Odpira pogovorno okno z AI asistentom
+* Povezava z l10n_si_ai_concierge modulom
+* Večjezičnost (SI/EN)
 * Mobile responsive
-
-Requires:
-* l10n_si_ai_concierge (for AI backend)
-* website (for frontend display)
+* Tema po meri (barve, logotip)
 """,
     'author': 'markec12345678',
     'website': 'https://github.com/markec12345678/odoo',
     'license': 'LGPL-3',
-    'depends': ['website', 'l10n_si_ai_concierge', 'account'],
+    'depends': ['website', 'l10n_si_ai_concierge'],
     'data': [
-        'security/ir.model.access.csv',
+        'views/res_company_views.xml',
+
+        'views/chatbot_templates.xml',
+        'views/res_company_views.xml',
     ],
-    'qweb': [
-        'static/src/xml/chatbot_widget.xml',
-    ],
-    'assets': {
-        'web.assets_frontend': [
-            'l10n_si_chatbot_widget/static/src/js/chatbot_widget.js',
-            'l10n_si_chatbot_widget/static/src/css/chatbot_widget.css',
-        ],
-    },
     'installable': True,
 }

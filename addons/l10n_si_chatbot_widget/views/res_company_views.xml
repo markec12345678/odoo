@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_chatbot" model="ir.ui.view">
+        <field name="name">res.company.form.chatbot</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="AI Chatbot Widget">
+                    <field name="chatbot_enabled" widget="boolean"/>
+                    <field name="chatbot_color" widget="color" invisible="[('chatbot_enabled', '=', False)]"/>
+                    <field name="chatbot_position" invisible="[('chatbot_enabled', '=', False)]"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

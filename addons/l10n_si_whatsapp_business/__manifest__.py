@@ -1,43 +1,42 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'WhatsApp Business API (SI)',
-    'summary': 'WhatsApp Cloud API integration — send messages, templates, notifications',
+    'name': 'WhatsApp Business Cloud API',
+    'summary': 'Pošiljanje WhatsApp sporočil preko WhatsApp Cloud API (Meta)',
     'version': '19.0.1.0.0',
     'category': 'Discuss',
     'description': """
-WhatsApp Business API (SI)
-==========================
+WhatsApp Business Cloud API
+============================
 
-Integrates WhatsApp Cloud API (Meta) for sending messages to customers:
-* Send text messages, templates, and media via WhatsApp
-* Automatic notifications: invoice confirmed, reservation confirmed, check-in reminder
-* Template management (pre-approved Meta templates)
-* Two-way messaging (receive webhooks from WhatsApp)
-* Multi-company support (each company has its own WhatsApp number)
+Pošiljanje WhatsApp sporočil preko uradne Meta WhatsApp Cloud API.
 
-Configuration:
-    * Settings → Companies → WhatsApp tab
-    * Enter Phone Number ID and Access Token from Meta Business Suite
-    * Register webhook URL for incoming messages
+Funkcionalnosti:
+* Pošiljanje besedilnih sporočil
+* Pošiljanje predlog (templates) - potrditve rezervacij, opomniki
+* Sprejemanje webhook sporočil (dostave, prebrano)
+* Automatska potrditev rezervacije preko WhatsApp
+* Opomnik za check-in 24h pred prihodom
+* Multi-company support (vsako podjetje ima svojo WhatsApp številko)
 
-Requires:
-    * Meta Business Account with WhatsApp Business API enabled
-    * Permanent access token from Meta App Dashboard
+Konfiguracija:
+1. Pridobite WhatsApp Business API dostop na https://developers.facebook.com/apps/
+2. Settings → WhatsApp → vnesite Phone Number ID in Access Token
+3. Registrirajte webhook URL na Meta dashboard
 
-References:
-    * WhatsApp Cloud API: https://developers.facebook.com/docs/whatsapp/cloud-api
-    * Meta Business Suite: https://business.facebook.com
+Pravne podlage:
+* GDPR člen 6(1)(f) - legitimen interes (potrditev rezervacije)
+* UPORABNIK MORA DATI STRINJANJE za WhatsApp komunikacijo
 """,
     'author': 'markec12345678',
     'website': 'https://github.com/markec12345678/odoo',
     'license': 'LGPL-3',
-    'depends': ['base', 'mail', 'account'],
+    'depends': ['base', 'mail'],
     'data': [
         'security/ir.model.access.csv',
         'views/res_company_views.xml',
-        'views/whatsapp_message_views.xml',
-        'views/whatsapp_template_views.xml',
-        'views/whatsapp_menu.xml',
+        'views/l10n_si_whatsapp_message_views.xml',
+        'views/l10n_si_whatsapp_template_views.xml',
+        'views/l10n_si_whatsapp_menu.xml',
     ],
     'installable': True,
     'application': True,

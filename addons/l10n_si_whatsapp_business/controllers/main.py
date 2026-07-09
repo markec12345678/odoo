@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+"""WhatsApp webhook controller — sprejema webhook od Meta."""
 import json
 import logging
 from odoo import http
@@ -7,40 +9,49 @@ _logger = logging.getLogger(__name__)
 
 
 class WhatsAppWebhook(http.Controller):
-    @http.route('/wa/webhook', type='json', auth='public', methods=['POST'])
-    def webhook_receive(self, **kw):
-        """Receive incoming WhatsApp messages via webhook."""
-        data = request.get_json_data()
-        _logger.info('WhatsApp webhook received: %s', json.dumps(data)[:500])
-        try:
-            if data.get('object') == 'whatsapp_business_account':
-                for entry in data.get('entry', []):
-                    for change in entry.get('changes', []):
-                        value = change.get('value', {})
-                        messages = value.get('messages', [])
-                        for msg in messages:
-                            phone = msg.get('from', '')
-                            text = msg.get('text', {}).get('body', '')
-                            if phone and text:
-                                request.env['wa.message'].sudo().create({
-                                    'phone': phone,
-                                    'message_body': text,
-                                    'state': 'received',
-                                    'direction': 'incoming',
-                                    'company_id': request.env.company.id,
-                                })
-            return {'status': 'ok'}
-        except Exception as e:
-            _logger.error('WhatsApp webhook error: %s', e)
-            return {'status': 'error', 'message': str(e)}
-
-    @http.route('/wa/verify', type='http', auth='public')
-    def webhook_verify(self, **kw):
-        """Meta webhook verification."""
-        mode = kw.get('hub.mode')
-        token = kw.get('hub.verify_token')
-        challenge = kw.get('hub.challenge')
-        company = request.env['res.company'].sudo().search([('wa_verify_token', '=', token)], limit=1)
-        if mode == 'subscribe' and company:
+    @http.route('/whatsapp/webhook', type='http', auth='public', methods=['GET'], csrf=False)
+    def verify_webhook(self, **kwargs):
+        """Meta pošlje GET za verifikacijo webhook-a."""
+        verify_token = kwargs.get('hub.verify_token')
+        challenge = kwargs.get('hub.challenge')
+        company = request.env['res.company'].sudo().search([('wa_verify_token', '=', verify_token)], limit=1)
+        if company:
             return challenge
         return 'Forbidden', 403
+
+    @http.route('/whatsapp/webhook', type='json', auth='public', methods=['POST'], csrf=False)
+    def receive_webhook(self, **kwargs):
+        """Meta pošlja POST za status dostave in vhodna sporočila."""
+        try:
+            data = request.get_json_data()
+            for entry in data.get('entry', []):
+                for change in entry.get('changes', []):
+                    value = change.get('value', {})
+                    # Status updates (delivered, read)
+                    for status in value.get('statuses', []):
+                        msg_id = status.get('id')
+                        status_val = status.get('status')
+                        if msg_id and status_val:
+                            msg = request.env['l10n_si.whatsapp.message'].sudo().search([
+                                ('wa_message_id', '=', msg_id)
+                            ], limit=1)
+                            if msg:
+                                msg.write({'state': status_val})
+                    # Incoming messages
+                    for msg in value.get('messages', []):
+                        phone = msg.get('from')
+                        text = msg.get('text', {}).get('body', '')
+                        if phone and text:
+                            partner = request.env['res.partner'].sudo().search([
+                                '|', ('mobile', 'ilike', phone), ('phone', 'ilike', phone)
+                            ], limit=1)
+                            if partner:
+                                request.env['l10n_si.whatsapp.message'].sudo().create({
+                                    'partner_id': partner.id,
+                                    'direction': 'incoming',
+                                    'message_type': 'text',
+                                    'body': text,
+                                })
+        except Exception as e:
+            _logger.error('WhatsApp webhook error: %s', e)
+        return {'status': 'ok'}

@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_wa_message_user,wa.message.user,model_wa_message,base.group_user,1,1,1,0
-access_wa_message_manager,wa.message.manager,model_wa_message,base.group_system,1,1,1,1
-access_wa_template_user,wa.template.user,model_wa_template,base.group_user,1,0,0,0
-access_wa_template_manager,wa.template.manager,model_wa_template,base.group_system,1,1,1,1
+access_wa_msg_user,wa.msg.user,model_l10n_si_whatsapp_message,base.group_user,1,1,1,0
+access_wa_msg_mgr,wa.msg.mgr,model_l10n_si_whatsapp_message,base.group_system,1,1,1,1
+access_wa_tpl_user,wa.tpl.user,model_l10n_si_whatsapp_template,base.group_user,1,0,0,0
+access_wa_tpl_mgr,wa.tpl.mgr,model_l10n_si_whatsapp_template,base.group_system,1,1,1,1
