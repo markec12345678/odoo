@@ -10,7 +10,6 @@
                 <field name="name"/>
                 <field name="channel"/>
                 <field name="partner_id"/>
-                <field name="message_count"/>
                 <field name="create_date"/>
                 <field name="state"/>
             </list>
@@ -38,7 +37,6 @@
                             <field name="hotel_folio_id"/>
                         </group>
                         <group>
-                            <field name="message_count" readonly="1"/>
                             <field name="create_date" readonly="1"/>
                         </group>
                     </group>
@@ -59,11 +57,7 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="message_ids"/>
-                </div>
-            </form>
+</form>
         </field>
     </record>
 
