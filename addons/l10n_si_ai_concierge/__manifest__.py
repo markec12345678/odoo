@@ -2,7 +2,7 @@
 {
     'name': 'Slovenian AI Concierge',
     'summary': 'AI asistent za goste v slovenščini - informacije, priporočila, rezervacije',
-    'version': '19.0.1.1.0',
+    'version': '19.0.1.2.0',
     'category': 'Hospitality',
     'description': """
 Slovenian AI Concierge

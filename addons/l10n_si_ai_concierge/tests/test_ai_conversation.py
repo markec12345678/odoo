@@ -22,7 +22,7 @@ class TestAIConversationFallback(TransactionCase):
         })
         self.conversation = self.Conversation.create({
             'config_id': self.config.id,
-            'state': 'open',
+            'state': 'active',
         })
 
     def test_wifi_query(self):
@@ -64,8 +64,8 @@ class TestAIConversationLifecycle(TransactionCase):
         self.config = self.Config.create({'name': 'Test', 'api_key': ''})
         self.conversation = self.Conversation.create({'config_id': self.config.id})
 
-    def test_default_state_open(self):
-        self.assertEqual(self.conversation.state, 'open')
+    def test_default_state_active(self):
+        self.assertEqual(self.conversation.state, 'active')
 
     def test_action_end(self):
         self.conversation.action_end()

@@ -2,7 +2,7 @@
 {
     'name': 'AI Concierge Website Chat Widget',
     'summary': 'Spletni chat widget za AI Concierge na spletni strani',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Website',
     'description': """
 AI Concierge Website Chat Widget
@@ -23,10 +23,9 @@ Funkcionalnosti:
     'license': 'LGPL-3',
     'depends': ['website', 'l10n_si_ai_concierge'],
     'data': [
+        'security/ir.model.access.csv',
         'views/res_company_views.xml',
-
         'views/chatbot_templates.xml',
-        'views/res_company_views.xml',
     ],
     'installable': True,
 }
