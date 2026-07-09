@@ -12,7 +12,7 @@ import requests
 _logger = logging.getLogger(__name__)
 
 DEFAULT_TIMEOUT = 30
-ZAI_ENDPOINT = 'https://open.bigmodel.cn/api/paas/v4/chat/completions'
+ZAI_ENDPOINT = 'https://internal-api.z.ai/v1/chat/completions'
 OPENAI_ENDPOINT = 'https://api.openai.com/v1/chat/completions'
 ANTHROPIC_ENDPOINT = 'https://api.anthropic.com/v1/messages'
 
@@ -43,8 +43,13 @@ class AIClient:
 class ZAIClient(AIClient):
     def generate_response(self, messages, temperature=0.7, max_tokens=500):
         payload = {'model': self.model, 'messages': [m.to_dict() for m in messages],
-                   'temperature': temperature, 'max_tokens': max_tokens}
-        headers = {'Authorization': f'Bearer {self.api_key}', 'Content-Type': 'application/json'}
+                   'temperature': temperature, 'max_tokens': max_tokens,
+                   'thinking': {'type': 'disabled'}}
+        headers = {'Authorization': f'Bearer {self.api_key}', 'Content-Type': 'application/json',
+                   'X-Z-AI-From': 'Z'}
+        if len(self.api_key) > 100 and '.' in self.api_key:
+            headers['X-Token'] = self.api_key
+            headers['Authorization'] = 'Bearer Z.ai'
         try:
             response = requests.post(ZAI_ENDPOINT, headers=headers, json=payload, timeout=self.timeout)
         except requests.Timeout as e: raise AIRequestError(f'ZAI timeout: {e}') from e
