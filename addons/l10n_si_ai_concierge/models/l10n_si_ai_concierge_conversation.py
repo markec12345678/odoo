@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 class L10nSiAiConciergeConversation(models.Model):
     _name = 'l10n_si.ai.concierge.conversation'
     _description = 'Slovenian AI Concierge Conversation'
-    _inherit = ['mail.thread']
+    # _inherit = ['mail.thread']  # Removed: we use our own message model
     _order = 'create_date DESC'
 
     name = fields.Char(compute='_compute_name', store=True)
