@@ -2,7 +2,7 @@
 {
     'name': 'Slovenian Payroll (Community)',
     'summary': 'Slovenian payroll: ZDoh-2, ZPrD, M4, REK-SH, olajšave, letni obračun',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Accounting/Localizations/Payroll',
     'description': """
 Slovenian Payroll (Community Edition)

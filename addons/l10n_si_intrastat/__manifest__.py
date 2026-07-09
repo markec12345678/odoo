@@ -2,7 +2,7 @@
 {
     'name': 'Slovenian Intrastat',
     'summary': 'Mesečno poročilo Intrastat za trgovino z EU',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Slovenian Localization',
     'description': "Mesečno poročilo Intrastat za trgovino z EU.",
     'author': 'markec12345678',

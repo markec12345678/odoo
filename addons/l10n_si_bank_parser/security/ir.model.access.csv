@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_account_journal_si_bank,account.journal.si.bank,model_account_journal,account.group_account_invoice,1,1,1,0
+access_l10n_si_bank_statement_import_user,l10n_si.bank.statement.import.user,model_l10n_si_bank_statement_import,account.group_account_invoice,1,1,1,0
+access_l10n_si_bank_statement_import_manager,l10n_si.bank.statement.import.manager,model_l10n_si_bank_statement_import,account.group_account_manager,1,1,1,1

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_hr_evisitor_accommodation_user,l10n_hr.evisitor.accommodation.user,model_l10n_hr_evisitor_accommodation,base.group_user,1,0,0,0
+access_l10n_hr_evisitor_accommodation_manager,l10n_hr.evisitor.accommodation.manager,model_l10n_hr_evisitor_accommodation,base.group_system,1,1,1,1
+access_l10n_hr_evisitor_guest_registration_user,l10n_hr.evisitor.guest_registration.user,model_l10n_hr_evisitor_guest_registration,base.group_user,1,1,1,0
+access_l10n_hr_evisitor_guest_registration_manager,l10n_hr.evisitor.guest_registration.manager,model_l10n_hr_evisitor_guest_registration,base.group_system,1,1,1,1
+access_l10n_hr_evisitor_log_user,l10n_hr.evisitor.log.user,model_l10n_hr_evisitor_log,base.group_user,1,0,0,0
+access_l10n_hr_evisitor_log_manager,l10n_hr.evisitor.log.manager,model_l10n_hr_evisitor_log,base.group_system,1,1,1,1

@@ -2,7 +2,7 @@
 {
     'name': 'Slovenian VIES Return',
     'summary': 'Mesečni VIES za davčne številke kupcev v EU',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Slovenian Localization',
     'description': "Mesečni VIES za davčne številke kupcev v EU.",
     'author': 'markec12345678',

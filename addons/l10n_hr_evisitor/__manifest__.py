@@ -2,7 +2,7 @@
 {
     'name': 'Croatian eVisitor — Tourist Guest Registration',
     'summary': 'HTZ eVisitor REST API — prijava i odjava turista, obračun boravišne pristojbe',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Accounting/Localizations',
     'description': """
 Croatian eVisitor — Tourist Guest Registration (HTZ)
@@ -53,6 +53,7 @@ Reference
         'l10n_hr_fiscal',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'data/ir_cron_data.xml',
         'views/res_company_views.xml',

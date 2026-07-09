@@ -3,7 +3,7 @@
 {
     'name': 'Slovenian Bank Statement Parser',
     'summary': 'Import ISO 20022 CAMT.053 / MT940 statements from NLB, NKBM, Sparkasse, Addiko',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Accounting/Localizations',
     'description': """
 Slovenian Bank Statement Parser
