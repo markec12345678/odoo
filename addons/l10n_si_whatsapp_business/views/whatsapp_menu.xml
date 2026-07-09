@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_wa_root" name="WhatsApp" sequence="95"/>
+    <menuitem id="menu_wa_messages" name="Messages" parent="menu_wa_root" action="action_wa_message" sequence="10"/>
+    <menuitem id="menu_wa_templates" name="Templates" parent="menu_wa_root" action="action_wa_template" sequence="20"/>
+</odoo>

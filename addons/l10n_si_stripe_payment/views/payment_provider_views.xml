@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_payment_provider_form_si" model="ir.ui.view">
+        <field name="name">payment.provider.form.si</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment_stripe.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="SI Hotel Settings" invisible="code != 'stripe'">
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wa_template_list" model="ir.ui.view">
+        <field name="name">wa.template.list</field>
+        <field name="model">wa.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="language"/>
+                <field name="category"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_wa_template_form" model="ir.ui.view">
+        <field name="name">wa.template.form</field>
+        <field name="model">wa.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="language"/>
+                            <field name="category"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group string="Template Body">
+                        <field name="body" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_wa_template" model="ir.actions.act_window">
+        <field name="name">WhatsApp Templates</field>
+        <field name="res_model">wa.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

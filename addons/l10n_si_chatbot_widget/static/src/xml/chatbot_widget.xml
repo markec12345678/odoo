@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="chatbot_widget" inherit_id="website.layout" name="Chatbot Widget">
+        <xpath expr="//body" position="inside">
+            <div id="si-chatbot-bubble" class="si-chatbot-bubble" title="Vprašajte nas!">
+                <span>💬</span>
+            </div>
+            <div id="si-chatbot-window" class="si-chatbot-window" style="display:none;">
+                <div class="si-chatbot-header">
+                    <span>🤖 AI Asistent</span>
+                    <button id="si-chatbot-close" type="button">✕</button>
+                </div>
+                <div id="si-chatbot-messages" class="si-chatbot-messages"></div>
+                <div class="si-chatbot-input">
+                    <input type="text" id="si-chatbot-text" placeholder="Sporočilo..." maxlength="500"/>
+                    <button id="si-chatbot-send" type="button">Pošlji</button>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
