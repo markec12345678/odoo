@@ -6,13 +6,13 @@
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](./LICENSE)
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0-875A7B.svg)](https://www.odoo.com)
-[![Modules](https://img.shields.io/badge/Modules-95-green.svg)](#module-catalog)
+[![Modules](https://img.shields.io/badge/Modules-80-green.svg)](#module-catalog)
 [![OCA](https://img.shields.io/badge/OCA%20Modules-37-orange.svg)](https://github.com/OCA)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](./requirements.txt)
 [![Railway](https://img.shields.io/badge/Railway-Live%20Demo-9B59B6.svg)](https://odoo-production-fa42.up.railway.app/web/login)
-[![Version](https://img.shields.io/badge/version-v19.0.14.0-blue.svg)](https://github.com/markec12345678/odoo/releases)
+[![Version](https://img.shields.io/badge/version-v19.0.14.1-blue.svg)](https://github.com/markec12345678/odoo/releases)
 [![Status](https://img.shields.io/badge/status-production%20ready-brightgreen.svg)]()
-[![Modules Installed](https://img.shields.io/badge/installed-237-brightgreen.svg)]()
+[![Modules Installed](https://img.shields.io/badge/installed-240+-brightgreen.svg)]()
 [![Last Commit](https://img.shields.io/github/last-commit/markec12345678/odoo/19.0)](https://github.com/markec12345678/odoo/commits/19.0)
 [![Coverage](https://img.shields.io/badge/l10n%20coverage-100%25-brightgreen.svg)]()
 
@@ -28,7 +28,7 @@
 | **Credentials** | `admin` / `admin` (change immediately!) |
 | **Hosting** | Railway Cloud (Postgres 18 + Odoo 19) |
 | **Auto-deploy** | Every push to `19.0` triggers Railway rebuild |
-| **Modules** | 211 installed (75 l10n + 136 Odoo/OCA) |
+| **Modules** | 240+ installed (80 l10n + 160 Odoo/OCA) |
 
 ---
 
@@ -41,8 +41,10 @@
 > - ✅ HTZ eVisitor (tourist registration) — Croatia
 > - ✅ Hotel PMS with channel manager (Booking.com + Airbnb)
 > - ✅ POS with fiscal integration
-> - ✅ AI Concierge (6 LLM backends including ZenMux)
-> - ✅ 75 custom l10n modules + 13 OCA UI/UX modules
+> - ✅ AI Concierge (6 LLM backends including ZenMux) + website chat widget
+> - ✅ WhatsApp Business Cloud API (Meta official) for booking confirmations
+> - ✅ Stripe payment integration with hotel deposit pre-authorization
+> - ✅ 80 custom l10n modules + 37 OCA UI/UX modules
 > - ✅ Railway cloud deployment with auto-deploy
 > - ✅ Daily automated backup
 
@@ -57,14 +59,14 @@
 │                    Railway Cloud                         │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
 │  │  Odoo 19     │  │  PostgreSQL  │  │  Backup Cron │  │
-│  │  (211 moduli)│←→│  18 (SSL)    │  │  (daily 03h) │  │
+│  │  (240+ moduli)│←→│  18 (SSL)    │  │  (daily 03h) │  │
 │  │  Port 8080   │  │  500MB vol   │  │  pg_dump+tar │  │
 │  └──────┬───────┘  └──────────────┘  └──────────────┘  │
 │         │                                                │
 │  ┌──────┴──────────────────────────────────────────┐    │
-│  │         /mnt/extra-addons/ (88 moduli)          │    │
+│  │         /mnt/extra-addons/ (80 l10n + OCA)      │    │
 │  │  ┌─────────┐ ┌─────────┐ ┌─────────┐          │    │
-│  │  │ 70 SI   │ │  6 HR   │ │ 13 OCA  │          │    │
+│  │  │ 74 SI   │ │ 6 HR    │ │ 37 OCA  │          │    │
 │  │  │ moduli  │ │ moduli  │ │  UI/UX  │          │    │
 │  │  └─────────┘ └─────────┘ └─────────┘          │    │
 │  └─────────────────────────────────────────────────┘    │
@@ -72,13 +74,14 @@
 │  ┌──────┴──────────────────────────────────────────┐    │
 │  │  External Integrations                           │    │
 │  │  FURS API │ AJPES │ CISF │ HTZ │ Booking │ BnB │    │
-│  │  ZenMux AI │ Z.AI │ OpenAI │ Anthropic         │    │
+│  │  WhatsApp Cloud │ Stripe │ ZenMux AI │ Z.AI    │    │
+│  │  OpenAI │ Anthropic                              │    │
 │  └─────────────────────────────────────────────────┘    │
 └─────────────────────────────────────────────────────────┘
          ↕ GitHub Auto-deploy (19.0 branch)
 ┌─────────────────────────────────────────────────────────┐
 │  GitHub: markec12345678/odoo (19.0 branch)              │
-│  88 custom modules | 360+ files migrated to Odoo 19     │
+│  80 custom modules | 360+ files migrated to Odoo 19     │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -86,21 +89,21 @@
 
 ## 📦 Module Catalog
 
-### 🇸🇮 Slovenian Modules (70)
+### 🇸🇮 Slovenian Modules (74)
 
 | Category | Modules | Status |
 |----------|---------|--------|
 | **Regulatory** | `l10n_si`, `l10n_si_fiscal` (FURS ZOI/EOR), `l10n_si_etourism` (AJPES), `l10n_si_vat_validation`, `l10n_si_sequence`, `l10n_si_edi`, `l10n_si_intrastat`, `l10n_si_vies_return` | ✅ 8/8 |
 | **Accounting** | `l10n_si_accounting_advanced` (SRS), `l10n_si_year_end_close`, `l10n_si_customer_statements`, `l10n_si_reports` | ✅ 4/4 |
-| **Banking** | `l10n_si_bank_parser`, `l10n_si_bank_sync` | ✅ 2/2 |
+| **Banking & Payments** | `l10n_si_bank_parser`, `l10n_si_bank_sync`, `l10n_si_payment_gateway`, `l10n_si_stripe_payment` (hotel deposit pre-auth) | ✅ 4/4 |
 | **Hotel & Tourism** | `l10n_si_hotel`, `l10n_si_camping`, `l10n_si_farm_tourism`, `l10n_si_wellness`, `l10n_si_housekeeping`, `l10n_si_channel_manager`, `l10n_si_revenue_management`, `l10n_si_group_booking`, `l10n_si_tourist_tax` | ✅ 9/9 |
 | **Restaurant & POS** | `l10n_si_restaurant`, `l10n_si_pos_advanced`, `l10n_si_kitchen_display`, `l10n_si_minibar`, `l10n_si_laundry` | ✅ 5/5 |
 | **Events** | `l10n_si_event_venue`, `l10n_si_event_accommodation`, `l10n_si_event_contract`, `l10n_si_event_equipment_rental`, `l10n_si_event_photographer` | ✅ 5/5 |
 | **HR & Payroll** | `l10n_si_hr_payroll_community`, `l10n_si_hr_roster`, `l10n_si_timesheet_approval` | ✅ 3/3 |
 | **Operations** | `l10n_si_helpdesk_simple`, `l10n_si_sign`, `l10n_si_fleet`, `l10n_si_assets`, `l10n_si_approvals`, `l10n_si_audit_trail`, `l10n_si_budget_planning`, `l10n_si_field_service`, `l10n_si_maintenance_advanced`, `l10n_si_maintenance_request`, `l10n_si_procurement`, `l10n_si_quality_control` | ✅ 12/12 |
-| **Guest Experience** | `l10n_si_ai_concierge`, `l10n_si_concierge_services`, `l10n_si_loyalty_program`, `l10n_si_gift_voucher`, `l10n_si_mobile_app`, `l10n_si_partner_portal`, `l10n_si_website_booking` | ✅ 7/7 |
-| **Marketing** | `l10n_si_marketing_automation`, `l10n_si_review_management`, `l10n_si_whatsapp`, `l10n_si_competitor_pricing`, `l10n_si_weather_integration` | ✅ 5/5 |
-| **Other** | `l10n_si_accessibility`, `l10n_si_data_protection`, `l10n_si_dashboard_executive`, `l10n_si_knowledge`, `l10n_si_payment_gateway`, `l10n_si_subscription_advanced`, `l10n_si_sustainability`, `l10n_si_transport`, `l10n_si_ocr_invoice`, `l10n_si_multi_company`, `l10n_si_pets` | ✅ 11/11 |
+| **Guest Experience** | `l10n_si_ai_concierge` (6 LLM backends), `l10n_si_chatbot_widget` (website chat), `l10n_si_concierge_services`, `l10n_si_loyalty_program`, `l10n_si_gift_voucher`, `l10n_si_mobile_app`, `l10n_si_partner_portal`, `l10n_si_website_booking` | ✅ 8/8 |
+| **Marketing & Messaging** | `l10n_si_marketing_automation`, `l10n_si_review_management`, `l10n_si_whatsapp` (legacy), `l10n_si_whatsapp_business` (Meta Cloud API), `l10n_si_competitor_pricing`, `l10n_si_weather_integration` | ✅ 6/6 |
+| **Other** | `l10n_si_accessibility`, `l10n_si_data_protection`, `l10n_si_dashboard_executive`, `l10n_si_knowledge`, `l10n_si_subscription_advanced`, `l10n_si_sustainability`, `l10n_si_transport`, `l10n_si_ocr_invoice`, `l10n_si_multi_company`, `l10n_si_pets` | ✅ 10/10 |
 
 ### 🇭🇷 Croatian Modules (6)
 

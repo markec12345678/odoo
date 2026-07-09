@@ -5,6 +5,168 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.14.1] — 2026-07-09
+
+### Fixed — Module integrity across 8 SI/HR modules
+
+Comprehensive integrity scan (`scripts/scan_modules.py`) found and fixed
+multiple bugs that would have blocked module installation or broken access
+for non-admin users.
+
+**l10n_si_ai_concierge (regression after beb3393c):**
+- `tests/test_ai_conversation.py` referenced `state='open'` but the model
+  defines `state` selection as `active/ended/escalated`. `create()` would
+  raise `ValueError` and every test in the file would fail.
+- Fixed: `'open'` → `'active'` in `setUp`; renamed `test_default_state_open`
+  → `test_default_state_active`.
+- Bumped version 19.0.1.1.0 → 19.0.1.2.0.
+
+**l10n_si_chatbot_widget (3 installation blockers):**
+- `__manifest__.py` listed `views/res_company_views.xml` TWICE in the data
+  array — Odoo would fail to install with a duplicate XML ID error.
+- `__init__.py` only imported `controllers` — missing `from . import models`.
+  The `res.company` inherit (`chatbot_enabled` / `chatbot_color` /
+  `chatbot_position` fields) was never registered, so the form view would
+  crash with "field `chatbot_enabled` does not exist".
+- `security/ir.model.access.csv` existed on disk but was not in the
+  manifest data list.
+- Bumped version 19.0.1.0.0 → 19.0.1.0.1.
+
+**l10n_si_whatsapp_business (dead code cleanup):**
+- Module originally had two parallel model implementations:
+  - `l10n_si.whatsapp.message` / `.template` (Slovenian labels, v21.0 API)
+  - `wa.message` / `wa.template` (English labels, v18.0 API)
+- Only the `l10n_si.*` versions were imported (`models/__init__.py`) and
+  only their views were loaded (manifest data list). The `wa.*` versions
+  and their view/menu files were never imported — dead code that could
+  mislead future maintenance.
+- Removed 6 dead files: `models/whatsapp_message.py`,
+  `models/whatsapp_template.py`, `models/account_move.py`,
+  `views/whatsapp_message_views.xml`, `views/whatsapp_template_views.xml`,
+  `views/whatsapp_menu.xml`.
+
+**Missing ACL rules for 7 models across 5 modules:**
+
+The integrity scanner found 7 brand-new `Model`/`TransientModel` classes
+with NO `ir.model.access.csv` rows. Non-admin users could not read, create,
+or write any records on these models — the modules would appear broken for
+regular HR/Accounting users.
+
+| Module | Model | Type | Fix |
+|--------|-------|------|-----|
+| `l10n_hr_evisitor` | `l10n_hr.evisitor.accommodation` | Model | CRITICAL — module had NO `security/` dir; added 6 rules for 3 models |
+| `l10n_hr_evisitor` | `l10n_hr.evisitor.guest.registration` | Model | (same) |
+| `l10n_hr_evisitor` | `l10n_hr.evisitor.log` | Model | (same) |
+| `l10n_si_bank_parser` | `l10n_si.bank.statement.import` | TransientModel | Added 2 rules (user: read+write+create; mgr: full) |
+| `l10n_si_hr_payroll_community` | `l10n_si.hr.contract` | Model | Added 2 rules (HR user / HR manager) |
+| `l10n_si_intrastat` | `l10n_si.intrastat.line` | Model | Added 2 rules (account invoice / account manager) |
+| `l10n_si_vies_return` | `l10n_si.vies.line` | Model | Added 2 rules (account invoice / account manager) |
+
+Each affected module's manifest version bumped `19.0.1.0.0` → `19.0.1.0.1`.
+
+### Added — Module integrity scanners
+
+Two reusable scanner scripts persisted to `/home/z/my-project/scripts/`:
+
+- **`scan_modules.py`** — comprehensive integrity scan covering: manifest
+  data file existence, duplicate data entries, depends module existence,
+  `models/__init__.py` imports (incl. sibling `.py` imports),
+  `controllers/__init__.py` imports, `tests/__init__.py` imports, ACL rules
+  for new `Model`/`TransientModel` classes (correctly skips `AbstractModel`
+  and pure `_inherit`), XML parse, view model attribute validity, top-level
+  view field declarations (correctly skips nested relational field trees
+  and xpath-targeted fields).
+- **`scan_orphan_chatter.py`** — scans for views with `message_follower_ids`
+  on models that do NOT inherit `mail.thread`. Catches the bug class that
+  caused the AI Concierge mail.thread removal regression in v19.0.14.0.
+
+Latest scan result on 78 SI/HR modules: 0 HIGH, 0 MED, 0 LOW, 0 orphan
+chatter. Recommended to run before each Railway deploy.
+
+### Updated — README
+
+- Bumped version badge v19.0.14.0 → v19.0.14.1
+- Updated module count badge 95 → 80 (actual SI+HR module count)
+- Updated installed badge 237 → 240+
+- Updated Live Demo "Modules" line: 211 → 240+ installed
+- Architecture diagram updated: 70 SI + 6 HR + 13 OCA → 74 SI + 6 HR + 37 OCA
+- Added 3 new modules to catalog:
+  - `l10n_si_chatbot_widget` (Guest Experience)
+  - `l10n_si_whatsapp_business` (Marketing & Messaging, replacing legacy
+    `l10n_si_whatsapp` which is now marked "legacy")
+  - `l10n_si_stripe_payment` (Banking & Payments — hotel deposit pre-auth)
+- "What Makes This Unique" list updated to mention:
+  - WhatsApp Business Cloud API (Meta official) for booking confirmations
+  - Stripe payment integration with hotel deposit pre-authorization
+  - AI Concierge + website chat widget (combined)
+
+## [19.0.14.0] — 2026-07-08
+
+### Added — 3 new modules
+
+- **`l10n_si_whatsapp_business`**: WhatsApp Business Cloud API integration
+  (Meta official). Send text messages and templates (booking confirmations,
+  check-in reminders 24h before arrival), receive webhooks (delivered, read),
+  multi-company support. GDPR Article 6(1)(f) legal basis documented.
+- **`l10n_si_chatbot_widget`**: Floating website chat widget that opens the
+  AI Concierge. Multi-language (SI/EN), mobile responsive, customizable
+  colors/position/logo. Inherits `res.company` for per-company configuration.
+- **`l10n_si_stripe_payment`**: Extends standard Odoo `payment_stripe` with
+  SI-specific features: pre-authorization for hotel deposits (hold amount
+  on card, capture at check-out), automatic payment link generation for
+  booking confirmations, multi-currency support (EUR + HRK legacy),
+  Stripe webhook handling, integration with `l10n_si_hotel` folio system.
+
+### Added — AI Concierge mail.thread fix
+
+- Removed `mail.thread` inheritance from `l10n_si.ai.concierge.conversation`
+  (caused `message_type` error on install).
+- Removed orphaned `oe_chatter` div and `message_follower_ids`/`message_ids`
+  references from conversation form view.
+- Changed `hotel_folio_id` from `Many2one` to `Integer` (avoids cross-module
+  dependency on `l10n_si_hotel` during early install).
+
+## [19.0.13.0] — 2026-07-08
+
+### Added — Complete Odoo 19 migration (17 breaking changes fixed)
+
+Comprehensive Odoo 17→19 migration across all 75 l10n_si/l10n_hr modules:
+- `<tree>` → `<list>` (135 files)
+- `attrs=` → direct invisible/required/readonly (102 files)
+- `numbercall` removed from ir.cron (22 files)
+- `ir.property` model removed (1 file)
+- `expand=` + `string=` in search views (21 files)
+- `category_id` removed from res.groups (4 files)
+- `users` removed from res.groups (5 files)
+- `<template>` → qweb in manifests (17 files)
+- `domain_force` → domain on ir.rule (2 files)
+- `@models.model` → `@api.model` (1 file)
+- Missing button methods added (4 files)
+- `@api.depends('id')` removed (1 file)
+- `hr.contract` → standalone model (3 files)
+- M2M table conflicts fixed (1 file)
+- MRO conflicts (rating.mixin) fixed (2 files)
+- Manifest ordering fixes (3 files)
+- `account_bank_statement_import` dependency removed (1 file)
+
+### Added — 6 reusable migration scripts
+
+- `scripts/migrate_tree_to_list.py`
+- `scripts/migrate_attrs_to_direct.py`
+- `scripts/migrate_search_group_string.py`
+- `scripts/scan_missing_methods.py`
+- `scripts/scan_odoo19_issues.py`
+- `scripts/auto_install_modules.py`
+
+### Verified — Production deployment
+
+- 211 modules installed in production (75 l10n + 136 Odoo/OCA)
+- 99% l10n coverage (75/76 modules)
+- Railway auto-deploy pipeline verified (45+ deployments)
+- Daily backup cron service operational
+- HTTP 100% success rate
+- 62-page bilingual onboarding manual (PDF + DOCX)
+
 ## [19.0.12.0] — 2026-07-07
 
 ### Fixed — Railway production deployment (CRITICAL)
@@ -343,43 +505,3 @@ All modules retain original OCA author credits. Licenses compatible with our pro
 | 19.0.8.0 | 2026-06-23 | 15 (Tier 8) | 69 |
 | + l10n_si | upstream | 1 (chart of accounts) | **70** |
 
-## [19.0.13.0] — 2026-07-08
-
-### Added — Complete Odoo 19 migration (17 breaking changes fixed)
-
-Comprehensive Odoo 17→19 migration across all 75 l10n_si/l10n_hr modules:
-- `<tree>` → `<list>` (135 files)
-- `attrs=` → direct invisible/required/readonly (102 files)
-- `numbercall` removed from ir.cron (22 files)
-- `ir.property` model removed (1 file)
-- `expand=` + `string=` in search views (21 files)
-- `category_id` removed from res.groups (4 files)
-- `users` removed from res.groups (5 files)
-- `<template>` → qweb in manifests (17 files)
-- `domain_force` → domain on ir.rule (2 files)
-- `@models.model` → `@api.model` (1 file)
-- Missing button methods added (4 files)
-- `@api.depends('id')` removed (1 file)
-- `hr.contract` → standalone model (3 files)
-- M2M table conflicts fixed (1 file)
-- MRO conflicts (rating.mixin) fixed (2 files)
-- Manifest ordering fixes (3 files)
-- `account_bank_statement_import` dependency removed (1 file)
-
-### Added — 6 reusable migration scripts
-
-- `scripts/migrate_tree_to_list.py`
-- `scripts/migrate_attrs_to_direct.py`
-- `scripts/migrate_search_group_string.py`
-- `scripts/scan_missing_methods.py`
-- `scripts/scan_odoo19_issues.py`
-- `scripts/auto_install_modules.py`
-
-### Verified — Production deployment
-
-- 211 modules installed in production (75 l10n + 136 Odoo/OCA)
-- 99% l10n coverage (75/76 modules)
-- Railway auto-deploy pipeline verified (45+ deployments)
-- Daily backup cron service operational
-- HTTP 100% success rate
-- 62-page bilingual onboarding manual (PDF + DOCX)
