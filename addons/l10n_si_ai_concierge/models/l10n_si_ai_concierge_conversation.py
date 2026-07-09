@@ -41,7 +41,7 @@ class L10nSiAiConciergeConversation(models.Model):
     message_count = fields.Integer(compute='_compute_count', store=False)
 
     # Kontekst
-    hotel_folio_id = fields.Many2one('l10n_si.hotel.folio', string='Trenutni folio gosta')
+    hotel_folio_id = fields.Integer(string='Hotel Folio ID', copy=False)
     summary = fields.Text(readonly=True, copy=False,
                             help='AI povzetek pogovora ob zaključku.')
 
