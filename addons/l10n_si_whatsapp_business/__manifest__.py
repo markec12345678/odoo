@@ -31,7 +31,7 @@ References:
     'author': 'markec12345678',
     'website': 'https://github.com/markec12345678/odoo',
     'license': 'LGPL-3',
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail', 'account'],
     'data': [
         'security/ir.model.access.csv',
         'views/res_company_views.xml',

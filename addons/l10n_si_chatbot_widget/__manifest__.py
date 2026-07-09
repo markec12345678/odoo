@@ -25,7 +25,7 @@ Requires:
     'author': 'markec12345678',
     'website': 'https://github.com/markec12345678/odoo',
     'license': 'LGPL-3',
-    'depends': ['website', 'l10n_si_ai_concierge'],
+    'depends': ['website', 'l10n_si_ai_concierge', 'account'],
     'data': [
         'security/ir.model.access.csv',
         'views/website_assets.xml',
