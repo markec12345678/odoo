@@ -28,7 +28,6 @@ Requires:
     'depends': ['website', 'l10n_si_ai_concierge', 'account'],
     'data': [
         'security/ir.model.access.csv',
-        'views/website_assets.xml',
     ],
     'qweb': [
         'static/src/xml/chatbot_widget.xml',
