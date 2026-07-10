@@ -24,26 +24,30 @@ jobs:
         run: |
           pip install ruff xmlschema lxml
 
-      - name: Run Odoo 19 migration scanner
+      - name: Run module integrity scanner
         run: |
-          python scripts/scan_odoo19_issues.py addons/ 2>&1 | tee scan-results.txt
-          # Fail if CRITICAL issues found
-          if grep -q "CRITICAL: [1-9]" scan-results.txt; then
-            echo "❌ Critical issues found!"
+          python scripts/scan_modules.py addons/ 2>&1 | tee scan-results.txt
+          exit_code=${PIPESTATUS[0]}
+          if [ $exit_code -eq 1 ]; then
+            echo "❌ Critical/High/Medium issues found!"
             cat scan-results.txt
             exit 1
           fi
-          echo "✅ No critical issues found"
+          echo "✅ No critical/high/medium issues found"
+          if [ $exit_code -eq 2 ]; then
+            echo "⚠️  Only LOW-severity issues (informational)"
+          fi
 
-      - name: Run missing methods scanner
+      - name: Run orphan chatter scanner
         run: |
-          python scripts/scan_missing_methods.py addons/ 2>&1 | tee methods-results.txt
-          if grep -q "missing methods found: [1-9]" methods-results.txt; then
-            echo "❌ Missing methods found!"
-            cat methods-results.txt
+          python scripts/scan_orphan_chatter.py addons/ 2>&1 | tee chatter-results.txt
+          exit_code=${PIPESTATUS[0]}
+          if [ $exit_code -ne 0 ]; then
+            echo "❌ Orphan chatter fields found!"
+            cat chatter-results.txt
             exit 1
           fi
-          echo "✅ No missing methods"
+          echo "✅ No orphan chatter fields"
 
       - name: Validate XML well-formedness
         run: |
@@ -100,4 +104,4 @@ jobs:
           name: module-health-report
           path: |
             scan-results.txt
-            methods-results.txt
+            chatter-results.txt
