@@ -49,7 +49,7 @@ jobs:
       - name: Install Railway CLI
         run: |
           echo "Installing Railway CLI..."
-          curl -fsSL https://railway.app/install.sh | sh
+          curl -fsSL https://railway.app/install.sh | bash
           export PATH="$HOME/.railway/bin:$PATH"
           railway --version
 

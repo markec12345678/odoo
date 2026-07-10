@@ -25,8 +25,9 @@ Dockerfile.hf
 hf-odoo.conf
 railway-odoo.conf
 
-# Skripte (ne potrebne v image)
-scripts/
+# Skripte (ne potrebne v image — RAZEN railway-backup.sh za backup image)
+scripts/*
+!scripts/railway-backup.sh
 
 # Certifikati
 certs/
