@@ -39,12 +39,14 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=ref,event=branch
+            type=ref,event=tag
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push Odoo image
         uses: docker/build-push-action@v5
+        if: steps.meta.outputs.tags != ''
         with:
           context: .
           file: ./Dockerfile
@@ -56,6 +58,7 @@ jobs:
 
       - name: Build and push Backup image
         uses: docker/build-push-action@v5
+        if: steps.meta.outputs.tags != ''
         with:
           context: .
           file: ./Dockerfile.backup
@@ -63,3 +66,7 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-backup:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Skip if no tags (tag push without metadata)
+        if: steps.meta.outputs.tags == ''
+        run: echo "No tags generated for this event - skipping Docker push"
