@@ -49,6 +49,29 @@ jobs:
           fi
           echo "✅ No orphan chatter fields"
 
+      - name: Scan for hardcoded secrets
+        run: |
+          # Scan only our SI/HR modules + repo infrastructure (skip Odoo core addons)
+          python scripts/scan_secrets.py addons/l10n_si_* addons/l10n_hr_* scripts/ .github/ 2>&1 | tee secrets-results.txt
+          exit_code=${PIPESTATUS[0]}
+          if [ $exit_code -ne 0 ]; then
+            echo "❌ Hardcoded secrets found!"
+            cat secrets-results.txt
+            exit 1
+          fi
+          echo "✅ No hardcoded secrets found"
+
+      - name: Scan for security issues (eval/exec/SQL injection)
+        run: |
+          python scripts/scan_security.py addons/l10n_si_* addons/l10n_hr_* scripts/ .github/ 2>&1 | tee security-results.txt
+          exit_code=${PIPESTATUS[0]}
+          if [ $exit_code -ne 0 ]; then
+            echo "❌ Security issues found!"
+            cat security-results.txt
+            exit 1
+          fi
+          echo "✅ No security issues found"
+
       - name: Validate XML well-formedness
         run: |
           python -c "
@@ -105,3 +128,5 @@ jobs:
           path: |
             scan-results.txt
             chatter-results.txt
+            secrets-results.txt
+            security-results.txt

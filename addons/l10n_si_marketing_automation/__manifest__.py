@@ -2,7 +2,7 @@
 {
     'name': 'Slovenian Marketing Automation',
     'summary': 'Multi-step email campaigns with branching + triggers — replaces Enterprise marketing_automation',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Marketing/Automation',
     'description': """
 Slovenian Marketing Automation

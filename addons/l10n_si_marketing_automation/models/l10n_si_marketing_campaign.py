@@ -3,6 +3,7 @@
 from datetime import timedelta
 
 from odoo import _, api, fields, models
+from odoo.tools.safe_eval import safe_eval
 
 
 class L10nSiMarketingCampaign(models.Model):
@@ -76,7 +77,7 @@ class L10nSiMarketingCampaign(models.Model):
     def action_add_participants(self):
         """Add partners matching the campaign domain."""
         for camp in self:
-            domain = eval(camp.domain or '[]')  # nosec — admin-only
+            domain = safe_eval(camp.domain or '[]')
             partners = self.env['res.partner'].search(domain)
             for partner in partners:
                 if not partner.email:
