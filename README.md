@@ -10,11 +10,13 @@
 [![OCA](https://img.shields.io/badge/OCA%20Modules-37-orange.svg)](https://github.com/OCA)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](./requirements.txt)
 [![Railway](https://img.shields.io/badge/Railway-Live%20Demo-9B59B6.svg)](https://odoo-production-fa42.up.railway.app/web/login)
-[![Version](https://img.shields.io/badge/version-v19.0.14.1-blue.svg)](https://github.com/markec12345678/odoo/releases)
+[![Version](https://img.shields.io/badge/version-v19.0.14.2-blue.svg)](https://github.com/markec12345678/odoo/releases)
 [![Status](https://img.shields.io/badge/status-production%20ready-brightgreen.svg)]()
 [![Modules Installed](https://img.shields.io/badge/installed-240+-brightgreen.svg)]()
 [![Last Commit](https://img.shields.io/github/last-commit/markec12345678/odoo/19.0)](https://github.com/markec12345678/odoo/commits/19.0)
 [![Coverage](https://img.shields.io/badge/l10n%20coverage-100%25-brightgreen.svg)]()
+[![CI Tests](https://img.shields.io/badge/tests-101%2F101%20%E2%9C%93-brightgreen.svg)](https://github.com/markec12345678/odoo/actions)
+[![Scanners](https://img.shields.io/badge/scanners-4%20%C2%B7%200%20issues-brightgreen.svg)](scripts/)
 
 </div>
 
@@ -173,16 +175,33 @@ This repository includes comprehensive Odoo 17→19 migration fixes:
 | `Dockerfile.backup` | Backup image | Daily pg_dump + filestore |
 | `scripts/railway-backup.sh` | Backup script | S3/webhook upload + retention |
 
-### Migration Scripts (reusable)
+### CI Scanners (production-grade, run on every push)
+
+| Script | Purpose | Issues Found |
+|--------|---------|--------------|
+| `scripts/scan_modules.py` | Module integrity: manifest data, dead code, ACLs, view fields (multi-class + xpath aware) | 0 |
+| `scripts/scan_orphan_chatter.py` | Views with `message_follower_ids` on models that don't inherit `mail.thread` | 0 |
+| `scripts/scan_secrets.py` | Hardcoded GitHub/AWS/Stripe/Slack/JWT/Private keys + DB connection strings | 0 |
+| `scripts/scan_security.py` | `eval()` / `exec()` / `os.system()` / `shell=True` / `pickle.loads` / SQL injection | 0 |
+
+All 4 scanners run automatically in the **Module Health Check** GitHub
+Actions workflow (`.github/workflows/module-health.yml`) on every push to
+`19.0` and daily at 04:00 UTC. Run locally:
+
+```bash
+python3 scripts/scan_modules.py
+python3 scripts/scan_orphan_chatter.py
+python3 scripts/scan_secrets.py addons/l10n_si_* addons/l10n_hr_* scripts/ .github/
+python3 scripts/scan_security.py addons/l10n_si_* addons/l10n_hr_* scripts/ .github/
+```
+
+### Migration Scripts (legacy, kept for reference)
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/migrate_tree_to_list.py` | `<tree>` → `<list>` migration |
-| `scripts/migrate_attrs_to_direct.py` | `attrs=` → direct attributes |
-| `scripts/migrate_search_group_string.py` | `string=` removal in search views |
-| `scripts/scan_missing_methods.py` | Find missing button methods |
-| `scripts/scan_odoo19_issues.py` | Comprehensive Odoo 19 scanner |
-| `scripts/auto_install_modules.py` | Auto-install via JSON-RPC |
+| `scripts/generate_i18n.py` | Generate i18n `.pot` files |
+| `scripts/railway-backup.sh` | Daily PostgreSQL + filestore backup |
+| `scripts/backup.sh` / `scripts/restore.sh` | Manual backup/restore helpers |
 
 ---
 

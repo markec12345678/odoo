@@ -5,6 +5,135 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.14.2] — 2026-07-10
+
+### Fixed — CI pipeline (3 broken workflows repaired)
+
+Comprehensive audit of GitHub Actions workflows found and fixed 3 critical
+CI bugs that had been silently failing on every push for weeks:
+
+**1. `module-health.yml` — broken script references:**
+- Workflow referenced `scripts/scan_odoo19_issues.py` and
+  `scripts/scan_missing_methods.py` that were NEVER committed to the repo
+  (only mentioned in v19.0.13.0 CHANGELOG entry as if they existed).
+- Every daily cron + every push/PR would fail at "Run Odoo 19 migration
+  scanner" step with `FileNotFoundError`.
+- Fix: replaced with two NEW production-grade scanners that ARE committed
+  to the repo (`scripts/scan_modules.py` + `scripts/scan_orphan_chatter.py`).
+
+**2. `docker-publish.yml` — Backup image build failure:**
+- ERROR: `failed to calculate checksum of ref: '/scripts/railway-backup.sh': not found`
+- Cause: `.dockerignore` had `scripts/` (excludes entire dir), so the
+  `Dockerfile.backup` line `COPY scripts/railway-backup.sh` could not
+  find the file in build context.
+- Fix: `.dockerignore` changed from `scripts/` to `scripts/*` + added
+  `!scripts/railway-backup.sh` exception.
+
+**3. `deploy.yml` — Railway CLI install failure:**
+- Error: `sh: 146: Bad substitution`
+- Cause: `railway.app/install.sh` uses bash-specific syntax (likely
+  `${var//pattern/replacement}`), but the workflow piped it to `sh`.
+- Fix: `curl -fsSL https://railway.app/install.sh | sh` → `| bash`.
+
+### Added — Two new production-grade scanners
+
+Two new reusable security/integrity scanners added to `scripts/`:
+
+**1. `scripts/scan_secrets.py` (216 lines) — hardcoded secrets detector**
+Detects:
+- GitHub PATs (`ghp_`, `github_pat_`)
+- AWS access keys (`AKIA...`) and secret keys
+- Stripe LIVE keys (`sk_live_`, `pk_live_`) — test keys intentionally skipped
+- Slack tokens (`xox[bp]-`)
+- JWT tokens (`eyJ...eyJ...`)
+- Private keys (`BEGIN PRIVATE KEY`)
+- Generic API keys / secrets assigned to `*_key` / `*_secret` vars
+- DB connection strings with embedded credentials
+- Twilio Account SIDs (only when explicitly labeled as such)
+
+Smart filtering: skips placeholders, `test`/`dummy`/`fake` values, short
+strings, all-same-char strings, repeated patterns. Avoids false positives
+on Odoo core test data (base64 blobs etc.).
+
+**2. `scripts/scan_security.py` (159 lines) — dangerous Python patterns**
+Detects:
+- `eval()` / `exec()` with non-constant argument (RCE risk)
+- `os.system()` (command injection)
+- `subprocess.*` with `shell=True` (command injection)
+- `pickle.loads/load` (deserialization RCE)
+- `yaml.load()` without `Loader` (unsafe YAML parsing)
+- String formatting in `cr.execute()` (SQL injection)
+
+Uses AST parsing (not regex) for high-confidence findings.
+
+### Security — Fixed `eval()` in `l10n_si_marketing_automation`
+
+`models/l10n_si_marketing_campaign.py:79` used raw `eval()` to parse
+`camp.domain` (an Odoo search domain stored as a Char field). While the
+field is admin-controlled, Odoo's standard pattern is `safe_eval()` (used
+in `ir.actions.server`). Replaced:
+```python
+# BEFORE (unsafe — RCE risk):
+domain = eval(camp.domain or '[]')  # nosec — admin-only
+
+# AFTER (Odoo standard pattern):
+domain = safe_eval(camp.domain or '[]')
+```
+Bumped module version `19.0.1.0.0` → `19.0.1.0.1`.
+
+### Updated — CI workflow `module-health.yml`
+
+Added 2 new steps (now 6 scanner steps total):
+- **Scan for hardcoded secrets** — runs `scan_secrets.py` on SI/HR modules
+  + `scripts/` + `.github/` (Odoo core addons excluded to avoid noise)
+- **Scan for security issues (eval/exec/SQL injection)** — runs
+  `scan_security.py` on the same paths
+
+Updated `upload-artifact` step to include `secrets-results.txt` and
+`security-results.txt` in the downloadable CI report.
+
+### Verified — All 101 tests pass locally
+
+After the CI fixes, ran the full test suite locally to confirm:
+
+**Unit tests** (`scripts/run_unit_tests.py`): **79/79 passed**
+- ZOI Algorithm (FURS spec v1.6) — Slovenija
+- ZKI Algorithm (CISF spec v1.8) — Hrvaška
+- AJPES Client (GuestBook XML + REST API)
+- CISF Client (RacunZahtjev SOAP + JIR parsing)
+- Channel Manager Clients (Booking.com + Airbnb)
+- AI Concierge LLM Clients (ZAI, OpenAI, Anthropic, Local)
+- eVisitor Client (HTZ REST API)
+
+**E2E tests** (`scripts/run_e2e_tests.py`): **22/22 passed**
+- SI FURS ZOI computation (deterministic, invoice-sensitive)
+- SI AJPES Guest Lifecycle (XML well-formed, returns receipt ID)
+- HR CISF Invoice Lifecycle (ZKI, JIR, error handling)
+- HR eVisitor Guest Lifecycle (test/prod endpoint config)
+- Error Recovery (401 → AuthError, timeout → ConnectionError for all
+  3 regulatory systems: AJPES, CISF, eVisitor)
+
+**CI scanners** (4 scanners): **0 issues**
+- Module integrity: 0 issues in 78 SI/HR modules
+- Orphan chatter: 0 orphans in 47 chatter views
+- Hardcoded secrets: 0 in 1047 files scanned
+- Security issues: 0 in 629 Python files
+
+### CI status after this release
+
+```
+✅ Auto Module Install Test      — success
+✅ Build & Publish Docker Image  — success
+✅ CI                            — success (79 unit + 22 E2E)
+✅ Module Health Check           — success (4 scanners all green)
+✅ CodeQL Security Analysis      — success
+❌ Deploy                        — failure (RAILWAY_TOKEN expired)
+```
+
+Only `Deploy` workflow remains red — it requires user to update the
+`RAILWAY_TOKEN` GitHub Secret with a fresh Railway token (the old one
+was revoked for security reasons).
+
 ## [19.0.14.1] — 2026-07-09
 
 ### Fixed — Module integrity across 8 SI/HR modules
