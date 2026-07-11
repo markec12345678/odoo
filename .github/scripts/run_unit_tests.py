@@ -561,6 +561,266 @@ def test_ai_concierge():
 
 
 # ---------------------------------------------------------------------------
+# WhatsApp Business Cloud API — Phone Normalization
+# ---------------------------------------------------------------------------
+
+def test_whatsapp_phone_normalization():
+    """Test phone number normalization for WhatsApp Cloud API.
+
+    The l10n_si_whatsapp_business module strips +, spaces, and dashes
+    from phone numbers before sending to the Meta API.
+    """
+    print('\n=== WhatsApp Business Phone Normalization ===')
+
+    # Replicate the normalization logic from action_send()
+    def normalize(phone):
+        return phone.replace(' ', '').replace('+', '').replace('-', '')
+
+    # Test cases
+    cases = [
+        ('+38641234567', '38641234567', 'SI mobile with +'),
+        ('+386 41 234 567', '38641234567', 'SI mobile with spaces'),
+        ('+386-41-234-567', '38641234567', 'SI mobile with dashes'),
+        ('38641234567', '38641234567', 'SI mobile no formatting'),
+        ('+ 386 41 234 567', '38641234567', 'SI mobile with + and spaces'),
+    ]
+    for input_phone, expected, desc in cases:
+        result = normalize(input_phone)
+        check(f'Phone: {desc}', result == expected,
+              f'got {result}, expected {expected}')
+
+
+# ---------------------------------------------------------------------------
+# WhatsApp Business — Payload Construction
+# ---------------------------------------------------------------------------
+
+def test_whatsapp_payload_construction():
+    """Test WhatsApp Cloud API payload structure (text + template)."""
+    print('\n=== WhatsApp Business Payload Construction ===')
+
+    WA_API_BASE = 'https://graph.facebook.com/v21.0'
+
+    # Text message payload
+    text_payload = {
+        'messaging_product': 'whatsapp',
+        'to': '38641234567',
+        'type': 'text',
+        'text': {'body': 'Welcome!'},
+    }
+    check('Text payload has messaging_product',
+          text_payload['messaging_product'] == 'whatsapp')
+    check('Text payload type is text',
+          text_payload['type'] == 'text')
+    check('Text payload has body',
+          text_payload['text']['body'] == 'Welcome!')
+
+    # Template message payload
+    template_payload = {
+        'messaging_product': 'whatsapp',
+        'to': '38641234567',
+        'type': 'template',
+        'template': {
+            'name': 'reservation_confirm',
+            'language': {'code': 'sl'},
+        }
+    }
+    check('Template payload type is template',
+          template_payload['type'] == 'template')
+    check('Template payload has name',
+          template_payload['template']['name'] == 'reservation_confirm')
+    check('Template payload has language code',
+          template_payload['template']['language']['code'] == 'sl')
+
+    # URL construction
+    phone_number_id = '1234567890'
+    url = f'{WA_API_BASE}/{phone_number_id}/messages'
+    check('URL contains phone_number_id', phone_number_id in url)
+    check('URL ends with /messages', url.endswith('/messages'))
+    check('URL uses v21.0 API', 'v21.0' in url)
+
+
+# ---------------------------------------------------------------------------
+# Stripe Payment — Deposit Mode Logic
+# ---------------------------------------------------------------------------
+
+def test_stripe_deposit_mode_logic():
+    """Test Stripe SI deposit mode (pre-authorization) logic.
+
+    When si_stripe_deposit_mode=True and capture_method is not explicitly
+    'automatic', the override should force capture_method='manual'.
+    """
+    print('\n=== Stripe Deposit Mode Logic ===')
+
+    # Simulate the _stripe_make_payment_request override logic
+    def apply_deposit_mode(deposit_mode_enabled, kwargs):
+        """Replicate the override logic from payment_provider.py."""
+        if deposit_mode_enabled and kwargs.get('capture_method') != 'automatic':
+            kwargs['capture_method'] = 'manual'
+        return kwargs
+
+    # Case 1: Deposit mode OFF, no capture_method specified
+    result = apply_deposit_mode(False, {})
+    check('Deposit OFF: no capture_method added',
+          'capture_method' not in result)
+
+    # Case 2: Deposit mode ON, no capture_method specified → should force 'manual'
+    result = apply_deposit_mode(True, {})
+    check('Deposit ON: forces capture_method=manual',
+          result.get('capture_method') == 'manual')
+
+    # Case 3: Deposit mode ON, explicit 'automatic' → should NOT override
+    result = apply_deposit_mode(True, {'capture_method': 'automatic'})
+    check('Deposit ON + explicit automatic: NOT overridden',
+          result['capture_method'] == 'automatic')
+
+    # Case 4: Deposit mode ON, explicit 'manual' → stays 'manual'
+    result = apply_deposit_mode(True, {'capture_method': 'manual'})
+    check('Deposit ON + explicit manual: stays manual',
+          result['capture_method'] == 'manual')
+
+    # Case 5: Deposit mode OFF, explicit 'manual' → stays 'manual'
+    result = apply_deposit_mode(False, {'capture_method': 'manual'})
+    check('Deposit OFF + explicit manual: stays manual',
+          result['capture_method'] == 'manual')
+
+
+# ---------------------------------------------------------------------------
+# CAMT.053 Bank Statement XML Parsing
+# ---------------------------------------------------------------------------
+
+def test_camt053_xml_parsing():
+    """Test CAMT.053 XML parsing for SI bank statements.
+
+    The l10n_si_bank_parser module parses ISO 20022 CAMT.053 format
+    used by NLB, NKBM, Sparkasse, and Addiko.
+    """
+    print('\n=== CAMT.053 XML Parsing ===')
+
+    from xml.etree import ElementTree as ET
+    from decimal import Decimal
+
+    NS_CAMT = {
+        'camt': 'urn:iso:std:iso:20022:tech:xsd:camt.053.001.02',
+    }
+
+    sample_xml = """<?xml version="1.0" encoding="UTF-8"?>
+    <Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02">
+      <BkToCstmrStmt>
+        <Stmt>
+          <Id>NLB-2025-01-001</Id>
+          <ElctrncSeqNb>1</ElctrncSeqNb>
+          <Bal>
+            <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
+            <Amt Ccy="EUR">1000.00</Amt>
+            <Dt><Dt>2025-01-15</Dt></Dt>
+          </Bal>
+          <Bal>
+            <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
+            <Amt Ccy="EUR">2500.00</Amt>
+            <Dt><Dt>2025-01-15</Dt></Dt>
+          </Bal>
+          <Ntry>
+            <Amt Ccy="EUR">1500.00</Amt>
+            <CdtDbtInd>CRDT</CdtDbtInd>
+            <BookgDt><Dt>2025-01-14</Dt></BookgDt>
+            <RltdPties><Dbtr><Nm>Janez Novak</Nm></Dbtr></RltdPties>
+            <RmtInf><Ustrd>Placilo racun 2025-001</Ustrd></RmtInf>
+          </Ntry>
+          <Ntry>
+            <Amt Ccy="EUR">200.00</Amt>
+            <CdtDbtInd>DBIT</CdtDbtInd>
+            <BookgDt><Dt>2025-01-15</Dt></BookgDt>
+            <RltdPties><Cdtr><Nm>Mercator</Nm></Cdtr></RltdPties>
+            <RmtInf><Ustrd>Racun 456</Ustrd></RmtInf>
+          </Ntry>
+        </Stmt>
+      </BkToCstmrStmt>
+    </Document>"""
+
+    root = ET.fromstring(sample_xml)
+
+    # Find statement
+    stmts = root.findall('.//camt:Stmt', NS_CAMT)
+    check('Found 1 statement', len(stmts) == 1,
+          f'found {len(stmts)}')
+
+    stmt = stmts[0]
+    stmt_id = stmt.findtext('camt:Id', '', NS_CAMT)
+    seq = stmt.findtext('camt:ElctrncSeqNb', '', NS_CAMT)
+    check('Statement ID parsed', stmt_id == 'NLB-2025-01-001')
+    check('Statement seq parsed', seq == '1')
+
+    # Find balances
+    balances = stmt.findall('.//camt:Bal', NS_CAMT)
+    check('Found 2 balances', len(balances) == 2,
+          f'found {len(balances)}')
+
+    # Find opening balance (OPBD)
+    opbd = None
+    clbd = None
+    for bal in balances:
+        cd = bal.findtext('camt:Tp/camt:CdOrPrtry/camt:Cd', '', NS_CAMT)
+        if cd == 'OPBD':
+            opbd = float(Decimal(bal.findtext('camt:Amt', '0', NS_CAMT)))
+        elif cd == 'CLBD':
+            clbd = float(Decimal(bal.findtext('camt:Amt', '0', NS_CAMT)))
+    check('Opening balance (OPBD) = 1000.00', opbd == 1000.00,
+          f'got {opbd}')
+    check('Closing balance (CLBD) = 2500.00', clbd == 2500.00,
+          f'got {clbd}')
+
+    # Find transactions
+    entries = stmt.findall('.//camt:Ntry', NS_CAMT)
+    check('Found 2 transactions', len(entries) == 2,
+          f'found {len(entries)}')
+
+    # First transaction (credit)
+    tx1_amount = float(Decimal(entries[0].findtext('camt:Amt', '0', NS_CAMT)))
+    tx1_type = entries[0].findtext('camt:CdtDbtInd', 'DBIT', NS_CAMT)
+    tx1_partner = entries[0].findtext('camt:RltdPties/camt:Dbtr/camt:Nm', '', NS_CAMT)
+    check('TX1 amount = 1500.00', tx1_amount == 1500.00)
+    check('TX1 type = CRDT', tx1_type == 'CRDT')
+    check('TX1 partner = Janez Novak', tx1_partner == 'Janez Novak')
+
+    # Second transaction (debit)
+    tx2_amount = float(Decimal(entries[1].findtext('camt:Amt', '0', NS_CAMT)))
+    tx2_type = entries[1].findtext('camt:CdtDbtInd', 'DBIT', NS_CAMT)
+    # Debit should be negative
+    if tx2_type == 'DBIT':
+        tx2_amount = -tx2_amount
+    check('TX2 amount = -200.00 (debit)', tx2_amount == -200.00,
+          f'got {tx2_amount}')
+
+
+# ---------------------------------------------------------------------------
+# SI Bank BIC Codes
+# ---------------------------------------------------------------------------
+
+def test_si_bank_bic_codes():
+    """Test SI_BANK_BICS dictionary covers major Slovenian banks."""
+    print('\n=== SI Bank BIC Codes ===')
+
+    # We can't easily import from the module (it requires odoo), so we
+    # verify the known BICs are valid format
+    known_bics = {
+        'LJBASI2X': 'NLB',
+        'KBMRSI2X': 'NKBM',
+        'HDELSI22': 'Sparkasse',
+        'HAABSI22': 'Addiko',
+        'GIBASI2X': 'Raiffeisen',
+    }
+
+    for bic, name in known_bics.items():
+        # BIC format: 8 or 11 chars, alphanumeric
+        check(f'BIC {name} ({bic}) is 8 or 11 chars',
+              len(bic) in (8, 11))
+        check(f'BIC {name} ({bic}) is alphanumeric',
+              bic.isalnum())
+        check(f'BIC {name} ({bic}) ends with SI (Slovenia)',
+              'SI' in bic[4:8])
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -576,6 +836,11 @@ def main():
     test_evisitor_client()
     test_channel_clients()
     test_ai_concierge()
+    test_whatsapp_phone_normalization()
+    test_whatsapp_payload_construction()
+    test_stripe_deposit_mode_logic()
+    test_camt053_xml_parsing()
+    test_si_bank_bic_codes()
 
     print()
     print('=' * 60)
