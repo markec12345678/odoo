@@ -1,0 +1,310 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_hr_payroll_community
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_hr_payroll_community
+#: l10n_si_hr_payroll_community
+msgid "l10n_si_hr_payroll_community"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "8-digit SI tax number (without SI prefix)."
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Akontacija dohodnine"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Auto-generate M4"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Bolniške ure"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Bruto (€)"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Company"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Datum izplačila"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Datum rojstva"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Davčna številka"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Dijak/študent (olajšava)"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Dni dela"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Dodatna olajšava za otroke"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Dohodnina"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Druge olajšave"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Employee"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Employees"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Employer injury insurance rate. Varies by activity (0.10-3.50%)."
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "For children with special needs — doubles child relief."
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Full-time = 40, part-time < 40."
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Generate M4 report automatically on the 1st of each month for the previous period."
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Generiraj"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "IBAN format: SI56 1234 5678 9012 345"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Identifikacija"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Invalid (olajšava)"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Klasifikacija poklicev — potrebna za REK-1."
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Knjiži"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Knjižni dokument"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Koda poklica (KMCP)"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Mesec"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Minimalna bruto plača (€)"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Mladi delojemalec (<30 let)"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Monthly Run"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Nadure"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Neto"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Neto izplačilo"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Obračun"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Olajšava za otroke"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Olajšave"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Osnova za dohodnino"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Osnutki"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Per ZMinP. Update annually by Jan 1st."
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Plačane"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Plačilni list (SI)"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Potrdi"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Potrjene"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Preizkusna doba do"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Prispevki"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Prispevki delodajalca (16.10%)"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Prispevki delojemalca (22.10%)"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Rules"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Short code used in computation."
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "SI Payroll"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Skupni strošek delodajalca"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Slovenian Contract Details"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Slovenian Payroll"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Special tax relief per ZDoh-2."
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Splošna olajšava"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Status"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Stopnja poškodb (%)"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Struktura"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Tedenske ure"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Tip zaposlitve"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "TRR (bančni račun)"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Upokojenec"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Ure dela"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Vhodni podatki"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Zaposleni"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Zaposleni (prazno = vsi aktivni)"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Številka delovnega dovoljenja"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Številka ZZZS"
+msgstr ""
+
+#: l10n_si_hr_payroll_community
+msgid "Število otrok (za olajšavo)"
+msgstr ""
+

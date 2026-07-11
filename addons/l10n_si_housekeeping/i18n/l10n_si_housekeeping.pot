@@ -1,0 +1,166 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_housekeeping
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_housekeeping
+#: l10n_si_housekeeping
+msgid "l10n_si_housekeeping"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Company"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Cona hišništva"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Dejanski čas od začetka do konca."
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Dodeli"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Doniraj"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Druga lokacija"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Folio gosta"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Gost (če znan)"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Hišnik"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Inšpekcija"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Izgubljeni predmeti"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "kanban-box"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Lokacija hrambe"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Najdene poškodbe"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Najdene težave"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Najdeni izgubljeni predmeti"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Najšel"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "npr. 1. nadstropje, krilo A"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "npr. recepcija, restavracija"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "npr. sef recepcija, omara A3"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Odstavi"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Opis predmeta"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Opombe hišnika"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Opombe inšpektorja"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Opravi"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Poraba materiala"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Potrebuje vzdrževanje"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Preglej"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Preskoči"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Prevzel"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "SI Hišništvo"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Soba"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Vrni gostu"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Vrnitev"
+msgstr ""
+
+#: l10n_si_housekeeping
+msgid "Začni"
+msgstr ""
+

@@ -1,0 +1,190 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_edi
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_edi
+#: l10n_si_edi
+msgid "l10n_si_edi"
+msgstr ""
+
+#: l10n_si_edi
+msgid "Accepted At"
+msgstr ""
+
+#: l10n_si_edi
+msgid "Auto-submit on posting"
+msgstr ""
+
+#: l10n_si_edi
+msgid "Certificate Filename"
+msgstr ""
+
+#: l10n_si_edi
+msgid "Certificate Password"
+msgstr ""
+
+#: l10n_si_edi
+msgid "Company"
+msgstr ""
+
+#: l10n_si_edi
+msgid "Default: SI + 8-digit tax number (e.g. SI12345678)."
+msgstr ""
+
+#: l10n_si_edi
+msgid "Download XML"
+msgstr ""
+
+#: l10n_si_edi
+msgid "e-Račun (eSLOG 2.0)"
+msgstr ""
+
+#: l10n_si_edi
+msgid "e-Račun (eSLOG 2.0) Enabled"
+msgstr ""
+
+#: l10n_si_edi
+msgid "e-Račun is enabled but no eIDAS certificate is configured."
+msgstr ""
+
+#: l10n_si_edi
+msgid "e-Račun Logs"
+msgstr ""
+
+#: l10n_si_edi
+msgid "e-Račun State"
+msgstr ""
+
+#: l10n_si_edi
+msgid "eDavki Environment"
+msgstr ""
+
+#: l10n_si_edi
+msgid "EDI Logs"
+msgstr ""
+
+#: l10n_si_edi
+msgid "eIDAS Certificate (.p12)"
+msgstr ""
+
+#: l10n_si_edi
+msgid "eIDAS certificate not configured."
+msgstr ""
+
+#: l10n_si_edi
+msgid "Error"
+msgstr ""
+
+#: l10n_si_edi
+msgid "Error Message"
+msgstr ""
+
+#: l10n_si_edi
+msgid "eSLOG 2.0 XML submitted to FURS. Message ID: %s"
+msgstr ""
+
+#: l10n_si_edi
+msgid "eSLOG is only supported for customer invoices and refunds."
+msgstr ""
+
+#: l10n_si_edi
+msgid "eSLOG submission complete. Check the EDI log for details."
+msgstr ""
+
+#: l10n_si_edi
+msgid "eSLOG XML accepted by FURS."
+msgstr ""
+
+#: l10n_si_edi
+msgid "eSLOG XML rejected by FURS. See log."
+msgstr ""
+
+#: l10n_si_edi
+msgid "FURS Message ID"
+msgstr ""
+
+#: l10n_si_edi
+msgid "FURS Response"
+msgstr ""
+
+#: l10n_si_edi
+msgid "HTTP Code"
+msgstr ""
+
+#: l10n_si_edi
+msgid "If True, eSLOG XML is generated and submitted automatically when an invoice is posted. If False, run action_si_edi_submit manually."
+msgstr ""
+
+#: l10n_si_edi
+msgid "Invoice"
+msgstr ""
+
+#: l10n_si_edi
+msgid "No eSLOG XML has been generated for this invoice yet."
+msgstr ""
+
+#: l10n_si_edi
+msgid "No XML"
+msgstr ""
+
+#: l10n_si_edi
+msgid "PEPPOL Identifier"
+msgstr ""
+
+#: l10n_si_edi
+msgid "PEPPOL identifier is required for e-Račun. Format: SI + 8-digit tax number."
+msgstr ""
+
+#: l10n_si_edi
+msgid "Qualified certificate from SI-TRUST, CA HALCOM, or SIGEN-CA. Required for B2B/B2G e-invoice signing."
+msgstr ""
+
+#: l10n_si_edi
+msgid "Response"
+msgstr ""
+
+#: l10n_si_edi
+msgid "Signed eSLOG 2.0 XML stored as attachment (10-year retention)."
+msgstr ""
+
+#: l10n_si_edi
+msgid "Slovenian e-Račun (eSLOG 2.0)"
+msgstr ""
+
+#: l10n_si_edi
+msgid "Submit e-Račun"
+msgstr ""
+
+#: l10n_si_edi
+msgid "Submitted"
+msgstr ""
+
+#: l10n_si_edi
+msgid "Submitted At"
+msgstr ""
+
+#: l10n_si_edi
+msgid "When enabled, posted invoices are converted to eSLOG 2.0 XML and submitted to FURS eDavki."
+msgstr ""
+
+#: l10n_si_edi
+msgid "XML"
+msgstr ""
+
+#: l10n_si_edi
+msgid "XML File"
+msgstr ""
+

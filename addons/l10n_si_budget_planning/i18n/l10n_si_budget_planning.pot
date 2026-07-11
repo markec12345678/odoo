@@ -1,0 +1,146 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_budget_planning
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_budget_planning
+#: l10n_si_budget_planning
+msgid "l10n_si_budget_planning"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Aktiviraj"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Aktivni"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Analitični konto"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Company"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Dobiček (dejansko)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Dobiček (načrt)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Dobiček odstopanje (%)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Letni načrt (EUR)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Leto"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Mesečni razcep"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Oddelek"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Odobri"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Odstopanja (%)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Odstopanje (%)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Odstopanje (EUR)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Porazdeli enakomerno"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Postavke proračuna"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Predlagaj"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Prihodek (dejansko)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Prihodek (načrt)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Prihodek odstopanje (%)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Proračun (SI)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Realizacija (EUR)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Skupaj"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Status"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Stroški (dejansko)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Stroški (načrt)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Stroški odstopanje (%)"
+msgstr ""
+
+#: l10n_si_budget_planning
+msgid "Zaključi"
+msgstr ""
+

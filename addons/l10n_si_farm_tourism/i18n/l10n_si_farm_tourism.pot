@@ -1,0 +1,182 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_farm_tourism
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_farm_tourism
+#: l10n_si_farm_tourism
+msgid "l10n_si_farm_tourism"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Cena"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Cena večerje (EUR/oseba)"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Cena/noč (EUR)"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Cenik"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Certifikat"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Certifikat \"Izbrana kakovost - Slovenija\"."
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Certifikati"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Check-out must be after check-in."
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Company"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Davčna stopnja za prodajo."
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Domači izdelki"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "EKO (biološko)"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Gost"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Gostje"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Kmečke aktivnosti"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Kmečki turizem (SI)"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Lastna kopalnica"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Ležišča"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Lokalni izdelek"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Mladi/pridelava/dejavnosti na kmetiji."
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Na zalogi"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Odjava + Račun"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Posebne želje (alergije, dieta)"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Potrdi"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Prijava"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Prodaja na"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Prodaja na kmetiji"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Proizvodnja"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Račun"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Room %s not available."
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Sejemski oder"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Skupna kuhinja"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Slovenska kvaliteta (kmetijski izdelek)"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Spletna prodaja"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Večerja na kmetiji"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Zajtrk (EUR/oseba)"
+msgstr ""
+
+#: l10n_si_farm_tourism
+msgid "Zajtrk vključen"
+msgstr ""
+

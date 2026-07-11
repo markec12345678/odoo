@@ -1,0 +1,258 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_fiscal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_fiscal
+#: l10n_si_fiscal
+msgid "l10n_si_fiscal"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Auto-submit to FURS"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Cancel"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Cannot compute ZOI without an invoice number."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Cannot extract invoice serial from %s"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Certificate Filename"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Certificate Password"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Company"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Company %(name)s has an invalid VAT number for ZOI computation."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Company %s has an invalid VAT number."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Configure the FURS certificate on company %s first."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Enkratna identifikacijska oznaka računa (UUID)."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Enkratna identifikacijska oznaka računa — UUID vrnjen s strani FURS."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "EOR"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Error"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Error Message"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Errors"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Fiscal Log"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Fiscal Logs"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Fiscal State"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Fiscal Verification (FURS)"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Fiscal Verification Enabled"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Fiscal verification is enabled but no FURS certificate is configured. Upload the .p12 certificate in the Fiscal tab."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "FURS Certificate (.p12)"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "FURS certificate could not be parsed."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "FURS certificate not configured on %s"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "FURS connection failed: %s"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "FURS Environment"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "FURS premise registration failed (HTTP %s): %s"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "FURS Response"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "HTTP Code"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Invoice"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Invoice %(inv)s has no SI business premise or device set."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Invoices"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Password protecting the .p12 file. Stored in clear — protect at OS level."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "PKCS12 certificate issued by FURS for API authentication."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Premise %s is now registered with FURS."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "QR Code"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "QR code containing ZOI + meta fields for printing on the invoice."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Re-register with FURS"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Re-submission complete. Check the Fiscal Log for details."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Register with FURS"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Registered"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Request"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Request Payload"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Request Type"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Response"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Resubmit"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Retry"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Slovenian Fiscal Verification (FURS)"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Software Supplier Tax Number"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "State"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Submitted"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Successfully Sent"
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Tax number of the company that developed/maintains this Odoo instance. If you self-host, this is your own tax number."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "When enabled, all cash invoices will be submitted to FURS for ZOI/EOR."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "When True, invoices are submitted immediately on posting. When False, you must run the action_si_submit_to_furs manually."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Zaščitna oznaka izdajatelja računa (MD5 hex)."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "Zaščitna oznaka izdajatelja računa — MD5 hex (32 chars)."
+msgstr ""
+
+#: l10n_si_fiscal
+msgid "ZOI"
+msgstr ""
+

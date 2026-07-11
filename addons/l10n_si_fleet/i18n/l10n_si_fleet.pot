@@ -1,0 +1,222 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_fleet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_fleet
+#: l10n_si_fleet
+msgid "l10n_si_fleet"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Agent"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Bencinska črpalka"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Cena na enoto (€)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Company"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Datum nabave"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Količina (l ali kWh)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Konec"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Lastna udeležba (€)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Lastnik"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Leto proizvodnje"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Nabavna vrednost (€)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Naslednji servis pri (km)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Opis del"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Opis opravljenih del"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Opis servisnega dela"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Opis vožnje"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Opravi"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Polica št."
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Poraba (l/100km ali kWh/100km)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Premija (€)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Prevoženi kilometri"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Registracija velja do"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Registrska tablica"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Servis"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Skupaj (€)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Slovenian Fleet Data"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Standardna poraba za primerjavo."
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Stanje števca (km)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Stanje števca (konec)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Stanje števca (start)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Stranka"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Strošek (€)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Stroški (skupaj)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Tehnični pregled do"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Tip goriva"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Trenutna vrednost (€)"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Trenutni voznik"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Velja do"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Velja od"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Vozni listi"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Voznik"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Zaključi vožnjo"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Zavarovalnica"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Zavarovanje velja do"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Začetek"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Številka motorja"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Številka računa"
+msgstr ""
+
+#: l10n_si_fleet
+msgid "Številka šasije (VIN)"
+msgstr ""
+

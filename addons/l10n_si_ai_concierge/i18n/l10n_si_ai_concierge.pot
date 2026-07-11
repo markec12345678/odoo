@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_ai_concierge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_ai_concierge
+#: l10n_si_ai_concierge
+msgid "l10n_si_ai_concierge"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "AI bo uporabil te članke za odgovore."
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "AI Concierge (SI)"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "AI povzetek pogovora ob zaključku."
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "API ključ"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Baza znanja"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Company"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "E-pošta"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Endpoint URL"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Gost"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Hotel Folio ID"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Ime modela"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Internal user (if staff)"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Kanali"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Kreativnost (0-1)"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Max tokenov na odgovor"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "npr. gpt-4, claude-3-opus, glm-4-plus, z-ai/glm-5.2 (ZenMux)"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Povzetek"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Prenesi na človeka"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Sistemski prompt"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Spletni chat"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Sporočila"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "WhatsApp"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Za OpenAI-Compatible / ZenMux backend. npr. https://zenmux.ai/api/v1"
+msgstr ""
+
+#: l10n_si_ai_concierge
+msgid "Zaključi"
+msgstr ""
+

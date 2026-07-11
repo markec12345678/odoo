@@ -1,0 +1,182 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_sequence
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_sequence
+#: l10n_si_sequence
+msgid "l10n_si_sequence"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Address"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Already registered"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Business Premise"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Business Premises"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "City"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Company"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Country"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Default SI Device"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Default SI Premise"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Device Code"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Device code must be alphanumeric. Got: %s"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Device Name"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Devices"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Electronic Devices"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "FURS Device ID"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "FURS module required"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "FURS Premise ID"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "FURS Registered On"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Install l10n_si_fiscal to perform FURS registration."
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Internal FURS identifier returned after registration. Leave empty if not yet registered."
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Postal Code"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Premise %s was registered with FURS on %s."
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Premise Code"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Premise code must be alphanumeric (no spaces or special chars). Got: %s"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Premise Name"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Register with FURS"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Short code identifying this device in invoice numbers. Max 20 chars, alphanumeric."
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Short code identifying this premise in invoice numbers. Must match the FURS registration. Max 20 chars."
+msgstr ""
+
+#: l10n_si_sequence
+msgid "SI Business Premise"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "SI Device"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "SI Sequence Number"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "SI Year"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Slovenian Invoice Numbering"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Street"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Street2"
+msgstr ""
+
+#: l10n_si_sequence
+msgid "The full SI-formatted number assigned to this invoice (BL1-KASA1-2025-00001)."
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Used for outgoing invoices when no device is set on the move."
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Used for outgoing invoices when no premise is set on the move."
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Used for SI invoice numbering. Auto-filled from the journal."
+msgstr ""
+
+#: l10n_si_sequence
+msgid "Yearly Sequences"
+msgstr ""
+

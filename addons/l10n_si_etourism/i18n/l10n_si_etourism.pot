@@ -1,0 +1,282 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_etourism
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_etourism
+#: l10n_si_etourism
+msgid "l10n_si_etourism"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "AJPES identifikatorji"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "AJPES odgovor"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "AJPES status"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "AJPES številka potrdila"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Avtentikacija"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Avtomatizacija"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Bivanje"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Cannot deregister — no prior submission_id."
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Cannot deregister — status is %s"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Company"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Connection failed"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Connection test"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Datum in ura odhoda"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Datum in ura prihoda"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Datum rojstva"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Departure date is required for deregistration."
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Dnevnik AJPES"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Država"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Država izdajatelja dokumenta"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Država prihoda"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Država rojstva"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Državljanstvo"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Endpoint %s returned HTTP %d"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Folio"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Gost"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Hotelska rezervacija"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "ID dokumenta"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Ime"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Izvirni dokument"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Kamp rezervacija"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Klasifikacija"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Konfiguracija"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Lastnik / Upravljalec"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Ležišča"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "MID"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Namen bivanja"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Naslov"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Nastanitveni obrati"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "No SI-PASS credentials configured."
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Nočitve"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Obrat"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Obvesti ob napaki"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Občina"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Pošlji odjavo"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Pošlji prijavo"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Prejemniki obvestil o napakah"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Priimek"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Prijave gostov"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Registracija"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Samodejna odjava gostov"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Samodejna prijava gostov"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "SI eTurizem"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "SI eTurizem okolje"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "SI-PASS geslo"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "SI-PASS uporabniško ime"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "SIFNAS"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Sobe / Enota"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Spol"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Stalni naslov gosta"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Test povezave"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Vir rezervacije"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Vrsta dokumenta"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Vrsta prometa"
+msgstr ""
+
+#: l10n_si_etourism
+msgid "Številka dokumenta"
+msgstr ""
+

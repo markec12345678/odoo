@@ -1,0 +1,98 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_marketing_automation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_marketing_automation
+#: l10n_si_marketing_automation
+msgid "l10n_si_marketing_automation"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Company"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Dodaj udeležence"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Domain filter for which partners this campaign applies."
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Email template"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Filter partners"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Filter udeležencev"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Koraki"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Nadaljuj"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Naslednji (false)"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Naslednji (true)"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Operator"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Participants"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Pavziraj"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Pogoj polje"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "SI Marketing"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Steps"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Udeleženci"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Vrednost"
+msgstr ""
+
+#: l10n_si_marketing_automation
+msgid "Zaženi"
+msgstr ""
+

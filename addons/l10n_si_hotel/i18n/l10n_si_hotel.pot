@@ -1,0 +1,294 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_hotel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_hotel
+#: l10n_si_hotel
+msgid "l10n_si_hotel"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "10.0 = 10:00."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "14.0 = 14:00. Used for new reservations."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Add Service"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Cannot cancel a reservation with an open folio. Check-out first."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Cannot invoice folio without a guest."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Check-out must be after check-in."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Company"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Danes prijavljeni"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Dodaj storitev"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Folio"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Folio %s has no charges to invoice."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Folio (SI)"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "FontAwesome icon class, e.g. fa-wifi"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Gost"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Hotel (SI)"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Invoice"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Izdaj račun"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "kanban-box"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Kapaciteta"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Multiply base price in high season (e.g. 1.5 = +50%)."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Ni prišel"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "No invoice"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Odhod danes"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Odjava (check-out)"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Odpri folio"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Odprti"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Oprema"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Osnovna cena (EUR)"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Percentage added Fri-Sun."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Posebne želje"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Potrdi"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Prihod danes"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Prijava (check-in)"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Pripravljena za povezavo z l10n_si_tourist_tax modulom."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Privzet čas odjave"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Privzet čas prijave"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Product used for invoicing. Tax + account from product."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Prosta"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Račun"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Rezervacije"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Room %s is not available for the selected dates."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Room number cannot be empty."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Sezonski faktor"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Short code (STD, DLX, SUITE)"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Soba"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Sobe"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Sobe te vrste"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Sprejel"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Status"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Storitve"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Storitve (minibar, ...)"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "This folio has not been invoiced yet."
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Trenutni folio"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Trenutni gost"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Trenutno v hotelu"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Turistična taksa (EUR/osebo/nočitev)"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Velikost (m²)"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Vikend dodatek (%)"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Vir"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Vrste sob"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Vzdrževanje"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Zajtrk vključen v ceno"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Zaključi folio"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Čiščenje"
+msgstr ""
+
+#: l10n_si_hotel
+msgid "Številka sobe (101, 102, ...)"
+msgstr ""
+

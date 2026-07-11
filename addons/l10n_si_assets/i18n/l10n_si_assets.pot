@@ -1,0 +1,106 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_assets
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_assets
+#: l10n_si_assets
+msgid "l10n_si_assets"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Aktiviraj"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Akumulirana amortizacija"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Amortizacijske postavke"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Company"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Generiraj amortizacijo"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Inventarna številka"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Knjigovodska vrednost"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Knjižni dokument"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Konto amortizacije"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Konto osnovnega sredstva"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Konto stroška amortizacije"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Lokacija"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Mesečna amortizacija"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Nabavna vrednost (EUR)"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Obratovalna doba (let)"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Odgovorna oseba"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Odtuji"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Osnovna sredstva (SI)"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Serijska številka"
+msgstr ""
+
+#: l10n_si_assets
+msgid "Stopnja amortizacije (%)"
+msgstr ""
+

@@ -1,0 +1,114 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_loyalty_program
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_loyalty_program
+#: l10n_si_loyalty_program
+msgid "l10n_si_loyalty_program"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Aktiviraj"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Birth Date"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Company"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Dieta (alergije)"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Loyalty Membership"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Na zalogi (-1 = neomejeno)"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Nagrada"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Pavziraj"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Pozitivno za pridobitev, negativno za porabo."
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Preference"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Program zvestobe"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Sklic (npr. folio št.)"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Skupno porabljeno"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Skupno pridobljeno"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Stanje točk"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Statistika"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Točk za odkup"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Transakcije"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Veljavno za vrsto sobe"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Veljavnost po odkupu (dni)"
+msgstr ""
+
+#: l10n_si_loyalty_program
+msgid "Že odkupljeno"
+msgstr ""
+

@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_event_contract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_event_contract
+#: l10n_si_event_contract
+msgid "l10n_si_event_contract"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "Arhiviraj"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "Company"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "Generiraj PDF"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "Oboje podpisalo"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "PDF"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "Placeholders: {{event.name}}, {{event.date_start}}, {{event.partner_id.name}}, {{event.venue_id.name}}, {{event.total_amount}}, {{event.expected_guests}}, {{company.name}}, {{company.street}}, {{company.vat}}"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "Pošlji v podpis"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "Sign Request"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "Stranka podpisala"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "Vsebina (HTML z {{placeholder}})"
+msgstr ""
+
+#: l10n_si_event_contract
+msgid "Vsebina pogodbe"
+msgstr ""
+

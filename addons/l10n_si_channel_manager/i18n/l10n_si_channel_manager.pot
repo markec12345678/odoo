@@ -1,0 +1,110 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_channel_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_channel_manager
+#: l10n_si_channel_manager
+msgid "l10n_si_channel_manager"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "0 = uporabi SI ceno + markup iz channel config."
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "API poverilnice"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Channel Manager"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Channel room type ID"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Company"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Fiksna cena (EUR)"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Hotel ID na kanalu"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Hotel room type"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Ime na kanalu"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Kamp parcela"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Logi"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Mapiranje sob"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Max. nočitev"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Min. nočitev"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Pribitek cene (%)"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Raw API request/response for debugging."
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Raw payload"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Sinhoniziraj zdaj"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Sporočilo"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Status"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Sync vsakih (min)"
+msgstr ""
+
+#: l10n_si_channel_manager
+msgid "Test povezave"
+msgstr ""
+

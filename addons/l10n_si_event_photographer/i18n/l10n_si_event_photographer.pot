@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_event_photographer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_event_photographer
+#: l10n_si_event_photographer
+msgid "l10n_si_event_photographer"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Cena na uro (EUR)"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Company"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Interne opombe"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Izkušnje sodelovanja"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Kaj naj naredi"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Naročila"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Opis storitve"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Opravljeno"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Osnovna cena (EUR)"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Portfolio URL"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Potrdi"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Pošlji povpraševanje"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Račun dobavitelja"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Spletna prisotnost"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Storitve"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Stranka paket"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Ustvari račun dobavitelja"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Zgodovina naročil"
+msgstr ""
+
+#: l10n_si_event_photographer
+msgid "Zunanji izvajalci"
+msgstr ""
+

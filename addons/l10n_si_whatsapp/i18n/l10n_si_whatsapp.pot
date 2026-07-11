@@ -1,0 +1,126 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_whatsapp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_whatsapp
+#: l10n_si_whatsapp
+msgid "l10n_si_whatsapp"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Access Token"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Attachments"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Business Account ID"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Company"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "E.164 format: 38631123456 (no +)"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "GDPR: customer must opt in before receiving WhatsApp messages."
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Linked ID"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Linked model"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Opt-in"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Opt-out"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Partner has not opted in for WhatsApp."
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Phone Number ID (Cloud API)"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Placeholders: {{partner.name}}, {{user.name}}, {{date}}"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Pošlji"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "SI WhatsApp"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "SI WhatsApp Configuration"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Sporočilo"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Token for verifying the webhook URL when Meta subscribes."
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Twilio Account SID"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Twilio Auth Token"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Twilio from number"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Used template"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Vsebina (uporabi {{partner.name}}, {{user.name}}, {{date}})"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "Webhook Verify Token"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "WhatsApp message ID"
+msgstr ""
+
+#: l10n_si_whatsapp
+msgid "WhatsApp soglasje"
+msgstr ""
+

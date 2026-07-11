@@ -1,0 +1,186 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_approvals
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_approvals
+#: l10n_si_approvals
+msgid "l10n_si_approvals"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "0 means no upper limit."
+msgstr ""
+
+#: l10n_si_approvals
+msgid "After N days, pending approvals are escalated to the next level."
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Approval Steps"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Approver"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Approver Chain"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Avtomatski opomniki"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Comma-separated: leaves,purchases,expenses,travel,vehicle"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Company"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Delegira na (med odsotnostjo)"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Document ID"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Document Model"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Kategorija"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Lahko odobrava"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Max. dni"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Max. znesek (€)"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Maximum amount this employee can approve in one request."
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Min amount must be less than max amount (rule: %s)."
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Min. dni"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Min. znesek (€)"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Moji zahtevki"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Odobrava kategorije"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Odobri"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Odobritvena veriga"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Odobritveni limit (€)"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Pošlji v odobritev"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Prosim odobrite ali zavrnite zahtevek %s"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Requester"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Send reminder email every day when approval is pending."
+msgstr ""
+
+#: l10n_si_approvals
+msgid "SI Approvals"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "SLA odobritev (dnevi)"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "SLA presežen"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Status"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "V postopku"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "When this employee is absent, all approvals are routed here."
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Za odobritev"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Zavrni"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Znesek (€)"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "Število dni"
+msgstr ""
+
+#: l10n_si_approvals
+msgid "⚠️ SLA presežen! Zahtevek %s čaka na odobritev od %s."
+msgstr ""
+

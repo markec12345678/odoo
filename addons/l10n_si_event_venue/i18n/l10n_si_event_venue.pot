@@ -1,0 +1,514 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_event_venue
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_event_venue
+#: l10n_si_event_venue
+msgid "l10n_si_event_venue"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Alergeni"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Avans (%)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Brezplačen WiFi"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Brezplačna odpoved (dni)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Brezplačne spremembe (dni)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Catering"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Catering jedi"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Catering postavke"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Catering vključen"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Cena na enoto (EUR)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Cena na osebo (EUR)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Cena najema (EUR/dan)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Cena najema (EUR/h)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Cena najema (pol dan)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Cenik"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Company"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Danes"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dejanski konec dogodka"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dejanski začetek dogodka"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dejanski čas dogodka"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dejansko gostov"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dekoracije vključene"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dieta"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Do (vklj. razstavljanje)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dodatne storitve"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dodatni gost (EUR)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dogodki"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dogodki (SI)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dostop do kuhinje"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dostop za invalide"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dvorana %s ni prosta v izbranem času."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dvorana vključena"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dvorane"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Dvorane in rezervacije"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Event"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Event that generated this invoice."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Fotograf vključen"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Glasba/DJ vključena"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Interne opombe"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Izdaj končni račun"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Kapaciteta"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Kapaciteta (razred)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Kapaciteta (sedež)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Kapaciteta (stoje)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Kdaj končamo razstavljanje (po dogodku)."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Kdaj začnemo pripravljati dvorano (pred dogodkom)."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Klima"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Koliko ur traja paket (vpliva na ceno dvorane)."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Konec"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Konec razstavitve"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Konferenčna oblika."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Kontakt"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Kontakt oseba"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Končaj dogodek"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Lastnik venue-a (npr. hotelska družba)."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Lastnik/Partner"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Max. gostov"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Mesec"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Min. gostov"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Min. najem (ure)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Na osebo ali na enoto, odvisno od vrste."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Naslov"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Občina"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Od (vklj. priprava)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Opombe kuhinji (alergije, prilagoditve)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Oprema vključena"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Oseba za kontakt"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Oseba/organizacija, ki naroča dogodek."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Osebje vključeno"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Osnovna cena (EUR)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Osnovna cena paketa (brez dodatnih storitev)."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Paket"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Parkirna mesta"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Pogoji"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Posebne želje"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Posebne želje stranke"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Potrdi"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Potrjeni"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Potrjeno gostov"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Povpraševanja"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Pošlji ponudbo"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Poštna št."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Pri banketih/slovesnostih."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Prihajajoči"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Priprava/razstavljanje"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Pričakovano gostov"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Product used for invoicing."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Prosta"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Prosto besedilo - glavni alergeni."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Računi"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Rezervacije"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Rezervacije dvoran"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Skupaj"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Skupna kapaciteta vseh dvoran."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Skupne ure"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Status"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Stranka"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Tloris"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Trajanje (ure)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Ustreza za"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Valet parking vključen"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Velikost (m²)"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Venue"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Venue-i"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Vključena oprema"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Vključuje"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Vrednost cateringa"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Vrednost dvoran"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Vrsta"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Vzdrževanje"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Za gala"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Za konference"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Za poroke"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Za torte, vina - cena na enoto, ne na osebo."
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Zabeleži avans"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Začetek"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Začetek priprave"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Začni dogodek"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Čas dogodka"
+msgstr ""
+
+#: l10n_si_event_venue
+msgid "Časovni okvir (vključuje pripravo in razstavljanje)"
+msgstr ""
+

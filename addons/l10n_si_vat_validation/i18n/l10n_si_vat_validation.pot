@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_vat_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_vat_validation
+#: l10n_si_vat_validation
+msgid "l10n_si_vat_validation"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "Certificate Filename"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "Certificate Password"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "Check skipped"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "Check VAT with FURS"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "Check with FURS"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "FURS Certificate (.p12)"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "FURS check was skipped. Reason: %(reason)s"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "FURS confirms that VAT number %s is registered and active."
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "FURS Environment"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "FURS reports VAT number %(vat)s as not registered. Reason: %(reason)s"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "FURS reports VAT number %s as not registered. Reason: %s"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "Password used when exporting the .p12 file. Stored in clear — use a dedicated FURS test cert for non-production environments."
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "PKCS12 file issued by FURS for API authentication."
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "Slovenian VAT number %s failed the MOD11 checksum.\nPlease verify the number with FURS."
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "Slovenian VAT number must be in the format SI######## (8 digits).\nGot: %s"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "Slovenian VAT Validation (FURS)"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "VAT check failed"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "VAT invalid"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "VAT valid"
+msgstr ""
+
+#: l10n_si_vat_validation
+msgid "When enabled, the system validates VAT numbers against the FURS API. Requires a valid FURS certificate configured below."
+msgstr ""
+

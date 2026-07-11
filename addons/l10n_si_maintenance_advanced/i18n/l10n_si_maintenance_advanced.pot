@@ -1,0 +1,130 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_maintenance_advanced
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_maintenance_advanced
+#: l10n_si_maintenance_advanced
+msgid "l10n_si_maintenance_advanced"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Assigned technician"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Critical equipment — failure causes production stop."
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Datum nabave"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "E.g. every 2 weeks = frequency=weekly, interval=2."
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Garancija do"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Generated Requests"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Generirani zahtevki"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Izvedeni ukrepi"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Kritična oprema"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Lokacija"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Mean Time Between Failures."
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Mean Time To Repair."
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "MTBF (ure)"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "MTTR (ure)"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Nabavna vrednost (€)"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Opis dela"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Potrošni material"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Preventive Schedule"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Preventive Schedules"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Production downtime caused by this failure."
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Serijska številka"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "SI Maintenance Data"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Skupni izpadi (letno)"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Stock Move"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Strošek (€)"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Vzrok okvare"
+msgstr ""
+
+#: l10n_si_maintenance_advanced
+msgid "Čas izpada (ure)"
+msgstr ""
+

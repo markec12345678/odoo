@@ -1,0 +1,206 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_group_booking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_group_booking
+#: l10n_si_group_booking
+msgid "l10n_si_group_booking"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Agencija/Stranka"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Brezplačna soba vsakih N gostov"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Cene"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Company"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Cut-off datum"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Datumi cut-off"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Do"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Do tega datuma lahko agencija še spreminja število sob."
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Dodeljena soba (kadar znana)"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Foliji"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Glavni gost"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Ime gosta"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Ime skupine"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Interne opombe"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "npr. \"Izlet srednje šole XY\""
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "npr. 20 = vsakih 20 gostov 1 brezplačna soba."
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Ocenjeni skupni znesek"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Od"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Odjava"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Posebne zahteve"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Posebne zahteve (prevoz, diete)"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Posebne želje"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Posebne želje (npr. dve postelji)"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Potrdi"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Potrjenih sob"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Povezana rezervacija"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Pošlji ponudbo"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Prijava"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Provizija"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Provizija agencije (%)"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Rezervirano sob"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Rooming list"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Skupinska cena/noč"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Skupinske rezervacije"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Sobe"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Sprostitev neporabljenih sob"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Starosti otrok (npr. 5,8,12)"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Travel Agency"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Uporablja se kadar partner ni znan (samo ime)"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "V hotelu"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Vodja skupine"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Zabeleži avans"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Zaključi"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Še prostih za rezervacijo"
+msgstr ""
+
+#: l10n_si_group_booking
+msgid "Številka sobe"
+msgstr ""
+

@@ -1,0 +1,270 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_restaurant
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_restaurant
+#: l10n_si_restaurant
+msgid "l10n_si_restaurant"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Aktivni"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Alergeni"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Arašidi"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Company"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Danes"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Dieta"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Dnevna ponudba"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Gluten"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Gorčica"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Gost"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Gost (opcija)"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Gostje"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Izdaj račun"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Jajca"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "kanban-box"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Kategorija"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Končano"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "KOT %s nima postavk."
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "KOT (kuhinja)"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Mehkužci"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Miza"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Miza %(table)s sprejme največ %(cap)d gostov, rezervacija je za %(g)d."
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Mleko"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Natakar"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Ni prišel"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Npr. \"brez čebule\", \"dobro pečeno\""
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Odprto ob"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Opombe kuhinji"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Opombe za kuhinjo"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Oreški"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Posebne želje"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Posebne želje (alergije, ...)"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Postavke"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Postreženo"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Potrdi"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Potrjene"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Pošlji v kuhinjo"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Priprava (min)"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Pripravljeno"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Product used for invoicing. Tax + price from product."
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Prosta"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Raki"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Račun"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Restavracija (SI)"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Rezervacije miz"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Ribe"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Sedijo"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Sezam"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Soja"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Status"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Sulfiti"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Trenutni KOT"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Velja do"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Velja od"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Volčji bob"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Za muslimanske/židovske goste"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Začni pripravo"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Zelena"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Čiščenje"
+msgstr ""
+
+#: l10n_si_restaurant
+msgid "Število gostov"
+msgstr ""
+

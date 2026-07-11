@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_year_end_close
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_year_end_close
+#: l10n_si_year_end_close
+msgid "l10n_si_year_end_close"
+msgstr ""
+
+#: l10n_si_year_end_close
+msgid "Company"
+msgstr ""
+
+#: l10n_si_year_end_close
+msgid "Izračunaj"
+msgstr ""
+
+#: l10n_si_year_end_close
+msgid "Knjiži"
+msgstr ""
+
+#: l10n_si_year_end_close
+msgid "Konto izida (990)"
+msgstr ""
+
+#: l10n_si_year_end_close
+msgid "Konto zaključne knjižbe (999)"
+msgstr ""
+
+#: l10n_si_year_end_close
+msgid "Zaključi"
+msgstr ""
+
+#: l10n_si_year_end_close
+msgid "Zaključitev leta"
+msgstr ""
+
+#: l10n_si_year_end_close
+msgid "Zaključni list"
+msgstr ""
+
+#: l10n_si_year_end_close
+msgid "Čisti dobiček/izguba"
+msgstr ""
+

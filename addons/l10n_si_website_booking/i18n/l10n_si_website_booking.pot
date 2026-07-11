@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_website_booking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_website_booking
+#: l10n_si_website_booking
+msgid "l10n_si_website_booking"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Company"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Gost"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Iskanje prostih sob"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Max dni pred prihodom (0 = neomejeno)"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Max uporab"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Min dni pred prihodom"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Min. nočitev"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "npr. EARLYBIRD20, SUMMER10"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Omejitve"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Procent ali EUR glede na tip."
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Promo kode"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Rezervacija"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Rezervacija potrjena"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Spletni booking"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Uporabljeno"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Veljavno za vrste sob (prazno = vse)"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Veljavnost"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Vrednost popusta"
+msgstr ""
+
+#: l10n_si_website_booking
+msgid "Zgodovina uporabe"
+msgstr ""
+

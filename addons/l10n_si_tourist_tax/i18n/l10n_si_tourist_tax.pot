@@ -1,0 +1,198 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_tourist_tax
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_tourist_tax
+#: l10n_si_tourist_tax
+msgid "l10n_si_tourist_tax"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Account where collected tax is posted."
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Children under 7 are free."
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Company"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Dejanske nočitve"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Disabled persons (with valid card) are exempt."
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Država gosta"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Gost"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "ID dokumenta"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Ime gosta"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Invalidi oproščeni"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Izvirni dokument"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Knjigovodstvo"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Knjiži"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Konto za takso"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Max nočitev za obračun"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Maximum number of nights charged per stay. Typical: 7."
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Mesec"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Mladina 7-18 (EUR)"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Nočitve (obračunane)"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Obračunane nočitve"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Občina"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Odrasli (EUR)"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "One tour leader per 20 guests is exempt."
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Oprostitev"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Oprostitve"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Oproščeno"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Osnutki"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Otroke 0-7 (EUR)"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Označi plačano"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Postavka računa"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Prijavi občini"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Prijavljeno"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Račun"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Reduced rate for youth aged 7-18."
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "SI municipality code"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Skupaj taksa (EUR)"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Starost"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Statistika"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Status"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Taksa na noč (EUR)"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "True if guest is exempt (disabled, tour leader, etc.)."
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Turistična taksa (SI)"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Vodniki oproščeni"
+msgstr ""
+
+#: l10n_si_tourist_tax
+msgid "Za poročilo"
+msgstr ""
+

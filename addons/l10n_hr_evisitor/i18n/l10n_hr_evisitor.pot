@@ -1,0 +1,490 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_hr_evisitor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_hr_evisitor
+#: l10n_hr_evisitor
+msgid "l10n_hr_evisitor"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid " (dosegnut maksimalan broj pokušaja)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Ako je omogućeno, gosti se automatski odjavljuju nakon planiranog datuma odlaska."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Ako je omogućeno, prijave gosta u statusu „Nacrt” automatski se šalju u eViewer cron-om svakih 15 minuta."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "API je odgovorio bez checkInId: %s"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Automatska odjava gosta"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Automatska prijava gosta"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Boravišna pristojba (EUR)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Boravišna pristojba ne može biti negativna (polje: %s)."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Boravišna pristojba — djeca (EUR)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Boravišna pristojba — mladi (EUR)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Boravišna pristojba — odrasli (EUR)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Broj djece (0–11,99 g.)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Broj dokumenta"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Broj ležajeva"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Broj mladih (12–17,99 g.)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Broj noćenja"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Broj odraslih"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Broj osoba mora biti najmanje 1."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Broj osoba ne može biti negativan (polje: %s)."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Broj pokušaja"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Broj pomoćnih ležajeva"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Broj prijava"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Broj soba"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Cancel"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Datum dolaska"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Datum odlaska (planirani)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Datum odlaska ne može biti prije datuma dolaska."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Datum rođenja"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Dnevnik eVisitor"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Država"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Država adrese"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Država adrese (ISO)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Država dokumenta (ISO)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Država izdavanja dokumenta"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Državljanstvo"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Državljanstvo (ISO)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "eViewer greška (%s): %s%s"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "eVisitor checkInId"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "eVisitor korisničko ime"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "eVisitor lozinka"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "eVisitor okolina"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "EVT/??????"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Gost odjavljen u eVisitor (checkInId: %s)."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Gost prijavljen u eVisitor (checkInId: %s, boravišna pristojba ≈ %.2f EUR)."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Greška autentikacije: %s"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Greška veze: %s"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Guest Registrations"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "HR eVisitor"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "HTTP status"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "HTZ oznaka"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "HTZ oznaka ne može biti prazna."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Ime"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Interni šifra objekta (ne obavezna)."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Iznos boravišne pristojbe po odrasloj osobi po noćenju (EUR)."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Iznos boravišne pristojbe za djecu (0–11,99 g.) po noćenju (EUR). Djeca do 12 g. su oslobođena u većini općina."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Iznos boravišne pristojbe za mlade (12–17,99 g.) po noćenju (EUR)."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Izračunato lokalno na temelju konfiguriranih stopa po smještaju. Stvarni iznos potvrđuje API prilikom prijave."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Izvor rezervacije"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Jedinstvena oznaka smještaja u sustavu HTZ eVisitor."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Jedinstveni identifikator prijave u sustavu eVisitor (vraća API nakon uspješnog CheckIn-a)."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Kategorija (zvjezdice)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Korisnici koji primaju obavijesti o greškama u integraciji s eVisitor sustavom."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Korisničko ime za HTZ eVisitor API (izdano od strane TZ/HTZ)."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Koristi se pri odjavi (CheckOut); ako nije naveden, koristi se planirani datum odlaska."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Lokalna turistička zajedica kojoj objekt pripada."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Lozinka za HTZ eVisitor API."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Naselje"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Naziv"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Naziv smještajnog objekta."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Neočekivana greška: %s"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Nije moguće testirati vezu: korisničko ime ili lozinka nije konfigurirana."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Nova"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Obavijest pri grešci"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Odabir okoline za HTZ eVisitor API. Test okolina koristi iste endpointove ali pod „_test/” putanjom."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Odgovor (JSON)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Odjava nije moguća: prijava nema eVisitor checkInId."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Odjava poslana"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Okolina"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Općina/Grad"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Oznaka"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Poruka greške"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Posljednja greška"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Poštanski broj"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Prezime"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Prijava gosta"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Prijava poslana"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Prijave gosta"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Primatelji obavijesti"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Samo prijave sa statusom „Prijavljeno” mogu biti odjavljene (prijava %s ima status %s)."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Samo prijave u statusu „Greška” mogu biti vraćene u nacrt."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Slanje obavijesti korisnicima kada prijava/odjava ne uspije i ne može se automatski ponoviti."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Sljedeći pokušaj"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Smještaj"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Smještaj %s nema konfigurirano eVisitor korisničko ime/lozinku."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Spol"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Status"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Status eVisitor"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Stvarni datum odlaska"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Submit"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Svrha boravka"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Tip dokumenta"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Tip objekta"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Trajanje (ms)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Turistička zajednica"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Tvrtka"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Ulica i broj"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Veza uspješna (okolina: %s). Odgovor: %s"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Vrijeme odjave"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Vrijeme prijave"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Vrijeme slanja"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Vrsta prijevoza"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Zahtjev (JSON)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Zahtjev za odjavu je obrađen."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Zahtjev za prijavu je obrađen."
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Zemlja porijekla"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Zemlja porijekla (ISO)"
+msgstr ""
+
+#: l10n_hr_evisitor
+msgid "Šifra"
+msgstr ""
+

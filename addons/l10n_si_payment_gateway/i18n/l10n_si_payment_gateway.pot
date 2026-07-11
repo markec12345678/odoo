@@ -1,0 +1,174 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_payment_gateway
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_payment_gateway
+#: l10n_si_payment_gateway
+msgid "l10n_si_payment_gateway"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "3D Secure"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "API endpoint URL"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "API ključ"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "API poverilnice"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "API skrivnost"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "BIC (za TRR/UPN)"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Company"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Dnevnik plačil"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Fiksna provizija (EUR)"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Folio"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Generiraj plačilni link"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Gost/Stranka"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "IBAN (za TRR/UPN)"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "ID transakcije pri procesorju"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Max. znesek (EUR)"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Merchant ID"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Min. znesek (EUR)"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Napaka"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Nastavitve"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Neto znesek"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Označi neuspešno"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Plačila (SI)"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Provizija"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Provizija (%)"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Račun"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Rezervacija"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Skupno procesirano"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Statistika"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Test povezavo"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Transakcije"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "TRR/UPN"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "URL za plačilo"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Vrni"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Webhook skrivnost"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Zaključi"
+msgstr ""
+
+#: l10n_si_payment_gateway
+msgid "Zaženi"
+msgstr ""
+

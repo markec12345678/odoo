@@ -1,0 +1,326 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_hr_pdv
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_hr_pdv
+#: l10n_hr_pdv
+msgid "l10n_hr_pdv"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Broj dokumenata"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Broj dokumenta"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Broj razdoblja"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Datum"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Datum do"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Datum od"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Dokument"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Dokumenti"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Država partnera"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "ePorezna XML"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "EU isporuka"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "EU isporuke (osnovica)"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "EU nabava"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "EU nabave (osnovica)"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Generiraj XML"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Godina"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "HR PDV"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Izlazni PDV"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Izlazni PDV 13%"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Izlazni PDV 25%"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Izlazni PDV 5%"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Izračunaj"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Izračunato"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Izvještaj %s je u statusu \"Nacrt\". Kliknite \"Izračunaj\" prije generiranja XML-a."
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Knjiga PDV-a — %s"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Kvartalno"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Mjesec (1-12) ili kvartal (1-4)."
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Mjesečno"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Nacrt"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Naziv"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Obrnuti porezni teret"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Odbijeno"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Oslobođeno / izvan opsega"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Osnovica 13%"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Osnovica 25%"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Osnovica 5%"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Označi odbijeno"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Označi prihvaćeno"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Partner"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Partner OIB/VAT"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "PDV %s %s — %s"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "PDV 13%"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "PDV 25%"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "PDV 5%"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "PDV izvještaj"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "PDV izvještaji"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "PDV Q%s %s — %s"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "PDV za povrat"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "PDV za uplatu"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "PDV značajke"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Posebne kategorije"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Poslano"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Preuzmi XML"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Prihvaćeno"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Razdoblje"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Razdoblje nije ispravno postavljeno za izvještaj %s."
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Referenca prijave"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Rok predaje"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Rok prekoračen"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Smjer"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Status"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Stavke Knjige PDV-a"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Tip razdoblja"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Tvrtka"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Ukupna osnovica"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Ukupni izlazni PDV"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Ukupni PDV"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Ukupni ulazni PDV"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Ulazni PDV"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Ulazni PDV 13%"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Ulazni PDV 25%"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Ulazni PDV 5%"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Vrati u nacrt"
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "XML još nije generiran. Kliknite \"Generiraj XML\"."
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Za kvartalno izvještavanje broj razdoblja mora biti 1-4 (dano: %s)."
+msgstr ""
+
+#: l10n_hr_pdv
+msgid "Za mjesečno izvještavanje broj razdoblja mora biti 1-12 (dano: %s)."
+msgstr ""
+

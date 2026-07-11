@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_stripe_payment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_stripe_payment
+#: l10n_si_stripe_payment
+msgid "l10n_si_stripe_payment"
+msgstr ""
+
+#: l10n_si_stripe_payment
+msgid "Default Deposit Percentage"
+msgstr ""
+
+#: l10n_si_stripe_payment
+msgid "Default percentage of total booking to charge as deposit (0-100)"
+msgstr ""
+
+#: l10n_si_stripe_payment
+msgid "SI Hotel Settings"
+msgstr ""
+
+#: l10n_si_stripe_payment
+msgid "Stripe Hotel Deposit Mode"
+msgstr ""
+
+#: l10n_si_stripe_payment
+msgid "Stripe Payment Settings"
+msgstr ""
+
+#: l10n_si_stripe_payment
+msgid "When enabled, Stripe payments use pre-authorization (hold) instead of immediate capture. Useful for hotel deposits — capture at check-out."
+msgstr ""
+

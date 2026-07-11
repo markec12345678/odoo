@@ -1,0 +1,210 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_procurement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_procurement
+#: l10n_si_procurement
+msgid "l10n_si_procurement"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Aktiviraj"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Aktivna pogodba"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Artikli"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Brezplačna dostava"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Brezplačna dostava nad (EUR)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Cena na enoto (EUR)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Cene in popusti"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Company"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Doba dobave"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Doba dobave (dnevi)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Hladna veriga"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Izkušnje"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Izkušnje sodelovanja"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Kategorije (CSV)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Letni povratni popust glede na promet."
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Letni rebate (%)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Lokacija skladiščenja"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Max. zaloga"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Min. vrednost naročila (EUR)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Min. zaloga"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Nabava (SI)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Naročila"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Naročilna količina"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "npr. \"cleaning_supplies, food_dairy\""
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Pavziraj"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Plačilni pogoji"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Plačilo v (dneh)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Pogodba (PDF)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Pogodba (SI Procurement)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Pogodbe"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Pogoji"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Poletni faktor"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Popust (%)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Porabljena vrednost (EUR)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Prednostni dobavitelj"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Prekini"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Preostala vrednost (EUR)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Rok uporabe (dnevi)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Sezonska potražnja"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Sezonskost in hramba"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Standardni popust (%)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Vrednost"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Vrednost pogodbe (EUR)"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Zaloga"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Zimski faktor"
+msgstr ""
+
+#: l10n_si_procurement
+msgid "Črni seznam"
+msgstr ""
+

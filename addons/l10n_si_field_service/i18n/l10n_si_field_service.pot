@@ -1,0 +1,166 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_field_service
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_field_service
+#: l10n_si_field_service
+msgid "l10n_si_field_service"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Company"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Danes"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Datum"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Dodeli"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Generiraj račun"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "kanban-box"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Kategorija"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Kratek opis dela..."
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Material"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Naslov"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Načrtovani čas"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "npr. klima, vodovodne, elektrika"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Opravljeno"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Po delu"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Podpis stranke"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Pred delom"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Privzeta cona"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Račun"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "SI Field Service"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Slike"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Slike (po)"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Slike (pred)"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Status"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Stranka"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Strošek dela (€)"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Tehnik"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Tehnik (terenski)"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Trajanje v urah"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "V izvedbi"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Veščine (CSV)"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Vodja ekipe"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Work Orders"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Zaključi"
+msgstr ""
+
+#: l10n_si_field_service
+msgid "Začni"
+msgstr ""
+

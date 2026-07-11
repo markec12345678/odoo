@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_knowledge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_knowledge
+#: l10n_si_knowledge
+msgid "l10n_si_knowledge"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Author"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Available placeholders: {{partner.name}}, {{partner.email}}, {{user.name}}, {{date}}, {{company.name}}"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Company"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "FAQ"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "For email templates only."
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Kategorija"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Onboarding"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Parent Article"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Placeholders"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Postopki"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Povzetek"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Restavriraj"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Short TL;DR for search results."
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "SI Knowledge"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Sub-articles"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Tags"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Version history"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Versions"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Vidnost"
+msgstr ""
+
+#: l10n_si_knowledge
+msgid "Vsebina"
+msgstr ""
+

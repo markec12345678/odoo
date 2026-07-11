@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_event_accommodation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_event_accommodation
+#: l10n_si_event_accommodation
+msgid "l10n_si_event_accommodation"
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Aktiviraj"
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Blokirane sobe"
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Do tega datuma lahko goste rezervira po posebni ceni."
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Gost"
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Odjava"
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Posebne želje"
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Potrdi"
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Prijava"
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Rezervacije gostov"
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Soba %s ni v bloku."
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Sobe za dogodke"
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Special price per night for event guests."
+msgstr ""
+
+#: l10n_si_event_accommodation
+msgid "Sprosti neporabljene"
+msgstr ""
+

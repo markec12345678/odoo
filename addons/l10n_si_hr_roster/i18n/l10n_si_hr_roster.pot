@@ -1,0 +1,194 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_hr_roster
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_hr_roster
+#: l10n_si_hr_roster
+msgid "l10n_si_hr_roster"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "6.0 = 06:00. 14.5 = 14:30."
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Ciljne ure/teden"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Company"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Danes"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Datum"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Dejanski čas"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Delovne ure"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Izmena"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Izmene"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Lahko dela nočne"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Lahko dela vikende"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Max ure/teden (ZDR-1)"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Nadure"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Ni prišel"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Nočna premija (%)"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "npr. \"nedelja, torek\""
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "npr. \"recepcija, hišništvo\""
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Odmor (min)"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Opravi"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Potrdi"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Povezave"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Praznična premija (%)"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Prekrivanje izmen za %(emp)s na %(date)s (%(shift1)s in %(shift2)s)"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Premalo počitka (%(h).1fh) za %(emp)s med izmenama na %(d1)s in %(d2)s. ZDR-1 zahteva min. 11 ur."
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Premije"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Prisotnost"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Privzeta izmena"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Prosi za zamenjavo"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Razpored"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Razpored delavnikov"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Ročno označene nadure."
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "SI Razpored"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Status"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Ta teden"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Vikend premija (%)"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Zahteva za zamenjavo"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Zahtevana delovna mesta"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Zamenja z"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Zaposleni"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Začni"
+msgstr ""
+
+#: l10n_si_hr_roster
+msgid "Željeni prosti dnevi"
+msgstr ""
+

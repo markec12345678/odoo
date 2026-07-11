@@ -1,0 +1,170 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_pos_advanced
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_pos_advanced
+#: l10n_si_pos_advanced
+msgid "l10n_si_pos_advanced"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Avtomatsko dodaj turistično takso"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "DDV po stopnjah"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Do"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Dovoli plačilo na hotelski folio"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Enkratna identifikacijska oznaka računa."
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "EOR"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "FURS davčno potrjevanje"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "FURS napake"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "FURS računi"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "FURS status"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Generiraj ZOI/EOR za vsak POS račun."
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Hotelski folio"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Izračunaj"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Natisni EOR na računu"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Natisni PDF"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Natisni QR kodo"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "No session set."
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Občina za turistično takso"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Od"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "POS blagajna"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "POS seja"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Privzeta elektronska naprava"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Privzeti poslovni prostor (FURS)"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Session %s has been closed."
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Session closed"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "SI FURS Statistika"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Skupaj"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Slovenian POS Configuration"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Turistična taksa"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "X-poročilo"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Z-poročilo"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Z-poročilo (zaključi dan)"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Z-report is required to close a session."
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Zaključi sejo"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Zaščitna oznaka izdajatelja računa."
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "ZOI"
+msgstr ""
+
+#: l10n_si_pos_advanced
+msgid "Če je stranka gost hotela, se račun zaračuna na folio."
+msgstr ""
+

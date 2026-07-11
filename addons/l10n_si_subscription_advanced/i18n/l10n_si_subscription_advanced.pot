@@ -1,0 +1,130 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_subscription_advanced
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_subscription_advanced
+#: l10n_si_subscription_advanced
+msgid "l10n_si_subscription_advanced"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Aktiviraj"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Aktivne"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Avtomatska obnova"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Cena (€)"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Company"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Customer cannot cancel before N months. 0 = no commitment."
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Generiraj račun"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Generiran račun %s za obdobje od %s."
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Interval"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Invoices"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Nadaljuj"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Načrt"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Number of units between invoices (e.g. 1 month, 3 months)."
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Pavziraj"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Pregled naročnin (SI)"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Preklicane"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Product"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Račun danes"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "SI Subscriptions"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Status"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "The product that will be invoiced on each renewal."
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Trial"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Trial + Zaveza"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Trial obdobje (dnevi)"
+msgstr ""
+
+#: l10n_si_subscription_advanced
+msgid "Zavezujoča doba (mesecev)"
+msgstr ""
+

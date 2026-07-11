@@ -1,0 +1,154 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_wellness
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_wellness
+#: l10n_si_wellness
+msgid "l10n_si_wellness"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Cena"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Cena otroci 7-15"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Cena seniorji 65+"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Cena za odrasle (EUR)"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Cena študenti"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Cene"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Company"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Dnevne karte"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Gost"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Gost (opcija)"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Lokacija znotraj objekta"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Ni prišel"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Opombe (alergije, poškodbe)"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Opravi + Račun"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Otroci 0-6 (brezplačno)"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Otroci 7-15"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Označi uporabljeno"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Plačaj + Račun"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Potrdi"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Potreben terapevt"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Povezani hotelski folio (opcija)"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Prekliči"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Račun"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Rezervacije"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Skupinska"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Terapevt"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Termini"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Vloga (npr. maser, kozmetik)"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Wellness (SI)"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Začni"
+msgstr ""
+
+#: l10n_si_wellness
+msgid "Število hkratnih gostov"
+msgstr ""
+

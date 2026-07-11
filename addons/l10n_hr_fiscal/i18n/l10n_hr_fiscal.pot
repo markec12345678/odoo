@@ -1,0 +1,246 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_hr_fiscal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_hr_fiscal
+#: l10n_hr_fiscal
+msgid "l10n_hr_fiscal"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Adresa"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Automatsko slanje CISF-u"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Cannot compute ZKI without an invoice number."
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Cannot register: FINA certificate not configured."
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "CISF registration failed: %s"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "CISF UUID (oznaka_pp)"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Company"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Company %(name)s has an invalid OIB for ZKI (must be 11 digits)."
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Dnevnik fiskalizacije"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "do"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Država"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "FINA aplikativni certifikat za fiskalizaciju."
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "FINA certificate not configured on %s"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "FINA certifikat"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "FINA certifikat (.pfx)"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Fiskalizacija omogućena"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "HR Fiskalizacija"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Invoice %s has no business premise set."
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Jedinstveni identifikator računa — UUID od CISF."
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "JIR"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Konfiguracija"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Lozinka certifikata"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Naselje"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Nedjelja do"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Nedjelja od"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Obavijest pri grešci"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Okolina"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Petak do"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Petak od"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Ponedjeljak do"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Ponedjeljak od"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Poslovni prostor"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Poslovni prostori"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Poštanski broj"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Premise %s registered with CISF."
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Premise code cannot be empty."
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Primatelji obavijesti"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "QR kod"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "QR kod za provjeru računa na Poreznoj upravi."
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Radno vrijeme"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Račun"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Re-submission queued."
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Registriraj kod CISF-a"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Srijeda do"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Srijeda od"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Status fiskalizacije"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Submitted"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Subota do"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Subota od"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Ulica i broj"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Utorak do"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Utorak od"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Zaštitni kod izdavatelja računa — MD5 hex (32 chars)."
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "ZKI"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Četvrtak do"
+msgstr ""
+
+#: l10n_hr_fiscal
+msgid "Četvrtak od"
+msgstr ""
+

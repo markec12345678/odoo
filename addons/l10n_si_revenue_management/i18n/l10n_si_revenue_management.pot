@@ -1,0 +1,254 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_revenue_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_revenue_management
+#: l10n_si_revenue_management
+msgid "l10n_si_revenue_management"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "0 = uporabi izračunano ceno."
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "0 = uporabi privzeto iz rate plan"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "14+ nočitev faktor"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "7+ nočitev faktor"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Cenovni koledar"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Cenovni načrt"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Cenovni načrti"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Company"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "CTA datumi (CSV)"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Dan v tednu"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Datumi, ko je zaprto za prihod. Format: 2025-12-24,2025-12-31"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Dejanska zasedenost (%)"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Delavnik faktor"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Early-bird"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Early-bird faktor"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Early-bird prag (dnevi)"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Izračunana cena (EUR)"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Končna cena"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Last-minute"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Last-minute / Early-bird"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Last-minute faktor"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Last-minute prag (dnevi)"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Length of stay"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Max. nočitev"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Mesec"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Min. nočitev"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Napoved zasedenosti"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Napovedana zasedenost (%)"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Naslednjih 30 dni"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Naslednjih 7 dni"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Nedelja"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Objavi"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Odklon (%)"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Omejitve"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Omejitve za ta dan"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Osnovna cena (BAR)"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Petek"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Potrjene rezervacije"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Prelivna faktor"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Preračunaj"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Revenue Management"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Ročno nastavljena cena (EUR)"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Sezonski faktorji"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Sobota"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Status"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Tentative rezervacije"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Visoka sezona"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Vrhunec (prazniki)"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Zapri"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Zaprto za odhod"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Zaprto za prihod"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Zasedenost"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Zasedenost 0-30% faktor"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Zasedenost 31-60% faktor"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Zasedenost 61-85% faktor"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Zasedenost 86-100% faktor"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Zasedenost ob izračunu (%)"
+msgstr ""
+
+#: l10n_si_revenue_management
+msgid "Zima faktor"
+msgstr ""
+

@@ -1,0 +1,202 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_helpdesk_simple
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_helpdesk_simple
+#: l10n_si_helpdesk_simple
+msgid "l10n_si_helpdesk_simple"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Alias"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Assigned to"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Canned Responses"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Closing Stage"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Company"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Customer"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Default Stage"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Description"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Ekipa"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Faza"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Folded in Kanban"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Folded stages are collapsed in the kanban view."
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Helpdesk Ticket"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Incoming email alias"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "kanban-box"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Members"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "My SI Helpdesk Ticket"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "My SI Helpdesk Tickets"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "New tickets start in this stage."
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Nujni"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Number"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Odprti"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Open Tickets"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Opis"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Portal My Home: SI Helpdesk"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Prioriteta"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Round-robin auto-assign new tickets to team members."
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Samodejna dodelitev"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "SI Helpdesk"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "SLA odgovor (ure)"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "SLA presežen"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "SLA rešitev (ure)"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Stages"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Subject"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Subject..."
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Tags"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Team Leader"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Teams"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Telo odgovora"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Tickets created automatically from emails sent to this alias."
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Tickets in this stage are considered closed."
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Time to first response. ZVPot requires 8 days for reclamations."
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Time to resolve the ticket."
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Timesheets"
+msgstr ""
+
+#: l10n_si_helpdesk_simple
+msgid "Zadolženi"
+msgstr ""
+

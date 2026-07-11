@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_data_protection
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_data_protection
+#: l10n_si_data_protection
+msgid "l10n_si_data_protection"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Company"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Datum, do katerega lahko hranimo podatke."
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "GDPR"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "GDPR (SI)"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "GDPR soglasja"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "GDPR zahteva odgovor v 30 dneh."
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "GDPR zahteve"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Hramba do"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Opis zahteve"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Opombe"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Opravi"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Podatki izbrisani (GDPR člen 17)"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Rešitev"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Soglasja"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Stranka"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Umakni soglasje"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Veljavnost do"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Zahteve"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Zavrni"
+msgstr ""
+
+#: l10n_si_data_protection
+msgid "Začni obravnavo"
+msgstr ""
+

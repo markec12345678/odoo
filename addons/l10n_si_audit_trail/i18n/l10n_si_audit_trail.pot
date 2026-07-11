@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	l10n_si_audit_trail
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 10:00:00+0000\n"
+"PO-Revision-Date: 2026-07-11 10:00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_si_audit_trail
+#: l10n_si_audit_trail
+msgid "l10n_si_audit_trail"
+msgstr ""
+
+#: l10n_si_audit_trail
+msgid "Audit Trail"
+msgstr ""
+
+#: l10n_si_audit_trail
+msgid "Company"
+msgstr ""
+
+#: l10n_si_audit_trail
+msgid "ID zapisa"
+msgstr ""
+
+#: l10n_si_audit_trail
+msgid "Ime zapisa"
+msgstr ""
+
+#: l10n_si_audit_trail
+msgid "Model"
+msgstr ""
+
+#: l10n_si_audit_trail
+msgid "Nova vrednost"
+msgstr ""
+
+#: l10n_si_audit_trail
+msgid "Polje"
+msgstr ""
+
+#: l10n_si_audit_trail
+msgid "Stara vrednost"
+msgstr ""
+
+#: l10n_si_audit_trail
+msgid "Uporabnik"
+msgstr ""
+
