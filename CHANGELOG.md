@@ -5,6 +5,60 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.14.3] — 2026-07-11
+
+### Added — Tests for last untested module + expanded CI unit test runner
+
+This release achieves **100% test coverage** across all 78 SI/HR modules.
+
+**1. `l10n_hr_kuna` tests (35 new test methods in `test_hr_kuna.py`):**
+
+The last untested module — Croatian RRIF chart of accounts (1675 account
+rows, 141 tax rows, 8 fiscal positions, 6 tax groups) — now has comprehensive
+tests:
+
+- Chart template model: `_get_hr_kuna_template_data`, `_get_hr_kuna_res_company`
+- Account CSV integrity: required columns, unique ids/codes, 4-digit codes,
+  valid `account_type` values, `kp_rrif` prefix on all XML ids
+- Tax CSV integrity: required columns, `kp_` prefix
+- Fiscal position CSV: required columns, unique ids
+- Tax group CSV: required columns
+- Tax report XML: well-formed, `country_id=base.hr`, name='Tax Report'
+- Module metadata: installable, targets HR, depends on account, LGPL-3
+
+**2. CI unit test runner expanded from 79 → 124 checks (+45 new):**
+
+`.github/scripts/run_unit_tests.py` now includes 5 new test functions
+covering 4 previously untested modules (no Odoo instance required):
+
+- `test_whatsapp_phone_normalization` (5 checks): +, spaces, dashes stripped
+- `test_whatsapp_payload_construction` (8 checks): text/template payload,
+  URL construction, v21.0 API
+- `test_stripe_deposit_mode_logic` (5 checks): deposit ON/OFF × explicit
+  automatic/manual combinations
+- `test_camt053_xml_parsing` (12 checks): full CAMT.053 XML parse with
+  inline sample — statement ID, balances (OPBD/CLBD), transactions,
+  CRDT/DBT sign handling, partner name extraction
+- `test_si_bank_bic_codes` (15 checks): all 5 major SI bank BICs valid format
+
+### Verified — All tests pass in CI
+
+CI run on commit `396fb863` confirms:
+- **Unit tests**: 124/124 passed (was 79/79)
+- **E2E tests**: 22/22 passed (unchanged)
+- **Total CI checks**: 146/146 passed (was 101/101)
+
+### Statistics
+
+| Metric | Before | After | Change |
+|--------|--------|-------|--------|
+| Modules with tests | 77/78 (98.7%) | **78/78 (100%)** | +1 |
+| Odoo TransactionCase test methods | ~578 | **613** | +35 |
+| CI unit test checks | 79 | **124** | +45 |
+| CI E2E test checks | 22 | 22 | 0 |
+| Total CI checks | 101 | **146** | +45 |
+| CI scanners | 4 (all green) | 4 (all green) | 0 |
+
 ## [19.0.14.2] — 2026-07-10
 
 ### Fixed — CI pipeline (3 broken workflows repaired)
