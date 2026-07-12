@@ -1,0 +1,371 @@
+openapi: 3.0.3
+info:
+  title: SI/HR Tourism Suite — Public API
+  description: |
+    REST API for the Odoo 19 SI/HR Tourism Suite.
+
+    ## Authentication
+
+    All endpoints are public (no authentication required) unless marked
+    otherwise. The AI Concierge and Chatbot Widget endpoints use Odoo's
+    public authentication (`auth='public'`).
+
+    ## Rate Limiting
+
+    No rate limiting is enforced by the application. Railway's load
+    balancer handles connection limits.
+
+    ## Modules Covered
+
+    - **l10n_si_ai_concierge** — AI Concierge chatbot (6 LLM backends)
+    - **l10n_si_chatbot_widget** — Website chat widget
+    - **l10n_si_whatsapp_business** — WhatsApp Business Cloud API webhook
+
+  version: 19.0.14.3
+  contact:
+    name: markec12345678
+    url: https://github.com/markec12345678/odoo
+  license:
+    name: LGPL-3.0
+    url: https://www.gnu.org/licenses/lgpl-3.0.html
+
+servers:
+  - url: https://odoo-production-fa42.up.railway.app
+    description: Railway production
+  - url: http://localhost:8069
+    description: Local development
+
+tags:
+  - name: AI Concierge
+    description: AI-powered guest assistant chatbot
+  - name: Chatbot Widget
+    description: Website floating chat widget
+  - name: WhatsApp Webhook
+    description: Meta WhatsApp Business Cloud API webhook receiver
+
+paths:
+  # ==========================================================================
+  # AI Concierge
+  # ==========================================================================
+  /ai-concierge/chat:
+    post:
+      tags: [AI Concierge]
+      summary: Send message to AI Concierge
+      description: |
+        Sends a guest message to the AI Concierge and returns the AI response.
+        Creates a new conversation if no `conversation_id` is provided.
+
+        **Rule-based fallback**: If no AI API key is configured, the
+        concierge uses a rule-based fallback that handles common queries
+        (WiFi password, breakfast hours, check-in/out times, wellness
+        hours, escalation to reception).
+      operationId: aiConciergeChat
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+                  description: Guest's message (max 1000 characters)
+                  example: "Kakšno je WiFi geslo?"
+                  maxLength: 1000
+                conversation_id:
+                  type: integer
+                  description: Existing conversation ID (omit to start new)
+                  example: 42
+                guest_name:
+                  type: string
+                  description: Guest name (defaults to "Anonimni gost")
+                  example: "Janez Novak"
+                guest_email:
+                  type: string
+                  format: email
+                  description: Guest email (used to find/create res.partner)
+                  example: "janez@example.com"
+      responses:
+        '200':
+          description: AI response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversation_id:
+                    type: integer
+                    description: Conversation ID (use for follow-up messages)
+                  response:
+                    type: string
+                    description: AI response text
+                    example: "Geslo za WiFi je: Gost2025. Omrežje: Hotel_Guest_WiFi."
+        '400':
+          description: Bad request (empty message)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /ai-concierge/history/{conversation_id}:
+    get:
+      tags: [AI Concierge]
+      summary: Get conversation history
+      description: Retrieves all messages from a specific conversation.
+      operationId: aiConciergeHistory
+      parameters:
+        - name: conversation_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Conversation ID
+          example: 42
+      responses:
+        '200':
+          description: Conversation history
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversation_id:
+                    type: integer
+                  state:
+                    type: string
+                    enum: [active, ended, escalated]
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        role:
+                          type: string
+                          enum: [user, assistant, system, human]
+                        content:
+                          type: string
+                        timestamp:
+                          type: string
+                          format: date-time
+        '404':
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ==========================================================================
+  # Chatbot Widget
+  # ==========================================================================
+  /chatbot/send:
+    post:
+      tags: [Chatbot Widget]
+      summary: Send message via website chat widget
+      description: |
+        AJAX endpoint for the floating chat widget on the website.
+        Validates message length (max 1000 chars), finds active AI
+        Concierge config with `enabled_website=True`, creates a
+        conversation, and returns the AI response.
+
+        **Input validation**:
+        - Message must not be empty
+        - Message must not exceed 1000 characters
+      operationId: chatbotSend
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+                  maxLength: 1000
+                  example: "Kdaj je zajtrk?"
+      responses:
+        '200':
+          description: Chatbot response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  response:
+                    type: string
+                  conversation_id:
+                    type: integer
+                  error:
+                    type: string
+                    description: Present only if success=false
+
+  /chatbot/history:
+    post:
+      tags: [Chatbot Widget]
+      summary: Get chatbot conversation history
+      description: Retrieves conversation history for the website widget.
+      operationId: chatbotHistory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [conversation_id]
+              properties:
+                conversation_id:
+                  type: integer
+      responses:
+        '200':
+          description: Conversation history
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        role:
+                          type: string
+                        content:
+                          type: string
+
+  # ==========================================================================
+  # WhatsApp Business Webhook
+  # ==========================================================================
+  /whatsapp/webhook:
+    get:
+      tags: [WhatsApp Webhook]
+      summary: Verify webhook (Meta verification)
+      description: |
+        Meta sends a GET request to verify the webhook URL during
+        setup. The endpoint checks the `hub.verify_token` parameter
+        against the company's `wa_verify_token` field and returns
+        the `hub.challenge` value if matched.
+      operationId: whatsappVerifyWebhook
+      parameters:
+        - name: hub.mode
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [subscribe]
+        - name: hub.verify_token
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Token matching company's `wa_verify_token`
+        - name: hub.challenge
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Challenge string to echo back
+      responses:
+        '200':
+          description: Verification successful (echoes challenge)
+          content:
+            text/plain:
+              schema:
+                type: string
+        '403':
+          description: Verification failed (token mismatch)
+
+    post:
+      tags: [WhatsApp Webhook]
+      summary: Receive webhook (status updates + incoming messages)
+      description: |
+        Meta sends POST requests for two event types:
+
+        1. **Status updates**: When a sent message is delivered or read,
+           Meta sends a `statuses` array. The endpoint updates the
+           corresponding `l10n_si.whatsapp.message` record's state.
+
+        2. **Incoming messages**: When a guest replies, Meta sends a
+           `messages` array. The endpoint creates a new
+           `l10n_si.whatsapp.message` record with `direction=incoming`.
+      operationId: whatsappReceiveWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Meta WhatsApp Cloud API webhook payload
+              properties:
+                entry:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            value:
+                              type: object
+                              properties:
+                                statuses:
+                                  type: array
+                                  description: Status updates for sent messages
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        description: WhatsApp message ID
+                                      status:
+                                        type: string
+                                        enum: [sent, delivered, read, failed]
+                                messages:
+                                  type: array
+                                  description: Incoming messages from guests
+                                  items:
+                                    type: object
+                                    properties:
+                                      from:
+                                        type: string
+                                        description: Sender phone number
+                                      text:
+                                        type: object
+                                        properties:
+                                          body:
+                                            type: string
+                                      id:
+                                        type: string
+                                        description: WhatsApp message ID
+      responses:
+        '200':
+          description: Webhook received successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Empty message"

@@ -81,6 +81,7 @@ class HealthCheckController(http.Controller):
             'checks': checks,
             'version': self._get_odoo_version(),
             'database': self._get_db_name(),
+            'api_docs': '/api/docs',
         }
 
         status_code = 200 if overall_status != 'down' else 503
