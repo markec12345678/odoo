@@ -3,17 +3,77 @@
     <record id="view_l10n_si_audit_tree" model="ir.ui.view">
         <field name="name">l10n_si.audit.trail.tree</field>
         <field name="model">l10n_si.audit.trail</field>
-        <field name="arch" type="xml"><list><field name="create_date"/><field name="user_id"/><field name="model_name"/><field name="record_name"/><field name="field_name"/><field name="action_type"/></list></field>
+        <field name="arch" type="xml">
+            <list decoration-info="action_type == 'create'"
+                  decoration-warning="action_type == 'write'"
+                  decoration-danger="action_type == 'unlink'">
+                <field name="create_date"/>
+                <field name="user_id"/>
+                <field name="model_name"/>
+                <field name="record_name"/>
+                <field name="action_type"/>
+                <field name="field_name"/>
+                <field name="ip_address"/>
+            </list>
+        </field>
     </record>
+
     <record id="view_l10n_si_audit_form" model="ir.ui.view">
         <field name="name">l10n_si.audit.trail.form</field>
         <field name="model">l10n_si.audit.trail</field>
-        <field name="arch" type="xml"><form><sheet><group><group><field name="user_id"/><field name="model_name"/><field name="record_id"/><field name="record_name"/><field name="action_type"/></group><group><field name="field_name"/><field name="old_value"/><field name="new_value"/><field name="ip_address"/></group></group></sheet></form></field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="model_name"/>
+                            <field name="record_id"/>
+                            <field name="record_name"/>
+                            <field name="action_type"/>
+                        </group>
+                        <group>
+                            <field name="field_name"/>
+                            <field name="old_value"/>
+                            <field name="new_value"/>
+                            <field name="ip_address"/>
+                            <field name="create_date"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
     </record>
+
+    <record id="view_l10n_si_audit_search" model="ir.ui.view">
+        <field name="name">l10n_si.audit.trail.search</field>
+        <field name="model">l10n_si.audit.trail</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="model_name"/>
+                <field name="record_name"/>
+                <field name="user_id"/>
+                <field name="ip_address"/>
+                <filter name="filter_create" string="Ustvarjeno" domain="[('action_type', '=', 'create')]"/>
+                <filter name="filter_write" string="Spremenjeno" domain="[('action_type', '=', 'write')]"/>
+                <filter name="filter_unlink" string="Izbrisano" domain="[('action_type', '=', 'unlink')]"/>
+                <separator/>
+                <filter name="filter_today" string="Danes" domain="[('create_date', '>=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                <filter name="filter_week" string="Ta teden" domain="[('create_date', '>=', (context_today() - relativedelta(weeks=1)).strftime('%Y-%m-%d 00:00:00'))]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_model" string="Model" context="{'group_by': 'model_name'}"/>
+                    <filter name="group_user" string="Uporabnik" context="{'group_by': 'user_id'}"/>
+                    <filter name="group_action" string="Akcija" context="{'group_by': 'action_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="action_l10n_si_audit" model="ir.actions.act_window">
         <field name="name">Audit Trail</field>
         <field name="res_model">l10n_si.audit.trail</field>
         <field name="view_mode">list,form</field>
     </record>
+
     <menuitem id="menu_l10n_si_audit" name="Audit Trail" parent="base.menu_administration" sequence="200" action="action_l10n_si_audit"/>
 </odoo>
