@@ -131,9 +131,18 @@ jobs:
           print('✅ All Python files valid')
           "
 
-      - name: Run ruff linter
+      - name: Run ruff linter (critical errors)
         run: |
+          # E9 = syntax errors, F63 = invalid print, F7 = unused imports,
+          # F82 = undefined names — these are always bugs
           ruff check addons/l10n_si_*/ addons/l10n_hr_*/ --select E9,F63,F7,F82 --exit-zero
+
+      - name: Run ruff linter (style warnings — informational)
+        run: |
+          # Extended rules: E = pycodestyle errors, W = warnings,
+          # F = pyflakes, I = isort. Does NOT block CI.
+          ruff check addons/l10n_si_*/ addons/l10n_hr_*/ --select E,W,F,I --exit-zero 2>&1 | tee ruff-style.txt || true
+          echo "Style warnings are informational — see ruff-style.txt for details"
 
       - name: Upload scan results
         if: always()
