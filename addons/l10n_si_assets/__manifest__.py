@@ -2,7 +2,7 @@
 {
     'name': 'Slovenian Fixed Assets',
     'summary': 'Osnovna sredstva z SI amortizacijo (linearna/degresivna per ZDD-1)',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Accounting/Localizations',
     'description': "Slovenian fixed assets: linear/declining depreciation per ZDD-1, asset categories, disposal, revaluation.",
     'author': 'markec12345678',

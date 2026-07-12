@@ -63,18 +63,20 @@ class L10nSiDashboard(models.Model):
         for d in self:
             rooms = self.env['l10n_si.hotel.room'].search([('active', '=', True)])
             d.total_rooms = len(rooms)
-            # Occupied rooms: from folios that overlap with period
-            occupied_count = 0
-            for room in rooms:
-                # Check if room was occupied at any point in period
+            # Occupied rooms: single search for ALL rooms' reservations in period
+            # (was N+1: one search per room — fixed to 1 query for all rooms)
+            if rooms and d.date_from and d.date_to:
                 reservations = self.env['l10n_si.hotel.reservation'].search([
-                    ('room_id', '=', room.id),
+                    ('room_id', 'in', rooms.ids),
                     ('state', 'in', ['confirmed', 'checked_in', 'checked_out']),
                     ('check_in', '<=', d.date_to.strftime('%Y-%m-%d 23:59:59')),
                     ('check_out', '>=', d.date_from.strftime('%Y-%m-%d 00:00:00')),
                 ])
-                if reservations:
-                    occupied_count += 1
+                # Count distinct room_ids that have at least one reservation
+                occupied_room_ids = set(reservations.mapped('room_id.id'))
+                occupied_count = len(occupied_room_ids)
+            else:
+                occupied_count = 0
             d.occupied_rooms = occupied_count
             d.available_rooms = d.total_rooms - occupied_count
             d.occupancy_percent = (occupied_count / d.total_rooms * 100) if d.total_rooms else 0.0

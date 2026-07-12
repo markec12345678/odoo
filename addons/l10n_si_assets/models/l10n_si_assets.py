@@ -105,18 +105,29 @@ class L10nSiAsset(models.Model):
         """Generate monthly depreciation entries."""
         from datetime import date
         today = date.today()
-        for asset in self.filtered(lambda a: a.state == 'active'):
-            existing = self.env['l10n_si.asset.depreciation.line'].search([
-                ('asset_id', '=', asset.id),
-                ('date', '=', today.replace(day=1).strftime('%Y-%m-%d')),
-            ])
-            if not existing and asset.monthly_depreciation > 0:
-                self.env['l10n_si.asset.depreciation.line'].create({
-                    'asset_id': asset.id,
-                    'date': today.replace(day=1),
-                    'amount': asset.monthly_depreciation,
-                    'depreciation_type': 'monthly',
-                })
+        first_of_month = today.replace(day=1)
+        active_assets = self.filtered(lambda a: a.state == 'active' and a.monthly_depreciation > 0)
+        if not active_assets:
+            return
+        # Single search for ALL existing depreciation lines this month
+        # (was N+1: one search per asset — fixed to 1 query for all assets)
+        existing_asset_ids = self.env['l10n_si.asset.depreciation.line'].search([
+            ('asset_id', 'in', active_assets.ids),
+            ('date', '=', first_of_month),
+        ]).mapped('asset_id.id')
+        # Create depreciation lines for assets that don't have one yet
+        vals_list = [
+            {
+                'asset_id': asset.id,
+                'date': first_of_month,
+                'amount': asset.monthly_depreciation,
+                'depreciation_type': 'monthly',
+            }
+            for asset in active_assets
+            if asset.id not in existing_asset_ids
+        ]
+        if vals_list:
+            self.env['l10n_si.asset.depreciation.line'].create(vals_list)
 
 
 class L10nSiAssetDepreciationLine(models.Model):

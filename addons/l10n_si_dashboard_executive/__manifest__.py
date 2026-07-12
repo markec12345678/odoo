@@ -2,7 +2,7 @@
 {
     'name': 'Slovenian Executive Dashboard',
     'summary': 'KPI nadzorna plošča za vodstvo - ADR, RevPAR, zasedenost, prihodek',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.1.0',
     'category': 'Hotel Management',
     'description': """
 Slovenian Executive Dashboard

@@ -79,18 +79,24 @@ class L10nSiMarketingCampaign(models.Model):
         for camp in self:
             domain = safe_eval(camp.domain or '[]')
             partners = self.env['res.partner'].search(domain)
-            for partner in partners:
-                if not partner.email:
-                    continue
-                existing = self.env['l10n_si.marketing.campaign.participant'].search([
-                    ('campaign_id', '=', camp.id),
-                    ('partner_id', '=', partner.id),
-                ])
-                if not existing:
-                    self.env['l10n_si.marketing.campaign.participant'].create({
-                        'campaign_id': camp.id,
-                        'partner_id': partner.id,
-                    })
+            # Filter out partners without email (no N+1 — uses prefetch)
+            partners_with_email = partners.filtered('email')
+            if not partners_with_email:
+                continue
+            # Single search for ALL existing participants (was N+1: one
+            # search per partner — fixed to 1 query for all partners)
+            existing_partners = self.env['l10n_si.marketing.campaign.participant'].search([
+                ('campaign_id', '=', camp.id),
+                ('partner_id', 'in', partners_with_email.ids),
+            ]).mapped('partner_id')
+            # Create participants for partners not yet in campaign
+            new_partners = partners_with_email - existing_partners
+            vals_list = [
+                {'campaign_id': camp.id, 'partner_id': p.id}
+                for p in new_partners
+            ]
+            if vals_list:
+                self.env['l10n_si.marketing.campaign.participant'].create(vals_list)
 
     @api.model
     def _cron_process_campaigns(self):
