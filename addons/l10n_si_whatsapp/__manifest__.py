@@ -2,7 +2,7 @@
 {
     'name': 'Slovenian WhatsApp Integration',
     'summary': 'Send WhatsApp messages to customers + receive replies — replaces Enterprise WhatsApp',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Discuss/WhatsApp',
     'description': """
 Slovenian WhatsApp Integration

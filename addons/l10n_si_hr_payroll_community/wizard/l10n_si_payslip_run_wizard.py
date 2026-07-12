@@ -34,13 +34,21 @@ class L10nSiPayslipRunWizard(models.TransientModel):
             ('active', '=', True),
         ])
 
+        # Batch-search all contracts for all employees at once (avoids N+1)
+        all_contracts = self.env['l10n_si.hr.contract'].search([
+            ('employee_id', 'in', employees.ids),
+            ('state', '=', 'open'),
+            ('date_start', '<=', date_to),
+            '|', ('date_end', '=', False), ('date_end', '>=', date_from),
+        ])
+        # Build a dict: employee_id -> contract (take first if multiple)
+        contracts_by_emp = {}
+        for contract in all_contracts:
+            if contract.employee_id.id not in contracts_by_emp:
+                contracts_by_emp[contract.employee_id.id] = contract
+
         for emp in employees:
-            contract = self.env['l10n_si.hr.contract'].search([
-                ('employee_id', '=', emp.id),
-                ('state', '=', 'open'),
-                ('date_start', '<=', date_to),
-                '|', ('date_end', '=', False), ('date_end', '>=', date_from),
-            ], limit=1)
+            contract = contracts_by_emp.get(emp.id)
             if not contract:
                 continue
             # Default bruto from contract wage

@@ -72,6 +72,21 @@ jobs:
           fi
           echo "✅ No security issues found"
 
+      - name: Scan for N+1 query patterns (informational)
+        run: |
+          python scripts/scan_n_plus_1.py addons/l10n_si_* addons/l10n_hr_* 2>&1 | tee nplus1-results.txt
+          exit_code=${PIPESTATUS[0]}
+          if [ $exit_code -ne 0 ]; then
+            echo "⚠️  N+1 query patterns found (informational — does not block CI):"
+            cat nplus1-results.txt
+            echo ""
+            echo "Note: Some N+1 patterns are intentional (e.g. external API calls"
+            echo "that don't support batch queries, like MojEracun per-document"
+            echo "fiscalization status checks)."
+          else
+            echo "✅ No N+1 query patterns found"
+          fi
+
       - name: Validate XML well-formedness
         run: |
           python -c "
@@ -130,3 +145,4 @@ jobs:
             chatter-results.txt
             secrets-results.txt
             security-results.txt
+            nplus1-results.txt

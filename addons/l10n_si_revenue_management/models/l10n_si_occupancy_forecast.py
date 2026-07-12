@@ -68,18 +68,18 @@ class L10nSiOccupancyForecast(models.Model):
             ])
             f.total_rooms = total
 
-            # Confirmed bookings for this date
-            confirmed = 0
-            for room in self.env['l10n_si.hotel.room'].search([('active', '=', True)]):
-                overlapping = self.env['l10n_si.hotel.reservation'].search_count([
-                    ('room_id', '=', room.id),
-                    ('state', 'in', ['confirmed', 'checked_in']),
-                    ('check_in', '<=', f.date.strftime('%Y-%m-%d 23:59:59')),
-                    ('check_out', '>', f.date.strftime('%Y-%m-%d 00:00:00')),
-                ])
-                if overlapping:
-                    confirmed += 1
-            f.confirmed_bookings = confirmed
+            # Batch-search all overlapping reservations for all active rooms
+            # at once (avoids N+1 — was 1 search per room)
+            active_rooms = self.env['l10n_si.hotel.room'].search([('active', '=', True)])
+            all_overlapping = self.env['l10n_si.hotel.reservation'].search([
+                ('room_id', 'in', active_rooms.ids),
+                ('state', 'in', ['confirmed', 'checked_in']),
+                ('check_in', '<=', f.date.strftime('%Y-%m-%d 23:59:59')),
+                ('check_out', '>', f.date.strftime('%Y-%m-%d 00:00:00')),
+            ])
+            # Count distinct rooms with overlapping reservations
+            occupied_room_ids = set(all_overlapping.mapped('room_id.id'))
+            f.confirmed_bookings = len(occupied_room_ids)
             # Add historical bump (typically +15% last-minute bookings)
-            forecasted = min(confirmed * 1.15, total) if total else 0
+            forecasted = min(f.confirmed_bookings * 1.15, total) if total else 0
             f.forecasted_occupancy = (forecasted / total * 100) if total else 0

@@ -130,6 +130,9 @@ class L10nSiWhatsappMessage(models.Model):
     def receive_incoming(self, payload):
         """Process an incoming webhook payload from WhatsApp Cloud API."""
         try:
+            # First pass: collect all messages and phone numbers (avoids N+1)
+            messages_to_create = []
+            all_phones = []
             for entry in payload.get('entry', []):
                 for change in entry.get('changes', []):
                     value = change.get('value', {})
@@ -138,17 +141,36 @@ class L10nSiWhatsappMessage(models.Model):
                     for msg_data in value['messages']:
                         phone = msg_data.get('from', '')
                         text = msg_data.get('text', {}).get('body', '')
-                        partner = self.env['res.partner'].search([
-                            '|', ('mobile', 'like', phone),
-                            ('phone', 'like', phone),
-                        ], limit=1)
-                        self.create({
-                            'partner_id': partner.id if partner else False,
+                        messages_to_create.append({
                             'phone': phone,
-                            'direction': 'incoming',
-                            'body': text,
-                            'state': 'received',
+                            'text': text,
                             'message_id': msg_data.get('id', ''),
                         })
+                        if phone:
+                            all_phones.append(phone)
+
+            # Batch-search all partners matching any of the phone numbers
+            partners_by_phone = {}
+            if all_phones:
+                partners = self.env['res.partner'].search([
+                    '|', ('mobile', 'in', all_phones),
+                    ('phone', 'in', all_phones),
+                ])
+                for partner in partners:
+                    for phone_field in ('mobile', 'phone'):
+                        val = getattr(partner, phone_field, '')
+                        if val and val in all_phones:
+                            partners_by_phone.setdefault(val, partner.id)
+
+            # Second pass: create messages using the pre-fetched partner mapping
+            for msg in messages_to_create:
+                self.create({
+                    'partner_id': partners_by_phone.get(msg['phone'], False),
+                    'phone': msg['phone'],
+                    'direction': 'incoming',
+                    'body': msg['text'],
+                    'state': 'received',
+                    'message_id': msg['message_id'],
+                })
         except Exception as e:  # noqa: BLE001
             _logger.warning('WhatsApp incoming payload failed: %s', e)
