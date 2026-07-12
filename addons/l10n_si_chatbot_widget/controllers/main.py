@@ -4,14 +4,58 @@ import json
 import logging
 from odoo import http
 from odoo.http import request
+from odoo.exceptions import AccessDenied
 
 _logger = logging.getLogger(__name__)
+
+# Default rate limit: 10 requests per minute per IP
+DEFAULT_RATE_LIMIT = 10
+DEFAULT_RATE_WINDOW = 60
+
+
+def _check_rate_limit(endpoint):
+    """Check rate limit for the current request."""
+    RateLimitLog = request.env.get('l10n_si.rate.limit.log')
+    if not RateLimitLog:
+        return (True, -1)
+
+    ip = RateLimitLog.get_client_ip(request)
+
+    RateLimitConfig = request.env.get('l10n_si.rate.limit.config')
+    if RateLimitConfig:
+        config = RateLimitConfig.sudo().get_config_for_endpoint(endpoint)
+        if config:
+            if ip in config['whitelisted_ips']:
+                return (True, -1)
+            max_req = config['max_requests']
+            window = config['window_seconds']
+        else:
+            max_req = DEFAULT_RATE_LIMIT
+            window = DEFAULT_RATE_WINDOW
+    else:
+        max_req = DEFAULT_RATE_LIMIT
+        window = DEFAULT_RATE_WINDOW
+
+    allowed, remaining, retry_after = RateLimitLog.sudo().check_rate_limit(
+        endpoint, ip, max_req, window
+    )
+    if not allowed:
+        _logger.warning('Rate limit exceeded for %s on %s', ip, endpoint)
+        raise AccessDenied('Rate limit exceeded')
+    return (allowed, remaining)
 
 
 class ChatbotController(http.Controller):
     @http.route('/chatbot/send', type='json', auth='public', website=True)
     def send_message(self, message, **kwargs):
         """Prejme sporočilo od spletnega widgeta, vrne AI odgovor."""
+        # Rate limiting
+        try:
+            _check_rate_limit('/chatbot/send')
+        except AccessDenied:
+            return {'error': 'Preveč sporočil. Poskusite kasneje.',
+                    'error_en': 'Too many requests. Please try again later.'}
+
         if not message or len(message) > 1000:
             return {'error': 'Sporočilo je predolgo ali prazno.'}
         

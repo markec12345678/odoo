@@ -5,8 +5,55 @@ import logging
 
 from odoo import http
 from odoo.http import request
+from odoo.exceptions import AccessDenied
 
 _logger = logging.getLogger(__name__)
+
+# Default rate limit: 10 requests per minute per IP
+DEFAULT_RATE_LIMIT = 10
+DEFAULT_RATE_WINDOW = 60  # seconds
+
+
+def _check_rate_limit(endpoint):
+    """Check rate limit for the current request.
+
+    Raises AccessDenied if rate limit exceeded.
+    Returns (allowed, remaining) tuple.
+    """
+    RateLimitLog = request.env.get('l10n_si.rate.limit.log')
+    if not RateLimitLog:
+        # Rate limit module not installed — allow
+        return (True, -1)
+
+    ip = RateLimitLog.get_client_ip(request)
+
+    # Check if config exists for this endpoint
+    RateLimitConfig = request.env.get('l10n_si.rate.limit.config')
+    if RateLimitConfig:
+        config = RateLimitConfig.sudo().get_config_for_endpoint(endpoint)
+        if config:
+            if ip in config['whitelisted_ips']:
+                return (True, -1)
+            max_req = config['max_requests']
+            window = config['window_seconds']
+        else:
+            # No config — use defaults
+            max_req = DEFAULT_RATE_LIMIT
+            window = DEFAULT_RATE_WINDOW
+    else:
+        max_req = DEFAULT_RATE_LIMIT
+        window = DEFAULT_RATE_WINDOW
+
+    allowed, remaining, retry_after = RateLimitLog.sudo().check_rate_limit(
+        endpoint, ip, max_req, window
+    )
+    if not allowed:
+        _logger.warning('Rate limit exceeded for %s on %s (retry after %ds)',
+                        ip, endpoint, retry_after)
+        raise AccessDenied(
+            f'Rate limit exceeded. Retry after {retry_after} seconds.'
+        )
+    return (allowed, remaining)
 
 
 class L10nSiAiConciergeChat(http.Controller):
@@ -15,6 +62,12 @@ class L10nSiAiConciergeChat(http.Controller):
     @http.route('/ai-concierge/chat', type='json', auth='public', methods=['POST'], csrf=False)
     def chat(self, **kwargs):
         """Receive a guest message and return AI response."""
+        # Rate limiting
+        try:
+            _check_rate_limit('/ai-concierge/chat')
+        except AccessDenied as e:
+            return json.dumps({'error': 'Rate limit exceeded', 'retry_after': 60})
+
         try:
             data = request.get_json_data()
             message = data.get('message', '').strip()
