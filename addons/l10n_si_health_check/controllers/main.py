@@ -68,7 +68,11 @@ class HealthCheckController(http.Controller):
             if checks['filestore'] != 'ok':
                 overall_status = 'degraded'
 
-        # 4. Uptime
+        # 4. Backup check (informational — doesn't affect overall status)
+        if overall_status != 'down':
+            checks['backup'] = self._check_backup()
+
+        # 5. Uptime
         checks['uptime_seconds'] = int(time.time() - self._get_start_time())
 
         result = {
@@ -150,6 +154,58 @@ class HealthCheckController(http.Controller):
         except Exception as e:
             _logger.error('Health check: filestore error: %s', e)
             return f'error: {str(e)[:200]}'
+
+    def _check_backup(self):
+        """Check backup status — looks for recent backup files.
+
+        Returns:
+        - 'ok: <timestamp> (<size>)' if backup < 25 hours old
+        - 'stale: last backup <timestamp> (>25h ago)' if backup exists but old
+        - 'no backup found' if no backup files exist
+        - 'error: <message>' on errors
+        """
+        import glob
+        from datetime import datetime, timedelta
+
+        backup_dirs = [
+            '/tmp/backups',
+            os.environ.get('BACKUP_DIR', '/tmp/backups'),
+        ]
+        backup_prefix = os.environ.get('BACKUP_PREFIX', 'daily')
+
+        latest_file = None
+        latest_mtime = 0
+
+        for backup_dir in backup_dirs:
+            if not os.path.isdir(backup_dir):
+                continue
+            pattern = os.path.join(backup_dir, f'{backup_prefix}_*.tar.gz')
+            for fpath in glob.glob(pattern):
+                mtime = os.path.getmtime(fpath)
+                if mtime > latest_mtime:
+                    latest_mtime = mtime
+                    latest_file = fpath
+
+        if not latest_file:
+            return 'no backup found'
+
+        # Check age
+        backup_time = datetime.fromtimestamp(latest_mtime)
+        now = datetime.now()
+        age_hours = (now - backup_time).total_seconds() / 3600
+
+        file_size = os.path.getsize(latest_file)
+        if file_size > 1024 * 1024:
+            size_str = f'{file_size / (1024 * 1024):.1f} MB'
+        else:
+            size_str = f'{file_size / 1024:.0f} KB'
+
+        timestamp_str = backup_time.strftime('%Y-%m-%d %H:%M UTC')
+
+        if age_hours > 25:
+            return f'stale: last backup {timestamp_str} ({age_hours:.0f}h ago, {size_str})'
+        return f'ok: {timestamp_str} ({size_str}, {age_hours:.1f}h ago)'
+
 
     def _get_odoo_version(self):
         """Get Odoo version string."""
