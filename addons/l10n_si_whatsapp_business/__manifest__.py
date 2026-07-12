@@ -2,7 +2,7 @@
 {
     'name': 'WhatsApp Business Cloud API',
     'summary': 'Pošiljanje WhatsApp sporočil preko WhatsApp Cloud API (Meta)',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.1.0',
     'category': 'Discuss',
     'description': """
 WhatsApp Business Cloud API
@@ -33,6 +33,9 @@ Pravne podlage:
     'depends': ['base', 'mail'],
     'data': [
         'security/ir.model.access.csv',
+        'data/ir_sequence_data.xml',
+        'data/ir_cron_data.xml',
+        'data/whatsapp_templates.xml',
         'views/res_company_views.xml',
         'views/l10n_si_whatsapp_message_views.xml',
         'views/l10n_si_whatsapp_template_views.xml',

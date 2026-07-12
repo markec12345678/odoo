@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Cron: Send check-in reminders (24h before arrival) — runs daily at 09:00 -->
+        <record id="ir_cron_wa_checkin_reminder" model="ir.cron">
+            <field name="name">WhatsApp: Send check-in reminders (24h before)</field>
+            <field name="model_id" ref="model_l10n_si_whatsapp_message"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_send_checkin_reminders()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="nextcall" eval="(DateTime.now().replace(hour=9, minute=0, second=0) + relativedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="active" eval="True"/>
+        </record>
+
+        <!-- Cron: Send check-out reminders (on day of departure) — runs daily at 08:00 -->
+        <record id="ir_cron_wa_checkout_reminder" model="ir.cron">
+            <field name="name">WhatsApp: Send check-out reminders</field>
+            <field name="model_id" ref="model_l10n_si_whatsapp_message"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_send_checkout_reminders()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="nextcall" eval="(DateTime.now().replace(hour=8, minute=0, second=0) + relativedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="active" eval="True"/>
+        </record>
+
+        <!-- Cron: Send feedback requests (2h after check-out) — runs hourly -->
+        <record id="ir_cron_wa_feedback_request" model="ir.cron">
+            <field name="name">WhatsApp: Send feedback requests (2h after checkout)</field>
+            <field name="model_id" ref="model_l10n_si_whatsapp_message"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_send_feedback_requests()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>

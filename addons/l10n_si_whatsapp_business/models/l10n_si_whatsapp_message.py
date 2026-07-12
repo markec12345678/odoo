@@ -3,6 +3,8 @@
 import json
 import logging
 import requests
+from datetime import timedelta
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -110,3 +112,124 @@ class L10nSiWhatsAppMessage(models.Model):
             msg.action_send()
             return msg
         return False
+
+    @api.model
+    def _cron_send_checkin_reminders(self):
+        """Avtomatsko pošlji opomnik za check-in 24 ur pred prihodom.
+
+        Isče potrdjene rezervacije s check-in datumom jutri in pošlje
+        opomnik gostu preko WhatsAppa, če ima partner mobilni telefon.
+        """
+        tomorrow = fields.Date.to_string(fields.Date.today() + timedelta(days=1))
+        # Poisci rezervacije s check-in jutri (model l10n_si.hotel.reservation)
+        Reservation = self.env.get('l10n_si.hotel.reservation')
+        if not Reservation:
+            return
+        reservations = Reservation.search([
+            ('check_in', '>=', tomorrow + ' 00:00:00'),
+            ('check_in', '<=', tomorrow + ' 23:59:59'),
+            ('state', 'in', ['confirmed', 'checked_in']),
+        ])
+        template = self.env.ref('l10n_si_whatsapp_business.template_checkin_reminder', raise_if_not_found=False)
+        if not template:
+            return
+        for res in reservations:
+            partner = res.folio_id.partner_id if hasattr(res, 'folio_id') else res.partner_id
+            if not partner or not (partner.mobile or partner.phone):
+                continue
+            # Preveri, ali smo že poslali opomnik za to rezervacijo
+            existing = self.search([
+                ('partner_id', '=', partner.id),
+                ('template_id', '=', template.id),
+                ('create_date', '>=', fields.Datetime.to_string(fields.Datetime.now() - timedelta(hours=24))),
+            ], limit=1)
+            if existing:
+                continue
+            company = res.company_id or self.env.company
+            if not company.wa_enabled:
+                continue
+            msg = self.create({
+                'partner_id': partner.id,
+                'direction': 'outgoing',
+                'message_type': 'template',
+                'template_id': template.id,
+                'body': f'Check-in opomnik: {res.name or ""}',
+                'company_id': company.id,
+            })
+            msg.action_send()
+
+    @api.model
+    def _cron_send_checkout_reminders(self):
+        """Avtomatsko pošlji opomnik za check-out na dan odhoda."""
+        today = fields.Date.to_string(fields.Date.today())
+        Reservation = self.env.get('l10n_si.hotel.reservation')
+        if not Reservation:
+            return
+        reservations = Reservation.search([
+            ('check_out', '>=', today + ' 00:00:00'),
+            ('check_out', '<=', today + ' 23:59:59'),
+            ('state', '=', 'checked_in'),
+        ])
+        template = self.env.ref('l10n_si_whatsapp_business.template_checkout_reminder', raise_if_not_found=False)
+        if not template:
+            return
+        for res in reservations:
+            partner = res.folio_id.partner_id if hasattr(res, 'folio_id') else res.partner_id
+            if not partner or not (partner.mobile or partner.phone):
+                continue
+            existing = self.search([
+                ('partner_id', '=', partner.id),
+                ('template_id', '=', template.id),
+                ('create_date', '>=', fields.Datetime.to_string(fields.Datetime.now() - timedelta(hours=12))),
+            ], limit=1)
+            if existing:
+                continue
+            company = res.company_id or self.env.company
+            if not company.wa_enabled:
+                continue
+            msg = self.create({
+                'partner_id': partner.id,
+                'direction': 'outgoing',
+                'message_type': 'template',
+                'template_id': template.id,
+                'body': f'Check-out opomnik: {res.name or ""}',
+                'company_id': company.id,
+            })
+            msg.action_send()
+
+    @api.model
+    def _cron_send_feedback_requests(self):
+        """Pošlji prošnjo za povratne informacije 2 uri po check-out."""
+        two_hours_ago = fields.Datetime.to_string(fields.Datetime.now() - timedelta(hours=2))
+        Reservation = self.env.get('l10n_si.hotel.reservation')
+        if not Reservation:
+            return
+        reservations = Reservation.search([
+            ('check_out', '<=', two_hours_ago),
+            ('state', '=', 'done'),
+        ])
+        template = self.env.ref('l10n_si_whatsapp_business.template_feedback_request', raise_if_not_found=False)
+        if not template:
+            return
+        for res in reservations:
+            partner = res.folio_id.partner_id if hasattr(res, 'folio_id') else res.partner_id
+            if not partner or not (partner.mobile or partner.phone):
+                continue
+            existing = self.search([
+                ('partner_id', '=', partner.id),
+                ('template_id', '=', template.id),
+            ], limit=1)
+            if existing:
+                continue
+            company = res.company_id or self.env.company
+            if not company.wa_enabled:
+                continue
+            msg = self.create({
+                'partner_id': partner.id,
+                'direction': 'outgoing',
+                'message_type': 'template',
+                'template_id': template.id,
+                'body': f'Prošnja za povratne informacije: {res.name or ""}',
+                'company_id': company.id,
+            })
+            msg.action_send()

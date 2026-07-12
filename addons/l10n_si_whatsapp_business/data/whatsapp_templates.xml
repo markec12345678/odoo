@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
+        <!-- ===== Slovenian templates ===== -->
         <record id="template_reservation_confirm" model="l10n_si.whatsapp.template">
             <field name="name">reservation_confirmation</field>
             <field name="language">sl</field>
@@ -15,6 +16,55 @@
             <field name="name">checkout_reminder</field>
             <field name="language">sl</field>
             <field name="body">Opomnik: Vaš check-out je danes ob 11:00. Hvala za obisk!</field>
+        </record>
+        <record id="template_welcome_sl" model="l10n_si.whatsapp.template">
+            <field name="name">welcome_message</field>
+            <field name="language">sl</field>
+            <field name="body">Dobrodošli v {{1}}, {{2}}! Vaša soba {{3}} je pripravljena. WiFi: {{4}}, geslo: {{5}}. Zajtrk: 7:00-10:00. Za pomoč smo na voljo 24/7. Lepo bivanje!</field>
+        </record>
+        <record id="template_feedback_sl" model="l10n_si.whatsapp.template">
+            <field name="name">feedback_request</field>
+            <field name="language">sl</field>
+            <field name="body">Hvala, da ste izbrali {{1}}! Vaše mnenje nam je pomembno. Prosimo ocenite vaše bivanje (1-5) in pustite komentar. Naslednjič vas pričakujemo z 10% popustom!</field>
+        </record>
+
+        <!-- ===== English templates ===== -->
+        <record id="template_reservation_confirm_en" model="l10n_si.whatsapp.template">
+            <field name="name">reservation_confirmation_en</field>
+            <field name="language">en</field>
+            <field name="body">Dear {{1}}, your reservation {{2}} is confirmed. Arrival: {{3}}, departure: {{4}}. Best regards, {{5}}.</field>
+        </record>
+        <record id="template_checkin_reminder_en" model="l10n_si.whatsapp.template">
+            <field name="name">checkin_reminder_en</field>
+            <field name="language">en</field>
+            <field name="body">Reminder: Your check-in is tomorrow at 14:00. Address: {{1}}. Questions? Call {{2}}.</field>
+        </record>
+        <record id="template_checkout_reminder_en" model="l10n_si.whatsapp.template">
+            <field name="name">checkout_reminder_en</field>
+            <field name="language">en</field>
+            <field name="body">Reminder: Your check-out is today at 11:00. Thank you for your stay!</field>
+        </record>
+        <record id="template_welcome_en" model="l10n_si.whatsapp.template">
+            <field name="name">welcome_message_en</field>
+            <field name="language">en</field>
+            <field name="body">Welcome to {{1}}, {{2}}! Your room {{3}} is ready. WiFi: {{4}}, password: {{5}}. Breakfast: 7:00-10:00. We're available 24/7. Enjoy your stay!</field>
+        </record>
+        <record id="template_feedback_en" model="l10n_si.whatsapp.template">
+            <field name="name">feedback_request_en</field>
+            <field name="language">en</field>
+            <field name="body">Thank you for choosing {{1}}! Your feedback matters. Please rate your stay (1-5) and leave a comment. Next time enjoy 10% off!</field>
+        </record>
+
+        <!-- ===== Croatian templates ===== -->
+        <record id="template_reservation_confirm_hr" model="l10n_si.whatsapp.template">
+            <field name="name">reservation_confirmation_hr</field>
+            <field name="language">hr</field>
+            <field name="body">Poštovani {{1}}, vaša rezervacija {{2}} je potvrđena. Dolazak: {{3}}, odlazak: {{4}}. Lijep pozdrav, {{5}}.</field>
+        </record>
+        <record id="template_welcome_hr" model="l10n_si.whatsapp.template">
+            <field name="name">welcome_message_hr</field>
+            <field name="language">hr</field>
+            <field name="body">Dobrodošli u {{1}}, {{2}}! Vaša soba {{3}} je spremna. WiFi: {{4}}, lozinka: {{5}}. Doručak: 7:00-10:00. Na raspolaganju smo 24/7. Ugodan boravak!</field>
         </record>
     </data>
 </odoo>
