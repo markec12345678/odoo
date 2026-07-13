@@ -208,14 +208,14 @@ class PuterClient(OpenAICompatibleClient):
         # Initialize parent with Puter endpoint
         super().__init__(api_key, model, timeout, self.PUTER_ENDPOINT)
 
-    def generate_response(self, messages, temperature=0.7, max_tokens=1000):
+    def generate_response(self, messages, temperature=0.7, max_tokens=2000):
         """Override to add Puter-specific handling.
 
         Puter API accepts standard OpenAI format but:
         - Does not support 'thinking' parameter (unlike Z.AI direct)
         - Some models may not support 'temperature' (ignored gracefully)
         - GLM 5.1 uses many tokens for internal reasoning (800+), so
-          default max_tokens is 1000 (was 500) to avoid empty responses.
+          default max_tokens is 2000 (was 1000) to avoid empty responses.
         """
         payload = {
             'model': self.model,
