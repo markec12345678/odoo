@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 """Ticket model — the main helpdesk ticket."""
+import logging
 from datetime import datetime, timedelta
 
 from odoo import _, api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class L10nSiHelpdeskTicket(models.Model):
@@ -59,6 +62,12 @@ class L10nSiHelpdeskTicket(models.Model):
     sla_resolution_deadline = fields.Datetime(compute='_compute_sla_deadlines', store=True)
     sla_response_ok = fields.Boolean(compute='_compute_sla_status', store=True)
     sla_resolution_ok = fields.Boolean(compute='_compute_sla_status', store=True)
+
+    # AI suggestion
+    ai_suggestion = fields.Text(
+        string='AI predlog rešitve', copy=False,
+        help='AI-generiran predlog rešitve za ta ticket',
+    )
 
     # Time tracking
     timesheet_ids = fields.One2many('account.analytic.line', 'l10n_si_helpdesk_ticket_id')
@@ -141,6 +150,64 @@ class L10nSiHelpdeskTicket(models.Model):
             ])
         assigned = min(members, key=lambda m: ticket_counts[m.id])
         self.user_id = assigned.id
+
+    def action_generate_ai_suggestion(self):
+        """AI predlaganje rešitve za ta ticket.
+
+        Uporablja AI Core za analizo opisa ticket-a in generiranje
+        predloga rešitve. Fallback na canned response, če AI Core
+        ni na voljo.
+        """
+        AiCore = self.env.get('l10n_si.ai.core.route')
+        for ticket in self:
+            if AiCore:
+                try:
+                    # Počisti HTML iz description
+                    from odoo.tools import html2plaintext
+                    clean_desc = html2plaintext(ticket.description or '')[:2000]
+
+                    prompt = (
+                        f"Gost je odprl helpdesk ticket:\n"
+                        f"Naslov: {ticket.name}\n"
+                        f"Opis: {clean_desc}\n"
+                        f"Ekipa: {ticket.team_id.name or 'splošno'}\n"
+                        f"Prioriteta: {ticket.priority}\n\n"
+                        f"Predlagaj rešitev v slovenščini. 3-5 stavkov, "
+                        f"konkretni koraki za rešitev problema."
+                    )
+                    result = AiCore.generate(
+                        messages=[{'role': 'user', 'content': prompt}],
+                        task_type='reasoning',
+                        system_prompt='Si izkušen tehnični podporni delavec '
+                                      'v slovenskem hotelu. Analiziraš probleme '
+                                      'gostov in predlagaš konkretna navodila za '
+                                      'rešitev, v slovenščini.',
+                        source_module='helpdesk_simple',
+                    )
+                    if result.get('success') and result.get('response'):
+                        ticket.ai_suggestion = result['response']
+                        _logger.info(
+                            'Helpdesk AI: suggestion for %s via %s/%s',
+                            ticket.name, result.get('provider'),
+                            result.get('model'),
+                        )
+                        continue
+                    _logger.warning(
+                        'Helpdesk AI: failed (%s) — using canned response',
+                        result.get('error', 'unknown'),
+                    )
+                except Exception as e:
+                    _logger.warning('Helpdesk AI: error — using canned: %s', e)
+
+            # Fallback: poišči najboljši canned response
+            canned = self.env['l10n_si.helpdesk.canned.response'].search(
+                [], limit=1)
+            if canned:
+                ticket.ai_suggestion = canned.body or canned.name
+            else:
+                ticket.ai_suggestion = (
+                    'AI predlog ni na voljo. Prosimo, ročno rešite ta ticket.'
+                )
 
 
 class L10nSiHelpdeskTag(models.Model):
