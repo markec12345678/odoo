@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Usage list view -->
+    <record id="view_l10n_si_ai_core_usage_list" model="ir.ui.view">
+        <field name="name">l10n_si.ai.core.usage.list</field>
+        <field name="model">l10n_si.ai.core.usage</field>
+        <field name="arch" type="xml">
+            <list decoration-success="success" decoration-danger="not success">
+                <field name="create_date"/>
+                <field name="source_module"/>
+                <field name="task_type"/>
+                <field name="provider"/>
+                <field name="model"/>
+                <field name="success"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Usage form view -->
+    <record id="view_l10n_si_ai_core_usage_form" model="ir.ui.view">
+        <field name="name">l10n_si.ai.core.usage.form</field>
+        <field name="model">l10n_si.ai.core.usage</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="source_module"/>
+                            <field name="task_type"/>
+                            <field name="success"/>
+                        </group>
+                        <group>
+                            <field name="provider"/>
+                            <field name="model"/>
+                            <field name="create_date"/>
+                            <field name="user_id"/>
+                        </group>
+                    </group>
+                    <group string="Napaka" invisible="success == True">
+                        <field name="error_message" nolabel="1" widget="text"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Usage search view -->
+    <record id="view_l10n_si_ai_core_usage_search" model="ir.ui.view">
+        <field name="name">l10n_si.ai.core.usage.search</field>
+        <field name="model">l10n_si.ai.core.usage</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="source_module"/>
+                <field name="provider"/>
+                <field name="model"/>
+                <filter name="filter_success" string="Uspešni" domain="[('success', '=', True)]"/>
+                <filter name="filter_failed" string="Neuspešni" domain="[('success', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_provider" string="Ponudnik" context="{'group_by': 'provider'}"/>
+                    <filter name="group_module" string="Modul" context="{'group_by': 'source_module'}"/>
+                    <filter name="group_task" string="Tip naloge" context="{'group_by': 'task_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_ai_core_usage" model="ir.actions.act_window">
+        <field name="name">AI Usage</field>
+        <field name="res_model">l10n_si.ai.core.usage</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_l10n_si_ai_core_usage" name="Usage" parent="menu_l10n_si_ai_core_root" action="action_l10n_si_ai_core_usage" sequence="30"/>
+</odoo>

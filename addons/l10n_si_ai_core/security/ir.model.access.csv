@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_si_ai_core_route_user,l10n_si.ai.core.route.user,model_l10n_si_ai_core_route,base.group_user,1,0,0,0
+access_l10n_si_ai_core_route_manager,l10n_si.ai.core.route.manager,model_l10n_si_ai_core_route,base.group_system,1,1,1,1
+access_l10n_si_ai_core_provider_user,l10n_si.ai.core.provider.user,model_l10n_si_ai_core_provider,base.group_user,1,0,0,0
+access_l10n_si_ai_core_provider_manager,l10n_si.ai.core.provider.manager,model_l10n_si_ai_core_provider,base.group_system,1,1,1,1
+access_l10n_si_ai_core_usage_all,l10n_si.ai.core.usage.all,model_l10n_si_ai_core_usage,base.group_user,1,0,1,0
+access_l10n_si_ai_core_usage_manager,l10n_si.ai.core.usage.manager,model_l10n_si_ai_core_usage,base.group_system,1,1,1,1
