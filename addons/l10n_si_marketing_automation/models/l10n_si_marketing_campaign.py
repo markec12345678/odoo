@@ -77,6 +77,16 @@ class L10nSiMarketingCampaign(models.Model):
     def action_pause(self):
         self.write({'state': 'paused'})
 
+    def action_generate_ai_content(self):
+        """Generate AI email content for all email steps in this campaign."""
+        for camp in self:
+            email_steps = camp.step_ids.filtered(
+                lambda s: s.action_type == 'email'
+            )
+            if email_steps:
+                email_steps.action_generate_ai_content()
+        return True
+
     def action_add_participants(self):
         """Add partners matching the campaign domain."""
         for camp in self:

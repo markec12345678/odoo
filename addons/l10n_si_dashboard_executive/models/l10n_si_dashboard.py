@@ -11,6 +11,10 @@ class L10nSiDashboard(models.Model):
     _rec_name = 'date_from'
 
     name = fields.Char(compute='_compute_name', store=True)
+    ai_insights = fields.Text(
+        string='AI analiza', copy=False,
+        help='AI-generirana analiza KPI-jev za management',
+    )
     date_from = fields.Date(required=True, default=lambda self: date.today().replace(day=1))
     date_to = fields.Date(required=True, default=lambda self: date.today())
     company_id = fields.Many2one(
@@ -128,3 +132,43 @@ class L10nSiDashboard(models.Model):
             d._compute_revenue()
             d._compute_kpi()
             d._compute_comparison()
+
+    def action_generate_ai_insights(self):
+        """AI analiza poslovanja za management.
+
+        Uporablja AI Core za generiranje VPISov iz KPI-jev:
+        trendi, morebitne težave, priporočila.
+        """
+        AiCore = self.env.get('l10n_si.ai.core.route')
+        if not AiCore:
+            return True
+        for d in self:
+            prompt = (
+                f"Analiziraj poslovne rezultate hotela za management:\n"
+                f"Obdobje: {d.date_from} do {d.date_to}\n"
+                f"Skupna sob: {d.total_rooms}\n"
+                f"Zasedenost: {d.occupancy_rate:.1f}%\n"
+                f"ADR (povprečna dnevna cena): {d.adr:.2f} EUR\n"
+                f"RevPAR: {d.revpar:.2f} EUR\n"
+                f"Skupni prihodek: {d.total_revenue:.2f} EUR\n"
+                f"Bruto dobiček: {d.gross_profit:.2f} EUR\n"
+                f"GOPPAR: {d.goppar:.2f} EUR\n"
+                f"Prihodek YoY: {d.revenue_yoy_percent:.1f}%\n"
+                f"Zasedenost YoY: {d.occupancy_yoy_percent:.1f}%\n\n"
+                f"Napiši 3-5 stavkov v slovenščini: ključne ugotovitve, "
+                f"trendi, morebitna tveganja in priporočila za izboljšanje."
+            )
+            try:
+                result = AiCore.generate(
+                    messages=[{'role': 'user', 'content': prompt}],
+                    task_type='reasoning',
+                    system_prompt='Si poslovni analitik za hotelirstvo. '
+                                  'Analiziraš KPI-je in daješ praktična '
+                                  'priporočila managementu, v slovenščini.',
+                    source_module='dashboard_executive',
+                )
+                if result.get('success') and result.get('response'):
+                    d.ai_insights = result['response']
+            except Exception:
+                pass
+        return True

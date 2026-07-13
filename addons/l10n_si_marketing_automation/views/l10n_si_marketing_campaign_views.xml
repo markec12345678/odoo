@@ -31,6 +31,8 @@
                             invisible="[('state', '!=', 'paused')]"/>
                     <button name="action_add_participants" type="object" string="Dodaj udeležence"
                             invisible="[('state', '=', 'completed')]"/>
+                    <button name="action_generate_ai_content" type="object"
+                            string="🤖 Generiraj AI vsebino" class="btn-secondary"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
