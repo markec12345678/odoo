@@ -2,7 +2,7 @@
 {
     'name': 'Slovenian Review Management',
     'summary': 'Integracija z Booking.com/TripAdvisor/Google reviews + AI analiza',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.1.0',
     'category': 'Customer Relationship',
     'description': """
 Slovenian Review Management

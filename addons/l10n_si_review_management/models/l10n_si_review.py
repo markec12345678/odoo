@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 """Review - posamezna ocena gosta."""
+import logging
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class L10nSiReview(models.Model):
@@ -201,27 +205,71 @@ class L10nSiReview(models.Model):
         self.write({'state': 'archived'})
 
     def action_generate_ai_response(self):
-        """AI predlog odgovora. V produkciji: pravi AI klic."""
+        """AI predlog odgovora na oceno gosta.
+
+        Uporablja AI Core za generiranje personaliziranega odgovora.
+        Fallback na predloge, če AI Core ni nameščen.
+        """
+        AiCore = self.env.get('l10n_si.ai.core.route')
         for review in self:
-            if review.sentiment == 'very_positive' or review.sentiment == 'positive':
-                review.response_text = (
-                    f' Spoštovani {review.guest_name or "gost"},\n\n'
-                    f'Hvala za vašo pozitivno oceno! Veselimo se vašega naslednjega obiska.\n\n'
-                    f'Lep pozdrav,\nEkipa'
-                )
-            elif review.sentiment == 'negative' or review.sentiment == 'very_negative':
+            # Poskusi AI Core za personaliziran odgovor
+            if AiCore:
+                try:
+                    prompt = (
+                        f"Gost je pustil naslednjo oceno:\n"
+                        f"Ocena: {review.rating or 'brez ocene'}\n"
+                        f"Sentiment: {review.sentiment or 'neutralen'}\n"
+                        f"Vsebina: {review.body or 'brez vsebine'}\n"
+                        f"Ime gosta: {review.guest_name or 'neznan'}\n"
+                        f"Vir: {review.source_id.name or 'ni podatka'}\n\n"
+                        f"Napiši profesionalen, hvalilen odgovor gostu v "
+                        f"slovenščini. Za pozitivne ocene se zahvali in "
+                        f"povabi nazaj. Za negativne se opraviči in ponudi "
+                        f"rešitev. 2-3 stavki, prijazni ton."
+                    )
+                    result = AiCore.generate(
+                        messages=[{'role': 'user', 'content': prompt}],
+                        task_type='creative',
+                        system_prompt='Si izkušen vodja recepcije v slovenskem '
+                                      'hotelu. Odgovarjaš na ocene gostov '
+                                      'profesionalno in osebno, v slovenščini.',
+                        source_module='review_management',
+                    )
+                    if result.get('success') and result.get('response'):
+                        review.response_text = result['response']
+                        review.response_author_id = self.env.user.id
+                        _logger.info(
+                            'Review AI: response generated for %s via %s/%s',
+                            review.name, result.get('provider'),
+                            result.get('model'),
+                        )
+                        continue
+                    _logger.warning(
+                        'Review AI: generation failed (%s) — using template',
+                        result.get('error', 'unknown'),
+                    )
+                except Exception as e:
+                    _logger.warning('Review AI: error — using template: %s', e)
+
+            # Fallback: predloge (existing behavior)
+            if review.sentiment in ('very_positive', 'positive'):
                 review.response_text = (
                     f'Spoštovani {review.guest_name or "gost"},\n\n'
-                    f'Hvala za vaše povratne informacije. Žal nam je, da izkušnja '
-                    f'ni bila v skladu z vašimi pričakovanji. Vaše pripombe bomo '
-                    f'podrobno preučili in ukrepali.\n\n'
+                    f'Hvala za vašo pozitivno oceno! Veselimo se vašega '
+                    f'naslednjega obiska.\n\nLep pozdrav,\nEkipa'
+                )
+            elif review.sentiment in ('negative', 'very_negative'):
+                review.response_text = (
+                    f'Spoštovani {review.guest_name or "gost"},\n\n'
+                    f'Hvala za vaše povratne informacije. Žal nam je, da '
+                    f'izkušnja ni bila v skladu z vašimi pričakovanji. '
+                    f'Vaše pripombe bomo podrobno preučili in ukrepali.\n\n'
                     f'Lep pozdrav,\nVodja'
                 )
             else:
                 review.response_text = (
-                    'Spoštovani,\n\n'
-                    'Hvala za vaše mnenje. Cenimo vaše povratne informacije.\n\n'
-                    'Lep pozdrav'
+                    'Spoštovani,\n\nHvala za vaše mnenje. Cenimo vaše '
+                    'povratne informacije.\n\nLep pozdrav'
                 )
 
 
