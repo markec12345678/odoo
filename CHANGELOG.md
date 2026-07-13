@@ -5,6 +5,46 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.16.1] — 2026-07-14
+
+### Added — AI Core expansion: 9 modules with central LLM router
+
+Two new modules added to AI Core integration (total: 9):
+
+**8. `l10n_si_revenue_management` (reasoning)**
+- `action_generate_ai_pricing()` on `l10n_si.rate.plan`
+- AI analyzes base price, seasonal factors, weekend factors, early-bird,
+  LOS discounts, and 7-day occupancy forecast
+- Recommends pricing adjustments to maximize revenue
+- New field: `ai_recommendation`
+- UI button: "🤖 AI priporočilo" in rate plan form
+
+**9. `l10n_si_competitor_pricing` (reasoning)**
+- `action_generate_ai_analysis()` on `l10n_si.competitor`
+- AI analyzes competitor info and recommends competitive strategy
+- New field: `ai_analysis`
+
+### Added — Code quality + documentation
+
+- 147 ruff fixes (137 F401 unused imports + 10 F841 unused variables)
+- `docs/AI-Core-Configuration-Guide.md` — step-by-step admin guide (200+ lines)
+- Guest handbook updated with AI Concierge example questions box
+- Ruff check now returns **0 errors** across all SI/HR modules
+
+### AI Core modules (9 total)
+
+| # | Module | Task | What AI does |
+|---|--------|------|-------------|
+| 1 | AI Concierge | multilingual | Guest chat (SI/HR/EN) |
+| 2 | WhatsApp Business | multilingual | Auto-reply to incoming messages |
+| 3 | Marketing Automation | creative | Email content generation |
+| 4 | Review Management | creative | Review response writing |
+| 5 | Helpdesk | reasoning | Ticket solution suggestions |
+| 6 | Reports | reasoning | Report summaries for management |
+| 7 | Executive Dashboard | reasoning | KPI analysis and insights |
+| 8 | Revenue Management | reasoning | Pricing recommendations |
+| 9 | Competitor Pricing | reasoning | Competitive strategy analysis |
+
 ## [19.0.15.2] — 2026-07-14
 
 ### Added — AI Core integration: 7 modules with central LLM router
