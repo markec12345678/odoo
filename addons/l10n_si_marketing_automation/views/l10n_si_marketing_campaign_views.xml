@@ -64,6 +64,16 @@
                                 </list>
                             </field>
                         </page>
+                        <page string="🤖 AI vsebina" invisible="['|', ('step_ids', '=', [])]">
+                            <field name="step_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="action_type"/>
+                                    <field name="ai_generated_subject" string="AI Subject"/>
+                                    <field name="ai_generated_body" string="AI Body" widget="text"/>
+                                </list>
+                            </field>
+                        </page>
                         <page string="Udeleženci">
                             <field name="participant_ids" readonly="1">
                                 <list>

@@ -7,6 +7,8 @@
             <form>
                 <header>
                     <button name="action_refresh" type="object" string="Osveži KPI" class="btn-primary"/>
+                    <button name="action_generate_ai_insights" type="object"
+                            string="🤖 AI analiza" class="btn-secondary"/>
                 </header>
                 <sheet>
                     <group>
@@ -52,6 +54,10 @@
                             <field name="revenue_yoy_percent" widget="percentage"/>
                             <field name="occupancy_yoy_percent" widget="percentage"/>
                         </group>
+                    </group>
+                    <group string="🤖 AI analiza poslovanja" invisible="[('ai_insights', '=', False)]">
+                        <field name="ai_insights" nolabel="1" widget="text"
+                               placeholder="Kliknite 'AI analiza' za generiranje vpisov..."/>
                     </group>
                 </sheet>
             </form>
