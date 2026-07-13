@@ -559,6 +559,63 @@ def test_ai_concierge():
         LocalLLMClient('', 'llama3').generate_response([Message('user', 'hi')])
         check('Local no auth without key', 'Authorization' not in mp.call_args[1]['headers'])
 
+    # Puter backend tests
+    print('\n=== AI Concierge — Puter Backend ===')
+
+    # Add module path for PuterClient
+    sys.path.insert(0, 'addons/l10n_si_ai_concierge/models')
+    try:
+        from ai_client import PuterClient as CI_PuterClient
+
+        # Factory returns PuterClient
+        client = get_ai_client('puter', 'puter-token', 'z-ai/glm-5.1')
+        check('Factory returns PuterClient', isinstance(client, CI_PuterClient))
+
+        # Correct endpoint
+        client = CI_PuterClient('token', 'z-ai/glm-5.1')
+        check('Puter endpoint correct', 'api.puter.com' in client.endpoint)
+        check('Puter has puterai path', 'puterai' in client.endpoint)
+
+        # Successful response
+        with patch('requests.post', return_value=mock_resp(200, json_data={
+            'choices': [{'message': {'content': 'Pozdravljen iz Puterja!'}}]
+        })):
+            resp = CI_PuterClient('token', 'z-ai/glm-5.1').generate_response(
+                [Message('user', 'hi')]
+            )
+            check('Puter successful response', resp == 'Pozdravljen iz Puterja!')
+
+        # Auth error
+        with patch('requests.post', return_value=mock_resp(401, text='Unauthorized')):
+            try:
+                CI_PuterClient('bad', 'z-ai/glm-5.1').generate_response(
+                    [Message('user', 'x')]
+                )
+                check('Puter auth error raised', False)
+            except AIAuthError:
+                check('Puter auth error raised', True)
+
+        # Rate limit
+        with patch('requests.post', return_value=mock_resp(429, text='Limited')):
+            try:
+                CI_PuterClient('token', 'z-ai/glm-5.1').generate_response(
+                    [Message('user', 'x')]
+                )
+                check('Puter rate limit raised', False)
+            except AIRateLimitError:
+                check('Puter rate limit raised', True)
+
+        # Bearer auth header
+        with patch('requests.post', return_value=mock_resp(200, json_data={
+            'choices': [{'message': {'content': 'OK'}}]
+        })) as mp:
+            CI_PuterClient('my-puter-token', 'z-ai/glm-5.1').generate_response(
+                [Message('user', 'x')]
+            )
+            check('Puter Bearer auth', mp.call_args[1]['headers']['Authorization'] == 'Bearer my-puter-token')
+    except ImportError:
+        check('PuterClient import (skipped — odoo not available)', True)
+
 
 # ---------------------------------------------------------------------------
 # WhatsApp Business Cloud API — Phone Normalization

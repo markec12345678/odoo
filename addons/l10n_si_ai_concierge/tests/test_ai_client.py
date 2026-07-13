@@ -10,6 +10,7 @@ from odoo.tests import TransactionCase, tagged
 
 from odoo.addons.l10n_si_ai_concierge.models.ai_client import (
     AIClient, ZAIClient, OpenAIClient, AnthropicClient, LocalLLMClient,
+    PuterClient,
     get_ai_client, Message,
     AIAuthError, AIRequestError, AIRateLimitError,
     ZAI_ENDPOINT, OPENAI_ENDPOINT, ANTHROPIC_ENDPOINT,
@@ -183,3 +184,94 @@ class TestLocalLLMClient(TransactionCase):
         })
         LocalLLMClient('secret', 'llama3').generate_response([Message('user', 'hi')])
         self.assertEqual(mock_post.call_args[1]['headers']['Authorization'], 'Bearer secret')
+
+
+@tagged('post_install', '-at_install')
+class TestPuterClient(TransactionCase):
+    """Tests for Puter.com free AI API client."""
+
+    def _mock_resp(self, code, json_data=None, text=''):
+        m = MagicMock()
+        m.status_code = code
+        if json_data is not None:
+            m.json.return_value = json_data
+            m.text = json.dumps(json_data)
+        else:
+            m.text = text
+        return m
+
+    def test_factory_returns_puter(self):
+        """get_ai_client should return PuterClient for 'puter' backend."""
+        client = get_ai_client('puter', 'puter-token', 'z-ai/glm-5.1')
+        self.assertIsInstance(client, PuterClient)
+
+    def test_puter_uses_correct_endpoint(self):
+        """PuterClient should use the Puter.com API endpoint."""
+        client = PuterClient('token', 'z-ai/glm-5.1')
+        self.assertIn('api.puter.com', client.endpoint)
+        self.assertIn('puterai', client.endpoint)
+
+    @patch('odoo.addons.l10n_si_ai_concierge.models.ai_client.requests.post')
+    def test_successful_response(self, mock_post):
+        """PuterClient should parse OpenAI-format response correctly."""
+        mock_post.return_value = self._mock_resp(200, json_data={
+            'choices': [{'message': {'content': 'Pozdravljen iz Puterja!'}}]
+        })
+        client = PuterClient('puter-token', 'z-ai/glm-5.1')
+        response = client.generate_response([Message('user', 'hi')])
+        self.assertEqual(response, 'Pozdravljen iz Puterja!')
+
+    @patch('odoo.addons.l10n_si_ai_concierge.models.ai_client.requests.post')
+    def test_auth_error(self, mock_post):
+        """Invalid Puter token should raise AIAuthError."""
+        mock_post.return_value = self._mock_resp(401, text='Unauthorized')
+        with self.assertRaises(AIAuthError):
+            PuterClient('bad-token', 'z-ai/glm-5.1').generate_response(
+                [Message('user', 'x')]
+            )
+
+    @patch('odoo.addons.l10n_si_ai_concierge.models.ai_client.requests.post')
+    def test_rate_limit(self, mock_post):
+        """Rate limit (429) should raise AIRateLimitError."""
+        mock_post.return_value = self._mock_resp(429, text='Rate limited')
+        with self.assertRaises(AIRateLimitError):
+            PuterClient('token', 'z-ai/glm-5.1').generate_response(
+                [Message('user', 'x')]
+            )
+
+    @patch('odoo.addons.l10n_si_ai_concierge.models.ai_client.requests.post')
+    def test_bearer_auth_header(self, mock_post):
+        """PuterClient should use Bearer auth with the provided token."""
+        mock_post.return_value = self._mock_resp(200, json_data={
+            'choices': [{'message': {'content': 'OK'}}]
+        })
+        PuterClient('my-puter-token', 'z-ai/glm-5.1').generate_response(
+            [Message('user', 'x')]
+        )
+        headers = mock_post.call_args[1]['headers']
+        self.assertEqual(headers['Authorization'], 'Bearer my-puter-token')
+
+    @patch('odoo.addons.l10n_si_ai_concierge.models.ai_client.requests.post')
+    def test_payload_contains_model_and_messages(self, mock_post):
+        """Payload should include the model name and messages array."""
+        mock_post.return_value = self._mock_resp(200, json_data={
+            'choices': [{'message': {'content': 'OK'}}]
+        })
+        PuterClient('token', 'z-ai/glm-5.1').generate_response(
+            [Message('system', 's'), Message('user', 'u')],
+            temperature=0.5, max_tokens=100
+        )
+        payload = mock_post.call_args[1]['json']
+        self.assertEqual(payload['model'], 'z-ai/glm-5.1')
+        self.assertEqual(len(payload['messages']), 2)
+        self.assertEqual(payload['temperature'], 0.5)
+        self.assertEqual(payload['max_tokens'], 100)
+
+    @patch('odoo.addons.l10n_si_ai_concierge.models.ai_client.requests.post')
+    def test_server_error(self, mock_post):
+        """Server errors (5xx) should raise AIRequestError."""
+        mock_post.return_value = self._mock_resp(502, text='Bad Gateway')
+        with self.assertRaises(AIRequestError):
+            PuterClient('token', 'z-ai/glm-5.1').generate_response(
+                [Message('user', 'x')]
+            )

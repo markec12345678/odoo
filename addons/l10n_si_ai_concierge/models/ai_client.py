@@ -179,4 +179,71 @@ def get_ai_client(backend, api_key, model, timeout=DEFAULT_TIMEOUT, local_endpoi
     elif backend == 'anthropic': return AnthropicClient(api_key, model, timeout)
     elif backend == 'local': return LocalLLMClient(api_key, model, timeout, local_endpoint or 'http://localhost:11434/v1/chat/completions')
     elif backend in ('openai_compatible', 'zenmux'): return OpenAICompatibleClient(api_key, model, timeout, endpoint_url)
+    elif backend == 'puter': return PuterClient(api_key, model, timeout)
     else: raise AIConciergeError(f'Unknown AI backend: {backend}')
+
+
+class PuterClient(OpenAICompatibleClient):
+    """Puter.com free AI API client.
+
+    Puter provides free access to multiple AI models including:
+    - z-ai/glm-5.1 (Z.AI GLM 5.1 — newer than GLM 4 Plus)
+    - z-ai/glm-4.1 (Z.AI GLM 4.1)
+    - openai/gpt-4o (OpenAI GPT-4o)
+    - anthropic/claude-3-5-sonnet (Anthropic Claude)
+    - and many more
+
+    Endpoint: https://api.puter.com/puterai/openai/v1/chat/completions
+    Auth: Bearer token (Puter auth token from puter.com)
+
+    Usage:
+        client = PuterClient('your-puter-token', 'z-ai/glm-5.1')
+        response = client.generate_response([Message('user', 'Hello!')])
+
+    Note: Puter API is free but rate-limited. For production use with
+    high traffic, consider Z.AI direct API or OpenAI.
+    """
+    PUTER_ENDPOINT = 'https://api.puter.com/puterai/openai/v1/chat/completions'
+
+    def __init__(self, api_key, model, timeout=DEFAULT_TIMEOUT):
+        # Initialize parent with Puter endpoint
+        super().__init__(api_key, model, timeout, self.PUTER_ENDPOINT)
+
+    def generate_response(self, messages, temperature=0.7, max_tokens=500):
+        """Override to add Puter-specific handling.
+
+        Puter API accepts standard OpenAI format but:
+        - Does not support 'thinking' parameter (unlike Z.AI direct)
+        - Some models may not support 'temperature' (ignored gracefully)
+        """
+        payload = {
+            'model': self.model,
+            'messages': [m.to_dict() for m in messages],
+            'temperature': temperature,
+            'max_tokens': max_tokens,
+        }
+        headers = {
+            'Authorization': f'Bearer {self.api_key}',
+            'Content-Type': 'application/json',
+        }
+        try:
+            import requests as req
+            response = req.post(self.endpoint, headers=headers, json=payload, timeout=self.timeout)
+        except req.Timeout as e:
+            raise AIRequestError(f'Puter timeout: {e}') from e
+        except req.RequestException as e:
+            raise AIRequestError(f'Puter network error: {e}') from e
+
+        if response.status_code == 401:
+            raise AIAuthError('Invalid Puter auth token')
+        if response.status_code == 429:
+            raise AIRateLimitError('Puter rate limit exceeded (free tier)')
+        if response.status_code >= 500:
+            raise AIRequestError(f'Puter server error {response.status_code}')
+        if response.status_code != 200:
+            raise AIRequestError(f'Puter HTTP {response.status_code}: {response.text[:300]}')
+
+        try:
+            return response.json()['choices'][0]['message']['content'].strip()
+        except (ValueError, KeyError, IndexError) as e:
+            raise AIRequestError(f'Invalid Puter response: {e}') from e

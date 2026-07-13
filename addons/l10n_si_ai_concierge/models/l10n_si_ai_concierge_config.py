@@ -21,6 +21,7 @@ class L10nSiAiConciergeConfig(models.Model):
                    ('zai', 'ZAI (GLM)'),
                    ('zenmux', 'ZenMux (OpenAI-compatible gateway)'),
                    ('openai_compatible', 'OpenAI-Compatible (custom endpoint)'),
+                   ('puter', 'Puter.com (FREE — GLM 5.1, GPT-4o, Claude)'),
                    ('local', 'Lokalni LLM')],
         default='zai',
         required=True,
@@ -28,7 +29,8 @@ class L10nSiAiConciergeConfig(models.Model):
     api_key = fields.Char(string='API ključ')
     model_name = fields.Char(
         string='Ime modela', default='glm-4-plus',
-        help='npr. gpt-4, claude-3-opus, glm-4-plus, z-ai/glm-5.2 (ZenMux)',
+        help='npr. gpt-4, claude-3-opus, glm-4-plus, z-ai/glm-5.2 (ZenMux), '
+             'z-ai/glm-5.1 (Puter)',
     )
     endpoint_url = fields.Char(
         string='Endpoint URL',
