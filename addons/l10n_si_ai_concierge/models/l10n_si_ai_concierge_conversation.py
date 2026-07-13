@@ -98,11 +98,10 @@ class L10nSiAiConciergeConversation(models.Model):
     def _call_ai_for_response(self, user_message):
         """Klici AI backend za odgovor.
 
-        Poskusi pravi LLM (ZAI/OpenAI/Anthropic/Local). Če ni konfiguriran
-        ali pa klic spodleti, uporabi rule-based fallback.
+        Poskusi pravi LLM preko AI Core router-ja (če je nameščen),
+        sicer direktno preko LLM klienta. Če oboje spodleti,
+        uporabi rule-based fallback.
         """
-        from .ai_client import get_ai_client, AIAuthError, AIRequestError, AIRateLimitError, Message
-
         cfg = self.config_id
 
         # Zberi kontekst iz knowledge base
@@ -110,22 +109,45 @@ class L10nSiAiConciergeConversation(models.Model):
         for article in cfg.knowledge_article_ids:
             context += f'\n--- {article.name} ---\n{article.body}\n'
 
-        # Poskusi pravi LLM, če je API ključ konfiguriran
+        # Pripravi sporočila (skupna za AI Core in direktni LLM)
+        chat_messages = []
+        system_content = cfg.system_prompt + context
+        chat_messages.append({'role': 'system', 'content': system_content})
+        recent_msgs = self.message_ids[-10:]
+        for msg in recent_msgs:
+            if msg.role in ('user', 'assistant'):
+                chat_messages.append({'role': msg.role, 'content': msg.content})
+        chat_messages.append({'role': 'user', 'content': user_message})
+
+        # Poskusi AI Core router (če je nameščen)
+        AiCore = self.env.get('l10n_si.ai.core.route')
+        if AiCore:
+            try:
+                result = AiCore.generate(
+                    messages=chat_messages,
+                    task_type='multilingual',
+                    source_module='ai_concierge',
+                )
+                if result.get('success') and result.get('response'):
+                    return result['response']
+                _logger.warning(
+                    'AI Core: all providers failed (%s) — trying direct LLM',
+                    result.get('error', 'unknown')
+                )
+            except Exception as e:
+                _logger.warning('AI Core error: %s — trying direct LLM', e)
+
+        # Fallback: direktni LLM klic (če AI Core ni nameščen ali odpove)
         if cfg.api_key:
             try:
+                from .ai_client import get_ai_client, AIAuthError, AIRequestError, AIRateLimitError, Message
                 client = get_ai_client(
                     backend=cfg.ai_backend,
                     api_key=cfg.api_key,
                     model=cfg.model_name,
                     endpoint_url=cfg.endpoint_url,
                 )
-                messages = [Message('system', cfg.system_prompt + context)]
-                recent_msgs = self.message_ids[-10:]
-                for msg in recent_msgs:
-                    if msg.role in ('user', 'assistant'):
-                        messages.append(Message(msg.role, msg.content))
-                messages.append(Message('user', user_message))
-
+                messages = [Message(m['role'], m['content']) for m in chat_messages]
                 response = client.generate_response(
                     messages=messages,
                     temperature=cfg.temperature,
