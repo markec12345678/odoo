@@ -5,6 +5,92 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.15.2] — 2026-07-14
+
+### Added — AI Core integration: 7 modules with central LLM router
+
+Major AI architecture upgrade — 7 modules now use a central AI Core
+router for all LLM calls, with task-based routing and automatic
+fallback chain.
+
+**New module: `l10n_si_ai_core`**
+- Central LLM router (`l10n_si.ai.core.route.generate()`)
+- Task-based provider selection (simple, reasoning, creative, multilingual)
+- Fallback chain — if primary provider fails, tries next in priority
+- Token usage tracking (`l10n_si.ai.core.usage` model)
+- Admin UI: Settings → AI Core → Routes / Providers / Usage
+
+**7 modules migrated to AI Core:**
+
+| # | Module | Task type | What AI does |
+|---|--------|-----------|-------------|
+| 1 | `l10n_si_ai_concierge` | multilingual | Answers guest questions (SI/HR/EN) |
+| 2 | `l10n_si_whatsapp_business` | multilingual | Auto-replies to incoming WhatsApp messages |
+| 3 | `l10n_si_marketing_automation` | creative | Generates email subject + body for campaigns |
+| 4 | `l10n_si_review_management` | creative | Writes personalized responses to guest reviews |
+| 5 | `l10n_si_helpdesk_simple` | reasoning | Suggests solutions for support tickets |
+| 6 | `l10n_si_reports` | reasoning | Summarizes REK-1/M4 regulatory reports |
+| 7 | `l10n_si_dashboard_executive` | reasoning | Analyzes KPIs and gives management insights |
+
+All 7 modules have 🤖 AI buttons visible in Odoo UI. All fall back to
+existing behavior (templates, rule-based) if AI Core is not installed.
+
+### Added — Production infrastructure (5 new modules)
+
+| Module | Purpose |
+|--------|---------|
+| `l10n_si_health_check` | `/healthz` endpoint — DB, modules, filestore, backup status |
+| `l10n_si_rate_limit` | Rate limiting for public API (10 req/min per IP) |
+| `l10n_si_api_docs` | Swagger UI at `/api/docs` with OpenAPI 3.0 spec |
+| `l10n_si_ai_core` | Central LLM router with task-based routing + fallback |
+| `l10n_si_audit_trail` (upgraded) | create/write/unlink tracking + IP logging |
+
+### Added — AI Concierge: 7th LLM backend (Puter.com)
+
+- `PuterClient` class — FREE access to GLM 5.1, GPT-4o, Claude, Llama
+- Default `max_tokens=1000` (GLM 5.1 uses 800+ tokens for reasoning)
+- 7 test methods covering success, auth error, rate limit, payload
+
+### Added — WhatsApp: multilingual templates + automated cron
+
+- 11 WhatsApp templates (SI/EN/HR): reservation, check-in, check-out, welcome, feedback
+- 3 automated cron jobs: check-in reminders (24h before), check-out reminders, feedback requests
+- AI auto-reply to incoming messages via AI Core
+- `wa_auto_reply` company field for enabling AI auto-reply
+
+### Added — N+1 query fixes + scanner
+
+- `scripts/scan_n_plus_1.py` — AST-based N+1 detection scanner
+- Fixed 8 N+1 hotspots: payroll wizard, revenue forecast, WhatsApp incoming, dashboard
+- N+1 scanner added to CI (informational — doesn't block)
+
+### Added — Documentation
+
+- `docs/openapi.yaml` — OpenAPI 3.0 spec (6 endpoints)
+- `docs/module-dependencies.md` — Mermaid dependency graph (82 modules)
+- `docs/Guest-Handbook-SI-EN.pdf` — 6-page bilingual guest handbook
+- `docs/Fiskalizacija-2.0-Analysis.md` — HR Fiskalizacija 2.0 compliance
+- `scripts/generate_dependency_graph.py` — reusable graph generator
+- `scripts/generate_guest_handbook.py` — reusable PDF generator
+- `scripts/verify-backup.sh` — 5-check backup integrity verification
+
+### Added — CI improvements
+
+- 131/131 unit tests (was 79)
+- 5 production-grade scanners (integrity, chatter, secrets, security, N+1)
+- Docker build fix (.dockerignore + Railway CLI bash fix)
+- ruff lint expanded (critical + style warnings)
+
+### Statistics
+
+| Metric | v19.0.14.3 | v19.0.15.2 | Change |
+|--------|-----------|-----------|--------|
+| Modules | 79 | **82** | +5 |
+| CI unit tests | 124 | **131** | +7 |
+| AI backends | 6 | **7** | +1 (Puter) |
+| AI Core modules | 0 | **7** | +7 |
+| CI scanners | 4 | **5** | +1 (N+1) |
+
 ## [19.0.14.3] — 2026-07-11
 
 ### Added — Tests for last untested module + expanded CI unit test runner
