@@ -185,6 +185,14 @@ def build_content(styles):
         'Simply open the web chat on our website or send a message to our WhatsApp. The AI will recognize your question and respond in Slovenian or English. Example questions: "What is the WiFi password?", "When is breakfast?", "Can you recommend a nearby restaurant?", "How do I get to the city center?".',
         styles
     ))
+    elements.append(info_box('Primeri vprašanj / Example Questions', [
+        '<b>WiFi:</b> "Kakšno je WiFi geslo?" / "What is the WiFi password?"',
+        '<b>Zajtrk:</b> "Kdaj je zajtrk?" / "When is breakfast?"',
+        '<b>Wellness:</b> "Kdaj je odprt wellness?" / "When is the spa open?"',
+        '<b>Priporočila:</b> "Priporočite restavracijo" / "Recommend a restaurant"',
+        '<b>Prevoz:</b> "Kako pridem do centra?" / "How to get to the center?"',
+        '<b>Recepcija:</b> "Poveži me z recepcijo" / "Connect me to reception"',
+    ], styles))
     elements.append(Spacer(1, 10))
 
     elements.append(Paragraph('6. Soba in storitve / Room &amp; Amenities', styles['SectionHeading']))
