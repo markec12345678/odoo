@@ -30,6 +30,8 @@
                     <button name="action_download_pdf" type="object"
                             string="Download PDF" class="btn-secondary"
                             invisible="[('pdf_attachment_id', '=', False)]"/>
+                    <button name="action_generate_ai_summary" type="object"
+                            string="🤖 AI povzetek" class="btn-secondary"/>
                 </header>
                 <sheet>
                     <group>
@@ -49,6 +51,9 @@
                     </group>
                     <group string="Notes">
                         <field name="notes" nolabel="1"/>
+                    </group>
+                    <group string="AI povzetek" invisible="[('ai_summary', '=', False)]">
+                        <field name="ai_summary" nolabel="1" widget="text"/>
                     </group>
                 </sheet>
             </form>

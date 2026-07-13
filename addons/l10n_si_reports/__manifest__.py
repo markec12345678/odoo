@@ -3,7 +3,7 @@
 {
     'name': 'Slovenian Regulatory Reports (AJPES, REK-1, M4)',
     'summary': 'Generate and export AJPES SRS, REK-1, M4 reports in XML for eDavki',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.1.0',
     'category': 'Accounting/Localizations',
     'description': """
 Slovenian Regulatory Reports
