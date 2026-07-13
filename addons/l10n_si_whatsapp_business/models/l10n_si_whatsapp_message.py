@@ -233,3 +233,74 @@ class L10nSiWhatsAppMessage(models.Model):
                 'company_id': company.id,
             })
             msg.action_send()
+
+    @api.model
+    def auto_reply_to_incoming(self, incoming_msg):
+        """AI-powered auto-reply to incoming WhatsApp messages.
+
+        Uses l10n_si_ai_core to generate a response to guest messages.
+        Falls back to a simple acknowledgment if AI Core is not available.
+
+        Args:
+            incoming_msg: l10n_si.whatsapp.message record (direction='incoming')
+
+        Returns:
+            l10n_si.whatsapp.message record (direction='outgoing') or False
+        """
+        if not incoming_msg or incoming_msg.direction != 'incoming':
+            return False
+
+        partner = incoming_msg.partner_id
+        company = incoming_msg.company_id
+
+        # Check if auto-reply is enabled (company field)
+        if not hasattr(company, 'wa_auto_reply') or not company.wa_auto_reply:
+            return False
+
+        # Try AI Core for intelligent response
+        AiCore = self.env.get('l10n_si.ai.core.route')
+        if AiCore:
+            try:
+                result = AiCore.generate(
+                    messages=[
+                        {'role': 'system', 'content':
+                            'Si prijazen AI asistent v hotelu. Gost ti je '
+                            'poslal WhatsApp sporočilo. Odgovori jedrnato, '
+                            'prijazno in v istem jeziku kot gost.'},
+                        {'role': 'user', 'content': incoming_msg.body or ''},
+                    ],
+                    task_type='multilingual',
+                    source_module='whatsapp_business',
+                )
+                if result.get('success') and result.get('response'):
+                    reply = self.create({
+                        'partner_id': partner.id if partner else False,
+                        'direction': 'outgoing',
+                        'message_type': 'text',
+                        'body': result['response'],
+                        'company_id': company.id,
+                    })
+                    reply.action_send()
+                    _logger.info(
+                        'WhatsApp auto-reply sent to %s via AI Core (%s/%s)',
+                        partner.name if partner else 'unknown',
+                        result.get('provider'), result.get('model'),
+                    )
+                    return reply
+                _logger.warning(
+                    'WhatsApp auto-reply: AI Core failed (%s)',
+                    result.get('error', 'unknown'),
+                )
+            except Exception as e:
+                _logger.warning('WhatsApp auto-reply: AI Core error: %s', e)
+
+        # Fallback: simple acknowledgment
+        reply = self.create({
+            'partner_id': partner.id if partner else False,
+            'direction': 'outgoing',
+            'message_type': 'text',
+            'body': 'Hvala za vaše sporočilo. Recepcija vas bo odgovorila kmalu.',
+            'company_id': company.id,
+        })
+        reply.action_send()
+        return reply

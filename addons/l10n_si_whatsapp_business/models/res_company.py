@@ -27,3 +27,8 @@ class ResCompany(models.Model):
         string='WhatsApp omogočen', default=False,
         help='Omogoči pošiljanje WhatsApp sporočil.',
     )
+    wa_auto_reply = fields.Boolean(
+        string='AI auto-odgovor', default=False,
+        help='Ko je omogočeno, AI samodejno odgovori na vhodna WhatsApp '
+             'sporočila gostov. Uporablja AI Core centralni router.',
+    )

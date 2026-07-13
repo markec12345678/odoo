@@ -46,12 +46,17 @@ class WhatsAppWebhook(http.Controller):
                                 '|', ('mobile', 'ilike', phone), ('phone', 'ilike', phone)
                             ], limit=1)
                             if partner:
-                                request.env['l10n_si.whatsapp.message'].sudo().create({
+                                incoming = request.env['l10n_si.whatsapp.message'].sudo().create({
                                     'partner_id': partner.id,
                                     'direction': 'incoming',
                                     'message_type': 'text',
                                     'body': text,
                                 })
+                                # AI auto-reply (if enabled + AI Core installed)
+                                try:
+                                    request.env['l10n_si.whatsapp.message'].sudo().auto_reply_to_incoming(incoming)
+                                except Exception as ar_err:
+                                    _logger.debug('Auto-reply skipped: %s', ar_err)
         except Exception as e:
             _logger.error('WhatsApp webhook error: %s', e)
         return {'status': 'ok'}
