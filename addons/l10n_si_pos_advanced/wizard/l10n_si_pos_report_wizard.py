@@ -6,7 +6,6 @@ Z-report: daily close (finalizes the day, prints totals)
 """
 import logging
 from collections import defaultdict
-from datetime import datetime, timedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError

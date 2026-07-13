@@ -7,7 +7,6 @@ ZKI = MD5(oib + datum_vrijeme + broj_racuna + oznaka_pp + oznaka_nu +
 Reference: CISF Technical specification v1.8, section 3.1
 """
 import hashlib
-import re
 
 from odoo.tests import TransactionCase, tagged
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Procurement item - katalog artiklov za nabavo."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiProcurementItem(models.Model):

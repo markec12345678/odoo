@@ -5,11 +5,10 @@ import logging
 import os
 import shutil
 import subprocess
-import tempfile
 
 import requests
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)

@@ -8,10 +8,6 @@ Covers:
 - _parse_si_stmt_element, _parse_si_balance, _parse_si_ntry_element
 - Error handling for invalid XML
 """
-import base64
-from decimal import Decimal
-from unittest.mock import patch, MagicMock
-from xml.etree import ElementTree as ET
 
 from odoo.exceptions import UserError
 from odoo.tests import TransactionCase, tagged

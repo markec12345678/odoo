@@ -4,7 +4,6 @@
 Tests verify that the eSLOG XML is well-formed and contains required fields
 per EN 16931 / eSLOG 2.0 specification.
 """
-from datetime import date
 
 from odoo.tests import TransactionCase, tagged
 

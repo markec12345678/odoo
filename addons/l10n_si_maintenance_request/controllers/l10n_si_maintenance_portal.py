@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Public portal for guests to report issues (QR code in room → URL)."""
 import base64
-import json
 import logging
 
 from odoo import http

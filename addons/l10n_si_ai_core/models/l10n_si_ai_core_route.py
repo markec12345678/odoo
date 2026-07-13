@@ -6,8 +6,7 @@ it specifies a task_type, and the router finds the best provider.
 """
 import logging
 
-from odoo import api, fields, models, _
-from odoo.exceptions import UserError
+from odoo import api, fields, models
 
 from odoo.addons.l10n_si_ai_concierge.models.ai_client import (
     get_ai_client, Message,

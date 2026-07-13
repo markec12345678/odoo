@@ -28,7 +28,6 @@ from .evisitor_client import (
     EVisitorValidationError,
     build_check_in_payload,
     build_check_out_payload,
-    build_tourist_tax_payload,
 )
 
 _logger = logging.getLogger(__name__)
@@ -387,7 +386,6 @@ class L10nHrEvisitorGuestRegistration(models.Model):
         - AuthError / ValidationError / UnknownError → status „error”, bez retry-a
         - ConnectionError → status „pending”, zakazan retry za 15 minuta
         """
-        from .evisitor_client import EVisitorClient
         Log = self.env['l10n_hr.evisitor.log']
         for reg in self:
             acc = reg.accommodation_id

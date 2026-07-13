@@ -7,8 +7,6 @@ Covers:
 - Controller /chatbot/send input validation
 - Controller gracefully handles missing AI config
 """
-import json
-from unittest.mock import patch, MagicMock
 
 from odoo.tests import HttpCase, TransactionCase, tagged
 

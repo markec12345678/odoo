@@ -14,8 +14,6 @@ from odoo.tests import TransactionCase, tagged
 from odoo.addons.l10n_si_channel_manager.models.channel_clients import (
     BookingComClient,
     AirbnbClient,
-    ChannelAuthError,
-    ChannelSyncError,
     ChannelValidationError,
     BOOKING_COM_API_ENDPOINT,
     AIRBNB_API_ENDPOINT,

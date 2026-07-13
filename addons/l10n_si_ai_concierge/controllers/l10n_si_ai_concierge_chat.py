@@ -65,7 +65,7 @@ class L10nSiAiConciergeChat(http.Controller):
         # Rate limiting
         try:
             _check_rate_limit('/ai-concierge/chat')
-        except AccessDenied as e:
+        except AccessDenied:
             return json.dumps({'error': 'Rate limit exceeded', 'retry_after': 60})
 
         try:

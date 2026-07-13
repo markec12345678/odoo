@@ -8,8 +8,6 @@ Covers:
 - Tax report XML is well-formed
 """
 import csv
-import os
-from pathlib import Path
 
 from odoo.tests import TransactionCase, tagged
 from odoo.tools.misc import file_path

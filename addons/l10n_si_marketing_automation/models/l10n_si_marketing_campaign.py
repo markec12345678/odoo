@@ -3,7 +3,7 @@
 import logging
 from datetime import timedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Ticket model — the main helpdesk ticket."""
 import logging
-from datetime import datetime, timedelta
+from datetime import timedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 

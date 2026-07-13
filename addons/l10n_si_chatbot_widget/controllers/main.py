@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Chatbot widget controller — AJAX endpoint za AI odgovore."""
-import json
 import logging
 from odoo import http
 from odoo.http import request

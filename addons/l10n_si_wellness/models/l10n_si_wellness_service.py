@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Wellness service - masaža, sauna, bazen, itd."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiWellnessService(models.Model):

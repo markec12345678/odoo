@@ -7,7 +7,7 @@ Covers:
 - payment.provider inherit: _stripe_make_payment_request override behavior
   (when SI deposit mode is enabled, capture_method should be 'manual')
 """
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 
 from odoo.tests import TransactionCase, tagged
 

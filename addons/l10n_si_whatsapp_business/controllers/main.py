@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """WhatsApp webhook controller — sprejema webhook od Meta."""
-import json
 import logging
 from odoo import http
 from odoo.http import request

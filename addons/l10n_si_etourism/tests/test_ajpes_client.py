@@ -5,7 +5,6 @@ Pure unit tests — no Odoo DB needed. Tests the client logic standalone.
 """
 import sys
 import unittest.mock
-from datetime import datetime
 from unittest.mock import MagicMock, patch
 
 # Mock odoo for standalone execution

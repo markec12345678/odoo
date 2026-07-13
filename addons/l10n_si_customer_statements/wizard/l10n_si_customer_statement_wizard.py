@@ -91,7 +91,6 @@ def _compute_lines_and_balances(self):
     # Aging buckets at date_to
     aging_0_30 = aging_31_60 = aging_61_90 = aging_90_plus = 0.0
     open_lines = MoveLine.search(domain + [('date', '<=', self.date_to), ('reconciled', '=', False)])
-    from datetime import timedelta
     for ml in open_lines:
         if ml.balance == 0:
             continue

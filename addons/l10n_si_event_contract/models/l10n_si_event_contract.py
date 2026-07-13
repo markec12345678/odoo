@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 """Contract - konkretna pogodba izpredloge, vezana na event."""
 import base64
-import re
-from datetime import datetime
 
-from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo import api, fields, models
 
 
 class L10nSiEventContract(models.Model):

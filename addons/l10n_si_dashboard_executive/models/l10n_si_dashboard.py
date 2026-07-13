@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """KPI dashboard for executive management."""
-from datetime import date, timedelta
+from datetime import date
 
 from odoo import api, fields, models
 

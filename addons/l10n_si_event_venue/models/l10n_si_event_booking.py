@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Booking = rezervacija ene dvorane za en časovni okvir."""
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import ValidationError
 
 
 class L10nSiEventBooking(models.Model):

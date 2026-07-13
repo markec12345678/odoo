@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Venue = lokacija dogodka (npr. Grand Hotel, Kongresni center)."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiEventVenue(models.Model):

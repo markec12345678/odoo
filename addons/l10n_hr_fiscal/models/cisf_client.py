@@ -18,16 +18,13 @@ ZKI Algorithm (per CISF spec v1.8):
     Format: 32-char lowercase hex MD5
     Date format: dd.MM.yyyyHH:mm:ss (Croatian)
 """
-import hashlib
-import json
 import logging
 import os
-import shutil
 import tempfile
 import time
 import uuid
 from datetime import datetime
-from typing import Optional, Tuple
+from typing import Tuple
 from xml.sax.saxutils import escape
 
 import requests

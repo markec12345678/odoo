@@ -1,5 +1,4 @@
 import logging
-import requests
 from odoo import models
 
 _logger = logging.getLogger(__name__)

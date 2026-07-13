@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Vendor - zunanji izvajalec (fotograf, DJ, cvetličar, ...)."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiEventVendor(models.Model):

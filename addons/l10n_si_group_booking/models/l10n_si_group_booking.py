@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Group booking - ena skupinska rezervacija z N sobami."""
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class L10nSiGroupBooking(models.Model):

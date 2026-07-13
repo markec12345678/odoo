@@ -10,7 +10,7 @@ from datetime import date, timedelta
 
 import requests
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)

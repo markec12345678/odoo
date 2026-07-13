@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Promo codes for online booking."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiBookingPromo(models.Model):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Equipment catalog with stock quantity."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiEventEquipment(models.Model):

@@ -4,7 +4,7 @@
 import base64
 from xml.etree import ElementTree as ET
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class L10nSiAjpesSrsWizard(models.TransientModel):

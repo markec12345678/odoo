@@ -8,10 +8,8 @@ Reference: Fiskalizacija — Tehnička specifikacija za korisnike v1.8, section 
 """
 import hashlib
 import logging
-import uuid
-from datetime import datetime, timedelta
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)

@@ -9,11 +9,10 @@ from unittest.mock import MagicMock, patch
 from odoo.tests import TransactionCase, tagged
 
 from odoo.addons.l10n_si_ai_concierge.models.ai_client import (
-    AIClient, ZAIClient, OpenAIClient, AnthropicClient, LocalLLMClient,
+    ZAIClient, OpenAIClient, AnthropicClient, LocalLLMClient,
     PuterClient,
     get_ai_client, Message,
     AIAuthError, AIRequestError, AIRateLimitError,
-    ZAI_ENDPOINT, OPENAI_ENDPOINT, ANTHROPIC_ENDPOINT,
 )
 
 

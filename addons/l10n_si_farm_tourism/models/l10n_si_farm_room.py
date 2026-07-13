@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Sobe na kmetiji - tipično 5-15 ležišč."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiFarmRoom(models.Model):

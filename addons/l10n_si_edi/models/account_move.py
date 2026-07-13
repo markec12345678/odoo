@@ -2,15 +2,13 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import base64
-import hashlib
 import logging
 import shutil
-from datetime import datetime
 from xml.etree import ElementTree as ET
 
 import requests
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)

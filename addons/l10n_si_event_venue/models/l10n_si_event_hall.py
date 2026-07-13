@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Hall = posamezna dvorana znotraj venue-a."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiEventHall(models.Model):

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Quick upload wizard — upload PDF, run OCR immediately."""
-import base64
 
 from odoo import fields, models
 

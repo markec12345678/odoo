@@ -9,7 +9,7 @@ import os
 import logging
 
 from odoo import http
-from odoo.http import request, Response
+from odoo.http import Response
 
 _logger = logging.getLogger(__name__)
 

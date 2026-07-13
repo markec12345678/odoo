@@ -190,7 +190,6 @@ class L10nSiApprovalRequest(models.Model):
     @api.model
     def _cron_check_sla_breach(self):
         """Daily check: send reminders for pending approvals, escalate SLA breaches."""
-        from datetime import timedelta
         for req in self.search([('state', '=', 'pending')]):
             if req.sla_breached:
                 # Escalate: notify company manager

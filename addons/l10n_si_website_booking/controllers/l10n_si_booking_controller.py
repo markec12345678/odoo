@@ -2,7 +2,7 @@
 """Website booking engine controller."""
 import json
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from odoo import http
 from odoo.http import request

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Booking - rezervacija termina za storitev."""
-from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo import api, fields, models
 
 
 class L10nSiWellnessBooking(models.Model):

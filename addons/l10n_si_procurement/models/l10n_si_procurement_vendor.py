@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Procurement vendor - dobavitelj."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiProcurementVendor(models.Model):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Package = paket storitev (poročni paket, konferenca, obletnica)."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiEventPackage(models.Model):

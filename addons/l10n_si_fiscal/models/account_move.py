@@ -5,12 +5,11 @@ import hashlib
 import json
 import logging
 import shutil
-import uuid
-from datetime import datetime, timezone
+from datetime import datetime
 
 import requests
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)

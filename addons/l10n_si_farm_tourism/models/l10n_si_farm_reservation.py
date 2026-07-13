@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Rezervacija sobe na kmetiji."""
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 
 
 class L10nSiFarmReservation(models.Model):

@@ -2,10 +2,7 @@
 """Channel Manager API clients — Booking.com + Airbnb."""
 import hashlib
 import hmac
-import json
 import logging
-import time
-from typing import Optional, Tuple
 
 import requests
 

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Tests for l10n_si_health_check module."""
 import json
-from unittest.mock import patch, MagicMock
 
 from odoo.tests import HttpCase, TransactionCase, tagged
 

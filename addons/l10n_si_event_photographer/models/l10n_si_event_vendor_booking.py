@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Vendor booking - naročilo zunanjega izvajalca za konkreten dogodek."""
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class L10nSiEventVendorBooking(models.Model):

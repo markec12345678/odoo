@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Domači izdelki - sir, mleko, jajca, meso, pršut, med, žganje."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiFarmProduct(models.Model):

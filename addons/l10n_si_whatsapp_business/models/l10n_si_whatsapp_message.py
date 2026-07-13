@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """WhatsApp message model — sledi poslanim in prejetim sporočilom."""
-import json
 import logging
 import requests
 from datetime import timedelta

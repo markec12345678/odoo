@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Quick upload + sign wizard — sign a single document immediately."""
-import base64
 
 from odoo import fields, models
 

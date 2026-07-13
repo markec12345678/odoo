@@ -38,7 +38,6 @@ class MaintenanceEquipment(models.Model):
 
     def _compute_mtbf_mttr(self):
         Request = self.env['maintenance.request']
-        from datetime import timedelta
         for eq in self:
             requests = Request.search([
                 ('equipment_id', '=', eq.id),

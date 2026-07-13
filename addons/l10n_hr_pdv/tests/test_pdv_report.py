@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Tests for l10n_hr_pdv — PDV (VAT) report fields and XML generation."""
-from datetime import date
 
 from odoo.tests import TransactionCase, tagged
 

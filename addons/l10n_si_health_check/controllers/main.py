@@ -166,7 +166,7 @@ class HealthCheckController(http.Controller):
         - 'error: <message>' on errors
         """
         import glob
-        from datetime import datetime, timedelta
+        from datetime import datetime
 
         backup_dirs = [
             '/tmp/backups',

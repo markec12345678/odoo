@@ -5,7 +5,7 @@ Each Slovenian chart-of-accounts entry (account.account) can be linked to
 an SRS 99 reference account. The reference catalog is shared by all
 companies and used by the financial reports (bilanca, izid poslovanja).
 """
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class L10nSiSrsAccount(models.Model):

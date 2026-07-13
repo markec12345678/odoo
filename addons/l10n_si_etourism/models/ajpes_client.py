@@ -7,16 +7,8 @@ Operation: oddajPorocilo(uName, pwd, data, format)
 The `data` parameter contains XML payload conforming to AJPES XSD schema
 (guestBookSchema for daily reports, GuestBookMRschema for monthly reports).
 """
-import hashlib
-import json
 import logging
-import os
-import shutil
-import tempfile
 import time
-import uuid
-from datetime import datetime
-from typing import Optional, Tuple
 from xml.sax.saxutils import escape
 
 import requests

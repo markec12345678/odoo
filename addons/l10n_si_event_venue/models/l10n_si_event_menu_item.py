@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Catering menu items - jedi in pijače za dogodke."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiEventMenuItem(models.Model):

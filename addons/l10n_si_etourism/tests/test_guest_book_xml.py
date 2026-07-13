@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Tests for AJPES guest book XML builder."""
-import json
 from datetime import datetime
 from unittest.mock import MagicMock
 

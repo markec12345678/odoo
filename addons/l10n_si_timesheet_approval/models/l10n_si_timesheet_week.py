@@ -2,7 +2,7 @@
 """Weekly timesheet container with approval workflow."""
 from datetime import timedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 

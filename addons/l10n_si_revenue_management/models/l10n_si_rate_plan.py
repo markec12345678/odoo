@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Rate plan - cenovni načrt z pravili za dinamično določanje cene."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiRatePlan(models.Model):

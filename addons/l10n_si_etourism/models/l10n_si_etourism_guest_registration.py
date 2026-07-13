@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 """Prijava in odjava gosta pri AJPES eTurizem."""
-import json
 import logging
 from datetime import timedelta
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 
 from .ajpes_client import (
     AJPESClient, AJPESAuthError, AJPESValidationError,
@@ -197,5 +196,5 @@ class L10nSiEtourismGuestRegistration(models.Model):
         for reg in pending:
             try:
                 reg._ajpes_register()
-            except Exception as e:
+            except Exception:
                 _logger.exception('Cron failed for %s', reg.name)

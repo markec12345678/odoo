@@ -6,9 +6,8 @@ import logging
 import os
 import tempfile
 
-import requests
 
-from odoo import _, api, exceptions, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 

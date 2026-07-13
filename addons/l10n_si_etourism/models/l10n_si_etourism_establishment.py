@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """AJPES nastanitveni obrat — RNO entry (MID + SIFNAS)."""
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import _, fields, models
 
 
 class L10nSiEtourismEstablishment(models.Model):

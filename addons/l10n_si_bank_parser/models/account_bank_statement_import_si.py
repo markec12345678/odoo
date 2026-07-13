@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-import base64
 import logging
 import re
-from datetime import datetime
 from decimal import Decimal
 from xml.etree import ElementTree as ET
 

@@ -97,7 +97,6 @@ class L10nSiHousekeepingTask(models.Model):
             })
 
     def action_complete(self):
-        from datetime import timedelta
         for t in self:
             duration = 0
             if t.started_on:

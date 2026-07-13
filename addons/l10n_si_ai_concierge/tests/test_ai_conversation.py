@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Tests for AI Concierge conversation workflow with rule-based fallback."""
-from unittest.mock import patch, MagicMock
 
 from odoo.tests import TransactionCase, tagged
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Mapping between SI room types and channel room types."""
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class L10nSiChannelRoomMapping(models.Model):
