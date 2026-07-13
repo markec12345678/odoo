@@ -2,7 +2,7 @@
 {
     'name': 'Slovenian Competitor Pricing',
     'summary': 'Sledenje cen konkurence',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.1.0',
     'category': 'Slovenian Localization',
     'description': "Sledenje cen konkurence.",
     'author': 'markec12345678',
