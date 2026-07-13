@@ -42,6 +42,10 @@ tags:
     description: Website floating chat widget
   - name: WhatsApp Webhook
     description: Meta WhatsApp Business Cloud API webhook receiver
+  - name: Health Check
+    description: Production health monitoring endpoint
+  - name: AI Core
+    description: Central LLM router usage statistics
 
 paths:
   # ==========================================================================
@@ -359,6 +363,126 @@ paths:
                   status:
                     type: string
                     example: ok
+
+  # ==========================================================================
+  # Health Check
+  # ==========================================================================
+  /healthz:
+    get:
+      tags: [Health Check]
+      summary: Get system health status
+      description: |
+        Returns JSON with overall system health including database,
+        modules, filestore, and backup status.
+
+        Used by Railway load balancer and monitoring tools.
+      operationId: healthz
+      responses:
+        '200':
+          description: System healthy or degraded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [ok, degraded]
+                  timestamp:
+                    type: string
+                    format: date-time
+                  checks:
+                    type: object
+                    properties:
+                      database:
+                        type: string
+                      modules:
+                        type: string
+                      filestore:
+                        type: string
+                      backup:
+                        type: string
+                  version:
+                    type: string
+                  api_docs:
+                    type: string
+                    example: /api/docs
+        '503':
+          description: System down (database unreachable)
+
+  /healthz/simple:
+    get:
+      tags: [Health Check]
+      summary: Simple health check (text)
+      description: |
+        Returns plain text 'ok' or 'down'.
+        Use this for Railway healthcheck (simpler parsing).
+      operationId: healthzSimple
+      responses:
+        '200':
+          description: System OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ok
+        '503':
+          description: System down
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: down
+
+  # ==========================================================================
+  # AI Core
+  # ==========================================================================
+  /ai-core/usage:
+    get:
+      tags: [AI Core]
+      summary: Get AI Core usage statistics
+      description: |
+        Returns usage statistics for all AI Core API calls across
+        9 modules (AI Concierge, WhatsApp, Marketing, Reviews,
+        Helpdesk, Reports, Dashboard, Revenue Management, Competitor
+        Pricing).
+
+        **Authentication required** — only authenticated Odoo users
+        can access this endpoint.
+      operationId: aiCoreUsage
+      parameters:
+        - name: days
+          in: query
+          schema:
+            type: integer
+            default: 7
+          description: Number of days to include in statistics
+      responses:
+        '200':
+          description: Usage statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_calls:
+                    type: integer
+                  successful:
+                    type: integer
+                  failed:
+                    type: integer
+                  by_provider:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                  by_module:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                  by_task:
+                    type: object
+                    additionalProperties:
+                      type: integer
 
 components:
   schemas:
