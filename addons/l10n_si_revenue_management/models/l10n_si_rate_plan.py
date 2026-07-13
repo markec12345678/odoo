@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 """Rate plan - cenovni načrt z pravili za dinamično določanje cene."""
+import logging
+
 from odoo import fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class L10nSiRatePlan(models.Model):
@@ -29,6 +33,10 @@ class L10nSiRatePlan(models.Model):
 
     # Osnovna cena (BAR - Best Available Rate)
     base_price = fields.Float(required=True, default=80.0, string='Osnovna cena (BAR)')
+    ai_recommendation = fields.Text(
+        string='AI priporočilo za cene', copy=False,
+        help='AI-generirano priporočilo za optimizacijo cen',
+    )
 
     # Pravila za prilagoditev cene
     # 1. Sezonski faktorji
@@ -164,3 +172,89 @@ class L10nSiRatePlan(models.Model):
         """Public method: get computed rate for a date with default occupancy 50%."""
         rate, factors = self.compute_rate(target_date, occupancy_percent=50)
         return rate
+
+    def action_generate_ai_pricing(self):
+        """AI priporočilo za optimizacijo cen.
+
+        Analizira trenutne cene, sezonske faktorje in napoved
+        zasedenosti, nato priporoči prilagoditve za povečanje prihodka.
+        """
+        AiCore = self.env.get('l10n_si.ai.core.route')
+        if not AiCore:
+            _logger.info('Revenue AI: AI Core not installed — skipping')
+            return True
+
+        for plan in self:
+            # Zberi napovedi zasedenosti za naslednje 7 dni
+            Forecast = self.env.get('l10n_si.occupancy.forecast')
+            forecasts = Forecast.search([
+                ('company_id', '=', plan.company_id.id),
+                ('date', '>=', fields.Date.today()),
+                ('date', '<=', fields.Date.to_string(
+                    fields.Date.today().replace(day=fields.Date.today().day + 7)
+                    if fields.Date.today().day <= 24 else fields.Date.today()
+                )),
+            ], limit=7) if Forecast else False
+
+            forecast_text = ''
+            if forecasts:
+                for f in forecasts:
+                    forecast_text += (
+                        f'  {f.date}: {f.forecasted_occupancy:.0f}% '
+                        f'(potrjenih {f.confirmed_bookings}/{f.total_rooms})\n'
+                    )
+            else:
+                forecast_text = '  Napovedi ni na voljo.\n'
+
+            # Pripravi faktorje
+            factors = (
+                f'Zima: {plan.winter_factor}x, '
+                f'Rami: {plan.shoulder_factor}x, '
+                f'Visoka: {plan.high_season_factor}x, '
+                f'Vrh: {plan.peak_factor}x\n'
+                f'Petek: {plan.friday_factor}x, '
+                f'Sobota: {plan.saturday_factor}x\n'
+                f'Early-bird: {plan.early_bird_factor}x '
+                f'(>{plan.early_bird_days_threshold} dni)\n'
+                f'LOS 7+: {plan.los_7_plus_factor}x, '
+                f'LOS 14+: {plan.los_14_plus_factor}x'
+            )
+
+            prompt = (
+                f"Analiziraj cenovno strategijo za hotelski rate plan:\n"
+                f"Ime: {plan.name}\n"
+                f"Osnovna cena (BAR): {plan.base_price:.2f} EUR\n"
+                f"Faktorji:\n{factors}\n\n"
+                f"Napoved zasedenosti (naslednji 7 dni):\n{forecast_text}\n\n"
+                f"Priporoči konkretno strategijo za povečanje prihodka:\n"
+                f"1. Ali je osnovna cena ustrezna?\n"
+                f"2. Katere faktorje prilagoditi?\n"
+                f"3. Priporočila za early-bird in LOS popuste?\n"
+                f"4. Posebne akcije za dneve z nizko zasedenostjo?\n"
+                f"Odgovori v slovenščini, 4-6 stavkov."
+            )
+            try:
+                result = AiCore.generate(
+                    messages=[{'role': 'user', 'content': prompt}],
+                    task_type='reasoning',
+                    system_prompt='Si strokovnjak za revenue management '
+                                  'v hotelirstvu (yield management). Analiziraš '
+                                  'cene, zasedenost in sezonske vzorce. Daješ '
+                                  'konkretna, števinska priporočila, v slovenščini.',
+                    source_module='revenue_management',
+                )
+                if result.get('success') and result.get('response'):
+                    plan.ai_recommendation = result['response']
+                    _logger.info(
+                        'Revenue AI: recommendation for %s via %s/%s',
+                        plan.name, result.get('provider'),
+                        result.get('model'),
+                    )
+                else:
+                    _logger.warning(
+                        'Revenue AI: failed (%s)',
+                        result.get('error', 'unknown'),
+                    )
+            except Exception as e:
+                _logger.error('Revenue AI: error: %s', e)
+        return True

@@ -20,6 +20,10 @@
         <field name="model">l10n_si.rate.plan</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_generate_ai_pricing" type="object"
+                            string="🤖 AI priporočilo" class="btn-secondary"/>
+                </header>
                 <sheet>
                     <group>
                         <group>
@@ -94,6 +98,9 @@
                             </group>
                         </page>
                     </notebook>
+                    <group string="🤖 AI priporočilo za cene" invisible="[('ai_recommendation', '=', False)]">
+                        <field name="ai_recommendation" nolabel="1" widget="text"/>
+                    </group>
                 </sheet>
             </form>
         </field>

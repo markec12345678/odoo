@@ -2,7 +2,7 @@
 {
     'name': 'Slovenian Revenue Management',
     'summary': 'Dinamično določanje cen (yield management) glede na povpraševanje',
-    'version': '19.0.1.0.1',
+    'version': '19.0.1.1.0',
     'category': 'Hotel Management',
     'description': """
 Slovenian Revenue Management
