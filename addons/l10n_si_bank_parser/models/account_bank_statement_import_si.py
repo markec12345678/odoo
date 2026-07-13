@@ -142,7 +142,7 @@ class AccountBankStatementImportSi(models.TransientModel):
             party = ntry.find('.//camt:RltdPties/camt:Cdtr', NS_CAMT)
         if party is not None:
             partner_name = party.findtext('camt:Nm', '', NS_CAMT)
-            acct = party.find('camt:PstlAdr', NS_CAMT)  # some banks put address here
+            # party.find('camt:PstlAdr', NS_CAMT)  # some banks put address here
             partner_account_elem = ntry.find(
                 './/camt:RltdPties/camt:DbtrAcct/camt:Id/camt:IBAN', NS_CAMT,
             ) or ntry.find(

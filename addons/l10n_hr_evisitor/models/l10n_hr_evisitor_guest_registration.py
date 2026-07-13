@@ -388,7 +388,6 @@ class L10nHrEvisitorGuestRegistration(models.Model):
         """
         Log = self.env['l10n_hr.evisitor.log']
         for reg in self:
-            acc = reg.accommodation_id
             try:
                 client = reg._get_evisitor_client()
             except UserError as e:

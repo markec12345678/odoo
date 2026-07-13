@@ -69,16 +69,14 @@ class L10nSiAiConciergeConversation(models.Model):
     def _generate_summary(self):
         """AI generira povzetek pogovora."""
         # V produkciji: klic AI API-ja s celotno zgodovino
-        messages_text = '\n'.join(
-            f'{m.role}: {m.content}' for m in self.message_ids
-        )
+        # messages_text would be used for AI summary in production
         # Zaenkrat preprosto shranimo zadnje sporočilo
         self.summary = f'Pogovor z {len(self.message_ids)} sporočili.'
 
     def send_message(self, content, role='user'):
         """Dodaj sporočilo in pridobi AI odgovor."""
         self.ensure_one()
-        msg = self.env['l10n_si.ai.concierge.message'].create({
+        self.env['l10n_si.ai.concierge.message'].create({
             'conversation_id': self.id,
             'role': role,
             'content': content,

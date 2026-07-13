@@ -210,10 +210,11 @@ def build_monthly_report_xml(report):
         by_country = _json.loads(report.by_country_json or '{}')
     except (ValueError, TypeError):
         by_country = {}
-    try:
-        by_purpose = _json.loads(report.by_purpose_json or '{}')
-    except (ValueError, TypeError):
-        by_purpose = {}
+    # by_purpose data not yet used in XML generation
+    # try:
+    #     by_purpose = _json.loads(report.by_purpose_json or '{}')
+    # except (ValueError, TypeError):
+    #     by_purpose = {}
 
     lines = ['<?xml version="1.0" encoding="utf-8"?>']
     lines.append('<GuestBookMR xmlns="http://www.ajpes.si/eturizem/">')

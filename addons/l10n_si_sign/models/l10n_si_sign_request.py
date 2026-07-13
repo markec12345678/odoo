@@ -174,7 +174,7 @@ class L10nSiSignSignature(models.Model):
                 with open(doc_path, 'wb') as f:
                     f.write(doc_data)
 
-                signed_path = os.path.join(temp_dir, 'signed.pdf')
+                # signed_path would be used by pdftk/qpdf in production
 
                 # Use pdftk or qpdf for signature — fallback to openssl CMS
                 # For PAdES-compliant signature, use external `pdfsign` or `jpdfsign`

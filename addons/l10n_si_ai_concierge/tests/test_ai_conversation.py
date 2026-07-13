@@ -45,7 +45,7 @@ class TestAIConversationFallback(TransactionCase):
         self.assertIn('Prosim', response)
 
     def test_recepcija_triggers_escalation(self):
-        response = self.conversation._call_ai_for_response('Poveži me z recepcijo')
+        self.conversation._call_ai_for_response('Poveži me z recepcijo')
         self.assertEqual(self.conversation.state, 'escalated')
 
     def test_unknown_query_returns_helpful(self):

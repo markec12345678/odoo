@@ -72,7 +72,6 @@ class L10nSiAiConciergeChat(http.Controller):
             data = request.get_json_data()
             message = data.get('message', '').strip()
             conversation_id = data.get('conversation_id')
-            guest_name = data.get('guest_name', 'Anonimni gost')
 
             if not message:
                 return json.dumps({'error': 'Empty message'})

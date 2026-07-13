@@ -173,7 +173,6 @@ class L10nSiPayslip(models.Model):
             # Simplification: apply bracket rate on monthly amount
             projected_yearly = osnova * MONTHS_PER_YEAR
             akont = 0.0
-            remaining = projected_yearly
             for limit, rate in TAX_BRACKETS:
                 # Determine the slice falling in this bracket
                 # (we use a cumulative approach for simplicity)

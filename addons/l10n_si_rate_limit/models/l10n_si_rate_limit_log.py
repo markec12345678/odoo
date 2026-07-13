@@ -61,7 +61,6 @@ class L10nSiRateLimitLog(models.Model):
             # Rate limited — calculate retry_after
             oldest = existing[-1] if existing else None
             if oldest:
-                oldest_time = fields.Datetime.from_string(oldest.create_date)
                 retry_after = max(1, int((window_start + timedelta(seconds=window_seconds) - now).total_seconds()))
             else:
                 retry_after = window_seconds
