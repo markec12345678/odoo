@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 """Marketing campaign + steps + participant records."""
+import logging
 from datetime import timedelta
 
 from odoo import _, api, fields, models
 from odoo.tools.safe_eval import safe_eval
+
+_logger = logging.getLogger(__name__)
 
 
 class L10nSiMarketingCampaign(models.Model):
@@ -127,6 +130,16 @@ class L10nSiMarketingCampaignStep(models.Model):
 
     # Email action
     template_id = fields.Many2one('mail.template', string='Email template')
+    ai_generated_subject = fields.Char(
+        string='AI generiran subject',
+        readonly=True, copy=False,
+        help='Zadnji AI-generiran subject (prazno = uporabi template)',
+    )
+    ai_generated_body = fields.Text(
+        string='AI generirana vsebina',
+        readonly=True, copy=False,
+        help='Zadnja AI-generirana vsebina e-maila',
+    )
 
     # Wait action
     wait_days = fields.Integer(default=1)
@@ -153,6 +166,68 @@ class L10nSiMarketingCampaignStep(models.Model):
     # Branch
     next_step_if_true = fields.Many2one('l10n_si.marketing.campaign.step', string='Naslednji (true)')
     next_step_if_false = fields.Many2one('l10n_si.marketing.campaign.step', string='Naslednji (false)')
+
+    def action_generate_ai_content(self):
+        """Generate email subject + body using AI Core.
+
+        Uses the campaign's target audience and this step's name to
+        generate personalized marketing content. Falls back silently
+        if AI Core is not installed.
+        """
+        AiCore = self.env.get('l10n_si.ai.core.route')
+        if not AiCore:
+            _logger.info('Marketing AI: AI Core not installed — skipping')
+            return True
+
+        for step in self:
+            if step.action_type != 'email':
+                continue
+            campaign = step.campaign_id
+            prompt = (
+                f"Ustvari marketinški e-mail za hotelsko kampanjo.\n"
+                f"Ime kampanje: {campaign.name}\n"
+                f"Opis: {campaign.description or 'Ni opisa'}\n"
+                f"Ime koraka: {step.name}\n"
+                f"\n"
+                f"Format odgovora:\n"
+                f"SUBJECT: <kratek, privlačen subject>\n"
+                f"BODY: <vsebina e-maila v slovenščini, 2-3 odstavki, "
+                f"prijazen ton, CTA na koncu>"
+            )
+            try:
+                result = AiCore.generate(
+                    messages=[{'role': 'user', 'content': prompt}],
+                    task_type='creative',
+                    system_prompt='Si izkušen copywriter za hotelirstvo. '
+                                  'Pišeš privlačne, osebne e-maile v slovenščini.',
+                    source_module='marketing_automation',
+                )
+                if result.get('success') and result.get('response'):
+                    response = result['response']
+                    # Parse SUBJECT and BODY from response
+                    subject = ''
+                    body = response
+                    if 'SUBJECT:' in response:
+                        parts = response.split('BODY:', 1)
+                        subject_part = parts[0]
+                        body = parts[1].strip() if len(parts) > 1 else response
+                        subject = subject_part.replace('SUBJECT:', '').strip()
+                    step.write({
+                        'ai_generated_subject': subject[:200],
+                        'ai_generated_body': body[:5000],
+                    })
+                    _logger.info(
+                        'Marketing AI: generated content for step %s via %s/%s',
+                        step.name, result.get('provider'), result.get('model'),
+                    )
+                else:
+                    _logger.warning(
+                        'Marketing AI: generation failed (%s)',
+                        result.get('error', 'unknown'),
+                    )
+            except Exception as e:
+                _logger.error('Marketing AI: error for step %s: %s', step.name, e)
+        return True
 
 
 class L10nSiMarketingCampaignParticipant(models.Model):
