@@ -6,16 +6,16 @@
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](./LICENSE)
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0-875A7B.svg)](https://www.odoo.com)
-[![Modules](https://img.shields.io/badge/Modules-86-green.svg)](#module-catalog)
+[![Modules](https://img.shields.io/badge/Modules-87-green.svg)](#module-catalog)
 [![OCA](https://img.shields.io/badge/OCA%20Modules-37-orange.svg)](https://github.com/OCA)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](./requirements.txt)
 [![Railway](https://img.shields.io/badge/Railway-Live%20Demo-9B59B6.svg)](https://odoo-production-fa42.up.railway.app/web/login)
-[![Version](https://img.shields.io/badge/version-v19.0.19.0-blue.svg)](https://github.com/markec12345678/odoo/releases)
+[![Version](https://img.shields.io/badge/version-v19.0.20.0-blue.svg)](https://github.com/markec12345678/odoo/releases)
 [![Status](https://img.shields.io/badge/status-production%20ready-brightgreen.svg)]()
 [![Modules Installed](https://img.shields.io/badge/installed-240+-brightgreen.svg)]()
 [![Last Commit](https://img.shields.io/github/last-commit/markec12345678/odoo/19.0)](https://github.com/markec12345678/odoo/commits/19.0)
 [![Coverage](https://img.shields.io/badge/l10n%20coverage-100%25-brightgreen.svg)]()
-[![CI Tests](https://img.shields.io/badge/tests-137%2F137%20%E2%9C%93-brightgreen.svg)](https://github.com/markec12345678/odoo/actions)
+[![CI Tests](https://img.shields.io/badge/tests-139%2F139%20%E2%9C%93-brightgreen.svg)](https://github.com/markec12345678/odoo/actions)
 [![Scanners](https://img.shields.io/badge/scanners-5%20%C2%B7%200%20issues-brightgreen.svg)](scripts/)
 [![AI Core](https://img.shields.io/badge/AI%20Core-9%20modules%20%C2%B7%207%20backends-blue.svg)](addons/l10n_si_ai_core/)
 
@@ -60,8 +60,9 @@
 > - ✅ Automated guest journey (pre-arrival / in-stay / post-stay sequences) with AI personalisation
 > - ✅ Lobby kiosk mode (tablet self check-in with passport OCR + signature + auto eTurizem)
 > - ✅ Pre-arrival questionnaire (dietary, allergies, activities — token-authenticated, no login)
+> - ✅ Smart housekeeping scheduler (auto-turnover, urgency-based, AI optimization)
 > - ✅ iCal import for Booking.com / Airbnb calendar sync
-> - ✅ 86 custom l10n modules + 37 OCA UI/UX modules
+> - ✅ 87 custom l10n modules + 37 OCA UI/UX modules
 > - ✅ Railway cloud deployment with auto-deploy
 > - ✅ Daily automated backup
 
@@ -106,7 +107,7 @@
 
 ## 📦 Module Catalog
 
-### 🇸🇮 Slovenian Modules (77)
+### 🇸🇮 Slovenian Modules (78)
 
 | Category | Modules | Status |
 |----------|---------|--------|
@@ -117,7 +118,7 @@
 | **Restaurant & POS** | `l10n_si_restaurant`, `l10n_si_pos_advanced`, `l10n_si_kitchen_display`, `l10n_si_minibar`, `l10n_si_laundry` | ✅ 5/5 |
 | **Events** | `l10n_si_event_venue`, `l10n_si_event_accommodation`, `l10n_si_event_contract`, `l10n_si_event_equipment_rental`, `l10n_si_event_photographer` | ✅ 5/5 |
 | **HR & Payroll** | `l10n_si_hr_payroll_community`, `l10n_si_hr_roster`, `l10n_si_timesheet_approval` | ✅ 3/3 |
-| **Operations** | `l10n_si_helpdesk_simple`, `l10n_si_sign`, `l10n_si_fleet`, `l10n_si_assets`, `l10n_si_approvals`, `l10n_si_audit_trail`, `l10n_si_budget_planning`, `l10n_si_field_service`, `l10n_si_maintenance_advanced`, `l10n_si_maintenance_request`, `l10n_si_procurement`, `l10n_si_quality_control` | ✅ 12/12 |
+| **Operations** | `l10n_si_helpdesk_simple`, `l10n_si_sign`, `l10n_si_fleet`, `l10n_si_assets`, `l10n_si_approvals`, `l10n_si_audit_trail`, `l10n_si_budget_planning`, `l10n_si_field_service`, `l10n_si_maintenance_advanced`, `l10n_si_maintenance_request`, `l10n_si_procurement`, `l10n_si_quality_control`, `l10n_si_housekeeping_smart` (AI scheduler) | ✅ 13/13 |
 | **Guest Experience** | `l10n_si_ai_concierge` (6 LLM backends), `l10n_si_chatbot_widget` (website chat), `l10n_si_concierge_services`, `l10n_si_loyalty_program`, `l10n_si_gift_voucher`, `l10n_si_mobile_app`, `l10n_si_partner_portal` (self check-in), `l10n_si_document_scan` (OCR + MRZ for AJPES), `l10n_si_guest_journey` (automated pre/in/post-stay sequences), `l10n_si_kiosk` (tablet lobby self check-in), `l10n_si_pre_arrival_questionnaire` (dietary/allergies/preferences survey), `l10n_si_website_booking` | ✅ 12/12 |
 | **Marketing & Messaging** | `l10n_si_marketing_automation`, `l10n_si_review_management`, `l10n_si_whatsapp` (legacy), `l10n_si_whatsapp_business` (Meta Cloud API), `l10n_si_competitor_pricing`, `l10n_si_weather_integration` | ✅ 6/6 |
 | **Other** | `l10n_si_accessibility`, `l10n_si_data_protection`, `l10n_si_dashboard_executive`, `l10n_si_knowledge`, `l10n_si_subscription_advanced`, `l10n_si_sustainability`, `l10n_si_transport`, `l10n_si_ocr_invoice`, `l10n_si_multi_company`, `l10n_si_pets` | ✅ 10/10 |

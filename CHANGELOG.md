@@ -5,6 +5,78 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.20.0] — 2026-07-14
+
+### Added — Smart Housekeeping Scheduler (87th module)
+
+**`l10n_si_housekeeping_smart`** — extends the base housekeeping module
+with AI-driven scheduling, automatic turnover task generation, and
+workload balancing.
+
+Key features:
+
+1. **Auto-create turnover tasks on check-out** — when a guest checks out,
+   a cleaning task is automatically created with the right priority based
+   on the next guest's check-in time.
+
+2. **Turnover time prediction** — based on room type (suite/deluxe/family),
+   stay duration, number of guests, pets.
+
+3. **Urgency-based scheduling** — tasks are tagged:
+   - Critical: next guest arriving in <2h
+   - High: <4h
+   - Medium: <8h
+   - Low: same day or later
+
+4. **Team-based zones** — teams handle specific floors, with leader and
+   members, shift hours, and zone label.
+
+5. **Workload balancing** — daily cron distributes unassigned tasks
+   across team members based on current workload (least loaded first).
+
+6. **Special instructions auto-population** — pulls allergies, notes,
+   and special occasions from pre-arrival questionnaire if installed.
+
+7. **VIP detection** — tasks flagged when incoming/outgoing guest is VIP.
+
+8. **AI optimization (optional)** — uses AI Core to optimize task order
+   based on room locations and priorities.
+
+9. **Hourly urgency update cron** — recomputes urgency every hour.
+
+10. **KPI dashboard** — total today, open, done, critical, VIP counts
+    with pie chart by urgency and bar chart by team.
+
+11. **Manual task generation wizard** — generate turnover tasks for all
+    check-outs on a specific date.
+
+12. **Smart buttons** — added to hotel room and folio forms showing
+    open task count and last cleaned date.
+
+Models:
+- `l10n_si.housekeeping.team` — team with zone and shift
+- `l10n_si.housekeeping.config` — global settings
+- `l10n_si.housekeeping.generate.tasks.wizard` — manual generation
+- Extends `l10n_si.housekeeping.task` with:
+  - `team_id`, `folio_id`, `next_check_in`, `urgency`
+  - `estimated_duration_minutes`, `special_instructions`, `is_vip`
+  - `quality_score`, `guest_satisfaction_score`
+  - `_auto_create_turnover_task()`, `_predict_duration()`
+  - `_find_team_for_floor()`, `_get_special_instructions()`
+  - `_balance_workload()`, `action_optimize_with_ai()`
+- Extends `l10n_si.hotel.room` with `last_cleaned`, `open_task_count`
+- Extends `l10n_si.hotel.folio` with `action_check_out()` override
+
+Cron jobs:
+- Daily: balance workload (07:30)
+- Hourly: update urgency
+
+### Updated — README badges
+- Module count: 86 → 87
+- Test count: 137 → 139
+- Version: v19.0.19.0 → v19.0.20.0
+- Added smart housekeeping to feature highlights
+
 ## [19.0.19.0] — 2026-07-14
 
 ### Added — Pre-arrival Questionnaire (86th module)

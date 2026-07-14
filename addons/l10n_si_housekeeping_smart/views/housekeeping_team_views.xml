@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_housekeeping_team_tree" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.team.tree</field>
+        <field name="model">l10n_si.housekeeping.team</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="not active">
+                <field name="name"/>
+                <field name="leader_id"/>
+                <field name="member_count"/>
+                <field name="floor_from"/>
+                <field name="floor_to"/>
+                <field name="zone"/>
+                <field name="shift_start" widget="float_time"/>
+                <field name="shift_end" widget="float_time"/>
+                <field name="open_task_count"/>
+                <field name="done_today_count"/>
+                <field name="avg_duration_minutes"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_housekeeping_team_form" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.team.form</field>
+        <field name="model">l10n_si.housekeeping.team</field>
+        <field name="arch" type="xml">
+            <form string="Housekeeping Team">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="action_view_tasks" icon="fa-tasks">
+                            <field name="open_task_count" widget="statinfo" string="Open Tasks"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                            invisible="not active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Floor 1-3 Team"/></h1>
+                    </div>
+                    <group>
+                        <group string="Leadership">
+                            <field name="leader_id"/>
+                            <field name="member_ids" widget="many2many_tags"/>
+                            <field name="active"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group string="Zone">
+                            <field name="floor_from"/>
+                            <field name="floor_to"/>
+                            <field name="zone"/>
+                        </group>
+                        <group string="Shift">
+                            <field name="shift_start" widget="float_time"/>
+                            <field name="shift_end" widget="float_time"/>
+                            <field name="color"/>
+                        </group>
+                        <group string="Stats Today">
+                            <field name="open_task_count"/>
+                            <field name="done_today_count"/>
+                            <field name="avg_duration_minutes"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_housekeeping_team_search" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.team.search</field>
+        <field name="model">l10n_si.housekeeping.team</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="leader_id"/>
+                <field name="member_ids"/>
+                <filter string="Archived" name="filter_archived"
+                        domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_housekeeping_team" model="ir.actions.act_window">
+        <field name="name">Housekeeping Teams</field>
+        <field name="res_model">l10n_si.housekeeping.team</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_housekeeping_team_search"/>
+    </record>
+
+    <!-- Config views -->
+    <record id="view_housekeeping_config_tree" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.config.tree</field>
+        <field name="model">l10n_si.housekeeping.config</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="auto_create_on_checkout"/>
+                <field name="auto_balance_cron"/>
+                <field name="default_duration_minutes"/>
+                <field name="use_ai_optimization"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_housekeeping_config_form" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.config.form</field>
+        <field name="model">l10n_si.housekeeping.config</field>
+        <field name="arch" type="xml">
+            <form string="Housekeeping Configuration">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Auto-generation">
+                            <field name="auto_create_on_checkout"/>
+                            <field name="auto_balance_cron"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Defaults">
+                            <field name="default_duration_minutes"/>
+                            <field name="default_priority"/>
+                        </group>
+                        <group string="Urgency Thresholds (hours)">
+                            <field name="critical_threshold_hours"/>
+                            <field name="high_threshold_hours"/>
+                            <field name="medium_threshold_hours"/>
+                        </group>
+                        <group string="AI">
+                            <field name="use_ai_optimization"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_housekeeping_config" model="ir.actions.act_window">
+        <field name="name">Configuration</field>
+        <field name="res_model">l10n_si.housekeeping.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

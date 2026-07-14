@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_housekeeping_team_user,Housekeeping Team User,model_l10n_si_housekeeping_team,base.group_user,1,0,0,0
+access_housekeeping_team_manager,Housekeeping Team Manager,model_l10n_si_housekeeping_team,l10n_si_hotel.hotel_manager_group,1,1,1,1
+access_housekeeping_config_user,Housekeeping Config User,model_l10n_si_housekeeping_config,base.group_user,1,0,0,0
+access_housekeeping_config_manager,Housekeeping Config Manager,model_l10n_si_housekeeping_config,l10n_si_hotel.hotel_manager_group,1,1,1,1
+access_housekeeping_generate_wizard,Generate Tasks Wizard,model_l10n_si_housekeeping_generate_tasks_wizard,l10n_si_hotel.hotel_manager_group,1,1,1,1

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend task form with smart scheduling fields -->
+    <record id="view_housekeeping_task_form_smart" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.task.form.smart</field>
+        <field name="model">l10n_si.housekeeping.task</field>
+        <field name="inherit_id" ref="l10n_si_housekeeping.view_l10n_si_housekeeping_task_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Smart Scheduling" name="smart">
+                    <group>
+                        <field name="team_id"/>
+                        <field name="folio_id"/>
+                        <field name="next_check_in"/>
+                        <field name="urgency" widget="label_selection"
+                               attrs="{'readonly': [('state', 'in', ['done', 'cancelled'])]}"/>
+                        <field name="estimated_duration_minutes"/>
+                        <field name="is_vip"/>
+                    </group>
+                    <group>
+                        <field name="special_instructions"/>
+                        <field name="quality_score" widget="selection"/>
+                        <field name="guest_satisfaction_score" widget="selection"/>
+                        <field name="mobile_pin_url" readonly="1" widget="url"/>
+                    </group>
+                </group>
+            </xpath>
+            <!-- Add Optimize button in header -->
+            <xpath expr="//header" position="inside">
+                <button name="action_optimize_with_ai" type="object" string="🤖 AI Optimize"
+                        class="btn-secondary"
+                        invisible="state in ['done', 'cancelled']"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend task tree with urgency and team columns -->
+    <record id="view_housekeeping_task_tree_smart" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.task.tree.smart</field>
+        <field name="model">l10n_si.housekeeping.task</field>
+        <field name="inherit_id" ref="l10n_si_housekeeping.view_l10n_si_housekeeping_task_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='room_id']" position="after">
+                <field name="team_id"/>
+                <field name="urgency" widget="badge"
+                       decoration-danger="urgency == 'critical'"
+                       decoration-warning="urgency == 'high'"
+                       decoration-info="urgency == 'medium'"
+                       decoration-success="urgency == 'low'"/>
+                <field name="next_check_in"/>
+                <field name="estimated_duration_minutes" string="Est. (min)"/>
+                <field name="is_vip" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- New search view (none exists in base module) -->
+    <record id="view_l10n_si_housekeeping_task_search_smart" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.task.search.smart</field>
+        <field name="model">l10n_si.housekeeping.task</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="room_id"/>
+                <field name="housekeeper_id"/>
+                <field name="team_id"/>
+                <filter string="Critical" name="filter_critical"
+                        domain="[('urgency', '=', 'critical')]"/>
+                <filter string="High" name="filter_high"
+                        domain="[('urgency', '=', 'high')]"/>
+                <filter string="VIP" name="filter_vip"
+                        domain="[('is_vip', '=', True)]"/>
+                <separator/>
+                <filter string="Today" name="filter_today"
+                        domain="[('scheduled_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                <filter string="Open" name="filter_open"
+                        domain="[('state', 'in', ['pending', 'assigned', 'in_progress'])]"/>
+                <filter string="Done" name="filter_done"
+                        domain="[('state', '=', 'done')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Team" name="group_team" context="{'group_by': 'team_id'}"/>
+                    <filter string="Urgency" name="group_urgency" context="{'group_by': 'urgency'}"/>
+                    <filter string="State" name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Add search view to existing action -->
+    <record id="action_l10n_si_housekeeping_task_smart" model="ir.actions.act_window">
+        <field name="name">Smart Housekeeping Tasks</field>
+        <field name="res_model">l10n_si.housekeeping.task</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="view_l10n_si_housekeeping_task_search_smart"/>
+        <field name="context">{'search_default_filter_today': 1, 'search_default_filter_open': 1}</field>
+    </record>
+</odoo>

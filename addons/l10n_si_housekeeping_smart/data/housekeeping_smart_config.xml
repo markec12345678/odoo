@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="housekeeping_config_default" model="l10n_si.housekeeping.config">
+        <field name="name">Default</field>
+        <field name="auto_create_on_checkout" eval="True"/>
+        <field name="auto_balance_cron" eval="True"/>
+        <field name="default_duration_minutes">30</field>
+        <field name="default_priority">1</field>
+        <field name="critical_threshold_hours">2.0</field>
+        <field name="high_threshold_hours">4.0</field>
+        <field name="medium_threshold_hours">8.0</field>
+        <field name="use_ai_optimization" eval="False"/>
+    </record>
+</odoo>

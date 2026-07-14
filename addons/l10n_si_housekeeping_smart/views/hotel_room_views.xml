@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add smart button to room form -->
+    <record id="view_hotel_room_form_housekeeping" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.room.form.housekeeping</field>
+        <field name="model">l10n_si.hotel.room</field>
+        <field name="inherit_id" ref="l10n_si_hotel.view_hotel_room_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object"
+                        name="action_view_housekeeping_tasks" icon="fa-broom">
+                    <field name="open_task_count" widget="statinfo" string="Open Tasks"/>
+                </button>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <group string="Housekeeping" name="housekeeping">
+                    <field name="last_cleaned" readonly="1"/>
+                    <field name="open_task_count" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

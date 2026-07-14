@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- KPI Dashboard view -->
+    <record id="view_housekeeping_dashboard" model="ir.ui.view">
+        <field name="name">l10n_si.housekeeping.dashboard</field>
+        <field name="model">l10n_si.housekeeping.task</field>
+        <field name="arch" type="xml">
+            <dashboard>
+                <view type="kanban" name="kanban_tasks"/>
+                <group>
+                    <aggregate name="total_today" string="Total Today"
+                               group_operator="count" measure="__count__"/>
+                    <aggregate name="open" string="Open"
+                               group_operator="count" measure="__count__"
+                               domain="[('state', 'in', ['pending', 'assigned', 'in_progress'])]"/>
+                    <aggregate name="done_today" string="Done Today"
+                               group_operator="count" measure="__count__"
+                               domain="[('state', '=', 'done')]"/>
+                    <aggregate name="critical" string="Critical"
+                               group_operator="count" measure="__count__"
+                               domain="[('urgency', '=', 'critical')]"/>
+                    <aggregate name="vip" string="VIP"
+                               group_operator="count" measure="__count__"
+                               domain="[('is_vip', '=', True)]"/>
+                </group>
+                <group>
+                    <view type="pie" name="urgency_pie"/>
+                    <view type="bar" name="team_bar"/>
+                </group>
+            </dashboard>
+        </field>
+    </record>
+
+    <record id="action_housekeeping_dashboard" model="ir.actions.act_window">
+        <field name="name">Housekeeping Dashboard</field>
+        <field name="res_model">l10n_si.housekeeping.task</field>
+        <field name="view_mode">dashboard,kanban,tree,form</field>
+        <field name="context">{'search_default_filter_today': 1}</field>
+    </record>
+</odoo>

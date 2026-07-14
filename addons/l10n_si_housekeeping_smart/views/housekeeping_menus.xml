@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_housekeeping_smart_root"
+              name="Smart Housekeeping"
+              parent="l10n_si_hotel.menu_l10n_si_hotel_root"
+              sequence="30"
+              groups="l10n_si_hotel.hotel_manager_group"/>
+
+    <menuitem id="menu_housekeeping_smart_dashboard"
+              name="Dashboard"
+              parent="menu_housekeeping_smart_root"
+              action="action_housekeeping_dashboard"
+              sequence="10"/>
+
+    <menuitem id="menu_housekeeping_smart_tasks"
+              name="Tasks"
+              parent="menu_housekeeping_smart_root"
+              action="action_l10n_si_housekeeping_task_smart"
+              sequence="20"/>
+
+    <menuitem id="menu_housekeeping_smart_teams"
+              name="Teams"
+              parent="menu_housekeeping_smart_root"
+              action="action_housekeeping_team"
+              sequence="30"/>
+
+    <menuitem id="menu_housekeeping_smart_generate"
+              name="Generate Tasks"
+              parent="menu_housekeeping_smart_root"
+              action="action_generate_tasks_wizard"
+              sequence="40"/>
+
+    <menuitem id="menu_housekeeping_smart_config"
+              name="Configuration"
+              parent="menu_housekeeping_smart_root"
+              action="action_housekeeping_config"
+              sequence="50"/>
+</odoo>
