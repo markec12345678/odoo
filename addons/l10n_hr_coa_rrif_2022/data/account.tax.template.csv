@@ -1,0 +1,13 @@
+id,name,description,amount,type_tax_use,tax_group_id:id,invoice_repartition_line_ids,refund_repartition_line_ids,chart_template_id:id
+rrif_tax_pdv_25_purchase,PDV 25% nabava,PDV 25% na ulaznoj strani (nabava),25,purchase,l10n_hr_coa_rrif_2022.rrif_tax_group_pdv_25,, ,l10n_hr_coa_rrif_2022.hr_chart_template
+rrif_tax_pdv_25_sale,PDV 25% prodaja,PDV 25% na izlaznoj strani (prodaja),25,sale,l10n_hr_coa_rrif_2022.rrif_tax_group_pdv_25,, ,l10n_hr_coa_rrif_2022.hr_chart_template
+rrif_tax_pdv_13_purchase,PDV 13% nabava,PDV 13% (npr. ugostiteljstvo - hrana),13,purchase,l10n_hr_coa_rrif_2022.rrif_tax_group_pdv_13,, ,l10n_hr_coa_rrif_2022.hr_chart_template
+rrif_tax_pdv_13_sale,PDV 13% prodaja,PDV 13% (npr. ugostiteljstvo - hrana),13,sale,l10n_hr_coa_rrif_2022.rrif_tax_group_pdv_13,, ,l10n_hr_coa_rrif_2022.hr_chart_template
+rrif_tax_pdv_5_purchase,PDV 5% nabava,PDV 5% (npr. knjige, novine, lijekovi),5,purchase,l10n_hr_coa_rrif_2022.rrif_tax_group_pdv_5,, ,l10n_hr_coa_rrif_2022.hr_chart_template
+rrif_tax_pdv_5_sale,PDV 5% prodaja,PDV 5% (npr. knjige, novine, lijekovi),5,sale,l10n_hr_coa_rrif_2022.rrif_tax_group_pdv_5,, ,l10n_hr_coa_rrif_2022.hr_chart_template
+rrif_tax_pdv_0_purchase,PDV 0% nabava,PDV 0% - poreski tretirano kao oporezivo,0,purchase,l10n_hr_coa_rrif_2022.rrif_tax_group_pdv_0,, ,l10n_hr_coa_rrif_2022.hr_chart_template
+rrif_tax_pdv_0_sale,PDV 0% prodaja,PDV 0% - poreski tretirano kao oporezivo,0,sale,l10n_hr_coa_rrif_2022.rrif_tax_group_pdv_0,, ,l10n_hr_coa_rrif_2022.hr_chart_template
+rrif_tax_oslobodenje_purchase,Oslobodenje PDV - nabava,Oslobodeno od PDV (clan 5-20 Zakona o PDV),0,purchase,l10n_hr_coa_rrif_2022.rrif_tax_group_oslobodenje,, ,l10n_hr_coa_rrif_2022.hr_chart_template
+rrif_tax_oslobodenje_sale,Oslobodenje PDV - prodaja,Oslobodeno od PDV (clan 5-20 Zakona o PDV),0,sale,l10n_hr_coa_rrif_2022.rrif_tax_group_oslobodenje,, ,l10n_hr_coa_rrif_2022.hr_chart_template
+rrif_tax_ne_podlijeze_purchase,Ne podlijeze PDV - nabava,Ne podlijeze PDV (npr. financijske usluge, osiguranje),0,purchase,l10n_hr_coa_rrif_2022.rrif_tax_group_ne_podlijeze,, ,l10n_hr_coa_rrif_2022.hr_chart_template
+rrif_tax_ne_podlijeze_sale,Ne podlijeze PDV - prodaja,Ne podlijeze PDV (npr. financijske usluge, osiguranje),0,sale,l10n_hr_coa_rrif_2022.rrif_tax_group_ne_podlijeze,, ,l10n_hr_coa_rrif_2022.hr_chart_template

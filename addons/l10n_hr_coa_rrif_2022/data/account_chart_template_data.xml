@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="hr_chart_template" model="account.chart.template">
+        <field name="name">Croatia - RRIF 2022. (EUR)</field>
+        <field name="code_digits">6</field>
+        <field name="bank_account_code_prefix">1600</field>
+        <field name="cash_account_code_prefix">1700</field>
+        <field name="transfer_account_code_prefix">1900</field>
+        <field name="currency_id" ref="base.EUR"/>
+        <field name="spoken_languages">en_US;hr_HR</field>
+    </record>
+
+    <record id="config_chart_template_action" model="ir.actions.act_window">
+        <field name="name">Croatia RRIF 2022 Chart</field>
+        <field name="res_model">account.chart.template</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="hr_chart_template"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

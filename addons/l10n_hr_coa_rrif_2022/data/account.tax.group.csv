@@ -1,0 +1,7 @@
+id,name
+rrif_tax_group_pdv_25,PDV 25%
+rrif_tax_group_pdv_13,PDV 13%
+rrif_tax_group_pdv_5,PDV 5%
+rrif_tax_group_pdv_0,PDV 0%
+rrif_tax_group_oslobodenje,Oslobodenje od PDV
+rrif_tax_group_ne_podlijeze,Ne podliježe PDV

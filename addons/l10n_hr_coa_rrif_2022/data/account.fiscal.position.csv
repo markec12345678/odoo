@@ -1,0 +1,6 @@
+id,name,note
+rrif_fp_domestic,Domaći partner,PDV primjenjen prema standardnoj stopi
+rrif_fp_eu_b2b,EU B2B - obrnuti porez,Obrnuta porezna obveza (reverse charge) za EU B2B isporuke
+rrif_fp_export,Izvoz izvan EU,Izvoz robe izvan EU - oslobođeno od PDV
+rrif_fp_intra_community,Intra-community supply (EU),Intra-community isporuka unutar EU - oslobođeno
+rrif_fp_foreign,Strani partner (izvan EU),Strani partner izvan EU

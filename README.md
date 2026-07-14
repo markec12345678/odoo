@@ -6,11 +6,11 @@
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](./LICENSE)
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0-875A7B.svg)](https://www.odoo.com)
-[![Modules](https://img.shields.io/badge/Modules-95-green.svg)](#module-catalog)
+[![Modules](https://img.shields.io/badge/Modules-96-green.svg)](#module-catalog)
 [![OCA](https://img.shields.io/badge/OCA%20Modules-37-orange.svg)](https://github.com/OCA)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](./requirements.txt)
 [![Railway](https://img.shields.io/badge/Railway-Live%20Demo-9B59B6.svg)](https://odoo-production-fa42.up.railway.app/web/login)
-[![Version](https://img.shields.io/badge/version-v19.0.24.0-blue.svg)](https://github.com/markec12345678/odoo/releases)
+[![Version](https://img.shields.io/badge/version-v19.0.25.0-blue.svg)](https://github.com/markec12345678/odoo/releases)
 [![Status](https://img.shields.io/badge/status-production%20ready-brightgreen.svg)]()
 [![Modules Installed](https://img.shields.io/badge/installed-240+-brightgreen.svg)]()
 [![Last Commit](https://img.shields.io/github/last-commit/markec12345678/odoo/19.0)](https://github.com/markec12345678/odoo/commits/19.0)
@@ -65,7 +65,7 @@
 > - ✅ Real-time guest feedback with instant low-score alerts (email + WhatsApp + chatter)
 > - ✅ OCA HR parity: Fiskal 2.0 codebooks (UNTDID 1001/5189/5305) + HUB3 QR + HNB rates + KPD + NKD
 > - ✅ iCal import for Booking.com / Airbnb calendar sync
-> - ✅ 95 custom l10n modules + 37 OCA UI/UX modules
+> - ✅ 96 custom l10n modules + 37 OCA UI/UX modules
 > - ✅ Railway cloud deployment with auto-deploy
 > - ✅ Daily automated backup
 

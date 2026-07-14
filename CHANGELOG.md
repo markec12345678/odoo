@@ -5,6 +5,41 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.25.0] — 2026-07-14
+
+### Added — HR RRIF 2022. Chart of Accounts (96th module)
+
+**`l10n_hr_coa_rrif_2022`** — Croatian RRIF (Računovodstveni revizorski
+institut financija) 2022. chart of accounts, the most widely used chart
+in Croatia, updated for the EUR currency transition (1.1.2023).
+
+Equivalent to OCA's `l10n_hr_coa_rrif_2022` (dajmi5).
+
+Includes:
+- **11 account groups** covering all 10 RRIF classes (0-9)
+- **65 account templates** including:
+  - Class 0: Assets, receivables, banks, capital
+  - Class 1: Inventories, merchandise
+  - Class 2: Production costs
+  - Class 3: Cost of goods sold, sales expenses
+  - Class 4: Operating expenses (salaries, depreciation)
+  - Class 5: Financial expenses (interests, FX losses, bank fees)
+  - Class 6: Revenues (sales, services, subsidies)
+  - Class 7: Other revenues
+  - Class 8: Financial revenues (interests, FX gains)
+  - Class 9: Extraordinary items
+  - PDV accounts (3001 input VAT, 3002 output VAT)
+  - Payables, equity, reserves
+- **6 tax groups**: PDV 25%, 13%, 5%, 0%, exempt, not subject
+- **12 tax templates** (purchase + sale for each group)
+- **5 fiscal positions**: domestic, EU B2B reverse charge, export,
+  intra-community, foreign outside EU
+- Chart template configured for EUR currency, 6-digit codes
+
+### Updated — README badges
+- Module count: 95 → 96
+- Version: v19.0.24.0 → v19.0.25.0
+
 ## [19.0.24.0] — 2026-07-14
 
 ### Added — HR Accounting Base (95th module)

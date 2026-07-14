@@ -1,0 +1,11 @@
+id,code_prefix,name,code_suffix,parent_id:id
+rrif_class_0,0,AKTIVA - SREDSTVA,,account.group_0
+rrif_class_1,1,ZALIHE - TRGOVINA I USLUGE,,account.group_0
+rrif_class_2,2,TROŠKOVI PROIZVODNJE,,account.group_0
+rrif_class_3,3,TROŠKOVI NABAVE,,account.group_0
+rrif_class_4,4,TROŠKOVI RAZDOBLJA,,account.group_0
+rrif_class_5,5,FINANCIJSKI I OSTALI TROŠKOVI,,account.group_0
+rrif_class_6,6,PRIHODI,,account.group_0
+rrif_class_7,7,OSTALI PRIHODI,,account.group_0
+rrif_class_8,8,FINANCIJSKI PRIHODI,,account.group_0
+rrif_class_9,9,IZVANREDNI PRIHODI I RASHODI,,account.group_0
