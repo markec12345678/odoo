@@ -5,6 +5,47 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.27.0] — 2026-07-14
+
+### Added — 20 OCA modules cloned (not written from scratch)
+
+After analyzing all OCA repositories, we identified 20 high-value modules
+that were missing. Instead of writing them from scratch, we **cloned**
+them directly from OCA's official 19.0 branches (already tested by OCA CI).
+
+**OCA/bank-payment (6 modules):**
+- `account_payment_mode` — Payment modes (check, transfer, SEPA, etc.)
+- `account_payment_order` — Payment order workflow (batch payments)
+- `account_banking_mandate` — SEPA mandates (direct debit authorization)
+- `account_banking_pain_base` — PAIN base for SEPA XML generation
+- `account_banking_sepa_credit_transfer` — SEPA Credit Transfer (outbound)
+- `account_banking_sepa_direct_debit` — SEPA Direct Debit (inbound)
+
+**OCA/partner-contact (6 modules):**
+- `base_location` — Better ZIP management (cities + ZIP codes)
+- `base_location_geonames_import` — Auto-import cities from geonames.org
+- `partner_contact_gender` — Gender field on contacts
+- `partner_contact_nationality` — Nationality field (for AJPES/eVisitor)
+- `partner_address_street3` — Third street line
+- `partner_contact_birthplace` — Birthplace (for AJPES registration)
+
+**OCA/account-financial-tools (4 modules):**
+- `account_invoice_constraint_chronology` — Enforce invoice numbering order
+- `account_fiscal_position_vat_check` — Validate VAT on fiscal positions
+- `account_move_template` — Recurring invoice templates
+- `account_chart_update` — Update chart of accounts from template
+
+**OCA/reporting-engine (4 modules):**
+- `base_comment_template` — Conditional comments on reports
+- `kpi` — Key Performance Indicators dashboard
+- `report_csv` — CSV report generation
+- `report_xml` — XML report generation (for e-invoicing)
+
+### Updated — README badges
+- Module count: 98 → 118
+- Version: v19.0.26.0 → v19.0.27.0
+- Added OCA functional modules to feature highlights
+
 ## [19.0.26.0] — 2026-07-14
 
 ### Added — OCA HR Full Parity Achieved! (97th & 98th modules)
