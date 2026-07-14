@@ -5,6 +5,78 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.28.0] — 2026-07-14
+
+### Added — 51 more OCA modules cloned (Batch 2)
+
+Second batch of OCA module cloning — 51 modules from 5 OCA repositories,
+all from official 19.0 branches.
+
+**OCA/partner-contact (20 modules):**
+- `partner_firstname` — split first/last name (critical for AJPES/eVisitor)
+- `partner_identification` — ID numbers (passport, ID card, tax ID)
+- `partner_identification_eori` — EORI number for customs
+- `partner_vat_unique` — enforce unique VAT numbers
+- `partner_ref_unique` — enforce unique partner references
+- `partner_email_check` — email validation
+- `partner_mobile_validation` — mobile number validation
+- `partner_multi_relation` — relations between partners (parent/subsidiary)
+- `partner_priority` — priority flag
+- `partner_company_group` — company groups
+- `partner_contact_department` — department field
+- `partner_contact_role` — role field
+- `partner_contact_job_position` — job position
+- `partner_industry_secondary` — secondary industry classification
+- `partner_title` — titles (Mr, Mrs, Dr)
+- `partner_tz` — timezone per partner
+- `partner_fax` — fax field
+- `partner_mobile` — mobile field
+- `partner_phone_secondary` — secondary phone
+- `partner_category_description` — category descriptions
+
+**OCA/account-financial-tools (8 modules):**
+- `account_account_tag_code` — code field on account tags
+- `account_asset_force_account` — force account on assets
+- `account_journal_general_sequence` — general sequence per journal
+- `account_journal_restrict_mode` — restrict journal modes
+- `account_move_post_date_user` — track who posted and when
+- `account_move_print` — print journal entries
+- `account_move_total_by_account_internal_group` — totals by account group
+- `account_netting` — netting between receivables and payables
+
+**OCA/web (10 modules):**
+- `web_date_format_numeric` — numeric date format
+- `web_editor_class_selector` — CSS class selector in editor
+- `web_ir_actions_act_multi` — trigger multiple actions
+- `web_ir_actions_act_window_message` — message box actions
+- `web_m2x_options_manager` — manage M2X options
+- `web_no_bubble` — remove UI bubbles
+- `web_widget_bokeh_chart` — Bokeh chart widget
+- `web_widget_one2many_tree_line_duplicate` — duplicate O2M lines
+- `web_widget_product_label_section_and_note_full_label` — full label
+- `web_widget_product_label_section_and_note_name_visibility` — label visibility
+
+**OCA/reporting-engine (6 modules):**
+- `bi_sql_editor` — BI SQL Views builder (materialized views)
+- `pdf_xml_attachment` — PDF + XML attachments (e-invoicing)
+- `report_context` — report context
+- `report_partner_address` — translatable partner address for reports
+- `report_qweb_parameter` — QWeb parameters
+- `sql_request_abstract` — SQL request base
+
+**OCA/bank-payment (7 modules):**
+- `account_banking_mandate_contact` — mandate contacts
+- `account_banking_mandate_sale` — mandates from sales
+- `account_payment_order_grouped_output` — grouped output
+- `account_payment_order_notification` — notifications
+- `account_payment_purchase` — payment from purchase
+- `account_payment_purchase_stock` — payment from purchase + stock
+- `account_payment_sale` — payment from sales
+
+### Updated — README badges
+- Module count: 118 → 169
+- Version: v19.0.27.0 → v19.0.28.0
+
 ## [19.0.27.0] — 2026-07-14
 
 ### Added — 20 OCA modules cloned (not written from scratch)
