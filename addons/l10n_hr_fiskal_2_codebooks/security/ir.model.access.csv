@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fiskal_document_type_user,Fiskal Document Type User,model_l10n_hr_fiskal_document_type,base.group_user,1,0,0,0
+access_fiskal_document_type_manager,Fiskal Document Type Manager,model_l10n_hr_fiskal_document_type,account.group_account_manager,1,1,1,1
+access_fiskal_discount_reason_user,Fiskal Discount Reason User,model_l10n_hr_fiskal_discount_reason,base.group_user,1,0,0,0
+access_fiskal_discount_reason_manager,Fiskal Discount Reason Manager,model_l10n_hr_fiskal_discount_reason,account.group_account_manager,1,1,1,1
+access_fiskal_tax_category_user,Fiskal Tax Category User,model_l10n_hr_fiskal_tax_category,base.group_user,1,0,0,0
+access_fiskal_tax_category_manager,Fiskal Tax Category Manager,model_l10n_hr_fiskal_tax_category,account.group_account_manager,1,1,1,1

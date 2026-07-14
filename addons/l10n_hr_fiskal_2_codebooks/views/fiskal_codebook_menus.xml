@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_fiskal_codebooks_root"
+              name="Fiskal 2.0 Codebooks"
+              parent="account.menu_finance_configuration"
+              sequence="90"/>
+    <menuitem id="menu_fiskal_document_type"
+              name="Document Types"
+              parent="menu_fiskal_codebooks_root"
+              action="action_fiskal_document_type"
+              sequence="10"/>
+    <menuitem id="menu_fiskal_discount_reason"
+              name="Discount Reasons"
+              parent="menu_fiskal_codebooks_root"
+              action="action_fiskal_discount_reason"
+              sequence="20"/>
+    <menuitem id="menu_fiskal_tax_category"
+              name="Tax Categories"
+              parent="menu_fiskal_codebooks_root"
+              action="action_fiskal_tax_category"
+              sequence="30"/>
+</odoo>

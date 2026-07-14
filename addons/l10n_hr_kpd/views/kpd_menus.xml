@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_kpd_root"
+              name="KPD (Klasus)"
+              parent="account.menu_finance_configuration"
+              action="action_kpd_code"
+              sequence="88"/>
+</odoo>

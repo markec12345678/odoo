@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kpd_code_tree" model="ir.ui.view">
+        <field name="name">l10n_hr.kpd.code.tree</field>
+        <field name="model">l10n_hr.kpd.code</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="not active">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="name_hr"/>
+                <field name="level"/>
+                <field name="is_service"/>
+                <field name="parent_id"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_kpd_code_form" model="ir.ui.view">
+        <field name="name">l10n_hr.kpd.code.form</field>
+        <field name="model">l10n_hr.kpd.code</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name_hr"/>
+                            <field name="level"/>
+                            <field name="is_service"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="parent_id"/>
+                            <field name="child_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <field name="description"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_kpd_code_search" model="ir.ui.view">
+        <field name="name">l10n_hr.kpd.code.search</field>
+        <field name="model">l10n_hr.kpd.code</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="name_hr"/>
+                <filter string="Services" name="filter_service"
+                        domain="[('is_service', '=', True)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Level" name="group_level"
+                            context="{'group_by': 'level'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_kpd_code" model="ir.actions.act_window">
+        <field name="name">KPD (Klasus) Codes</field>
+        <field name="res_model">l10n_hr.kpd.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_kpd_code_search"/>
+    </record>
+</odoo>

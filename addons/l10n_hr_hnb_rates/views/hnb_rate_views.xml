@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hnb_rate_tree" model="ir.ui.view">
+        <field name="name">l10n_hr.hnb.rate.tree</field>
+        <field name="model">l10n_hr.hnb.rate</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="rate_date"/>
+                <field name="currency_name"/>
+                <field name="unit_value"/>
+                <field name="buy_rate"/>
+                <field name="mean_rate"/>
+                <field name="sell_rate"/>
+                <field name="fetched_on"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_hnb_rate_form" model="ir.ui.view">
+        <field name="name">l10n_hr.hnb.rate.form</field>
+        <field name="model">l10n_hr.hnb.rate</field>
+        <field name="arch" type="xml">
+            <form readonly="1">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="rate_date"/>
+                            <field name="currency_id"/>
+                            <field name="currency_name"/>
+                        </group>
+                        <group>
+                            <field name="unit_value"/>
+                            <field name="buy_rate"/>
+                            <field name="mean_rate"/>
+                            <field name="sell_rate"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="fetched_on"/>
+                        <field name="fetched_by"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_hnb_rate_search" model="ir.ui.view">
+        <field name="name">l10n_hr.hnb.rate.search</field>
+        <field name="model">l10n_hr.hnb.rate</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="currency_name"/>
+                <field name="rate_date"/>
+                <filter string="Today" name="filter_today"
+                        domain="[('rate_date', '=', context_today())]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Currency" name="group_currency"
+                            context="{'group_by': 'currency_name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_hnb_rate" model="ir.actions.act_window">
+        <field name="name">HNB Exchange Rates</field>
+        <field name="res_model">l10n_hr.hnb.rate</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_hnb_rate_search"/>
+    </record>
+    <menuitem id="menu_hnb_rate"
+              name="HNB Exchange Rates"
+              parent="account.menu_finance_configuration"
+              action="action_hnb_rate"
+              sequence="85"/>
+</odoo>

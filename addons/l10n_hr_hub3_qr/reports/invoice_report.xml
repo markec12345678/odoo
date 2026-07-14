@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add HUB3 QR code to the invoice PDF report -->
+    <record id="report_invoice_document_hub3" model="ir.ui.view">
+        <field name="name">account.report_invoice_document.hub3</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.report_invoice_document"/>
+        <field name="arch" type="xml">
+            <xpath expr="//t[@t-call='account.report_invoice_document_main']" position="after">
+                <t t-if="o.hub3_qr_code and o.move_type in ('out_invoice', 'out_refund')">
+                    <div style="text-align: center; margin-top: 20px;">
+                        <img t-att-src="'data:image/png;base64,' + o.hub3_qr_code.decode()"
+                             style="width: 200px; height: 200px;"/>
+                        <p style="font-size: 10px; color: #666; margin-top: 5px;">
+                            Skenirajte QR kod za brzo plaćanje (HUB3)
+                        </p>
+                    </div>
+                </t>
+            </xpath>
+        </field>
+    </record>
+</odoo>

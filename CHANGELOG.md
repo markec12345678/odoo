@@ -5,6 +5,62 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.23.0] — 2026-07-14
+
+### Added — OCA HR Parity: 5 new Croatian modules (90–94)
+
+After analyzing OCA/l10n-croatia (dajmi5 fork) we identified 9 missing
+features. This release adds 5 of them, closing the gap with OCA.
+
+**90. `l10n_hr_fiskal_2_codebooks`** — UNTDID codebooks for Fiskalizacija 2.0:
+- UNTDID 1001: document types (380, 381, 384, 389, 326, 751)
+- UNTDID 5189: discount reasons (100, 95, 62, 63, 64, 65, 70, 88)
+- UNTDID 5305/5153: tax categories (S, Z, E, AE, K, G, O, NA)
+- Extends account.tax with `fiskal_tax_category_id`
+- Extends account.move with `fiskal_document_type_id` (auto-detected) and `fiskal_discount_reason_id`
+- Critical for eRačun B2B (PEPPOL EN16931, mandatory Jan 2026)
+
+**91. `l10n_hr_hub3_qr`** — HUB3 QR code for bank payments:
+- Generates HUB3 standard QR code on out_invoice and out_refund
+- Customer scans with bank app → all fields auto-filled
+- Auto-generates on invoice confirmation
+- Displayed on printed invoice PDF
+- Format: HUB|amount|IBAN|model|reference|payee|description|currency|
+
+**92. `l10n_hr_hnb_rates`** — Croatian National Bank exchange rates:
+- Daily cron fetches rates from HNB API (api.hnb.hr/tecajn/v2)
+- Updates res.currency.rate table automatically
+- Audit log of all fetches (l10n_hr.hnb.rate model)
+- Supports EUR base currency
+- ~40 currencies including USD, GBP, CHF, CZK, HUF
+
+**93. `l10n_hr_kpd`** — Klasus (KPD) product classification:
+- Croatian statistical product classification by activity
+- Used for monthly statistical reports to DZS
+- Added to product.template and product.category
+- Pre-loaded with tourism-relevant codes (55.10.1 hotels, 56.10.1 restaurants, etc.)
+
+**94. `l10n_hr_nkd`** — NKD 2007. activity codes:
+- Croatian national NACE Rev. 2 activity classification
+- 5-level hierarchy (section → division → group → class → subclass)
+- Added to res.partner and res.company
+- Pre-loaded with tourism & hospitality codes (I, N, R sections + 20+ subcodes)
+
+### Analysis — OCA l10n-slovenia is EMPTY
+OCA/l10n-slovenia repo has 0 modules on all branches (14.0–19.0).
+Our project is the ONLY real Slovenian localization on GitHub.
+
+### Analysis — OCA l10n-croatia coverage
+Compared to dajmi5/l10n-croatia-contrib (16.0-RC):
+- We now have: Fiskal 2.0 codebooks, HUB3 QR, HNB rates, KPD, NKD
+- OCA still has (we don't): l10n_hr_account_base (accounting base), l10n_hr_coa_rrif_2022 (RRIF chart)
+- We have that OCA doesn't: Fiskalizacija 2.0, eVisitor, eRačun B2B, all tourism modules
+
+### Updated — README badges
+- Module count: 89 → 94
+- Version: v19.0.22.0 → v19.0.23.0
+- Added OCA HR parity to feature highlights
+
 ## [19.0.22.0] — 2026-07-14
 
 ### Added — Real-time Guest Feedback with Instant Alerts (89th module)

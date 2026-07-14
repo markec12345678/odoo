@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_tax_form_fiskal" model="ir.ui.view">
+        <field name="name">account.tax.form.fiskal</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='advanced_options']" position="inside">
+                <field name="fiskal_tax_category_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

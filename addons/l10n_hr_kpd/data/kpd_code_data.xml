@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Sample KPD codes — sections (level 1) -->
+    <!-- Full Klasus has 21 sections + thousands of subcodes. -->
+    <!-- This is a representative subset for tourism businesses. -->
+    <record id="kpd_section_A" model="l10n_hr.kpd.code">
+        <field name="code">A</field>
+        <field name="name">Products of agriculture, hunting and forestry</field>
+        <field name="name_hr">Proizvodi poljoprivrede, lova i šumarstva</field>
+        <field name="level">1</field>
+    </record>
+    <record id="kpd_section_B" model="l10n_hr.kpd.code">
+        <field name="code">B</field>
+        <field name="name">Fish and other fishing products</field>
+        <field name="name_hr">Riba i drugi proizvodi ribarstva</field>
+        <field name="level">1</field>
+    </record>
+    <record id="kpd_section_E" model="l10n_hr.kpd.code">
+        <field name="code">E</field>
+        <field name="name">Electricity, gas and water</field>
+        <field name="name_hr">Električna energija, plin i voda</field>
+        <field name="level">1</field>
+    </record>
+    <record id="kpd_section_G" model="l10n_hr.kpd.code">
+        <field name="code">G</field>
+        <field name="name">Food products, beverages and tobacco</field>
+        <field name="name_hr">Prehrambeni proizvodi, pića i duhan</field>
+        <field name="level">1</field>
+    </record>
+    <record id="kpd_section_I" model="l10n_hr.kpd.code">
+        <field name="code">I</field>
+        <field name="name">Accommodation and food service products</field>
+        <field name="name_hr">Proizvodi smještaja i usluga prehrane</field>
+        <field name="level">1</field>
+        <field name="is_service" eval="True"/>
+    </record>
+    <!-- Sub-code: hotel accommodation -->
+    <record id="kpd_55101" model="l10n_hr.kpd.code">
+        <field name="code">55.10.1</field>
+        <field name="name">Hotel accommodation services</field>
+        <field name="name_hr">Usluge smještaja u hotelima</field>
+        <field name="parent_id" ref="kpd_section_I"/>
+        <field name="level">5</field>
+        <field name="is_service" eval="True"/>
+    </record>
+    <!-- Sub-code: restaurant -->
+    <record id="kpd_56101" model="l10n_hr.kpd.code">
+        <field name="code">56.10.1</field>
+        <field name="name">Restaurant services</field>
+        <field name="name_hr">Usluge restorana</field>
+        <field name="parent_id" ref="kpd_section_I"/>
+        <field name="level">5</field>
+        <field name="is_service" eval="True"/>
+    </record>
+    <!-- Sub-code: beverage serving -->
+    <record id="kpd_56301" model="l10n_hr.kpd.code">
+        <field name="code">56.30.1</field>
+        <field name="name">Beverage serving services</field>
+        <field name="name_hr">Usluge posluživanja pića</field>
+        <field name="parent_id" ref="kpd_section_I"/>
+        <field name="level">5</field>
+        <field name="is_service" eval="True"/>
+    </record>
+    <!-- Section: travel agencies -->
+    <record id="kpd_section_N" model="l10n_hr.kpd.code">
+        <field name="code">N</field>
+        <field name="name">Travel agency, tour operator and related services</field>
+        <field name="name_hr">Usluge putničkih agencija i srodne usluge</field>
+        <field name="level">1</field>
+        <field name="is_service" eval="True"/>
+    </record>
+    <!-- Section: entertainment -->
+    <record id="kpd_section_R" model="l10n_hr.kpd.code">
+        <field name="code">R</field>
+        <field name="name">Arts, entertainment and recreation services</field>
+        <field name="name_hr">Usluge umjetnosti, zabave i rekreacije</field>
+        <field name="level">1</field>
+        <field name="is_service" eval="True"/>
+    </record>
+</odoo>

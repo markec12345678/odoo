@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_fiskal_document_type_tree" model="ir.ui.view">
+        <field name="name">l10n_hr.fiskal.document.type.tree</field>
+        <field name="model">l10n_hr.fiskal.document.type</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="not active">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="name_hr"/>
+                <field name="is_invoice"/>
+                <field name="is_credit_note"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_fiskal_document_type_form" model="ir.ui.view">
+        <field name="name">l10n_hr.fiskal.document.type.form</field>
+        <field name="model">l10n_hr.fiskal.document.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name_hr"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="is_invoice"/>
+                            <field name="is_credit_note"/>
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_fiskal_document_type" model="ir.actions.act_window">
+        <field name="name">Document Types (UNTDID 1001)</field>
+        <field name="res_model">l10n_hr.fiskal.document.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

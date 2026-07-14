@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_fiskal_tax_category_tree" model="ir.ui.view">
+        <field name="name">l10n_hr.fiskal.tax.category.tree</field>
+        <field name="model">l10n_hr.fiskal.tax.category</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="is_exempt">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="name_hr"/>
+                <field name="is_exempt"/>
+                <field name="requires_exemption_reason"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_fiskal_tax_category_form" model="ir.ui.view">
+        <field name="name">l10n_hr.fiskal.tax.category.form</field>
+        <field name="model">l10n_hr.fiskal.tax.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <field name="code"/>
+                        <field name="name_hr"/>
+                        <field name="active"/>
+                        <field name="is_exempt"/>
+                        <field name="requires_exemption_reason"/>
+                    </group>
+                    <field name="description"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_fiskal_tax_category" model="ir.actions.act_window">
+        <field name="name">Tax Categories (UNTDID 5305)</field>
+        <field name="res_model">l10n_hr.fiskal.tax.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

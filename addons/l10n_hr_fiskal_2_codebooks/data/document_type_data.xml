@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- UNTDID 1001 — Document type codes -->
+    <record id="doc_type_380" model="l10n_hr.fiskal.document.type">
+        <field name="code">380</field>
+        <field name="name">Commercial invoice</field>
+        <field name="name_hr">Komerčni račun</field>
+        <field name="is_invoice" eval="True"/>
+    </record>
+    <record id="doc_type_381" model="l10n_hr.fiskal.document.type">
+        <field name="code">381</field>
+        <field name="name">Credit note</field>
+        <field name="name_hr">Dobropis</field>
+        <field name="is_credit_note" eval="True"/>
+    </record>
+    <record id="doc_type_384" model="l10n_hr.fiskal.document.type">
+        <field name="code">384</field>
+        <field name="name">Corrected invoice</field>
+        <field name="name_hr">Korekcijski račun</field>
+        <field name="is_invoice" eval="True"/>
+    </record>
+    <record id="doc_type_389" model="l10n_hr.fiskal.document.type">
+        <field name="code">389</field>
+        <field name="name">Proforma invoice</field>
+        <field name="name_hr">Predračun</field>
+    </record>
+    <record id="doc_type_326" model="l10n_hr.fiskal.document.type">
+        <field name="code">326</field>
+        <field name="name">Partial invoice</field>
+        <field name="name_hr">Delni račun</field>
+        <field name="is_invoice" eval="True"/>
+    </record>
+    <record id="doc_type_751" model="l10n_hr.fiskal.document.type">
+        <field name="code">751</field>
+        <field name="name">Invoice information</field>
+        <field name="name_hr">Informacija o računu</field>
+    </record>
+</odoo>

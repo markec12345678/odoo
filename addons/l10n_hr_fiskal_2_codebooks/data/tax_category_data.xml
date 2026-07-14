@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- UNTDID 5305/5153 — Tax category codes -->
+    <record id="tax_cat_S" model="l10n_hr.fiskal.tax.category">
+        <field name="code">S</field>
+        <field name="name">Standard rate</field>
+        <field name="name_hr">Standardna stopa</field>
+    </record>
+    <record id="tax_cat_Z" model="l10n_hr.fiskal.tax.category">
+        <field name="code">Z</field>
+        <field name="name">Lower rate</field>
+        <field name="name_hr">Nižja stopa</field>
+    </record>
+    <record id="tax_cat_E" model="l10n_hr.fiskal.tax.category">
+        <field name="code">E</field>
+        <field name="name">Exempt from tax</field>
+        <field name="name_hr">Davčno oproščeno</field>
+        <field name="is_exempt" eval="True"/>
+        <field name="requires_exemption_reason" eval="True"/>
+    </record>
+    <record id="tax_cat_AE" model="l10n_hr.fiskal.tax.category">
+        <field name="code">AE</field>
+        <field name="name">Reverse charge</field>
+        <field name="name_hr">Obrnjena davčna obveznost</field>
+        <field name="is_exempt" eval="True"/>
+        <field name="requires_exemption_reason" eval="True"/>
+    </record>
+    <record id="tax_cat_K" model="l10n_hr.fiskal.tax.category">
+        <field name="code">K</field>
+        <field name="name">Intra-community supply</field>
+        <field name="name_hr">Dobava znotraj EU</field>
+        <field name="is_exempt" eval="True"/>
+        <field name="requires_exemption_reason" eval="True"/>
+    </record>
+    <record id="tax_cat_G" model="l10n_hr.fiskal.tax.category">
+        <field name="code">G</field>
+        <field name="name">Export outside EU</field>
+        <field name="name_hr">Izvoz izven EU</field>
+        <field name="is_exempt" eval="True"/>
+        <field name="requires_exemption_reason" eval="True"/>
+    </record>
+    <record id="tax_cat_O" model="l10n_hr.fiskal.tax.category">
+        <field name="code">O</field>
+        <field name="name">Outside scope</field>
+        <field name="name_hr">Ni predmet DDV</field>
+        <field name="is_exempt" eval="True"/>
+    </record>
+    <record id="tax_cat_NA" model="l10n_hr.fiskal.tax.category">
+        <field name="code">NA</field>
+        <field name="name">Not applicable</field>
+        <field name="name_hr">Ni primembno</field>
+    </record>
+</odoo>

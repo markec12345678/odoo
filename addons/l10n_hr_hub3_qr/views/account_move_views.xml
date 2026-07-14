@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_hub3" model="ir.ui.view">
+        <field name="name">account.move.form.hub3</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_generate_hub3_qr" type="object"
+                        string="Regenerate HUB3 QR"
+                        class="btn-secondary"
+                        invisible="move_type not in ['out_invoice', 'out_refund']"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <group string="HUB3 Payment QR" name="hub3"
+                       invisible="move_type not in ['out_invoice', 'out_refund'] or not hub3_qr_code">
+                    <field name="hub3_qr_code" widget="image" readonly="1"/>
+                    <field name="hub3_string" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

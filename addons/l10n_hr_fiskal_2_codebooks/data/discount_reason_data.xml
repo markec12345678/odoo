@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- UNTDID 5189 — Discount reason codes -->
+    <record id="discount_100" model="l10n_hr.fiskal.discount.reason">
+        <field name="code">100</field>
+        <field name="name">Agreed discount</field>
+        <field name="name_hr">Dogovoreni popust</field>
+    </record>
+    <record id="discount_95" model="l10n_hr.fiskal.discount.reason">
+        <field name="code">95</field>
+        <field name="name">Cash discount</field>
+        <field name="name_hr">Gotovinski popust</field>
+    </record>
+    <record id="discount_62" model="l10n_hr.fiskal.discount.reason">
+        <field name="code">62</field>
+        <field name="name">Volume discount</field>
+        <field name="name_hr">Količinski popust</field>
+    </record>
+    <record id="discount_63" model="l10n_hr.fiskal.discount.reason">
+        <field name="code">63</field>
+        <field name="name">Material discount</field>
+        <field name="name_hr">Materialni popust</field>
+    </record>
+    <record id="discount_64" model="l10n_hr.fiskal.discount.reason">
+        <field name="code">64</field>
+        <field name="name">Special discount</field>
+        <field name="name_hr">Posebni popust</field>
+    </record>
+    <record id="discount_65" model="l10n_hr.fiskal.discount.reason">
+        <field name="code">65</field>
+        <field name="name">Trade discount</field>
+        <field name="name_hr">Trgovinski popust</field>
+    </record>
+    <record id="discount_70" model="l10n_hr.fiskal.discount.reason">
+        <field name="code">70</field>
+        <field name="name">Seasonal discount</field>
+        <field name="name_hr">Sezonski popust</field>
+    </record>
+    <record id="discount_88" model="l10n_hr.fiskal.discount.reason">
+        <field name="code">88</field>
+        <field name="name">Promotional discount</field>
+        <field name="name_hr">Promocijski popust</field>
+    </record>
+</odoo>

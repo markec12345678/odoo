@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- NKD 2007. — Tourism-related codes (subset) -->
+    <!-- Full NKD has ~800 codes. This covers all tourism & hospitality. -->
+
+    <!-- Section I: Accommodation and food service activities -->
+    <record id="nkd_section_I" model="l10n_hr.nkd.code">
+        <field name="code">I</field>
+        <field name="name">Accommodation and food service activities</field>
+        <field name="name_hr">Smještaj te priprema i usluživanje hrane</field>
+        <field name="section">I</field>
+        <field name="section_name">Accommodation and food service</field>
+        <field name="level">1</field>
+    </record>
+    <!-- Division 55: Accommodation -->
+    <record id="nkd_55" model="l10n_hr.nkd.code">
+        <field name="code">55</field>
+        <field name="name">Accommodation</field>
+        <field name="name_hr">Smještaj</field>
+        <field name="section">I</field>
+        <field name="division">55</field>
+        <field name="parent_id" ref="nkd_section_I"/>
+        <field name="level">2</field>
+    </record>
+    <!-- 55.1: Hotels and similar accommodation -->
+    <record id="nkd_5510" model="l10n_hr.nkd.code">
+        <field name="code">55.10</field>
+        <field name="name">Hotels and similar accommodation</field>
+        <field name="name_hr">Smještaj u hotelima i sličnom smještaju</field>
+        <field name="section">I</field>
+        <field name="division">55</field>
+        <field name="parent_id" ref="nkd_55"/>
+        <field name="level">4</field>
+    </record>
+    <record id="nkd_55101" model="l10n_hr.nkd.code">
+        <field name="code">55.10.1</field>
+        <field name="name">Hotels</field>
+        <field name="name_hr">Hoteli</field>
+        <field name="section">I</field>
+        <field name="division">55</field>
+        <field name="parent_id" ref="nkd_5510"/>
+        <field name="level">5</field>
+    </record>
+    <record id="nkd_55102" model="l10n_hr.nkd.code">
+        <field name="code">55.10.2</field>
+        <field name="name">Apartment hotels</field>
+        <field name="name_hr">Apartment hoteli</field>
+        <field name="section">I</field>
+        <field name="division">55</field>
+        <field name="parent_id" ref="nkd_5510"/>
+        <field name="level">5</field>
+    </record>
+    <!-- 55.2: Holiday and other short-stay accommodation -->
+    <record id="nkd_5520" model="l10n_hr.nkd.code">
+        <field name="code">55.20</field>
+        <field name="name">Holiday and other short-stay accommodation</field>
+        <field name="name_hr">Smještaj za odmor i kratki boravak</field>
+        <field name="section">I</field>
+        <field name="division">55</field>
+        <field name="parent_id" ref="nkd_55"/>
+        <field name="level">4</field>
+    </record>
+    <record id="nkd_55201" model="l10n_hr.nkd.code">
+        <field name="code">55.20.1</field>
+        <field name="name">Youth hostels and mountain refuges</field>
+        <field name="name_hr">Mladeži domovi i planinarski domovi</field>
+        <field name="section">I</field>
+        <field name="division">55</field>
+        <field name="parent_id" ref="nkd_5520"/>
+        <field name="level">5</field>
+    </record>
+    <record id="nkd_55202" model="l10n_hr.nkd.code">
+        <field name="code">55.20.2</field>
+        <field name="name">Camps and caravan parks</field>
+        <field name="name_hr">Kampovi i parkovi za kamp-kućice</field>
+        <field name="section">I</field>
+        <field name="division">55</field>
+        <field name="parent_id" ref="nkd_5520"/>
+        <field name="level">5</field>
+    </record>
+    <!-- 55.3: Camping grounds -->
+    <record id="nkd_5530" model="l10n_hr.nkd.code">
+        <field name="code">55.30</field>
+        <field name="name">Camping grounds and trailer parks</field>
+        <field name="name_hr">Kampovi i parkovi za kamp-prikolice</field>
+        <field name="section">I</field>
+        <field name="division">55</field>
+        <field name="parent_id" ref="nkd_55"/>
+        <field name="level">4</field>
+    </record>
+    <!-- Division 56: Food and beverage service activities -->
+    <record id="nkd_56" model="l10n_hr.nkd.code">
+        <field name="code">56</field>
+        <field name="name">Food and beverage service activities</field>
+        <field name="name_hr">Priprema i usluživanje hrane</field>
+        <field name="section">I</field>
+        <field name="division">56</field>
+        <field name="parent_id" ref="nkd_section_I"/>
+        <field name="level">2</field>
+    </record>
+    <record id="nkd_5610" model="l10n_hr.nkd.code">
+        <field name="code">56.10</field>
+        <field name="name">Restaurants and mobile food service</field>
+        <field name="name_hr">Restorani i usluživanje putem pokretnih objekata</field>
+        <field name="section">I</field>
+        <field name="division">56</field>
+        <field name="parent_id" ref="nkd_56"/>
+        <field name="level">4</field>
+    </record>
+    <record id="nkd_56101" model="l10n_hr.nkd.code">
+        <field name="code">56.10.1</field>
+        <field name="name">Restaurants</field>
+        <field name="name_hr">Restorani</field>
+        <field name="section">I</field>
+        <field name="division">56</field>
+        <field name="parent_id" ref="nkd_5610"/>
+        <field name="level">5</field>
+    </record>
+    <record id="nkd_5630" model="l10n_hr.nkd.code">
+        <field name="code">56.30</field>
+        <field name="name">Beverage serving</field>
+        <field name="name_hr">Usluživanje pića</field>
+        <field name="section">I</field>
+        <field name="division">56</field>
+        <field name="parent_id" ref="nkd_56"/>
+        <field name="level">4</field>
+    </record>
+    <record id="nkd_56301" model="l10n_hr.nkd.code">
+        <field name="code">56.30.1</field>
+        <field name="name">Bars</field>
+        <field name="name_hr">Barovi</field>
+        <field name="section">I</field>
+        <field name="division">56</field>
+        <field name="parent_id" ref="nkd_5630"/>
+        <field name="level">5</field>
+    </record>
+
+    <!-- Section N: Administrative and support service (includes travel agencies) -->
+    <record id="nkd_section_N" model="l10n_hr.nkd.code">
+        <field name="code">N</field>
+        <field name="name">Administrative and support service activities</field>
+        <field name="name_hr">Administrativne i pomoćne uslužne djelatnosti</field>
+        <field name="section">N</field>
+        <field name="section_name">Administrative and support</field>
+        <field name="level">1</field>
+    </record>
+    <!-- 79: Travel agency, tour operator, reservation -->
+    <record id="nkd_79" model="l10n_hr.nkd.code">
+        <field name="code">79</field>
+        <field name="name">Travel agency, tour operator and other reservation services</field>
+        <field name="name_hr">Usluge putničkih agencija i srodne uslužne djelatnosti</field>
+        <field name="section">N</field>
+        <field name="division">79</field>
+        <field name="parent_id" ref="nkd_section_N"/>
+        <field name="level">2</field>
+    </record>
+    <record id="nkd_7911" model="l10n_hr.nkd.code">
+        <field name="code">79.11</field>
+        <field name="name">Travel agency activities</field>
+        <field name="name_hr">Djelatnost putničkih agencija</field>
+        <field name="section">N</field>
+        <field name="division">79</field>
+        <field name="parent_id" ref="nkd_79"/>
+        <field name="level">4</field>
+    </record>
+    <record id="nkd_7990" model="l10n_hr.nkd.code">
+        <field name="code">79.90</field>
+        <field name="name">Other reservation services</field>
+        <field name="name_hr">Ostale uslužne djelatnosti rezervacija</field>
+        <field name="section">N</field>
+        <field name="division">79</field>
+        <field name="parent_id" ref="nkd_79"/>
+        <field name="level">4</field>
+    </record>
+
+    <!-- Section R: Arts, entertainment and recreation -->
+    <record id="nkd_section_R" model="l10n_hr.nkd.code">
+        <field name="code">R</field>
+        <field name="name">Arts, entertainment and recreation</field>
+        <field name="name_hr">Umjetnost, zabava i rekreacija</field>
+        <field name="section">R</field>
+        <field name="section_name">Arts and entertainment</field>
+        <field name="level">1</field>
+    </record>
+    <!-- 93: Sports activities and amusement -->
+    <record id="nkd_9311" model="l10n_hr.nkd.code">
+        <field name="code">93.11</field>
+        <field name="name">Operation of sports facilities</field>
+        <field name="name_hr">Upravljanje sportskim objektima</field>
+        <field name="section">R</field>
+        <field name="division">93</field>
+        <field name="parent_id" ref="nkd_section_R"/>
+        <field name="level">4</field>
+    </record>
+    <record id="nkd_9329" model="l10n_hr.nkd.code">
+        <field name="code">93.29</field>
+        <field name="name">Other amusement and recreation</field>
+        <field name="name_hr">Ostale zabavne i rekreacijske djelatnosti</field>
+        <field name="section">R</field>
+        <field name="division">93</field>
+        <field name="parent_id" ref="nkd_section_R"/>
+        <field name="level">4</field>
+    </record>
+
+    <!-- Section F: Construction (for maintenance companies) -->
+    <record id="nkd_section_F" model="l10n_hr.nkd.code">
+        <field name="code">F</field>
+        <field name="name">Construction</field>
+        <field name="name_hr">Građevinarstvo</field>
+        <field name="section">F</field>
+        <field name="section_name">Construction</field>
+        <field name="level">1</field>
+    </record>
+
+    <!-- Section G: Wholesale and retail trade -->
+    <record id="nkd_section_G" model="l10n_hr.nkd.code">
+        <field name="code">G</field>
+        <field name="name">Wholesale and retail trade</field>
+        <field name="name_hr">Trgovina na veliko i malo</field>
+        <field name="section">G</field>
+        <field name="section_name">Wholesale and retail trade</field>
+        <field name="level">1</field>
+    </record>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kpd_code_user,KPD Code User,model_l10n_hr_kpd_code,base.group_user,1,0,0,0
+access_kpd_code_manager,KPD Code Manager,model_l10n_hr_kpd_code,account.group_account_manager,1,1,1,1

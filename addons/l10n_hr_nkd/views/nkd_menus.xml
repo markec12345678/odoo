@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_nkd_root"
+              name="NKD Activity Codes"
+              parent="account.menu_finance_configuration"
+              action="action_nkd_code"
+              sequence="87"/>
+</odoo>
