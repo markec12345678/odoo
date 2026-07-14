@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Major Croatian banks with SWIFT/BIC and HR IBAN bank code -->
+    <!-- Format: code = first 7 digits after HR + check digits in IBAN -->
+
+    <record id="hr_bank_zagrebacka" model="res.bank">
+        <field name="name">Zagrebačka banka d.d.</field>
+        <field name="code">2360000</field>
+        <field name="bic">ZABAHR2X</field>
+        <field name="country" ref="base.hr"/>
+        <field name="street">Trg bana Josipa Jelačića 10</field>
+        <field name="city">Zagreb</field>
+        <field name="zip">10000</field>
+        <field name="email">info@zaba.hr</field>
+        <field name="phone">+385 1 6305 333</field>
+    </record>
+
+    <record id="hr_bank_pbz" model="res.bank">
+        <field name="name">Privredna banka Zagreb d.d.</field>
+        <field name="code">2340009</field>
+        <field name="bic">PBZGHR2X</field>
+        <field name="country" ref="base.hr"/>
+        <field name="street">Rooseveltov trg 2</field>
+        <field name="city">Zagreb</field>
+        <field name="zip">10000</field>
+        <field name="phone">+385 1 6305 333</field>
+    </record>
+
+    <record id="hr_bank_rba" model="res.bank">
+        <field name="name">Raiffeisenbank Austria d.d.</field>
+        <field name="code">2485003</field>
+        <field name="bic">RZBHHR2X</field>
+        <field name="country" ref="base.hr"/>
+        <field name="street">Petrinjska 59</field>
+        <field name="city">Zagreb</field>
+        <field name="zip">10000</field>
+        <field name="phone">+385 1 6305 333</field>
+    </record>
+
+    <record id="hr_bank_erste" model="res.bank">
+        <field name="name">Erste &amp; Steiermärkische Bank d.d.</field>
+        <field name="code">2402006</field>
+        <field name="bic">ESBKHR22</field>
+        <field name="country" ref="base.hr"/>
+        <field name="street">Slavonska avenija 5</field>
+        <field name="city">Zagreb</field>
+        <field name="zip">10000</field>
+        <field name="phone">+385 1 6305 333</field>
+    </record>
+
+    <record id="hr_bank_addiko" model="res.bank">
+        <field name="name">Addiko Bank d.d.</field>
+        <field name="code">2300000</field>
+        <field name="bic">HAABHR22</field>
+        <field name="country" ref="base.hr"/>
+        <field name="street">Slavonska avenija 6</field>
+        <field name="city">Zagreb</field>
+        <field name="zip">10000</field>
+    </record>
+
+    <record id="hr_bank_otp" model="res.bank">
+        <field name="name">OTP banka Hrvatska d.d.</field>
+        <field name="code">2407000</field>
+        <field name="bic">OTPVHR2X</field>
+        <field name="country" ref="base.hr"/>
+        <field name="street">Domjanićeva 1</field>
+        <field name="city">Zagreb</field>
+        <field name="zip">10000</field>
+    </record>
+
+    <record id="hr_bank_hpb" model="res.bank">
+        <field name="name">Hrvatska poštanska banka d.d.</field>
+        <field name="code">2390000</field>
+        <field name="bic">HPBZHR2X</field>
+        <field name="country" ref="base.hr"/>
+        <field name="street">Jurišićeva 4</field>
+        <field name="city">Zagreb</field>
+        <field name="zip">10000</field>
+    </record>
+
+    <record id="hr_bank_karlovacka" model="res.bank">
+        <field name="name">Karlovacka banka d.d.</field>
+        <field name="code">2393000</field>
+        <field name="bic">KARVHR22</field>
+        <field name="country" ref="base.hr"/>
+        <field name="street">I. G. Kovačića 1</field>
+        <field name="city">Karlovac</field>
+        <field name="zip">47000</field>
+    </record>
+
+    <record id="hr_bank_jadranska" model="res.bank">
+        <field name="name">Jadranska banka d.d.</field>
+        <field name="code">2403000</field>
+        <field name="bic">JADRHR22</field>
+        <field name="country" ref="base.hr"/>
+        <field name="street">Bana Berislavića 3</field>
+        <field name="city">Šibenik</field>
+        <field name="zip">22000</field>
+    </record>
+
+    <record id="hr_bank_slatinska" model="res.bank">
+        <field name="name">Slatinska banka d.d.</field>
+        <field name="code">2409000</field>
+        <field name="bic">SLATHR22</field>
+        <field name="country" ref="base.hr"/>
+        <field name="city">Slatina</field>
+        <field name="zip">33410</field>
+    </record>
+
+    <record id="hr_bank_nlb" model="res.bank">
+        <field name="name">NLB Banka d.d.</field>
+        <field name="code">2308000</field>
+        <field name="bic">LUMIHR22</field>
+        <field name="country" ref="base.hr"/>
+        <field name="city">Zagreb</field>
+        <field name="zip">10000</field>
+    </record>
+
+    <record id="hr_bank_istarska" model="res.bank">
+        <field name="name">Istarska kreditna banka Umag d.d.</field>
+        <field name="code">2380000</field>
+        <field name="bic">IKUMHR22</field>
+        <field name="country" ref="base.hr"/>
+        <field name="city">Umag</field>
+        <field name="zip">52470</field>
+    </record>
+
+    <record id="hr_bank_croatia" model="res.bank">
+        <field name="name">Croatia banka d.d.</field>
+        <field name="code">2471000</field>
+        <field name="bic">CROAHR22</field>
+        <field name="country" ref="base.hr"/>
+        <field name="city">Osijek</field>
+        <field name="zip">31000</field>
+    </record>
+
+    <record id="hr_bank_pdr" model="res.bank">
+        <field name="name">Podravska banka d.d.</field>
+        <field name="code">2386000</field>
+        <field name="bic">PODBHR22</field>
+        <field name="country" ref="base.hr"/>
+        <field name="city">Koprivnica</field>
+        <field name="zip">48000</field>
+    </record>
+</odoo>

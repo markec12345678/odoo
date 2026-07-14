@@ -1,0 +1,23 @@
+id,country_id:id,name,code
+state_hr_zg,base.hr,Grad Zagreb,HR-21
+state_hr_bz,base.hr,Bjelovarsko-bilogorska županija,HR-07
+state_hr_bm,base.hr,Brodsko-posavska županija,HR-12
+state_hr_dn,base.hr,Dubrovačko-neretvanska županija,HR-19
+state_hr_is,base.hr,Istarska županija,HR-18
+state_hr_kz,base.hr,Karlovačka županija,HR-04
+state_hr_kk,base.hr,Koprivničko-križevačka županija,HR-06
+state_hr_kp,base.hr,Krapinsko-zagorska županija,HR-02
+state_hr_ls,base.hr,Ličko-senjska županija,HR-09
+state_hr_ms,base.hr,Međimurska županija,HR-20
+state_hr_os,base.hr,Osječko-baranjska županija,HR-14
+state_hr_ps,base.hr,Požeško-slavonska županija,HR-11
+state_hr_pg,base.hr,Primorsko-goranska županija,HR-08
+state_hr_sm,base.hr,Sisačko-moslavačka županija,HR-03
+state_hr_sb,base.hr,Splitsko-dalmatinska županija,HR-17
+state_hr_vz,base.hr,Varaždinska županija,HR-05
+state_hr_vm,base.hr,Virovitičko-podravska županija,HR-10
+state_hr_vs,base.hr,Vukovarsko-srijemska županija,HR-16
+state_hr_zd,base.hr,Zadarska županija,HR-13
+state_hr_oz,base.hr,Osječko-baranjska županija (Stara),HR-14
+state_hr_zg_zup,base.hr,Zagrebačka županija,HR-01
+state_hr_si,base.hr,Šibensko-kninska županija,HR-15

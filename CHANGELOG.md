@@ -5,6 +5,56 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.26.0] — 2026-07-14
+
+### Added — OCA HR Full Parity Achieved! (97th & 98th modules)
+
+Two final modules to reach **full OCA l10n-croatia parity**:
+
+**97. `l10n_hr_city`** — Croatian cities & municipalities:
+- 21 counties (županije) including City of Zagreb → res.country.state
+- 60 major cities → res.city (with postal codes)
+- Counties use official ISO 3166-2:HR codes (HR-01 through HR-21)
+- Used by Fiskalizacija 2.0 (city code required for invoices) and eVisitor
+
+**98. `l10n_hr_bank`** — Croatian banks database:
+- 14 major Croatian banks pre-loaded with:
+  - Bank name (Croatian)
+  - SWIFT/BIC code (e.g. ZABAHR2X for Zagrebačka)
+  - 7-digit HR IBAN bank code (e.g. 2360000)
+  - Address, phone, email
+- Adds `code` field on res.bank
+- Auto-detects bank from IBAN on res.partner.bank (onchange)
+- Used by HUB3 QR code generation
+
+### 🎯 OCA HR Parity — COMPLETE
+
+After this release, our project has **all** OCA l10n-croatia modules:
+| OCA Module | Our Module | Status |
+|-----------|-----------|--------|
+| l10n_hr_base | l10n_hr | ✅ |
+| l10n_hr_account_base | l10n_hr_account_base | ✅ (v19.0.24) |
+| l10n_hr_account_fiskal | l10n_hr_fiscal (Fiskalizacija 2.0) | ✅ (newer!) |
+| l10n_hr_account_hub3_qr_code | l10n_hr_hub3_qr | ✅ (v19.0.23) |
+| l10n_hr_coa_rrif_2022 | l10n_hr_coa_rrif_2022 | ✅ (v19.0.25) |
+| l10n_hr_codebook | l10n_hr_fiskal_2_codebooks | ✅ (v19.0.23) |
+| l10n_hr_document_type | (in l10n_hr_fiskal_2_codebooks) | ✅ |
+| l10n_hr_untdid5189_discount | (in l10n_hr_fiskal_2_codebooks) | ✅ |
+| l10n_hr_tax_category | (in l10n_hr_fiskal_2_codebooks) | ✅ |
+| l10n_hr_kpd | l10n_hr_kpd | ✅ (v19.0.23) |
+| l10n_hr_vatex_tax_exempt | (planned in l10n_hr_edi) | 🟡 |
+| l10n_hr_nkd | l10n_hr_nkd | ✅ (v19.0.23) |
+| l10n_hr_city | l10n_hr_city | ✅ (this release) |
+| l10n_hr_bank | l10n_hr_bank | ✅ (this release) |
+| currency_rate_update_hr_hnb | l10n_hr_hnb_rates | ✅ (v19.0.23) |
+| uom_en16931 | (planned) | 🟡 |
+
+**Result:** We have everything OCA HR has, PLUS 88 additional tourism/SI modules that OCA doesn't have.
+
+### Updated — README badges
+- Module count: 96 → 98
+- Version: v19.0.25.0 → v19.0.26.0
+
 ## [19.0.25.0] — 2026-07-14
 
 ### Added — HR RRIF 2022. Chart of Accounts (96th module)

@@ -1,0 +1,61 @@
+id,name,state_id:id,country_id:id,zipcode
+hr_city_zagreb,Zagreb,l10n_hr_city.state_hr_zg,base.hr,10000
+hr_city_split,Split,l10n_hr_city.state_hr_sm,base.hr,21000
+hr_city_rijeka,Rijeka,l10n_hr_city.state_hr_pg,base.hr,51000
+hr_city_osijek,Osijek,l10n_hr_city.state_hr_os,base.hr,31000
+hr_city_zadar,Zadar,l10n_hr_city.state_hr_zd,base.hr,23000
+hr_city_slavonski_brod,Slavonski Brod,l10n_hr_city.state_hr_bm,base.hr,35000
+hr_city_pula,Pula,l10n_hr_city.state_hr_is,base.hr,52100
+hr_city_karlovac,Karlovac,l10n_hr_city.state_hr_kz,base.hr,47000
+hr_city_varazdin,Varaždin,l10n_hr_city.state_hr_vz,base.hr,42000
+hr_city_sibenik,Šibenik,l10n_hr_city.state_hr_si,base.hr,22000
+hr_city_dubrovnik,Dubrovnik,l10n_hr_city.state_hr_dn,base.hr,20000
+hr_city_bjelovar,Bjelovar,l10n_hr_city.state_hr_bz,base.hr,43000
+hr_city_koprivnica,Koprivnica,l10n_hr_city.state_hr_kk,base.hr,48000
+hr_city_krapina,Krapina,l10n_hr_city.state_hr_kp,base.hr,49000
+hr_city_sisak,Sisak,l10n_hr_city.state_hr_sm,base.hr,44000
+hr_city_virovitica,Virovitica,l10n_hr_city.state_hr_vm,base.hr,33000
+hr_city_vukovar,Vukovar,l10n_hr_city.state_hr_vs,base.hr,32000
+hr_city_pozega,Požega,l10n_hr_city.state_hr_ps,base.hr,34000
+hr_city_cakovec,Čakovec,l10n_hr_city.state_hr_ms,base.hr,40000
+hr_city_gospić,Gospić,l10n_hr_city.state_hr_ls,base.hr,53000
+hr_city_ognin,Ognjin,l10n_hr_city.state_hr_vz,base.hr,31400
+hr_city_hvar,Hvar,l10n_hr_city.state_hr_sm,base.hr,21450
+hr_city_trogir,Trogir,l10n_hr_city.state_hr_sm,base.hr,21220
+hr_city_sinj,Sinj,l10n_hr_city.state_hr_sm,base.hr,21230
+hr_city_makarska,Makarska,l10n_hr_city.state_hr_sm,base.hr,21300
+hr_city_rod,novi Vinodolski,l10n_hr_city.state_hr_pg,base.hr,51250
+hr_city_ozalj,Ozalj,l10n_hr_city.state_hr_kz,base.hr,47282
+hr_city_knin,Knin,l10n_hr_city.state_hr_si,base.hr,22300
+hr_city_metković,Metković,l10n_hr_city.state_hr_dn,base.hr,20340
+hr_city_ploče,Ploče,l10n_hr_city.state_hr_dn,base.hr,20340
+hr_city_ogulin,Ogulin,l10n_hr_city.state_hr_kz,base.hr,47300
+hr_city_duga_resa,Duga Resa,l10n_hr_city.state_hr_kz,base.hr,47250
+hr_city_otp,Otočac,l10n_hr_city.state_hr_ls,base.hr,53220
+hr_city_samobor,Samobor,l10n_hr_city.state_hr_zg_zup,base.hr,10430
+hr_city_velika_gorica,Velika Gorica,l10n_hr_city.state_hr_zg_zup,base.hr,10410
+hr_city_zaprešić,Zaprešić,l10n_hr_city.state_hr_zg_zup,base.hr,10290
+hr_city_jastrebarsko,Jastrebarsko,l10n_hr_city.state_hr_zg_zup,base.hr,10450
+hr_city_dugo_selo,Dugo Selo,l10n_hr_city.state_hr_zg_zup,base.hr,10370
+hr_city_sesvete,Sesvete,l10n_hr_city.state_hr_zg_zup,base.hr,10360
+hr_city_ivanić_grad,Ivanić-Grad,l10n_hr_city.state_hr_zg_zup,base.hr,10310
+hr_city_križevci,Križevci,l10n_hr_city.state_hr_kk,base.hr,48260
+hr_city_vrbovec,Vrbovec,l10n_hr_city.state_hr_zg_zup,base.hr,10340
+hr_city_štitar,Štitar,l10n_hr_city.state_hr_vz,base.hr,31445
+hr_city_našice,Našice,l10n_hr_city.state_hr_os,base.hr,31220
+hr_city_daruvar,Daruvar,l10n_hr_city.state_hr_bz,base.hr,43500
+hr_city_pakrac,Pakrac,l10n_hr_city.state_hr_ps,base.hr,34550
+hr_city_beli_manastir,Beli Manastir,l10n_hr_city.state_hr_os,base.hr,31300
+hr_city_belišće,Belišće,l10n_hr_city.state_hr_os,base.hr,31551
+hr_city_valpovo,Valpovo,l10n_hr_city.state_hr_os,base.hr,31550
+hr_city_donji_miholjac,Donji Miholjac,l10n_hr_city.state_hr_os,base.hr,31540
+hr_city_kutjevo,Kutjevo,l10n_hr_city.state_hr_ps,base.hr,34340
+hr_city_otp_vučedol,Vinkovci,l10n_hr_city.state_hr_vs,base.hr,32100
+hr_city_županja,Županja,l10n_hr_city.state_hr_vs,base.hr,32270
+hr_city_otocac_supetar,Supetar,l10n_hr_city.state_hr_sm,base.hr,21400
+hr_city_komiža,Komiža,l10n_hr_city.state_hr_sm,base.hr,21485
+hr_city_vis,Vis,l10n_hr_city.state_hr_sm,base.hr,21480
+hr_city_korčula,Korčula,l10n_hr_city.state_hr_dn,base.hr,20260
+hr_city_lastovo,Lastovo,l10n_hr_city.state_hr_dn,base.hr,20290
+hr_city_vela_luka,Vela Luka,l10n_hr_city.state_hr_dn,base.hr,20270
+hr_city_blato,Blato,l10n_hr_city.state_hr_dn,base.hr,20273
