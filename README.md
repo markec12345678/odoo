@@ -19,6 +19,14 @@
 [![Scanners](https://img.shields.io/badge/scanners-5%20%C2%B7%200%20issues-brightgreen.svg)](scripts/)
 [![AI Core](https://img.shields.io/badge/AI%20Core-9%20modules%20%C2%B7%207%20backends-blue.svg)](addons/l10n_si_ai_core/)
 
+### CI/CD Status
+
+![CI](https://img.shields.io/github/actions/workflow/status/markec12345678/odoo-si-hr-tourism-suite/ci.yml?branch=19.0&label=CI%20Tests)
+![Module Health](https://img.shields.io/github/actions/workflow/status/markec12345678/odoo-si-hr-tourism-suite/module-health.yml?branch=19.0&label=Scanners)
+![Deploy](https://img.shields.io/github/actions/workflow/status/markec12345678/odoo-si-hr-tourism-suite/deploy.yml?branch=19.0&label=Deploy)
+![CodeQL](https://img.shields.io/github/actions/workflow/status/markec12345678/odoo-si-hr-tourism-suite/codeql.yml?branch=19.0&label=Security)
+![Docker](https://img.shields.io/github/actions/workflow/status/markec12345678/odoo-si-hr-tourism-suite/docker-publish.yml?branch=19.0&label=Docker)
+
 </div>
 
 ---
@@ -206,16 +214,32 @@ python3 scripts/scan_security.py addons/l10n_si_* addons/l10n_hr_* scripts/ .git
 
 ---
 
-## 📸 Screenshots
+## 📸 Live Demo & Screenshots
 
-> Screenshots coming soon. The live demo at https://odoo-production-fa42.up.railway.app/web/login shows:
-> - Odoo 19 login page with custom branding
-> - Dark mode toggle (top-right corner)
-> - Hotel management dashboard
-> - FURS invoice with ZOI/EOR + QR code
-> - POS touchscreen interface
-> - Channel manager (Booking.com + Airbnb sync)
-> - AI Concierge chat interface
+### Try it now — no registration required
+
+| | |
+|---|---|
+| **URL** | https://odoo-production-fa42.up.railway.app/web/login |
+| **Admin** | `admin` / `admin` (read-only demo — data resets automatically) |
+| **Demo user** | `demo` / `demo` (limited: view + create orders only, no settings) |
+| **Hosting** | Railway Cloud (Postgres 18 + Odoo 19) |
+
+> 💡 **Demo data resets automatically every hour.** Feel free to explore —
+> you cannot break anything. All changes are temporary.
+
+### What to see in the demo
+
+1. **AI Concierge** — Open website chat (bottom-right corner), ask:
+   - "Kakšno je WiFi geslo?"
+   - "Kdaj je zajtrk?"
+   - "Poveži me z recepcijo"
+2. **FURS Invoice** — Accounting → Invoices → Create new invoice with ZOI/EOR
+3. **Hotel Dashboard** — Hotel → Folios → Check room availability
+4. **POS Terminal** — Point of Sale → Start session → Touchscreen interface
+5. **Channel Manager** — Channel Manager → Sync with Booking.com/Airbnb
+6. **Revenue Management** — Yield Management → AI pricing recommendations 🤖
+7. **Audit Trail** — Settings → Audit Trail → See who changed what + IP address
 
 ---
 
@@ -223,8 +247,8 @@ python3 scripts/scan_security.py addons/l10n_si_* addons/l10n_hr_* scripts/ .git
 
 ### Option A: Use the Live Demo
 1. Visit https://odoo-production-fa42.up.railway.app/web/login
-2. Login: `admin` / `admin`
-3. Explore modules
+2. Login: `admin` / `admin` (or `demo` / `demo` for limited access)
+3. Explore modules — data resets every hour, nothing to break!
 
 ### Option B: Deploy Your Own
 
@@ -284,7 +308,9 @@ Setup fee: 199€ (onboarding + FURS cert setup + 1h training)
 
 ---
 
-## 🔐 Security Checklist
+## 🔐 Security & Reliability
+
+### Security Checklist (for production deployment)
 
 - [ ] Change admin password (default: admin/admin)
 - [ ] Enable 2FA (Authenticator App)
@@ -294,6 +320,48 @@ Setup fee: 199€ (onboarding + FURS cert setup + 1h training)
 - [ ] Configure FURS certificate (TEST → PROD)
 - [ ] Review user permissions
 - [ ] Enable audit trail module
+
+### Multi-Tenant Architecture
+
+This system supports **multi-tenant deployments** for hotel chains and
+restaurant groups:
+
+- **Per-company isolation**: Each `res.company` has separate FURS/CISF
+  certificates, separate WhatsApp numbers, separate AI Concierge configs
+- **Database-level isolation**: Use separate PostgreSQL schemas or databases
+  per tenant for maximum data separation
+- **Per-location fiscal compliance**: Each business premise
+  (`l10n_si.business.premise` / `l10n_hr.business.premise`) has its own
+  ZOI/EOR (SI) or ZKI/JIR (HR) sequence
+- **Audit trail per company**: All sensitive field changes tracked with
+  user ID, IP address, and timestamp — per company
+
+```python
+# Example: Multi-company FURS configuration
+company_a = env['res.company'].browse(1)  # Hotel Ljubljana
+company_b = env['res.company'].browse(2)  # Hotel Bled
+# Each company has its own FURS cert, OIB, and business premises
+# Data is isolated at the ORM level via company_id field
+```
+
+### Backup & Restore Verification
+
+| Component | Implementation |
+|-----------|---------------|
+| **Daily backup** | `scripts/railway-backup.sh` — pg_dump + filestore tar.gz |
+| **Offsite storage** | S3-compatible (Backblaze B2, Wasabi, R2) + webhook upload |
+| **Retention** | 30 days automatic cleanup |
+| **Verification** | `scripts/verify-backup.sh` — 5-check integrity test: |
+| | 1. MANIFEST file exists with metadata |
+| | 2. database.sql non-empty with PostgreSQL header |
+| | 3. Critical tables present (res_partner, account_move, l10n_si_audit_trail) |
+| | 4. Filestore directory exists |
+| | 5. SQL dump header + footer (complete dump) |
+| **Restore test** | Weekly automated restore to staging environment |
+| **Health monitoring** | `/healthz` endpoint reports backup age + size |
+
+> 💡 **Backup that hasn't been tested is not a backup.** Our verification
+> script checks 5 integrity markers after every backup.
 
 ---
 
