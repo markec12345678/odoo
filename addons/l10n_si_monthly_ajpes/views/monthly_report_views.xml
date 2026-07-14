@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============ TREE ============ -->
+    <record id="view_monthly_ajpes_report_tree" model="ir.ui.view">
+        <field name="name">l10n_si.monthly.ajpes.report.tree</field>
+        <field name="model">l10n_si.monthly.ajpes.report</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'confirmed'"
+                  decoration-warning="state == 'submitted'"
+                  decoration-danger="state == 'error'">
+                <field name="name"/>
+                <field name="establishment_id"/>
+                <field name="year"/>
+                <field name="month_name"/>
+                <field name="version"/>
+                <field name="total_arrivals"/>
+                <field name="total_nights"/>
+                <field name="avg_stay_nights"/>
+                <field name="state" widget="badge"/>
+                <field name="generated_on"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============ FORM ============ -->
+    <record id="view_monthly_ajpes_report_form" model="ir.ui.view">
+        <field name="name">l10n_si.monthly.ajpes.report.form</field>
+        <field name="model">l10n_si.monthly.ajpes.report</field>
+        <field name="arch" type="xml">
+            <form string="Monthly AJPES Report">
+                <header>
+                    <button name="action_generate" type="object" string="Generate"
+                            class="btn-primary"
+                            invisible="state not in ['draft', 'error']"/>
+                    <button name="action_submit_to_ajpes" type="object"
+                            string="Submit to AJPES"
+                            class="btn-primary"
+                            invisible="state != 'generated'"/>
+                    <button name="action_confirm" type="object"
+                            string="Mark Confirmed"
+                            class="btn-secondary"
+                            invisible="state != 'submitted'"/>
+                    <button name="action_reset_to_draft" type="object"
+                            string="Re-generate (v+1)"
+                            class="btn-secondary"
+                            invisible="state in ['draft']"
+                            confirm="This will increment the version. Continue?"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,generated,submitted,confirmed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Reference">
+                            <field name="establishment_id" readonly="state != 'draft'"/>
+                            <field name="year" readonly="state != 'draft'"/>
+                            <field name="month" readonly="state != 'draft'"/>
+                            <field name="month_name" readonly="1"/>
+                            <field name="version" readonly="1"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                        </group>
+                        <group string="Audit">
+                            <field name="generated_by" readonly="1"/>
+                            <field name="generated_on" readonly="1"/>
+                            <field name="submitted_by" readonly="1"/>
+                            <field name="submitted_on" readonly="1"/>
+                            <field name="ajpes_submission_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Statistics" name="stats">
+                            <group>
+                                <group>
+                                    <field name="registration_count" readonly="1"/>
+                                    <field name="total_arrivals" readonly="1"/>
+                                    <field name="total_departures" readonly="1"/>
+                                    <field name="total_nights" readonly="1"/>
+                                    <field name="avg_stay_nights" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="total_domestic" readonly="1"/>
+                                    <field name="total_foreigners" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Files" name="files">
+                            <group>
+                                <field name="xml_file" filename="xml_filename" readonly="1"/>
+                                <field name="xml_filename" readonly="1"/>
+                                <field name="csv_file" filename="csv_filename" readonly="1"/>
+                                <field name="csv_filename" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="AJPES Response" name="ajpes">
+                            <group>
+                                <field name="ajpes_response" readonly="1"/>
+                                <field name="error_message" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Registrations" name="registrations">
+                            <field name="registration_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="guest_first_name"/>
+                                    <field name="guest_last_name"/>
+                                    <field name="guest_citizenship_id"/>
+                                    <field name="arrival_date"/>
+                                    <field name="departure_date"/>
+                                    <field name="nights"/>
+                                    <field name="ajpes_status"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============ SEARCH ============ -->
+    <record id="view_monthly_ajpes_report_search" model="ir.ui.view">
+        <field name="name">l10n_si.monthly.ajpes.report.search</field>
+        <field name="model">l10n_si.monthly.ajpes.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="establishment_id"/>
+                <filter string="Draft" name="filter_draft"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter string="Generated" name="filter_generated"
+                        domain="[('state', '=', 'generated')]"/>
+                <filter string="Submitted" name="filter_submitted"
+                        domain="[('state', '=', 'submitted')]"/>
+                <filter string="Confirmed" name="filter_confirmed"
+                        domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Error" name="filter_error"
+                        domain="[('state', '=', 'error')]"/>
+                <separator/>
+                <filter string="This Year" name="filter_year"
+                        domain="[('year', '=', context_today().year)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Establishment" name="group_est"
+                            context="{'group_by': 'establishment_id'}"/>
+                    <filter string="Year" name="group_year"
+                            context="{'group_by': 'year'}"/>
+                    <filter string="State" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============ ACTION ============ -->
+    <record id="action_monthly_ajpes_report" model="ir.actions.act_window">
+        <field name="name">Monthly AJPES Reports</field>
+        <field name="res_model">l10n_si.monthly.ajpes.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_monthly_ajpes_report_search"/>
+        <field name="context">{'search_default_filter_year': 1}</field>
+    </record>
+</odoo>

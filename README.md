@@ -6,16 +6,16 @@
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](./LICENSE)
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0-875A7B.svg)](https://www.odoo.com)
-[![Modules](https://img.shields.io/badge/Modules-87-green.svg)](#module-catalog)
+[![Modules](https://img.shields.io/badge/Modules-88-green.svg)](#module-catalog)
 [![OCA](https://img.shields.io/badge/OCA%20Modules-37-orange.svg)](https://github.com/OCA)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](./requirements.txt)
 [![Railway](https://img.shields.io/badge/Railway-Live%20Demo-9B59B6.svg)](https://odoo-production-fa42.up.railway.app/web/login)
-[![Version](https://img.shields.io/badge/version-v19.0.20.0-blue.svg)](https://github.com/markec12345678/odoo/releases)
+[![Version](https://img.shields.io/badge/version-v19.0.21.0-blue.svg)](https://github.com/markec12345678/odoo/releases)
 [![Status](https://img.shields.io/badge/status-production%20ready-brightgreen.svg)]()
 [![Modules Installed](https://img.shields.io/badge/installed-240+-brightgreen.svg)]()
 [![Last Commit](https://img.shields.io/github/last-commit/markec12345678/odoo/19.0)](https://github.com/markec12345678/odoo/commits/19.0)
 [![Coverage](https://img.shields.io/badge/l10n%20coverage-100%25-brightgreen.svg)]()
-[![CI Tests](https://img.shields.io/badge/tests-139%2F139%20%E2%9C%93-brightgreen.svg)](https://github.com/markec12345678/odoo/actions)
+[![CI Tests](https://img.shields.io/badge/tests-141%2F141%20%E2%9C%93-brightgreen.svg)](https://github.com/markec12345678/odoo/actions)
 [![Scanners](https://img.shields.io/badge/scanners-5%20%C2%B7%200%20issues-brightgreen.svg)](scripts/)
 [![AI Core](https://img.shields.io/badge/AI%20Core-9%20modules%20%C2%B7%207%20backends-blue.svg)](addons/l10n_si_ai_core/)
 
@@ -61,8 +61,9 @@
 > - ✅ Lobby kiosk mode (tablet self check-in with passport OCR + signature + auto eTurizem)
 > - ✅ Pre-arrival questionnaire (dietary, allergies, activities — token-authenticated, no login)
 > - ✅ Smart housekeeping scheduler (auto-turnover, urgency-based, AI optimization)
+> - ✅ Monthly AJPES eTurizem automation (XML+CSV+PDF, auto-cron, email notification)
 > - ✅ iCal import for Booking.com / Airbnb calendar sync
-> - ✅ 87 custom l10n modules + 37 OCA UI/UX modules
+> - ✅ 88 custom l10n modules + 37 OCA UI/UX modules
 > - ✅ Railway cloud deployment with auto-deploy
 > - ✅ Daily automated backup
 
@@ -107,11 +108,11 @@
 
 ## 📦 Module Catalog
 
-### 🇸🇮 Slovenian Modules (78)
+### 🇸🇮 Slovenian Modules (79)
 
 | Category | Modules | Status |
 |----------|---------|--------|
-| **Regulatory** | `l10n_si`, `l10n_si_fiscal` (FURS ZOI/EOR), `l10n_si_etourism` (AJPES), `l10n_si_vat_validation`, `l10n_si_sequence`, `l10n_si_edi`, `l10n_si_intrastat`, `l10n_si_vies_return` | ✅ 8/8 |
+| **Regulatory** | `l10n_si`, `l10n_si_fiscal` (FURS ZOI/EOR), `l10n_si_etourism` (AJPES), `l10n_si_monthly_ajpes` (auto monthly report), `l10n_si_vat_validation`, `l10n_si_sequence`, `l10n_si_edi`, `l10n_si_intrastat`, `l10n_si_vies_return` | ✅ 9/9 |
 | **Accounting** | `l10n_si_accounting_advanced` (SRS), `l10n_si_year_end_close`, `l10n_si_customer_statements`, `l10n_si_reports` | ✅ 4/4 |
 | **Banking & Payments** | `l10n_si_bank_parser`, `l10n_si_bank_sync`, `l10n_si_payment_gateway`, `l10n_si_stripe_payment` (hotel deposit pre-auth) | ✅ 4/4 |
 | **Hotel & Tourism** | `l10n_si_hotel`, `l10n_si_camping`, `l10n_si_farm_tourism`, `l10n_si_wellness`, `l10n_si_housekeeping`, `l10n_si_channel_manager`, `l10n_si_revenue_management`, `l10n_si_group_booking`, `l10n_si_tourist_tax` | ✅ 9/9 |

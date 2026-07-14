@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="email_template_monthly_report" model="mail.template">
+        <field name="name">AJPES Monthly Report — Notification</field>
+        <field name="model_id" ref="model_l10n_si_monthly_ajpes_report"/>
+        <field name="subject">AJPES eTurizem Report: {{ object.month_name }} {{ object.year }} — {{ object.establishment_id.name }}</field>
+        <field name="email_from">{{ object.company_id.email or 'noreply@example.com' }}</field>
+        <field name="email_to">{{ object.company_id.email or '' }}</field>
+        <field name="body_html" type="html">
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+  <h2 style="color: #875A7B;">Monthly AJPES eTurizem Report Generated</h2>
+  <p>The monthly report for <strong>{{ object.month_name }} {{ object.year }}</strong> has been generated for <strong>{{ object.establishment_id.name }}</strong>.</p>
+  <h3 style="color: #875A7B;">Summary</h3>
+  <ul>
+    <li>Total arrivals: <strong>{{ object.total_arrivals }}</strong></li>
+    <li>Total nights: <strong>{{ object.total_nights }}</strong></li>
+    <li>Average stay: <strong>{{ object.avg_stay_nights }}</strong> nights</li>
+    <li>Domestic guests: <strong>{{ object.total_domestic }}</strong></li>
+    <li>Foreign guests: <strong>{{ object.total_foreigners }}</strong></li>
+  </ul>
+  <p>The XML and CSV files are attached to the report record in Odoo.</p>
+  <p style="margin-top: 20px;">
+    <a href="/web#model=l10n_si.monthly.ajpes.report&amp;id={{ object.id }}"
+       style="background: #875A7B; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">
+      Open Report
+    </a>
+  </p>
+  <p style="color: #888; font-size: 12px; margin-top: 20px;">
+    Generated on {{ object.generated_on }} by {{ object.generated_by.name }}.
+  </p>
+</div>
+        </field>
+        <field name="report_template_id" ref="report_monthly_ajpes_pdf"/>
+        <field name="report_name">AJPES_Monthly_{{ object.year }}_{{ object.month }}_v{{ object.version }}</field>
+    </record>
+</odoo>

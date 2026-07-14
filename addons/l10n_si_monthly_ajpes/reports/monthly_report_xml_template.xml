@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- The XML report is generated dynamically by the model's _generate_xml()
+         method and stored in the xml_file Binary field on the report record.
+         No QWeb template needed for XML — it's built programmatically.
+         This file exists for manifest consistency. -->
+</odoo>

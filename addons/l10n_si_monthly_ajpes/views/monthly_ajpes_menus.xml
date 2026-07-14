@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_monthly_ajpes_root"
+              name="Monthly AJPES"
+              parent="l10n_si_hotel.menu_l10n_si_hotel_root"
+              sequence="35"
+              groups="l10n_si_hotel.hotel_manager_group"/>
+
+    <menuitem id="menu_monthly_ajpes_dashboard"
+              name="Dashboard"
+              parent="menu_monthly_ajpes_root"
+              action="action_monthly_ajpes_dashboard"
+              sequence="10"/>
+
+    <menuitem id="menu_monthly_ajpes_reports"
+              name="Reports"
+              parent="menu_monthly_ajpes_root"
+              action="action_monthly_ajpes_report"
+              sequence="20"/>
+
+    <menuitem id="menu_monthly_ajpes_generate"
+              name="Generate Report"
+              parent="menu_monthly_ajpes_root"
+              action="action_generate_monthly_report_wizard"
+              sequence="30"/>
+</odoo>

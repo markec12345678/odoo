@@ -5,6 +5,66 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.21.0] — 2026-07-14
+
+### Added — Monthly AJPES eTurizem Report Automation (88th module)
+
+**`l10n_si_monthly_ajpes`** — automates the monthly AJPES eTurizem reporting
+obligation for Slovenian accommodation providers.
+
+Slovenian law requires accommodation providers to submit a monthly summary
+report to AJPES by the 5th of the following month, covering all arrivals,
+nights, citizenship breakdown, purpose of visit, and reservation source.
+
+This module:
+1. Aggregates all `l10n_si.etourism.guest.registration` records for a month
+2. Generates the official AJPES XML report (TURIZEM format)
+3. Generates a CSV summary for human review
+4. Generates a PDF report for archival
+5. Optionally submits to AJPES via the existing eTurizem API
+6. Sends email notification with the report attached
+7. Cron job runs on the 1st of each month, generates the previous month's report
+
+Models:
+- `l10n_si.monthly.ajpes.report` — main report with state machine:
+  draft → generated → submitted → confirmed (or error)
+- `l10n_si.monthly.ajpes.generate.wizard` — manual generation wizard
+- Extends `l10n_si.etourism.establishment` with smart button and report count
+
+Features:
+- One-click monthly report generation
+- Automatic cron on 1st of each month (02:00)
+- XML + CSV + PDF output formats
+- Email notification with PDF attachment
+- Audit trail (who generated/submitted, when)
+- Re-generation with version tracking (AJPES allows corrections)
+- Multi-establishment support (one report per establishment per month)
+- Statistics: arrivals, departures, nights, avg stay, domestic/foreign
+- Country breakdown (JSON stored, displayed in PDF)
+- Purpose and reservation source breakdowns
+- KPI dashboard with pie/bar charts
+- AJPES submission placeholder (ready for real API integration)
+- 7-year retention compliance (audit-ready)
+
+Cron jobs:
+- Monthly: generate previous month's report (1st of each month at 02:00)
+
+Email template:
+- Sends to company email with PDF attachment
+- Includes summary statistics in body
+
+Integrates with:
+- `l10n_si_etourism` (guest registrations, establishment, API)
+- `mail` (email template, chatter)
+- `web` (PDF report via QWeb)
+
+### Updated — README badges
+- Module count: 87 → 88
+- Test count: 139 → 141
+- Version: v19.0.20.0 → v19.0.21.0
+- Added monthly AJPES to feature highlights
+- Regulatory category: 8 → 9 modules
+
 ## [19.0.20.0] — 2026-07-14
 
 ### Added — Smart Housekeeping Scheduler (87th module)

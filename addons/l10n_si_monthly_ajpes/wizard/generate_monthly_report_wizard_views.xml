@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_generate_monthly_report_wizard_form" model="ir.ui.view">
+        <field name="name">l10n_si.monthly.ajpes.generate.wizard.form</field>
+        <field name="model">l10n_si.monthly.ajpes.generate.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Monthly AJPES Report">
+                <group>
+                    <field name="establishment_id"/>
+                    <field name="year"/>
+                    <field name="month"/>
+                    <field name="auto_submit"/>
+                </group>
+                <footer>
+                    <button name="action_generate" type="object" string="Generate"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_generate_monthly_report_wizard" model="ir.actions.act_window">
+        <field name="name">Generate Monthly Report</field>
+        <field name="res_model">l10n_si.monthly.ajpes.generate.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

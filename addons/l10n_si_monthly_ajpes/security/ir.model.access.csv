@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_monthly_ajpes_report_user,Monthly AJPES Report User,model_l10n_si_monthly_ajpes_report,base.group_user,1,0,0,0
+access_monthly_ajpes_report_manager,Monthly AJPES Report Manager,model_l10n_si_monthly_ajpes_report,l10n_si_hotel.hotel_manager_group,1,1,1,1
+access_monthly_ajpes_generate_wizard,Generate Monthly Report Wizard,model_l10n_si_monthly_ajpes_generate_wizard,l10n_si_hotel.hotel_manager_group,1,1,1,1

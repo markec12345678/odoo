@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_monthly_ajpes_dashboard" model="ir.ui.view">
+        <field name="name">l10n_si.monthly.ajpes.dashboard</field>
+        <field name="model">l10n_si.monthly.ajpes.report</field>
+        <field name="arch" type="xml">
+            <dashboard>
+                <view type="kanban" name="kanban_reports"/>
+                <group>
+                    <aggregate name="total_reports" string="Total Reports"
+                               group_operator="count" measure="__count__"/>
+                    <aggregate name="total_arrivals_year" string="Arrivals (year)"
+                               group_operator="sum" measure="total_arrivals"/>
+                    <aggregate name="total_nights_year" string="Nights (year)"
+                               group_operator="sum" measure="total_nights"/>
+                    <aggregate name="pending" string="Pending Submission"
+                               group_operator="count" measure="__count__"
+                               domain="[('state', 'in', ['draft', 'generated'])]"/>
+                </group>
+                <group>
+                    <view type="pie" name="state_pie"/>
+                    <view type="bar" name="establishment_bar"/>
+                </group>
+            </dashboard>
+        </field>
+    </record>
+
+    <record id="action_monthly_ajpes_dashboard" model="ir.actions.act_window">
+        <field name="name">AJPES Dashboard</field>
+        <field name="res_model">l10n_si.monthly.ajpes.report</field>
+        <field name="view_mode">dashboard,tree,form</field>
+        <field name="context">{'search_default_filter_year': 1}</field>
+    </record>
+</odoo>
