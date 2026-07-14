@@ -46,7 +46,7 @@ def _check_rate_limit(endpoint):
 
 class ChatbotController(http.Controller):
     @http.route('/chatbot/send', type='json', auth='public', website=True)
-    def send_message(self, message, **kwargs):
+    def send_message(self, **kwargs):
         """Prejme sporočilo od spletnega widgeta, vrne AI odgovor."""
         # Rate limiting
         try:
@@ -54,6 +54,12 @@ class ChatbotController(http.Controller):
         except AccessDenied:
             return {'error': 'Preveč sporočil. Poskusite kasneje.',
                     'error_en': 'Too many requests. Please try again later.'}
+
+        # Extract message from JSON body
+        data = request.get_json_data() or {}
+        message = data.get('message', '') if isinstance(data, dict) else ''
+        if not message:
+            message = kwargs.get('message', '')
 
         if not message or len(message) > 1000:
             return {'error': 'Sporočilo je predolgo ali prazno.'}
@@ -92,8 +98,12 @@ class ChatbotController(http.Controller):
             return {'error': 'Prišlo je do napake. Poskusite kasneje.'}
     
     @http.route('/chatbot/history', type='json', auth='public', website=True)
-    def get_history(self, conversation_id, **kwargs):
+    def get_history(self, **kwargs):
         """Vrni zgodovino pogovora."""
+        data = request.get_json_data() or {}
+        conversation_id = data.get('conversation_id') if isinstance(data, dict) else None
+        if not conversation_id:
+            conversation_id = kwargs.get('conversation_id')
         if not conversation_id:
             return {'messages': []}
         
