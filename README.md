@@ -216,6 +216,23 @@ python3 scripts/scan_security.py addons/l10n_si_* addons/l10n_hr_* scripts/ .git
 
 ## 📸 Live Demo & Screenshots
 
+### Screenshots
+
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/01-ai-concierge.svg" alt="AI Concierge — Guest Chat"><br><b>AI Concierge</b><br>24/7 chat assistant in Slovenian</td>
+    <td width="50%" align="center"><img src="docs/screenshots/02-furs-invoice.svg" alt="FURS Invoice — ZOI/EOR + QR"><br><b>FURS Invoice</b><br>ZOI/EOR + QR code (Slovenia)</td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/03-hotel-dashboard.svg" alt="Hotel Dashboard"><br><b>Hotel Dashboard</b><br>Room availability & folios</td>
+    <td width="50%" align="center"><img src="docs/screenshots/04-pos-terminal.svg" alt="POS Terminal"><br><b>POS Terminal</b><br>Touchscreen restaurant POS</td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/05-channel-manager.svg" alt="Channel Manager"><br><b>Channel Manager</b><br>Booking.com + Airbnb sync</td>
+    <td width="50%" align="center"><img src="docs/screenshots/06-audit-trail.svg" alt="Audit Trail"><br><b>Audit Trail</b><br>Track changes with IP + user</td>
+  </tr>
+</table>
+
 ### Try it now — no registration required
 
 | | |
