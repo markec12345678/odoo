@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_si_document_scan_wizard_form" model="ir.ui.view">
+        <field name="name">l10n_si.document.scan.wizard.form</field>
+        <field name="model">l10n_si.document.scan.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Skeniraj osebni dokument">
+                <group>
+                    <field name="document_type"/>
+                    <field name="document_image" widget="image"
+                           help="Fotografirajte ali naložite sliko osebnega dokumenta (potni list, OI)"/>
+                </group>
+                <footer>
+                    <button name="action_scan_and_create" type="object"
+                            string="🤖 Skeniraj + OCR" class="btn-primary"/>
+                    <button special="cancel" string="Prekliči" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_si_document_scan_wizard" model="ir.actions.act_window">
+        <field name="name">Skeniraj dokument</field>
+        <field name="res_model">l10n_si.document.scan.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
