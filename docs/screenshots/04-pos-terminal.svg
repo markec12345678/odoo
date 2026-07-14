@@ -1,60 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#2C3E50"/>
-      <stop offset="100%" stop-color="#2C3E50" stop-opacity="0.85"/>
-    </linearGradient>
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
-    </filter>
-  </defs>
-  <rect width="800" height="500" fill="url(#bg)"/>
-  
-  <!-- Top accent bar -->
-  <rect x="0" y="0" width="800" height="6" fill="#E74C3C"/>
-  
-  <!-- Browser chrome -->
-  <rect x="20" y="20" width="760" height="36" rx="8" fill="rgba(255,255,255,0.1)"/>
-  <circle cx="40" cy="38" r="6" fill="#ff5f57"/>
-  <circle cx="60" cy="38" r="6" fill="#febc2e"/>
-  <circle cx="80" cy="38" r="6" fill="#28c840"/>
-  <rect x="110" y="28" width="600" height="20" rx="4" fill="rgba(255,255,255,0.15)"/>
-  <text x="120" y="42" font-family="monospace" font-size="11" fill="rgba(255,255,255,0.5)">odoo-production-fa42.up.railway.app</text>
-  
-  <!-- Title -->
-  <text x="400" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-        font-size="28" font-weight="700" fill="#E74C3C" text-anchor="middle">POS Terminal — Touchscreen Interface</text>
-  
-  <!-- Description -->
-  <text x="400" y="180" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-        font-size="14" fill="rgba(255,255,255,0.7)" text-anchor="middle">Restaurant POS with touchscreen categories, order lines, and fiscal printer</text>
-  
-  <!-- Mock UI elements -->
-  <rect x="60" y="220" width="680" height="240" rx="12" fill="rgba(255,255,255,0.05)" filter="url(#shadow)"/>
-  
-  <!-- Sidebar -->
-  <rect x="60" y="220" width="160" height="240" rx="12" fill="rgba(0,0,0,0.2)"/>
-  <rect x="80" y="240" width="120" height="8" rx="4" fill="rgba(255,255,255,0.15)"/>
-  <rect x="80" y="260" width="100" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
-  <rect x="80" y="280" width="110" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
-  <rect x="80" y="300" width="90" height="8" rx="4" fill="#E74C3C" opacity="0.6"/>
-  <rect x="80" y="320" width="100" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
-  <rect x="80" y="340" width="80" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
-  
-  <!-- Content area -->
-  <rect x="250" y="240" width="160" height="60" rx="8" fill="rgba(255,255,255,0.08)"/>
-  <rect x="430" y="240" width="160" height="60" rx="8" fill="rgba(255,255,255,0.08)"/>
-  <rect x="610" y="240" width="110" height="60" rx="8" fill="#E74C3C" opacity="0.2"/>
-  
-  <rect x="250" y="320" width="470" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
-  <rect x="250" y="345" width="400" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
-  <rect x="250" y="370" width="440" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
-  <rect x="250" y="395" width="380" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
-  <rect x="250" y="420" width="420" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
-  
-  <!-- Footer badge -->
-  <rect x="280" y="448" width="240" height="28" rx="14" fill="#E74C3C" opacity="0.15"/>
-  <text x="400" y="466" font-family="sans-serif" font-size="11" fill="#E74C3C" text-anchor="middle">
-    🔗 Live demo: odoo-production-fa42.up.railway.app
-  </text>
+  <rect width="800" height="500" fill="#1a1a2e"/>
+  <rect x="0" y="0" width="800" height="4" fill="#E74C3C"/>
+  <!-- Left: order panel -->
+  <rect x="0" y="4" width="300" height="496" fill="#16213e"/>
+  <text x="20" y="35" font-family="sans-serif" font-size="16" font-weight="bold" fill="#fff">🧾 Naročilo #47</text>
+  <text x="280" y="35" font-family="sans-serif" font-size="12" fill="#94a3b8" text-anchor="end">Miza 12</text>
+  <rect x="10" y="50" width="280" height="1" fill="#334155"/>
+  <!-- Order items -->
+  <text x="20" y="75" font-family="sans-serif" font-size="13" fill="#e2e8f0">2× Pizza Margherita</text>
+  <text x="280" y="75" font-family="sans-serif" font-size="13" font-weight="600" fill="#C8A951" text-anchor="end">16,00€</text>
+  <text x="20" y="100" font-family="sans-serif" font-size="13" fill="#e2e8f0">1× Špageti Bolognese</text>
+  <text x="280" y="100" font-family="sans-serif" font-size="13" font-weight="600" fill="#C8A951" text-anchor="end">9,50€</text>
+  <text x="20" y="125" font-family="sans-serif" font-size="13" fill="#e2e8f0">3× Coca Cola 0.3L</text>
+  <text x="280" y="125" font-family="sans-serif" font-size="13" font-weight="600" fill="#C8A951" text-anchor="end">7,50€</text>
+  <text x="20" y="150" font-family="sans-serif" font-size="13" fill="#e2e8f0">1× Tiramisu</text>
+  <text x="280" y="150" font-family="sans-serif" font-size="13" font-weight="600" fill="#C8A951" text-anchor="end">4,50€</text>
+  <text x="20" y="175" font-family="sans-serif" font-size="13" fill="#e2e8f0">1× Cafe Latte</text>
+  <text x="280" y="175" font-family="sans-serif" font-size="13" font-weight="600" fill="#C8A951" text-anchor="end">2,20€</text>
+  <rect x="10" y="195" width="280" height="1" fill="#334155"/>
+  <!-- Total -->
+  <text x="20" y="225" font-family="sans-serif" font-size="14" fill="#94a3b8">DDV (22%):</text>
+  <text x="280" y="225" font-family="sans-serif" font-size="14" fill="#e2e8f0" text-anchor="end">8,74€</text>
+  <rect x="10" y="240" width="280" height="50" rx="8" fill="#E74C3C"/>
+  <text x="20" y="270" font-family="sans-serif" font-size="18" font-weight="bold" fill="#fff">SKUPAJ</text>
+  <text x="280" y="270" font-family="sans-serif" font-size="20" font-weight="bold" fill="#fff" text-anchor="end">39,70€</text>
+  <!-- Action buttons -->
+  <rect x="10" y="305" width="135" height="40" rx="8" fill="#0F5132"/>
+  <text x="77" y="330" font-family="sans-serif" font-size="13" font-weight="600" fill="#fff" text-anchor="middle">💳 Kartica</text>
+  <rect x="155" y="305" width="135" height="40" rx="8" fill="#1E3A5F"/>
+  <text x="222" y="330" font-family="sans-serif" font-size="13" font-weight="600" fill="#fff" text-anchor="middle">💰 Gotovina</text>
+  <rect x="10" y="355" width="280" height="40" rx="8" fill="#C8A951"/>
+  <text x="150" y="380" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e" text-anchor="middle">🖨️ Natisni + FURS</text>
+  <!-- Right: category buttons -->
+  <rect x="310" y="4" width="490" height="496" fill="#0f172a"/>
+  <text x="325" y="35" font-family="sans-serif" font-size="14" font-weight="600" fill="#94a3b8">Kategorije</text>
+  <!-- Category grid -->
+  <rect x="320" y="50" width="145" height="70" rx="10" fill="#E74C3C"/><text x="392" y="92" font-family="sans-serif" font-size="16" fill="#fff" text-anchor="middle">🍕 Pizza</text>
+  <rect x="475" y="50" width="145" height="70" rx="10" fill="#f59e0b"/><text x="547" y="92" font-family="sans-serif" font-size="16" fill="#fff" text-anchor="middle">🍝 Testenine</text>
+  <rect x="630" y="50" width="150" height="70" rx="10" fill="#10b981"/><text x="705" y="92" font-family="sans-serif" font-size="16" fill="#fff" text-anchor="middle">🥗 Solate</text>
+  <rect x="320" y="130" width="145" height="70" rx="10" fill="#3b82f6"/><text x="392" y="172" font-family="sans-serif" font-size="16" fill="#fff" text-anchor="middle">🥩 Meso</text>
+  <rect x="475" y="130" width="145" height="70" rx="10" fill="#8b5cf6"/><text x="547" y="172" font-family="sans-serif" font-size="16" fill="#fff" text-anchor="middle">🐟 Ribe</text>
+  <rect x="630" y="130" width="150" height="70" rx="10" fill="#ec4899"/><text x="705" y="172" font-family="sans-serif" font-size="16" fill="#fff" text-anchor="middle">🍰 Sladice</text>
+  <!-- Product grid -->
+  <rect x="320" y="215" width="95" height="65" rx="8" fill="#1e293b"/><text x="367" y="252" font-family="sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">Margherita</text><text x="367" y="270" font-family="sans-serif" font-size="12" font-weight="bold" fill="#C8A951" text-anchor="middle">8,00€</text>
+  <rect x="425" y="215" width="95" height="65" rx="8" fill="#1e293b"/><text x="472" y="252" font-family="sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">Capricciosa</text><text x="472" y="270" font-family="sans-serif" font-size="12" font-weight="bold" fill="#C8A951" text-anchor="middle">9,50€</text>
+  <rect x="530" y="215" width="95" height="65" rx="8" fill="#1e293b"/><text x="577" y="252" font-family="sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">Quattro Form.</text><text x="577" y="270" font-family="sans-serif" font-size="12" font-weight="bold" fill="#C8A951" text-anchor="middle">10,50€</text>
+  <rect x="635" y="215" width="145" height="65" rx="8" fill="#1e293b"/><text x="707" y="252" font-family="sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">Diavola</text><text x="707" y="270" font-family="sans-serif" font-size="12" font-weight="bold" fill="#C8A951" text-anchor="middle">9,00€</text>
+  <rect x="320" y="290" width="95" height="65" rx="8" fill="#1e293b"/><text x="367" y="327" font-family="sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">Prosciutto</text><text x="367" y="345" font-family="sans-serif" font-size="12" font-weight="bold" fill="#C8A951" text-anchor="middle">9,00€</text>
+  <rect x="425" y="290" width="95" height="65" rx="8" fill="#1e293b"/><text x="472" y="327" font-family="sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">Vegetariana</text><text x="472" y="345" font-family="sans-serif" font-size="12" font-weight="bold" fill="#C8A951" text-anchor="middle">8,50€</text>
+  <rect x="530" y="290" width="95" height="65" rx="8" fill="#1e293b"/><text x="577" y="327" font-family="sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">Calzone</text><text x="577" y="345" font-family="sans-serif" font-size="12" font-weight="bold" fill="#C8A951" text-anchor="middle">9,50€</text>
+  <rect x="635" y="290" width="145" height="65" rx="8" fill="#1e293b"/><text x="707" y="327" font-family="sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">Frutti di Mare</text><text x="707" y="345" font-family="sans-serif" font-size="12" font-weight="bold" fill="#C8A951" text-anchor="middle">12,00€</text>
+  <!-- FURS status -->
+  <rect x="320" y="380" width="460" height="35" rx="8" fill="#0F5132"/>
+  <text x="335" y="403" font-family="sans-serif" font-size="12" fill="#a7f3d0">✓ FURS povezan • ZOI: a3f5b8c9... • EOR: f47ac10b-58cc-...</text>
+  <text x="550" y="475" font-family="sans-serif" font-size="9" fill="#475569" text-anchor="middle">🔗 Live demo: odoo-production-fa42.up.railway.app</text>
 </svg>

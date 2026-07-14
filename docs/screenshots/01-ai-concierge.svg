@@ -1,60 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1E3A5F"/>
-      <stop offset="100%" stop-color="#1E3A5F" stop-opacity="0.85"/>
-    </linearGradient>
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
-    </filter>
-  </defs>
-  <rect width="800" height="500" fill="url(#bg)"/>
-  
-  <!-- Top accent bar -->
-  <rect x="0" y="0" width="800" height="6" fill="#C8A951"/>
-  
-  <!-- Browser chrome -->
-  <rect x="20" y="20" width="760" height="36" rx="8" fill="rgba(255,255,255,0.1)"/>
-  <circle cx="40" cy="38" r="6" fill="#ff5f57"/>
-  <circle cx="60" cy="38" r="6" fill="#febc2e"/>
-  <circle cx="80" cy="38" r="6" fill="#28c840"/>
-  <rect x="110" y="28" width="600" height="20" rx="4" fill="rgba(255,255,255,0.15)"/>
-  <text x="120" y="42" font-family="monospace" font-size="11" fill="rgba(255,255,255,0.5)">odoo-production-fa42.up.railway.app</text>
-  
-  <!-- Title -->
-  <text x="400" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-        font-size="28" font-weight="700" fill="#C8A951" text-anchor="middle">AI Concierge — Guest Chat</text>
-  
-  <!-- Description -->
-  <text x="400" y="180" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-        font-size="14" fill="rgba(255,255,255,0.7)" text-anchor="middle">Guest asks: 'Kakšno je WiFi geslo?' • AI responds in Slovenian • 24/7 available</text>
-  
-  <!-- Mock UI elements -->
-  <rect x="60" y="220" width="680" height="240" rx="12" fill="rgba(255,255,255,0.05)" filter="url(#shadow)"/>
-  
-  <!-- Sidebar -->
-  <rect x="60" y="220" width="160" height="240" rx="12" fill="rgba(0,0,0,0.2)"/>
-  <rect x="80" y="240" width="120" height="8" rx="4" fill="rgba(255,255,255,0.15)"/>
-  <rect x="80" y="260" width="100" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
-  <rect x="80" y="280" width="110" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
-  <rect x="80" y="300" width="90" height="8" rx="4" fill="#C8A951" opacity="0.6"/>
-  <rect x="80" y="320" width="100" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
-  <rect x="80" y="340" width="80" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
-  
-  <!-- Content area -->
-  <rect x="250" y="240" width="160" height="60" rx="8" fill="rgba(255,255,255,0.08)"/>
-  <rect x="430" y="240" width="160" height="60" rx="8" fill="rgba(255,255,255,0.08)"/>
-  <rect x="610" y="240" width="110" height="60" rx="8" fill="#C8A951" opacity="0.2"/>
-  
-  <rect x="250" y="320" width="470" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
-  <rect x="250" y="345" width="400" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
-  <rect x="250" y="370" width="440" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
-  <rect x="250" y="395" width="380" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
-  <rect x="250" y="420" width="420" height="12" rx="6" fill="rgba(255,255,255,0.06)"/>
-  
-  <!-- Footer badge -->
-  <rect x="280" y="448" width="240" height="28" rx="14" fill="#C8A951" opacity="0.15"/>
-  <text x="400" y="466" font-family="sans-serif" font-size="11" fill="#C8A951" text-anchor="middle">
-    🔗 Live demo: odoo-production-fa42.up.railway.app
-  </text>
+  <rect width="800" height="500" fill="#1a1a2e"/>
+  <rect x="0" y="0" width="800" height="4" fill="#C8A951"/>
+  <!-- Header -->
+  <rect x="0" y="4" width="800" height="50" fill="#16213e"/>
+  <circle cx="30" cy="29" r="16" fill="#C8A951"/>
+  <text x="30" y="34" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1a2e" text-anchor="middle">AI</text>
+  <text x="55" y="35" font-family="sans-serif" font-size="16" font-weight="600" fill="#fff">AI Concierge</text>
+  <circle cx="760" cy="29" r="6" fill="#4ade80"/>
+  <text x="730" y="33" font-family="sans-serif" font-size="11" fill="#94a3b8">Online 24/7</text>
+  <!-- Chat messages -->
+  <!-- Guest message (right) -->
+  <rect x="350" y="80" width="380" height="45" rx="12" fill="#1E3A5F"/>
+  <text x="365" y="100" font-family="sans-serif" font-size="13" fill="#fff">Gost</text>
+  <text x="365" y="118" font-family="sans-serif" font-size="13" fill="#cbd5e1">Kakšno je WiFi geslo?</text>
+  <!-- AI response (left) -->
+  <rect x="70" y="140" width="420" height="65" rx="12" fill="#1e293b"/>
+  <text x="85" y="160" font-family="sans-serif" font-size="13" font-weight="600" fill="#C8A951">🤖 AI Asistent</text>
+  <text x="85" y="180" font-family="sans-serif" font-size="13" fill="#e2e8f0">Geslo za WiFi je: Gost2025</text>
+  <text x="85" y="196" font-family="sans-serif" font-size="13" fill="#e2e8f0">Omrežje: Hotel_Guest_WiFi</text>
+  <!-- Guest message 2 -->
+  <rect x="350" y="220" width="380" height="45" rx="12" fill="#1E3A5F"/>
+  <text x="365" y="240" font-family="sans-serif" font-size="13" fill="#fff">Gost</text>
+  <text x="365" y="258" font-family="sans-serif" font-size="13" fill="#cbd5e1">Kdaj je zajtrk?</text>
+  <!-- AI response 2 -->
+  <rect x="70" y="280" width="380" height="50" rx="12" fill="#1e293b"/>
+  <text x="85" y="300" font-family="sans-serif" font-size="13" font-weight="600" fill="#C8A951">🤖 AI Asistent</text>
+  <text x="85" y="320" font-family="sans-serif" font-size="13" fill="#e2e8f0">Zajtrk je vsak dan 7:00-10:00 v restavraciji.</text>
+  <!-- Input bar -->
+  <rect x="20" y="440" width="700" height="40" rx="20" fill="#16213e"/>
+  <text x="40" y="465" font-family="sans-serif" font-size="13" fill="#64748b">Sporočilo...</text>
+  <circle cx="740" cy="460" r="16" fill="#C8A951"/>
+  <text x="740" y="465" font-family="sans-serif" font-size="16" fill="#1a1a2e" text-anchor="middle">➤</text>
+  <text x="400" y="494" font-family="sans-serif" font-size="10" fill="#475569" text-anchor="middle">Powered by GLM 5.1 via Puter.com (FREE) • 7 LLM backends • Rate limited 10 req/min</text>
 </svg>
