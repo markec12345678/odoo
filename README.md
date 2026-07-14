@@ -10,7 +10,7 @@
 [![OCA](https://img.shields.io/badge/OCA%20Modules-37-orange.svg)](https://github.com/OCA)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](./requirements.txt)
 [![Railway](https://img.shields.io/badge/Railway-Live%20Demo-9B59B6.svg)](https://odoo-production-fa42.up.railway.app/web/login)
-[![Version](https://img.shields.io/badge/version-v19.0.15.2-blue.svg)](https://github.com/markec12345678/odoo/releases)
+[![Version](https://img.shields.io/badge/version-v19.0.16.1-blue.svg)](https://github.com/markec12345678/odoo/releases)
 [![Status](https://img.shields.io/badge/status-production%20ready-brightgreen.svg)]()
 [![Modules Installed](https://img.shields.io/badge/installed-240+-brightgreen.svg)]()
 [![Last Commit](https://img.shields.io/github/last-commit/markec12345678/odoo/19.0)](https://github.com/markec12345678/odoo/commits/19.0)
@@ -47,7 +47,7 @@
 > - ✅ AI Concierge (6 LLM backends including ZenMux) + website chat widget
 > - ✅ WhatsApp Business Cloud API (Meta official) for booking confirmations
 > - ✅ Stripe payment integration with hotel deposit pre-authorization
-> - ✅ 80 custom l10n modules + 37 OCA UI/UX modules
+> - ✅ 82 custom l10n modules + 37 OCA UI/UX modules
 > - ✅ Railway cloud deployment with auto-deploy
 > - ✅ Daily automated backup
 
@@ -320,13 +320,23 @@ Contributions are welcome! Please read [CONTRIBUTING.md](./CONTRIBUTING.md) firs
 - Test coverage expansion
 - Documentation improvements
 
+### Community
+- 📋 [Contributing Guide](./CONTRIBUTING.md)
+- 📜 [Code of Conduct](./CODE_OF_CONDUCT.md)
+- 🔐 [Security Policy](./SECURITY.md)
+- 🐛 [Report a Bug](https://github.com/markec12345678/odoo/issues)
+- 💡 [Request a Feature](https://github.com/markec12345678/odoo/issues)
+- 💬 [Discussions](https://github.com/markec12345678/odoo/discussions)
+
 ---
 
 ## 📜 License
 
-- **Custom modules**: LGPL-3 (same as Odoo Community)
+- **Custom modules** (`l10n_si_*`, `l10n_hr_*`): LGPL-3 (same as Odoo Community)
 - **OCA modules**: LGPL-3 / AGPL-3 (per module, see individual manifests)
 - **Odoo core**: LGPL-3 (upstream Odoo SA)
+
+See [LICENSE](./LICENSE) and [COPYRIGHT](./COPYRIGHT) for details.
 
 ---
 
