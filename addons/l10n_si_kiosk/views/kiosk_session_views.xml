@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============ SESSION: TREE ============ -->
+    <record id="view_kiosk_session_tree" model="ir.ui.view">
+        <field name="name">l10n_si.kiosk.session.tree</field>
+        <field name="model">l10n_si.kiosk.session</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'done'"
+                  decoration-danger="state == 'failed'"
+                  decoration-muted="state == 'abandoned'">
+                <field name="create_date"/>
+                <field name="folio_id"/>
+                <field name="partner_id"/>
+                <field name="config_id"/>
+                <field name="guest_first_name"/>
+                <field name="guest_last_name"/>
+                <field name="state"/>
+                <field name="room_number"/>
+                <field name="duration_seconds"/>
+                <field name="complete_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ============ SESSION: FORM ============ -->
+    <record id="view_kiosk_session_form" model="ir.ui.view">
+        <field name="name">l10n_si.kiosk.session.form</field>
+        <field name="model">l10n_si.kiosk.session</field>
+        <field name="arch" type="xml">
+            <form string="Kiosk Session">
+                <header>
+                    <button name="action_retry" type="object" string="Retry"
+                            class="btn-warning"
+                            invisible="state != 'failed'"/>
+                    <button name="action_abandon" type="object" string="Abandon"
+                            class="btn-secondary"
+                            invisible="state in ['done', 'abandoned', 'failed']"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="welcome,scan,review,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Session">
+                            <field name="token" readonly="1"/>
+                            <field name="config_id"/>
+                            <field name="folio_id"/>
+                            <field name="partner_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="create_date" readonly="1"/>
+                            <field name="complete_date" readonly="1"/>
+                            <field name="duration_seconds" readonly="1"/>
+                        </group>
+                        <group string="Guest">
+                            <field name="guest_first_name"/>
+                            <field name="guest_last_name"/>
+                            <field name="guest_country_id"/>
+                            <field name="guest_doc_type"/>
+                            <field name="guest_doc_number"/>
+                            <field name="guest_birth_date"/>
+                            <field name="guest_gender"/>
+                            <field name="guest_email"/>
+                            <field name="guest_phone"/>
+                            <field name="adults_count"/>
+                            <field name="children_count"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Document Scan" name="scan">
+                            <group>
+                                <field name="document_scan_id"/>
+                                <field name="signature" widget="image"/>
+                            </group>
+                        </page>
+                        <page string="Outcome" name="outcome">
+                            <group>
+                                <group>
+                                    <field name="room_number"/>
+                                    <field name="key_card_code"/>
+                                    <field name="wifi_network"/>
+                                    <field name="wifi_password"/>
+                                </group>
+                                <group>
+                                    <field name="etourism_registration_id"/>
+                                    <field name="error_message"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============ SESSION: SEARCH ============ -->
+    <record id="view_kiosk_session_search" model="ir.ui.view">
+        <field name="name">l10n_si.kiosk.session.search</field>
+        <field name="model">l10n_si.kiosk.session</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="folio_id"/>
+                <field name="partner_id"/>
+                <field name="guest_first_name"/>
+                <field name="guest_last_name"/>
+                <field name="config_id"/>
+                <filter string="Today" name="filter_today"
+                        domain="[('create_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                <filter string="Completed" name="filter_done"
+                        domain="[('state', '=', 'done')]"/>
+                <filter string="Abandoned" name="filter_abandoned"
+                        domain="[('state', '=', 'abandoned')]"/>
+                <filter string="Failed" name="filter_failed"
+                        domain="[('state', '=', 'failed')]"/>
+                <filter string="In progress" name="filter_inprogress"
+                        domain="[('state', 'not in', ['done', 'abandoned', 'failed'])]"/>
+                <group expand="0" string="Group By">
+                    <filter string="State" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Config" name="group_config" context="{'group_by': 'config_id'}"/>
+                    <filter string="Date" name="group_date" context="{'group_by': 'create_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============ SESSION: ACTION ============ -->
+    <record id="action_kiosk_session" model="ir.actions.act_window">
+        <field name="name">Kiosk Sessions</field>
+        <field name="res_model">l10n_si.kiosk.session</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_kiosk_session_search"/>
+        <field name="context">{'search_default_filter_today': 1}</field>
+    </record>
+</odoo>

@@ -5,6 +5,71 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.18.0] — 2026-07-14
+
+### Added — Kiosk Mode (85th module)
+
+**`l10n_si_kiosk`** — tablet-friendly self check-in kiosk for hotel lobbies.
+
+A touch-optimised web interface that runs on a wall-mounted tablet (iPad /
+Android) in the reception area. No login required — uses token-authenticated
+sessions.
+
+Guest flow (7 screens):
+1. **Welcome** — guest taps "Start check-in"
+2. **Lookup** — guest enters booking reference, email, or name
+3. **Confirm booking** — guest sees their reservation details
+4. **Document scan** — guest scans passport/ID (uses l10n_si_document_scan
+   OCR + MRZ fallback if installed, or skips to manual entry)
+5. **Review data** — guest confirms/corrects pre-filled form
+6. **Signature** — guest signs on screen (signature pad, touch + mouse)
+7. **Done** — kiosk shows room number, Wi-Fi, breakfast time, key card code
+   AJPES eTurizem registration is created automatically
+   Reception gets a notification in the folio chatter
+
+Models:
+- `l10n_si.kiosk.session` — tracks a single check-in interaction (state machine)
+- `l10n_si.kiosk.config` — per-device configuration (branding, Wi-Fi, behavior)
+- Extends `l10n_si.hotel.folio` with `action_view_kiosk_sessions()`
+
+Features:
+- Touch-optimised QWeb templates (large buttons, simple language)
+- Multi-language welcome text (EN/SL/HR)
+- Idle timeout (60s default) returns to welcome screen
+- Stale session cleanup cron (every 5 minutes)
+- Signature pad (canvas-based, supports touch and mouse)
+- Auto-creates eTurizem guest registration on completion
+- Auto-updates partner record with captured data
+- Reception notification via folio chatter
+- Backend dashboard: sessions tree/form with state filter
+- Configurable: require scan, allow skip, auto-submit eTurizem, Wi-Fi creds
+
+Routes (all public, no login):
+- `GET  /kiosk/start` — welcome screen
+- `POST /kiosk/lookup` — find booking
+- `GET  /kiosk/lookup_screen` — show lookup form
+- `POST /kiosk/confirm` — confirm booking
+- `POST /kiosk/back_to_lookup` — back navigation
+- `POST /kiosk/skip_scan` — skip document scan
+- `POST /kiosk/upload_scan` — upload passport image
+- `POST /kiosk/save_review` — save reviewed data
+- `POST /kiosk/back_to_review` — back navigation
+- `POST /kiosk/complete` — finalize with signature
+- `GET  /kiosk/cancel` — abandon session
+- `JSON /kiosk/health` — health check
+
+Integrates with:
+- `l10n_si_hotel` (folio lookup, room number)
+- `l10n_si_document_scan` (passport OCR + MRZ, optional)
+- `l10n_si_etourism` (AJPES registration, optional)
+- `website` (QWeb templates)
+
+### Updated — README badges
+- Module count: 84 → 85
+- Test count: 133 → 135
+- Version: v19.0.17.0 → v19.0.18.0
+- Added kiosk mode to feature highlights
+
 ## [19.0.17.0] — 2026-07-14
 
 ### Added — Guest Journey Orchestrator (84th module)

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kiosk_session_user,Kiosk Session User,model_l10n_si_kiosk_session,base.group_user,1,0,0,0
+access_kiosk_session_manager,Kiosk Session Manager,model_l10n_si_kiosk_session,l10n_si_hotel.hotel_manager_group,1,1,1,1
+access_kiosk_config_user,Kiosk Config User,model_l10n_si_kiosk_config,base.group_user,1,0,0,0
+access_kiosk_config_manager,Kiosk Config Manager,model_l10n_si_kiosk_config,l10n_si_hotel.hotel_manager_group,1,1,1,1
+access_kiosk_session_public,Kiosk Session Public,model_l10n_si_kiosk_session,base.group_public,1,1,1,0
+access_kiosk_config_public,Kiosk Config Public,model_l10n_si_kiosk_config,base.group_public,1,0,0,0

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="kiosk_config_main_lobby" model="l10n_si.kiosk.config">
+        <field name="name">Main Lobby Kiosk</field>
+        <field name="location">Main reception — left tablet</field>
+        <field name="welcome_text">Welcome! Tap below to check in.</field>
+        <field name="welcome_text_sl">Dobrodošli! Kliknite spodaj za prijavo.</field>
+        <field name="welcome_text_hr">Dobrodošli! Kliknite ispod za prijavu.</field>
+        <field name="primary_color">#875A7B</field>
+        <field name="idle_timeout_seconds">60</field>
+        <field name="require_document_scan" eval="False"/>
+        <field name="allow_skip_scan" eval="True"/>
+        <field name="auto_submit_etourism" eval="True"/>
+        <field name="wifi_network">HotelGuest</field>
+        <field name="wifi_password">welcome2024</field>
+    </record>
+</odoo>

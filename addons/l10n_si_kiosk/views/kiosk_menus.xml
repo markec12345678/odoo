@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_kiosk_root"
+              name="Kiosk"
+              parent="l10n_si_hotel.menu_l10n_si_hotel_root"
+              sequence="20"
+              groups="l10n_si_hotel.hotel_manager_group"/>
+
+    <menuitem id="menu_kiosk_sessions"
+              name="Sessions"
+              parent="menu_kiosk_root"
+              action="action_kiosk_session"
+              sequence="10"/>
+
+    <menuitem id="menu_kiosk_config"
+              name="Devices"
+              parent="menu_kiosk_root"
+              action="action_kiosk_config"
+              sequence="20"/>
+</odoo>

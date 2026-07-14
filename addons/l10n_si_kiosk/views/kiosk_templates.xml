@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============ Common layout ============ -->
+    <template id="kiosk_layout">
+        &lt;!DOCTYPE html&gt;
+        <html t-att-lang="lang or 'en'">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+                <meta name="apple-mobile-web-app-capable" content="yes"/>
+                <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+                <title>Kiosk — <t t-out="config.name or 'Check-in'"/></title>
+                <link rel="stylesheet" href="/web/static/src/libs/bootstrap/css/bootstrap.min.css"/>
+                <link rel="stylesheet" href="/web/static/src/libs/fontawesome/css/font-awesome.min.css"/>
+                <style>
+                    * { -webkit-tap-highlight-color: transparent; }
+                    html, body {
+                        height: 100%;
+                        margin: 0;
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                        background: #f5f5f5;
+                        color: #333;
+                        overscroll-behavior: none;
+                    }
+                    .kiosk-container {
+                        min-height: 100vh;
+                        display: flex;
+                        flex-direction: column;
+                    }
+                    .kiosk-header {
+                        background: <t t-out="config.primary_color or '#875A7B'"/>;
+                        color: white;
+                        padding: 20px 40px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                    .kiosk-header .logo img {
+                        max-height: 50px;
+                        max-width: 200px;
+                    }
+                    .kiosk-header .logo .name {
+                        font-size: 24px;
+                        font-weight: 600;
+                    }
+                    .kiosk-header .clock {
+                        font-size: 20px;
+                        font-weight: 500;
+                    }
+                    .kiosk-content {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 40px;
+                    }
+                    .kiosk-footer {
+                        background: #333;
+                        color: #999;
+                        padding: 12px 40px;
+                        font-size: 13px;
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                    .btn-kiosk {
+                        min-width: 220px;
+                        min-height: 80px;
+                        font-size: 22px;
+                        font-weight: 500;
+                        border-radius: 12px;
+                        margin: 10px;
+                        border: none;
+                    }
+                    .btn-kiosk-primary {
+                        background: <t t-out="config.primary_color or '#875A7B'"/>;
+                        color: white;
+                    }
+                    .btn-kiosk-secondary {
+                        background: white;
+                        color: #333;
+                        border: 2px solid #ddd;
+                    }
+                    .btn-kiosk-success {
+                        background: #28a745;
+                        color: white;
+                    }
+                    .btn-kiosk-danger {
+                        background: #dc3545;
+                        color: white;
+                    }
+                    .btn-kiosk:hover, .btn-kiosk:active {
+                        opacity: 0.9;
+                        transform: scale(0.98);
+                    }
+                    .form-kiosk input,
+                    .form-kiosk select {
+                        height: 60px;
+                        font-size: 20px;
+                        border-radius: 8px;
+                        border: 2px solid #ddd;
+                        padding: 0 20px;
+                        margin-bottom: 16px;
+                    }
+                    .form-kiosk input:focus,
+                    .form-kiosk select:focus {
+                        border-color: <t t-out="config.primary_color or '#875A7B'"/>;
+                        outline: none;
+                    }
+                    .form-kiosk label {
+                        font-size: 16px;
+                        font-weight: 500;
+                        margin-bottom: 6px;
+                        display: block;
+                    }
+                    .info-card {
+                        background: white;
+                        border-radius: 12px;
+                        padding: 30px;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                        margin: 20px 0;
+                        max-width: 700px;
+                        width: 100%;
+                    }
+                    .info-card h2 {
+                        color: <t t-out="config.primary_color or '#875A7B'"/>;
+                        margin-bottom: 20px;
+                    }
+                    .info-row {
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 12px 0;
+                        border-bottom: 1px solid #eee;
+                        font-size: 18px;
+                    }
+                    .info-row:last-child { border-bottom: none; }
+                    .info-row .label { color: #666; font-weight: 500; }
+                    .info-row .value { color: #333; font-weight: 600; }
+                    .idle-bar {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        height: 4px;
+                        background: <t t-out="config.primary_color or '#875A7B'"/>;
+                        animation: shrink <t t-out="(config.idle_timeout_seconds or 60)"/>s linear;
+                    }
+                    @keyframes shrink { from { width: 100%; } to { width: 0%; } }
+                    .lang-switcher a {
+                        color: white;
+                        margin-left: 12px;
+                        text-decoration: none;
+                        opacity: 0.8;
+                    }
+                    .lang-switcher a.active { opacity: 1; font-weight: 600; }
+                    .alert-kiosk {
+                        background: #fff3cd;
+                        color: #856404;
+                        padding: 16px 20px;
+                        border-radius: 8px;
+                        margin: 16px 0;
+                        font-size: 16px;
+                        text-align: center;
+                        max-width: 700px;
+                    }
+                    .signature-pad {
+                        border: 2px dashed <t t-out="config.primary_color or '#875A7B'"/>;
+                        border-radius: 12px;
+                        background: white;
+                        cursor: crosshair;
+                        touch-action: none;
+                    }
+                    .progress-steps {
+                        display: flex;
+                        justify-content: center;
+                        margin: 20px 0 40px 0;
+                    }
+                    .progress-step {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background: #ddd;
+                        color: #666;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0 8px;
+                        font-weight: 600;
+                    }
+                    .progress-step.active {
+                        background: <t t-out="config.primary_color or '#875A7B'"/>;
+                        color: white;
+                    }
+                    .progress-step.done {
+                        background: #28a745;
+                        color: white;
+                    }
+                    .progress-step::after {
+                        content: '';
+                        position: absolute;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="kiosk-container">
+                    <div class="kiosk-header">
+                        <div class="logo">
+                            <t t-if="config.logo">
+                                <img t-att-src="'data:image/png;base64,' + config.logo.decode() if isinstance(config.logo, bytes) else 'data:image/png;base64,' + config.logo"
+                                     alt="Logo"/>
+                            </t>
+                            <t t-else="">
+                                <span class="name" t-out="config.company_id.name or 'Hotel'"/>
+                            </t>
+                        </div>
+                        <div class="lang-switcher">
+                            <a t-att-href="'/kiosk/start?config_id=%d' % config.id" class="">EN</a>
+                            <a t-att-href="'/kiosk/start?config_id=%d' % config.id" class="">SL</a>
+                            <a t-att-href="'/kiosk/start?config_id=%d' % config.id" class="">HR</a>
+                        </div>
+                    </div>
+                    <div class="kiosk-content">
+                        <t t-out="0"/>
+                    </div>
+                    <div class="kiosk-footer">
+                        <span>Powered by Odoo SI/HR Tourism Suite</span>
+                        <span>
+                            <a t-att-href="'/kiosk/cancel?token=%s' % token if token else '#'"
+                               style="color: white; text-decoration: none;">
+                                <i class="fa fa-times"/> Cancel
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <script>
+                    // Idle redirect
+                    var idleSeconds = <t t-out="config.idle_timeout_seconds or 60"/>;
+                    var idleTimer;
+                    function resetIdle() {
+                        clearTimeout(idleTimer);
+                        idleTimer = setTimeout(function() {
+                            window.location.href = '/kiosk/start<t t-if="config_id">?config_id=<t t-out="config.id"/></t>';
+                        }, idleSeconds * 1000);
+                    }
+                    document.addEventListener('click', resetIdle);
+                    document.addEventListener('keydown', resetIdle);
+                    document.addEventListener('touchstart', resetIdle);
+                    resetIdle();
+                </script>
+            </body>
+        </html>
+    </template>
+
+    <!-- ============ Welcome screen ============ -->
+    <template id="welcome">
+        <t t-call="l10n_si_kiosk.kiosk_layout">
+            <div style="text-align: center;">
+                <h1 style="font-size: 48px; margin-bottom: 16px;">
+                    <t t-out="config.welcome_text or 'Welcome!'"/>
+                </h1>
+                <p style="font-size: 22px; color: #666; margin-bottom: 40px;">
+                    Self check-in — no queue, no waiting
+                </p>
+                <form action="/kiosk/lookup_screen" method="post">
+                    <input type="hidden" name="token" t-att-value="token"/>
+                    <button type="submit" class="btn-kiosk btn-kiosk-primary">
+                        <i class="fa fa-user-circle"/> Start check-in
+                    </button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============ Lookup screen ============ -->
+    <template id="lookup">
+        <t t-call="l10n_si_kiosk.kiosk_layout">
+            <div style="text-align: center; max-width: 700px; width: 100%;">
+                <h1 style="font-size: 36px; margin-bottom: 24px;">Find your booking</h1>
+                <p style="font-size: 20px; color: #666; margin-bottom: 30px;">
+                    Enter your booking reference number, email, or name.
+                </p>
+                <t t-if="error">
+                    <div class="alert-kiosk"><t t-out="error"/></div>
+                </t>
+                <form action="/kiosk/lookup" method="post" class="form-kiosk">
+                    <input type="hidden" name="token" t-att-value="token"/>
+                    <input type="text" name="booking_ref"
+                           t-att-value="booking_ref or ''"
+                           placeholder="e.g. FOL/2026/0001 or your email"
+                           autocomplete="off"
+                           style="width: 100%; text-align: center;"
+                           autofocus="autofocus"/>
+                    <button type="submit" class="btn-kiosk btn-kiosk-primary" style="width: 100%;">
+                        <i class="fa fa-search"/> Search
+                    </button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============ Confirm booking ============ -->
+    <template id="confirm">
+        <t t-call="l10n_si_kiosk.kiosk_layout">
+            <div style="text-align: center; max-width: 700px; width: 100%;">
+                <h1 style="font-size: 36px; margin-bottom: 24px;">Is this your booking?</h1>
+                <div class="info-card" style="text-align: left;">
+                    <div class="info-row">
+                        <span class="label">Guest:</span>
+                        <span class="value" t-out="folio.partner_id.name"/>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Booking ref:</span>
+                        <span class="value" t-out="folio.name"/>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Check-in:</span>
+                        <span class="value" t-out="folio.check_in.strftime('%d.%m.%Y %H:%M') if folio.check_in else '—'"/>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Check-out:</span>
+                        <span class="value" t-out="folio.check_out.strftime('%d.%m.%Y %H:%M') if folio.check_out else '—'"/>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Guests:</span>
+                        <span class="value">
+                            <t t-out="folio.adults"/> adults
+                            <t t-if="folio.children">, <t t-out="folio.children"/> children</t>
+                        </span>
+                    </div>
+                </div>
+                <form action="/kiosk/confirm" method="post" style="display: inline;">
+                    <input type="hidden" name="token" t-att-value="token"/>
+                    <button type="submit" class="btn-kiosk btn-kiosk-success">
+                        <i class="fa fa-check"/> Yes, this is mine
+                    </button>
+                </form>
+                <form action="/kiosk/back_to_lookup" method="post" style="display: inline;">
+                    <input type="hidden" name="token" t-att-value="token"/>
+                    <button type="submit" class="btn-kiosk btn-kiosk-secondary">
+                        <i class="fa fa-arrow-left"/> Back
+                    </button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============ Document scan ============ -->
+    <template id="scan">
+        <t t-call="l10n_si_kiosk.kiosk_layout">
+            <div style="text-align: center; max-width: 700px; width: 100%;">
+                <h1 style="font-size: 36px; margin-bottom: 16px;">Scan your passport or ID</h1>
+                <p style="font-size: 20px; color: #666; margin-bottom: 30px;">
+                    Place your document on the scanner, or upload a photo.
+                </p>
+                <t t-if="error">
+                    <div class="alert-kiosk"><t t-out="error"/></div>
+                </t>
+                <form action="/kiosk/upload_scan" method="post" enctype="multipart/form-data"
+                      class="form-kiosk" style="max-width: 500px; margin: 0 auto;">
+                    <input type="hidden" name="token" t-att-value="token"/>
+                    <div style="border: 2px dashed #875A7B; border-radius: 12px; padding: 40px; background: white; margin-bottom: 20px;">
+                        <i class="fa fa-id-card-o" style="font-size: 64px; color: #875A7B; margin-bottom: 12px; display: block;"/>
+                        <input type="file" name="scan_file" accept="image/*"
+                               style="font-size: 18px; margin: 0 auto; display: block;"
+                               capture="environment"/>
+                    </div>
+                    <button type="submit" class="btn-kiosk btn-kiosk-primary" style="width: 100%;">
+                        <i class="fa fa-upload"/> Upload &amp; scan
+                    </button>
+                </form>
+                <t t-if="config.allow_skip_scan">
+                    <form action="/kiosk/skip_scan" method="post" style="display: inline; margin-top: 20px;">
+                        <input type="hidden" name="token" t-att-value="token"/>
+                        <button type="submit" class="btn-kiosk btn-kiosk-secondary">
+                            Enter data manually
+                        </button>
+                    </form>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============ Review data ============ -->
+    <template id="review">
+        <t t-call="l10n_si_kiosk.kiosk_layout">
+            <div style="max-width: 800px; width: 100%;">
+                <h1 style="font-size: 36px; text-align: center; margin-bottom: 24px;">
+                    Please review your details
+                </h1>
+                <form action="/kiosk/save_review" method="post" class="form-kiosk">
+                    <input type="hidden" name="token" t-att-value="token"/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>First name *</label>
+                            <input type="text" name="guest_first_name"
+                                   t-att-value="session.guest_first_name or ''" required="required"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Last name *</label>
+                            <input type="text" name="guest_last_name"
+                                   t-att-value="session.guest_last_name or ''" required="required"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Date of birth</label>
+                            <input type="date" name="guest_birth_date"
+                                   t-att-value="session.guest_birth_date or ''"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Gender</label>
+                            <select name="guest_gender" class="form-control">
+                                <option value="">—</option>
+                                <option value="male" t-att-selected="session.guest_gender == 'male'">Male</option>
+                                <option value="female" t-att-selected="session.guest_gender == 'female'">Female</option>
+                                <option value="other" t-att-selected="session.guest_gender == 'other'">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Document type</label>
+                            <select name="guest_doc_type" class="form-control">
+                                <option value="passport" t-att-selected="session.guest_doc_type == 'passport'">Passport</option>
+                                <option value="id_card" t-att-selected="session.guest_doc_type == 'id_card'">ID Card</option>
+                                <option value="drivers_license" t-att-selected="session.guest_doc_type == 'drivers_license'">Driver's License</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Document number</label>
+                            <input type="text" name="guest_doc_number"
+                                   t-att-value="session.guest_doc_number or ''"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Country *</label>
+                            <select name="guest_country_id" class="form-control">
+                                <option value="">—</option>
+                                <t t-foreach="countries" t-as="c">
+                                    <option t-att-value="c.id"
+                                            t-att-selected="session.guest_country_id.id == c.id"
+                                            t-out="c.name"/>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>City</label>
+                            <input type="text" name="guest_city"
+                                   t-att-value="session.guest_city or ''"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Email</label>
+                            <input type="email" name="guest_email"
+                                   t-att-value="session.guest_email or ''"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Phone</label>
+                            <input type="tel" name="guest_phone"
+                                   t-att-value="session.guest_phone or ''"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Adults</label>
+                            <input type="number" name="adults_count" min="1" max="10"
+                                   t-att-value="session.adults_count or 1"/>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Children</label>
+                            <input type="number" name="children_count" min="0" max="10"
+                                   t-att-value="session.children_count or 0"/>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Arrival time</label>
+                            <input type="text" name="arrival_time"
+                                   placeholder="e.g. 14:30"
+                                   t-att-value="session.arrival_time or ''"/>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button type="submit" class="btn-kiosk btn-kiosk-primary">
+                            <i class="fa fa-check"/> Confirm &amp; continue
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn-kiosk btn-kiosk-secondary">
+                            <i class="fa fa-arrow-left"/> Back
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============ Signature ============ -->
+    <template id="signature">
+        <t t-call="l10n_si_kiosk.kiosk_layout">
+            <div style="text-align: center; max-width: 800px; width: 100%;">
+                <h1 style="font-size: 36px; margin-bottom: 16px;">Please sign here</h1>
+                <p style="font-size: 20px; color: #666; margin-bottom: 30px;">
+                    Your signature confirms the information above is correct.
+                </p>
+                <form action="/kiosk/complete" method="post" id="signature-form">
+                    <input type="hidden" name="token" t-att-value="token"/>
+                    <input type="hidden" name="signature" id="signature-input"/>
+                    <canvas id="signature-pad" class="signature-pad"
+                            width="700" height="300"
+                            style="width: 100%; max-width: 700px;"></canvas>
+                    <div style="margin-top: 20px;">
+                        <button type="button" class="btn-kiosk btn-kiosk-secondary" onclick="clearSignature()">
+                            <i class="fa fa-eraser"/> Clear
+                        </button>
+                        <button type="submit" class="btn-kiosk btn-kiosk-success" id="submit-btn">
+                            <i class="fa fa-check"/> Complete check-in
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <script>
+                var canvas = document.getElementById('signature-pad');
+                var ctx = canvas.getContext('2d');
+                var drawing = false;
+                var lastX = 0, lastY = 0;
+
+                function resizeCanvas() {
+                    var rect = canvas.getBoundingClientRect();
+                    canvas.width = rect.width;
+                    canvas.height = rect.height;
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.strokeStyle = '#333';
+                    ctx.lineWidth = 3;
+                    ctx.lineCap = 'round';
+                }
+                resizeCanvas();
+
+                function getPos(e) {
+                    var rect = canvas.getBoundingClientRect();
+                    var x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+                    var y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+                    return {x: x, y: y};
+                }
+                function startDraw(e) {
+                    e.preventDefault();
+                    drawing = true;
+                    var p = getPos(e);
+                    lastX = p.x; lastY = p.y;
+                }
+                function draw(e) {
+                    if (!drawing) return;
+                    e.preventDefault();
+                    var p = getPos(e);
+                    ctx.beginPath();
+                    ctx.moveTo(lastX, lastY);
+                    ctx.lineTo(p.x, p.y);
+                    ctx.stroke();
+                    lastX = p.x; lastY = p.y;
+                }
+                function endDraw() { drawing = false; }
+
+                canvas.addEventListener('mousedown', startDraw);
+                canvas.addEventListener('mousemove', draw);
+                canvas.addEventListener('mouseup', endDraw);
+                canvas.addEventListener('mouseleave', endDraw);
+                canvas.addEventListener('touchstart', startDraw);
+                canvas.addEventListener('touchmove', draw);
+                canvas.addEventListener('touchend', endDraw);
+
+                function clearSignature() {
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    document.getElementById('signature-input').value = '';
+                }
+                document.getElementById('signature-form').addEventListener('submit', function(e) {
+                    var data = canvas.toDataURL('image/png');
+                    document.getElementById('signature-input').value = data;
+                });
+            </script>
+        </t>
+    </template>
+
+    <!-- ============ Done ============ -->
+    <template id="done">
+        <t t-call="l10n_si_kiosk.kiosk_layout">
+            <div style="text-align: center; max-width: 800px; width: 100%;">
+                <div style="background: #28a745; color: white; width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
+                    <i class="fa fa-check" style="font-size: 60px;"/>
+                </div>
+                <h1 style="font-size: 48px; margin-bottom: 16px;">You're all set!</h1>
+                <p style="font-size: 22px; color: #666; margin-bottom: 30px;">
+                    Welcome, <t t-out="session.guest_first_name or 'guest'"/>!
+                </p>
+                <div class="info-card" style="text-align: left;">
+                    <div class="info-row">
+                        <span class="label">Room:</span>
+                        <span class="value" t-out="session.room_number or '—'"/>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Key card code:</span>
+                        <span class="value" t-out="session.key_card_code or '—'"/>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Wi-Fi network:</span>
+                        <span class="value" t-out="session.wifi_network or '—'"/>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Wi-Fi password:</span>
+                        <span class="value" t-out="session.wifi_password or '—'"/>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Breakfast:</span>
+                        <span class="value">07:00 – 10:30</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Reception:</span>
+                        <span class="value">24/7</span>
+                    </div>
+                </div>
+                <t t-if="session.etourism_registration_id">
+                    <p style="font-size: 14px; color: #28a745; margin-top: 20px;">
+                        <i class="fa fa-check-circle"/> Tourist registration submitted automatically
+                    </p>
+                </t>
+                <a t-att-href="'/kiosk/start?config_id=%d' % config.id"
+                   class="btn-kiosk btn-kiosk-primary" style="display: inline-block; text-decoration: none; line-height: 80px;">
+                    Done
+                </a>
+            </div>
+        </t>
+    </template>
+</odoo>

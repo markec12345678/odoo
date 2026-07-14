@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="kiosk_session_company_rule" model="ir.rule">
+        <field name="name">Kiosk Session: multi-company</field>
+        <field name="model_id" ref="model_l10n_si_kiosk_session"/>
+        <field name="domain_force">
+            ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+        </field>
+    </record>
+    <record id="kiosk_config_company_rule" model="ir.rule">
+        <field name="name">Kiosk Config: multi-company</field>
+        <field name="model_id" ref="model_l10n_si_kiosk_config"/>
+        <field name="domain_force">
+            ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+        </field>
+    </record>
+    <!-- Public read-only access to active configs (for kiosk UI) -->
+    <record id="kiosk_session_public_rule" model="ir.rule">
+        <field name="name">Kiosk Session: public can create</field>
+        <field name="model_id" ref="model_l10n_si_kiosk_session"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_public'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

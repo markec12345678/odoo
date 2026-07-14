@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============ CONFIG: TREE ============ -->
+    <record id="view_kiosk_config_tree" model="ir.ui.view">
+        <field name="name">l10n_si.kiosk.config.tree</field>
+        <field name="model">l10n_si.kiosk.config</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="not active">
+                <field name="name"/>
+                <field name="location"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="session_count"/>
+                <field name="completed_count"/>
+                <field name="abandoned_count"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ============ CONFIG: FORM ============ -->
+    <record id="view_kiosk_config_form" model="ir.ui.view">
+        <field name="name">l10n_si.kiosk.config.form</field>
+        <field name="model">l10n_si.kiosk.config</field>
+        <field name="arch" type="xml">
+            <form string="Kiosk Configuration">
+                <header>
+                    <button name="action_open_kiosk" type="object" string="Open Kiosk"
+                            class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="action_open_kiosk" icon="fa-tablet">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Open</span>
+                            </div>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                            invisible="not active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Main Lobby Kiosk"/></h1>
+                    </div>
+                    <group>
+                        <group string="Device">
+                            <field name="location" placeholder="e.g. Main reception — left tablet"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Branding">
+                            <field name="primary_color" widget="color"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Welcome Screen" name="welcome">
+                            <group>
+                                <field name="welcome_text"/>
+                                <field name="welcome_text_sl"/>
+                                <field name="welcome_text_hr"/>
+                            </group>
+                        </page>
+                        <page string="Behavior" name="behavior">
+                            <group>
+                                <field name="idle_timeout_seconds"/>
+                                <field name="require_document_scan"/>
+                                <field name="allow_skip_scan"/>
+                                <field name="auto_submit_etourism"/>
+                            </group>
+                        </page>
+                        <page string="Wi-Fi" name="wifi">
+                            <group>
+                                <field name="wifi_network"/>
+                                <field name="wifi_password"/>
+                            </group>
+                        </page>
+                        <page string="Notifications" name="notif">
+                            <group>
+                                <field name="notify_user_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                        <page string="Stats" name="stats">
+                            <group>
+                                <group>
+                                    <field name="session_count"/>
+                                    <field name="completed_count"/>
+                                    <field name="abandoned_count"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============ CONFIG: SEARCH ============ -->
+    <record id="view_kiosk_config_search" model="ir.ui.view">
+        <field name="name">l10n_si.kiosk.config.search</field>
+        <field name="model">l10n_si.kiosk.config</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="location"/>
+                <filter string="Archived" name="filter_archived"
+                        domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============ CONFIG: ACTION ============ -->
+    <record id="action_kiosk_config" model="ir.actions.act_window">
+        <field name="name">Kiosk Devices</field>
+        <field name="res_model">l10n_si.kiosk.config</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_kiosk_config_search"/>
+    </record>
+</odoo>
