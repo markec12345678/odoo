@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add journey smart button + progress bar to folio form -->
+    <record id="view_hotel_folio_form_journey" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.folio.form.journey</field>
+        <field name="model">l10n_si.hotel.folio</field>
+        <field name="inherit_id" ref="l10n_si_hotel.view_hotel_folio_form"/>
+        <field name="arch" type="xml">
+            <!-- Smart button -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object"
+                        name="action_view_journey" icon="fa-send-o">
+                    <field name="journey_step_count" widget="statinfo" string="Journey"/>
+                </button>
+            </xpath>
+            <!-- Progress bar at top of sheet -->
+            <xpath expr="//sheet" position="inside">
+                <field name="journey_progress" widget="progressbar"
+                       invisible="not journey_step_count"/>
+                <field name="journey_state" invisible="not journey_step_count"/>
+            </xpath>
+            <!-- Generate journey button in header -->
+            <xpath expr="//header" position="inside">
+                <button name="action_generate_journey" type="object"
+                        string="Generate Journey"
+                        class="btn-primary"
+                        invisible="state in ['draft', 'cancelled']"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

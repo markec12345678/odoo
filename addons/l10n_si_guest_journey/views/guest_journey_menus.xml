@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_guest_journey_root"
+              name="Guest Journey"
+              parent="l10n_si_hotel.menu_l10n_si_hotel_root"
+              sequence="15"
+              groups="l10n_si_hotel.hotel_manager_group"/>
+
+    <menuitem id="menu_guest_journey_templates"
+              name="Templates"
+              parent="menu_guest_journey_root"
+              action="action_guest_journey_template"
+              sequence="10"/>
+
+    <menuitem id="menu_guest_journey_steps"
+              name="Scheduled Steps"
+              parent="menu_guest_journey_root"
+              action="action_guest_journey_step"
+              sequence="20"/>
+</odoo>

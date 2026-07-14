@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="guest_journey_template_multi_company" model="ir.rule">
+        <field name="name">Guest Journey Template: multi-company</field>
+        <field name="model_id" ref="model_l10n_si_guest_journey_template"/>
+        <field name="domain_force">
+            ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+        </field>
+    </record>
+    <record id="guest_journey_step_multi_company" model="ir.rule">
+        <field name="name">Guest Journey Step: multi-company</field>
+        <field name="model_id" ref="model_l10n_si_guest_journey_step"/>
+        <field name="domain_force">
+            ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+        </field>
+    </record>
+</odoo>

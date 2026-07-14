@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_guest_journey_template_user,Guest Journey Template User,model_l10n_si_guest_journey_template,base.group_user,1,0,0,0
+access_guest_journey_template_manager,Guest Journey Template Manager,model_l10n_si_guest_journey_template,l10n_si_hotel.hotel_manager_group,1,1,1,1
+access_guest_journey_step_user,Guest Journey Step User,model_l10n_si_guest_journey_step,base.group_user,1,0,0,0
+access_guest_journey_step_manager,Guest Journey Step Manager,model_l10n_si_guest_journey_step,l10n_si_hotel.hotel_manager_group,1,1,1,1

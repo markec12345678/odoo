@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- ============== PRE-ARRIVAL ============== -->
+
+    <!-- T-7: Excitement email -->
+    <record id="tmpl_pre_arrival_7d_welcome" model="l10n_si.guest.journey.template">
+        <field name="name">Pre-arrival: 7 days — Welcome excitement</field>
+        <field name="sequence">10</field>
+        <field name="stage">pre_arrival</field>
+        <field name="trigger_event">check_in</field>
+        <field name="offset_days">-7</field>
+        <field name="send_hour">10</field>
+        <field name="channel">email</field>
+        <field name="subject">Only 7 days until you arrive at {{ hotel_name }}, {{ guest_first_name }}!</field>
+        <field name="body_html"><![CDATA[
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+  <h2 style="color: #875A7B;">We can't wait to welcome you, {{ guest_first_name }}!</h2>
+  <p>Your stay at <strong>{{ hotel_name }}</strong> is just around the corner.</p>
+  <p>Here's a quick reminder of your reservation:</p>
+  <ul>
+    <li><strong>Check-in:</strong> {{ check_in }}</li>
+    <li><strong>Check-out:</strong> {{ check_out }}</li>
+    <li><strong>Room:</strong> {{ room }}</li>
+    <li><strong>Guests:</strong> {{ adults }} adults{% if children %}, {{ children }} children{% endif %}</li>
+  </ul>
+  <p>If you have any special requests — late arrival, dietary needs, a surprise for someone special — just reply to this email and we'll make it happen.</p>
+  <p>See you soon!</p>
+  <p style="color: #888; font-size: 12px;">{{ hotel_name }} · {{ hotel_phone }} · {{ hotel_email }}</p>
+</div>
+        ]]></field>
+    </record>
+
+    <!-- T-1: Practical info + self check-in -->
+    <record id="tmpl_pre_arrival_1d_practical" model="l10n_si.guest.journey.template">
+        <field name="name">Pre-arrival: 24h — Practical info &amp; self check-in</field>
+        <field name="sequence">20</field>
+        <field name="stage">pre_arrival</field>
+        <field name="trigger_event">check_in</field>
+        <field name="offset_days">-1</field>
+        <field name="send_hour">16</field>
+        <field name="channel">email</field>
+        <field name="subject">Tomorrow's the day! Here's everything you need, {{ guest_first_name }}</field>
+        <field name="body_html"><![CDATA[
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+  <h2 style="color: #875A7B;">See you tomorrow, {{ guest_first_name }}!</h2>
+  <p>Your room <strong>{{ room }}</strong> at <strong>{{ hotel_name }}</strong> will be ready for check-in from {{ check_in }}.</p>
+
+  <h3 style="color: #875A7B;">Quick essentials</h3>
+  <ul>
+    <li><strong>Wi-Fi:</strong> network "HotelGuest", password "welcome2024"</li>
+    <li><strong>Parking:</strong> on-site, free of charge</li>
+    <li><strong>Reception:</strong> open 24/7</li>
+    <li><strong>Breakfast:</strong> 07:00 – 10:30 in the main restaurant</li>
+  </ul>
+
+  <h3 style="color: #875A7B;">Skip the queue — self check-in</h3>
+  <p>Complete your registration online now so you can go straight to your room when you arrive:</p>
+  <p><a href="/my/checkin/{{ folio.id }}" style="background: #875A7B; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">Start self check-in</a></p>
+
+  <p>Need anything else? Reply to this email or call us at {{ hotel_phone }}.</p>
+  <p>Safe travels!</p>
+</div>
+        ]]></field>
+        <field name="ai_personalize" eval="True"/>
+        <field name="ai_task_type">creative</field>
+    </record>
+
+    <!-- ============== IN-STAY ============== -->
+
+    <!-- Day 1 evening: how was arrival -->
+    <record id="tmpl_in_stay_d1_arrival" model="l10n_si.guest.journey.template">
+        <field name="name">In-stay: Day 1 — How was your arrival?</field>
+        <field name="sequence">30</field>
+        <field name="stage">in_stay</field>
+        <field name="trigger_event">check_in</field>
+        <field name="offset_days">0</field>
+        <field name="send_hour">20</field>
+        <field name="channel">whatsapp</field>
+        <field name="subject">How was your arrival?</field>
+        <field name="body_html"><![CDATA[
+<div>Hi {{ guest_first_name }}! 👋 We hope your room {{ room }} is to your liking and that you've settled in nicely. If there's anything you need — extra pillows, a dinner recommendation, or just a friendly chat — just reply here. We're here for you. — {{ hotel_name }}</div>
+        ]]></field>
+    </record>
+
+    <!-- Day 2: upsell -->
+    <record id="tmpl_in_stay_d2_upsell" model="l10n_si.guest.journey.template">
+        <field name="name">In-stay: Day 2 — Discover our extras</field>
+        <field name="sequence">40</field>
+        <field name="stage">in_stay</field>
+        <field name="trigger_event">check_in</field>
+        <field name="offset_days">1</field>
+        <field name="send_hour">10</field>
+        <field name="channel">email</field>
+        <field name="subject">{{ guest_first_name }}, treat yourself today 🌿</field>
+        <field name="body_html"><![CDATA[
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+  <h2 style="color: #875A7B;">Good morning, {{ guest_first_name }}!</h2>
+  <p>You're with us until <strong>{{ check_out }}</strong> — why not make the most of it?</p>
+  <h3 style="color: #875A7B;">Today's highlights</h3>
+  <ul>
+    <li><strong>Spa &amp; wellness</strong> — 15% off all treatments for in-house guests (mention this email)</li>
+    <li><strong>Late check-out</strong> — extend your stay until 14:00 for just €20</li>
+    <li><strong>Local experiences</strong> — wine tasting tonight at 19:00, 3 seats left</li>
+    <li><strong>Room upgrade</strong> — sea-view room available for tonight, €35</li>
+  </ul>
+  <p><a href="/my/upsell/{{ folio.id }}" style="background: #875A7B; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">Book now</a></p>
+  <p>Or just call the reception at {{ hotel_phone }}.</p>
+</div>
+        ]]></field>
+        <field name="ai_personalize" eval="True"/>
+        <field name="ai_task_type">creative</field>
+    </record>
+
+    <!-- Mid-stay: anything we can do better -->
+    <record id="tmpl_in_stay_midstay" model="l10n_si.guest.journey.template">
+        <field name="name">In-stay: Mid-stay — Anything we can do better?</field>
+        <field name="sequence">50</field>
+        <field name="stage">in_stay</field>
+        <field name="trigger_event">check_in</field>
+        <field name="offset_days">2</field>
+        <field name="send_hour">11</field>
+        <field name="channel">whatsapp</field>
+        <field name="subject">Quick check-in from us</field>
+        <field name="body_html"><![CDATA[
+<div>Hi {{ guest_first_name }}, we wanted to check in — is everything okay with your stay so far? If anything isn't perfect, please let us know now so we can fix it before you leave. Your comfort is our priority. ❤️ — {{ hotel_name }}</div>
+        ]]></field>
+    </record>
+
+    <!-- ============== POST-STAY ============== -->
+
+    <!-- T+1: Thank you -->
+    <record id="tmpl_post_stay_d1_thankyou" model="l10n_si.guest.journey.template">
+        <field name="name">Post-stay: Day +1 — Thank you</field>
+        <field name="sequence">60</field>
+        <field name="stage">post_stay</field>
+        <field name="trigger_event">check_out</field>
+        <field name="offset_days">1</field>
+        <field name="send_hour">10</field>
+        <field name="channel">email</field>
+        <field name="subject">Thank you for staying with us, {{ guest_first_name }} 💜</field>
+        <field name="body_html"><![CDATA[
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+  <h2 style="color: #875A7B;">Dear {{ guest_first_name }},</h2>
+  <p>Thank you for choosing <strong>{{ hotel_name }}</strong> for your recent stay. We hope you arrived home safely and that you'll carry fond memories with you.</p>
+  <p>We'd love to welcome you back any time — and as a token of our appreciation, here's a <strong>10% discount</strong> on your next direct booking with us. Just use the code <strong>COME BACK10</strong> when you book on our website.</p>
+  <p>Warm regards from all of us,</p>
+  <p>The {{ hotel_name }} team</p>
+</div>
+        ]]></field>
+    </record>
+
+    <!-- T+3: Review request -->
+    <record id="tmpl_post_stay_d3_review" model="l10n_si.guest.journey.template">
+        <field name="name">Post-stay: Day +3 — Review request</field>
+        <field name="sequence">70</field>
+        <field name="stage">post_stay</field>
+        <field name="trigger_event">check_out</field>
+        <field name="offset_days">3</field>
+        <field name="send_hour">11</field>
+        <field name="channel">email</field>
+        <field name="subject">Share your experience, {{ guest_first_name }}?</field>
+        <field name="body_html"><![CDATA[
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+  <h2 style="color: #875A7B;">Hi {{ guest_first_name }},</h2>
+  <p>We hope you had a wonderful stay at <strong>{{ hotel_name }}</strong>.</p>
+  <p>Your feedback means the world to us — and to future guests. Would you take 60 seconds to share your experience?</p>
+  <p style="margin: 20px 0;">
+    <a href="https://www.google.com/search?q={{ hotel_name }}" style="background: #4285F4; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; margin-right: 10px;">Google</a>
+    <a href="https://www.booking.com/" style="background: #003580; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">Booking.com</a>
+  </p>
+  <p>Thank you so much in advance — every review helps a small business like ours grow.</p>
+  <p>The {{ hotel_name }} team</p>
+</div>
+        ]]></field>
+        <field name="ai_personalize" eval="True"/>
+        <field name="ai_task_type">creative</field>
+    </record>
+
+    <!-- T+7: Loyalty offer -->
+    <record id="tmpl_post_stay_d7_loyalty" model="l10n_si.guest.journey.template">
+        <field name="name">Post-stay: Day +7 — Loyalty offer</field>
+        <field name="sequence">80</field>
+        <field name="stage">post_stay</field>
+        <field name="trigger_event">check_out</field>
+        <field name="offset_days">7</field>
+        <field name="send_hour">10</field>
+        <field name="channel">email</field>
+        <field name="subject">A special offer, just for you, {{ guest_first_name }}</field>
+        <field name="body_html"><![CDATA[
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+  <h2 style="color: #875A7B;">{{ guest_first_name }}, we miss you already!</h2>
+  <p>It's been a week since your stay at <strong>{{ hotel_name }}</strong> and we're already thinking about your next visit.</p>
+  <p>As a thank-you for being part of our family, we'd like to offer you:</p>
+  <ul>
+    <li><strong>15% off</strong> any stay in the next 6 months</li>
+    <li><strong>Free breakfast</strong> included</li>
+    <li><strong>Room upgrade</strong> subject to availability</li>
+  </ul>
+  <p>Book before {{ check_out }} next year to lock in this rate.</p>
+  <p><a href="https://{{ hotel_name|lower }}.com/book" style="background: #875A7B; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">Book your return</a></p>
+  <p>We can't wait to welcome you back.</p>
+</div>
+        ]]></field>
+        <field name="ai_personalize" eval="True"/>
+        <field name="ai_task_type">creative</field>
+    </record>
+</odoo>

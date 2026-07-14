@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============ STEP: KANBAN ============ -->
+    <record id="view_guest_journey_step_kanban" model="ir.ui.view">
+        <field name="name">l10n_si.guest.journey.step.kanban</field>
+        <field name="model">l10n_si.guest.journey.step</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column"
+                    sample="1">
+                <field name="state"/>
+                <field name="stage"/>
+                <field name="channel"/>
+                <field name="scheduled_date"/>
+                <field name="sent_date"/>
+                <field name="partner_id"/>
+                <field name="folio_id"/>
+                <field name="subject"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_head">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="subject"/>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div>
+                                <field name="partner_id"/>
+                                <span> · </span>
+                                <field name="folio_id"/>
+                            </div>
+                            <div class="text-muted">
+                                <t t-if="record.sent_date.raw_value">
+                                    Sent: <field name="sent_date"/>
+                                </t>
+                                <t t-else="">
+                                    Scheduled: <field name="scheduled_date"/>
+                                </t>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <span t-attf-class="badge #{record.state.raw_value == 'sent' ? 'bg-success' : record.state.raw_value == 'failed' ? 'bg-danger' : record.state.raw_value == 'skipped' ? 'bg-secondary' : 'bg-primary'}">
+                                        <field name="state"/>
+                                    </span>
+                                    <span t-if="record.channel.raw_value == 'whatsapp'" class="badge bg-success ms-1">WA</span>
+                                    <span t-elif="record.channel.raw_value == 'email'" class="badge bg-info ms-1">✉</span>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <button name="action_send_now" type="object"
+                                            class="btn btn-sm btn-primary"
+                                            invisible="state != 'scheduled'">
+                                        Send now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ============ STEP: TREE ============ -->
+    <record id="view_guest_journey_step_tree" model="ir.ui.view">
+        <field name="name">l10n_si.guest.journey.step.tree</field>
+        <field name="model">l10n_si.guest.journey.step</field>
+        <field name="arch" type="xml">
+            <tree string="Guest Journey Steps"
+                  decoration-success="state == 'sent'"
+                  decoration-danger="state == 'failed'"
+                  decoration-muted="state == 'skipped'">
+                <field name="scheduled_date"/>
+                <field name="partner_id"/>
+                <field name="folio_id"/>
+                <field name="stage"/>
+                <field name="channel"/>
+                <field name="subject"/>
+                <field name="state"/>
+                <field name="sent_date"/>
+                <button name="action_send_now" type="object" string="Send"
+                        class="btn-primary btn-sm"
+                        invisible="state != 'scheduled'"/>
+                <button name="action_skip" type="object" string="Skip"
+                        class="btn-secondary btn-sm"
+                        invisible="state != 'scheduled'"/>
+                <button name="action_retry" type="object" string="Retry"
+                        class="btn-warning btn-sm"
+                        invisible="state != 'failed'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ============ STEP: FORM ============ -->
+    <record id="view_guest_journey_step_form" model="ir.ui.view">
+        <field name="name">l10n_si.guest.journey.step.form</field>
+        <field name="model">l10n_si.guest.journey.step</field>
+        <field name="arch" type="xml">
+            <form string="Guest Journey Step">
+                <header>
+                    <button name="action_send_now" type="object" string="Send Now"
+                            class="btn-primary"
+                            invisible="state not in ['scheduled', 'failed']"/>
+                    <button name="action_skip" type="object" string="Skip"
+                            class="btn-secondary"
+                            invisible="state != 'scheduled'"/>
+                    <button name="action_retry" type="object" string="Retry"
+                            class="btn-warning"
+                            invisible="state != 'failed'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="scheduled,sent"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="folio_id"/>
+                            <field name="partner_id"/>
+                            <field name="template_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="scheduled_date"/>
+                            <field name="sent_date"/>
+                            <field name="stage"/>
+                            <field name="channel"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Message" name="message">
+                            <group>
+                                <field name="subject"/>
+                                <field name="body_html" widget="html"/>
+                            </group>
+                        </page>
+                        <page string="Delivery" name="delivery">
+                            <group>
+                                <field name="mail_message_id"/>
+                                <field name="whatsapp_message_id"/>
+                                <field name="skip_reason"/>
+                                <field name="error_message"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============ STEP: SEARCH ============ -->
+    <record id="view_guest_journey_step_search" model="ir.ui.view">
+        <field name="name">l10n_si.guest.journey.step.search</field>
+        <field name="model">l10n_si.guest.journey.step</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id"/>
+                <field name="folio_id"/>
+                <field name="subject"/>
+                <filter string="Scheduled" name="filter_scheduled"
+                        domain="[('state', '=', 'scheduled')]"/>
+                <filter string="Sent" name="filter_sent"
+                        domain="[('state', '=', 'sent')]"/>
+                <filter string="Failed" name="filter_failed"
+                        domain="[('state', '=', 'failed')]"/>
+                <filter string="Skipped" name="filter_skipped"
+                        domain="[('state', '=', 'skipped')]"/>
+                <filter string="Due now" name="filter_due"
+                        domain="[('state', '=', 'scheduled'), ('scheduled_date', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <separator/>
+                <filter string="Pre-arrival" name="filter_pre"
+                        domain="[('stage', '=', 'pre_arrival')]"/>
+                <filter string="In-stay" name="filter_in"
+                        domain="[('stage', '=', 'in_stay')]"/>
+                <filter string="Post-stay" name="filter_post"
+                        domain="[('stage', '=', 'post_stay')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="State" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Stage" name="group_stage" context="{'group_by': 'stage'}"/>
+                    <filter string="Channel" name="group_channel" context="{'group_by': 'channel'}"/>
+                    <filter string="Folio" name="group_folio" context="{'group_by': 'folio_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============ STEP: ACTION ============ -->
+    <record id="action_guest_journey_step" model="ir.actions.act_window">
+        <field name="name">Journey Steps</field>
+        <field name="res_model">l10n_si.guest.journey.step</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="view_guest_journey_step_search"/>
+        <field name="context">{'search_default_filter_scheduled': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Schedule your first guest journey step
+            </p>
+            <p>
+                Steps are created automatically when you click "Generate
+                Journey" on a folio. You can also create them manually here.
+            </p>
+        </field>
+    </record>
+</odoo>

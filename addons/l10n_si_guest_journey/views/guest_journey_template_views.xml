@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============ TEMPLATE: TREE ============ -->
+    <record id="view_guest_journey_template_tree" model="ir.ui.view">
+        <field name="name">l10n_si.guest.journey.template.tree</field>
+        <field name="model">l10n_si.guest.journey.template</field>
+        <field name="arch" type="xml">
+            <tree string="Guest Journey Templates" decoration-muted="not active">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="stage"/>
+                <field name="trigger_event"/>
+                <field name="offset_days"/>
+                <field name="channel"/>
+                <field name="lang_id" groups="base.group_multi_language"/>
+                <field name="ai_personalize"/>
+                <field name="step_count"/>
+                <field name="sent_count"/>
+                <field name="failed_count"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ============ TEMPLATE: FORM ============ -->
+    <record id="view_guest_journey_template_form" model="ir.ui.view">
+        <field name="name">l10n_si.guest.journey.template.form</field>
+        <field name="model">l10n_si.guest.journey.template</field>
+        <field name="arch" type="xml">
+            <form string="Guest Journey Template">
+                <header>
+                    <button name="action_test_render" type="object" string="Test Render" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_view_steps" icon="fa-send-o">
+                            <field name="step_count" widget="statinfo" string="Steps"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                            invisible="not active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Pre-arrival: 24h — Practical info"/></h1>
+                    </div>
+                    <group>
+                        <group string="Trigger">
+                            <field name="stage"/>
+                            <field name="trigger_event"/>
+                            <field name="offset_days"/>
+                            <field name="send_hour"/>
+                            <field name="send_minute"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Audience">
+                            <field name="channel"/>
+                            <field name="lang_id" groups="base.group_multi_language"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Content" name="content">
+                            <group>
+                                <field name="subject" placeholder="Subject line with {{ placeholders }}"/>
+                                <field name="body_html" widget="html" options="{'collapsible': false}"/>
+                            </group>
+                            <group string="AI Personalisation" groups="l10n_si_hotel.hotel_manager_group">
+                                <field name="ai_personalize"/>
+                                <field name="ai_task_type" invisible="not ai_personalize"/>
+                            </group>
+                        </page>
+                        <page string="Stats" name="stats">
+                            <group>
+                                <group>
+                                    <field name="step_count"/>
+                                    <field name="sent_count"/>
+                                    <field name="failed_count"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============ TEMPLATE: SEARCH ============ -->
+    <record id="view_guest_journey_template_search" model="ir.ui.view">
+        <field name="name">l10n_si.guest.journey.template.search</field>
+        <field name="model">l10n_si.guest.journey.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="subject"/>
+                <filter string="Pre-arrival" name="filter_pre_arrival"
+                        domain="[('stage', '=', 'pre_arrival')]"/>
+                <filter string="In-stay" name="filter_in_stay"
+                        domain="[('stage', '=', 'in_stay')]"/>
+                <filter string="Post-stay" name="filter_post_stay"
+                        domain="[('stage', '=', 'post_stay')]"/>
+                <filter string="Email" name="filter_email"
+                        domain="[('channel', '=', 'email')]"/>
+                <filter string="WhatsApp" name="filter_whatsapp"
+                        domain="[('channel', '=', 'whatsapp')]"/>
+                <filter string="AI Personalised" name="filter_ai"
+                        domain="[('ai_personalize', '=', True)]"/>
+                <filter string="Archived" name="filter_archived"
+                        domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Stage" name="group_stage" context="{'group_by': 'stage'}"/>
+                    <filter string="Channel" name="group_channel" context="{'group_by': 'channel'}"/>
+                    <filter string="Language" name="group_lang" context="{'group_by': 'lang_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============ TEMPLATE: ACTION ============ -->
+    <record id="action_guest_journey_template" model="ir.actions.act_window">
+        <field name="name">Journey Templates</field>
+        <field name="res_model">l10n_si.guest.journey.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_guest_journey_template_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first guest journey template
+            </p>
+            <p>
+                Templates define what message to send to guests at each stage of
+                their journey — 7 days before arrival, on arrival day, mid-stay,
+                and after checkout. Each template can be AI-personalised.
+            </p>
+        </field>
+    </record>
+</odoo>

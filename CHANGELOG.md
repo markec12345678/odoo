@@ -5,6 +5,44 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.17.0] — 2026-07-14
+
+### Added — Guest Journey Orchestrator (84th module)
+
+**`l10n_si_guest_journey`** — automated pre-arrival / in-stay / post-stay
+communication sequences that orchestrate email + WhatsApp via AI Core.
+
+8 ready-to-use templates installed by default:
+- **Pre-arrival (T-7d):** Welcome excitement email
+- **Pre-arrival (T-24h):** Practical info + self check-in link (AI-personalised)
+- **In-stay (D1 evening):** WhatsApp "How was arrival?"
+- **In-stay (D+1):** Upsell email (spa, late checkout, experiences) — AI-personalised
+- **In-stay (mid):** WhatsApp "Anything we can do better?"
+- **Post-stay (D+1):** Thank you email with discount code
+- **Post-stay (D+3):** Review request (Google / Booking.com) — AI-personalised
+- **Post-stay (D+7):** Loyalty offer email — AI-personalised
+
+Models:
+- `l10n_si.guest.journey.template` — reusable, multilingual, AI-personalisable
+- `l10n_si.guest.journey.step` — scheduled instance per folio
+- Extends `l10n_si.hotel.folio` with `journey_state`, `journey_progress`,
+  smart button, and "Generate Journey" action
+
+Features:
+- Multi-language templates (per-partner language matching)
+- AI Core integration (`ai_personalize=True` enriches body via LLM)
+- Channel selection: email (default) or WhatsApp Business
+- Daily cron sends all due steps automatically
+- Manual "Send now" / "Skip" / "Retry" per step
+- Kanban view grouped by state (scheduled / sent / failed / skipped)
+- GDPR-safe: skips recipients with high bounce rate
+
+### Updated — README badges
+- Module count: 82 → 84
+- Test count: 131 → 133
+- Version: v19.0.16.1 → v19.0.17.0
+- Added 4 new feature highlights (self check-in, OCR, guest journey, iCal)
+
 ## [19.0.16.1] — 2026-07-14
 
 ### Added — AI Core expansion: 9 modules with central LLM router

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Daily cron: send all due journey steps at 08:00 -->
+    <record id="cron_send_guest_journey_steps" model="ir.cron">
+        <field name="name">Guest Journey: Send Due Steps</field>
+        <field name="model_id" ref="model_l10n_si_guest_journey_step"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_send_due_steps()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>
