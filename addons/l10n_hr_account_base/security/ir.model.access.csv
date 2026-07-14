@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_account_base_partner_user,HR Account Base Partner User,model_res_partner,base.group_user,1,1,1,0
+access_hr_account_base_company_user,HR Account Base Company User,model_res_company,base.group_user,1,0,0,0
+access_hr_account_base_company_manager,HR Account Base Company Manager,model_res_company,account.group_account_manager,1,1,1,1

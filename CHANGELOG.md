@@ -5,6 +5,45 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.24.0] — 2026-07-14
+
+### Added — HR Accounting Base (95th module)
+
+**`l10n_hr_account_base`** — foundation module for Croatian accounting
+localization. Equivalent to OCA's `l10n_hr_account_base` (dajmi5).
+
+Features:
+1. **OIB validation** — Croatian Personal Identification Number (11 digits)
+   validated with ISO 7064 MOD 11-10 checksum
+   - `validate_oib()` utility function
+   - `oib` field on res.partner with `_check_oib` constraint
+   - `oib_valid` computed boolean (display only)
+   - Onchange warning when entering invalid OIB
+
+2. **Partner categorization for HR**:
+   - `is_croatian_resident` (auto-detected from country)
+   - `is_related_party` (povezano lice — accounting disclosures)
+   - `is_vat_registered` (PDV registered)
+
+3. **Company registration fields**:
+   - `court_registration_number` (MBS)
+   - `court_name`
+   - `share_capital` (temeljni kapital)
+
+4. **Bank payment system** (Croatian HUB standard):
+   - `payment_model` on res.partner.bank (e.g. HR01)
+   - `payment_reference` (poziv na broj)
+   - `bank_code` (auto-extracted from IBAN digits 5-11)
+
+5. **Invoice numbering support**:
+   - `payment_model`, `payment_reference`, `location_code`,
+     `cash_register_code` on account.move
+   - Same fields on account.journal (defaults)
+
+### Updated — README badges
+- Module count: 94 → 95
+- Version: v19.0.23.0 → v19.0.24.0
+
 ## [19.0.23.0] — 2026-07-14
 
 ### Added — OCA HR Parity: 5 new Croatian modules (90–94)

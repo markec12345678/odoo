@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_hr_account_base"
+              name="Croatian Setup"
+              parent="account.menu_finance_configuration"
+              sequence="80"/>
+</odoo>

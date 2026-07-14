@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_hr_account" model="ir.ui.view">
+        <field name="name">res.partner.form.hr.account</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="oib" placeholder="11-digit OIB"/>
+                <field name="oib_valid" invisible="1"/>
+                <field name="is_related_party"/>
+                <field name="is_vat_registered"/>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_croatian_resident', '=', False), ('is_vat_registered', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
