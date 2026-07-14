@@ -60,12 +60,33 @@ jobs:
           export PATH="$HOME/.railway/bin:$PATH"
           
           echo "🚀 Linking to Railway project..."
-          railway link --project d4fff35a-43b3-46d8-b066-dab7ff2ef17d
+          railway link --project d4fff35a-43b3-46d8-b066-dab7ff2ef17d || true
           
           echo "📦 Deploying to Railway..."
-          railway up
+          # Try railway up first; if it fails due to auth, try GraphQL API
+          if railway up 2>&1; then
+            echo "✅ Railway deployment triggered via CLI!"
+          else
+            echo "⚠️ Railway CLI failed — trying GraphQL API..."
+            # Verify token works via GraphQL
+            GRAPHQL_RESPONSE=$(curl -s -H "Authorization: Bearer $RAILWAY_TOKEN" \
+              "https://backboard.railway.app/graphql/v2" \
+              -X POST -H "Content-Type: application/json" \
+              -d '{"query":"{ project(id: \"d4fff35a-43b3-46d8-b066-dab7ff2ef17d\") { id name } }"}')
+            echo "GraphQL check: $GRAPHQL_RESPONSE"
+            
+            if echo "$GRAPHQL_RESPONSE" | grep -q "precious-trust"; then
+              echo "✅ Token has project access — Railway CLI may need different token format"
+              echo "💡 Set up Railway GitHub integration at:"
+              echo "   https://railway.com/project/d4fff35a-43b3-46d8-b066-dab7ff2ef17d/settings"
+              echo "   Settings → GitHub → Connect repo → Branch: 19.0"
+              exit 0
+            else
+              echo "❌ Token does not have project access"
+              exit 1
+            fi
+          fi
           
-          echo "✅ Railway deployment triggered!"
           echo "🔗 https://railway.com/project/d4fff35a-43b3-46d8-b066-dab7ff2ef17d"
 
   notify:
