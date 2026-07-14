@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============ RESPONSE: TREE ============ -->
+    <record id="view_questionnaire_response_tree" model="ir.ui.view">
+        <field name="name">l10n_si.questionnaire.response.tree</field>
+        <field name="model">l10n_si.questionnaire.response</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'completed'"
+                  decoration-muted="state == 'expired'">
+                <field name="create_date"/>
+                <field name="partner_id"/>
+                <field name="folio_id"/>
+                <field name="template_id"/>
+                <field name="state"/>
+                <field name="sent_date"/>
+                <field name="completed_date"/>
+                <button name="action_view_questionnaire" type="object" string="Open"
+                        icon="fa-external-link" class="btn-secondary btn-sm"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ============ RESPONSE: FORM ============ -->
+    <record id="view_questionnaire_response_form" model="ir.ui.view">
+        <field name="name">l10n_si.questionnaire.response.form</field>
+        <field name="model">l10n_si.questionnaire.response</field>
+        <field name="arch" type="xml">
+            <form string="Questionnaire Response">
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="sent,started,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Reference">
+                            <field name="token" readonly="1"/>
+                            <field name="template_id"/>
+                            <field name="folio_id"/>
+                            <field name="partner_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="expire_date"/>
+                        </group>
+                        <group string="Activity">
+                            <field name="sent_date" readonly="1"/>
+                            <field name="started_date" readonly="1"/>
+                            <field name="completed_date" readonly="1"/>
+                            <field name="days_until_checkin"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Dietary" name="dietary">
+                            <group>
+                                <field name="dietary_restrictions"/>
+                                <field name="allergies"/>
+                            </group>
+                        </page>
+                        <page string="Room" name="room">
+                            <group>
+                                <field name="pillow_preference"/>
+                                <field name="bed_configuration"/>
+                                <field name="floor_preference"/>
+                            </group>
+                        </page>
+                        <page string="Occasion &amp; Activities" name="occasion">
+                            <group>
+                                <field name="special_occasion"/>
+                                <field name="occasion_date"/>
+                                <field name="planned_activities"/>
+                            </group>
+                        </page>
+                        <page string="Arrival" name="arrival">
+                            <group>
+                                <field name="estimated_arrival_time"/>
+                                <field name="transport_mode"/>
+                                <field name="parking_needed"/>
+                                <field name="communication_preference"/>
+                                <field name="notes"/>
+                            </group>
+                        </page>
+                        <page string="Raw JSON" name="raw">
+                            <group>
+                                <field name="answers_json" readonly="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============ RESPONSE: SEARCH ============ -->
+    <record id="view_questionnaire_response_search" model="ir.ui.view">
+        <field name="name">l10n_si.questionnaire.response.search</field>
+        <field name="model">l10n_si.questionnaire.response</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id"/>
+                <field name="folio_id"/>
+                <field name="template_id"/>
+                <filter string="Completed" name="filter_completed"
+                        domain="[('state', '=', 'completed')]"/>
+                <filter string="Pending" name="filter_pending"
+                        domain="[('state', 'in', ['sent', 'started'])]"/>
+                <filter string="Expired" name="filter_expired"
+                        domain="[('state', '=', 'expired')]"/>
+                <filter string="Today" name="filter_today"
+                        domain="[('sent_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                <group expand="0" string="Group By">
+                    <filter string="State" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Template" name="group_template" context="{'group_by': 'template_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============ ACTION ============ -->
+    <record id="action_questionnaire_response" model="ir.actions.act_window">
+        <field name="name">Questionnaire Responses</field>
+        <field name="res_model">l10n_si.questionnaire.response</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_questionnaire_response_search"/>
+        <field name="context">{'search_default_filter_pending': 1}</field>
+    </record>
+</odoo>

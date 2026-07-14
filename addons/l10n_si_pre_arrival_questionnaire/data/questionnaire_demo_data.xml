@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="questionnaire_template_default" model="l10n_si.questionnaire.template">
+        <field name="name">Default Pre-arrival Questionnaire</field>
+        <field name="sequence">10</field>
+        <field name="welcome_text">Help us prepare your perfect stay by answering a few questions. It takes about 3 minutes.</field>
+        <field name="thank_you_text">Thank you! Your preferences have been saved. We look forward to welcoming you.</field>
+        <field name="estimated_minutes">3</field>
+        <field name="description"><![CDATA[
+<p>This is the default questionnaire template. You can edit it, duplicate it,
+or create new ones for different seasons or properties.</p>]]></field>
+    </record>
+
+    <!-- ============== SECTION 1: Dietary ============== -->
+    <record id="questionnaire_section_dietary" model="l10n_si.questionnaire.section">
+        <field name="name">Dietary Preferences</field>
+        <field name="sequence">10</field>
+        <field name="template_id" ref="questionnaire_template_default"/>
+        <field name="description">Help our kitchen prepare for your stay.</field>
+    </record>
+    <record id="question_q_dietary_restrictions" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_dietary"/>
+        <field name="sequence">10</field>
+        <field name="name">Do you have any dietary restrictions?</field>
+        <field name="question_type">text</field>
+        <field name="help_text">E.g. vegetarian, vegan, gluten-free, halal, kosher, pescatarian.</field>
+        <field name="storage_field">dietary_restrictions</field>
+    </record>
+    <record id="question_q_allergies" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_dietary"/>
+        <field name="sequence">20</field>
+        <field name="name">Any food allergies we should know about?</field>
+        <field name="question_type">text</field>
+        <field name="help_text">E.g. peanuts, lactose, shellfish, eggs.</field>
+        <field name="storage_field">allergies</field>
+    </record>
+
+    <!-- ============== SECTION 2: Room Preferences ============== -->
+    <record id="questionnaire_section_room" model="l10n_si.questionnaire.section">
+        <field name="name">Room Preferences</field>
+        <field name="sequence">20</field>
+        <field name="template_id" ref="questionnaire_template_default"/>
+    </record>
+    <record id="question_q_pillow" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_room"/>
+        <field name="sequence">10</field>
+        <field name="name">Pillow preference</field>
+        <field name="question_type">single_select</field>
+        <field name="options_raw">Firm
+Soft
+Hypoallergenic</field>
+        <field name="storage_field">pillow_preference</field>
+    </record>
+    <record id="question_q_bed" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_room"/>
+        <field name="sequence">20</field>
+        <field name="name">Bed configuration</field>
+        <field name="question_type">single_select</field>
+        <field name="options_raw">King bed
+Twin beds
+King + extra bed
+Twin + extra bed
+Crib needed</field>
+        <field name="storage_field">bed_configuration</field>
+    </record>
+    <record id="question_q_floor" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_room"/>
+        <field name="sequence">30</field>
+        <field name="name">Floor preference</field>
+        <field name="question_type">single_select</field>
+        <field name="options_raw">Low floor
+High floor
+Quiet side</field>
+        <field name="storage_field">floor_preference</field>
+    </record>
+
+    <!-- ============== SECTION 3: Occasion & Activities ============== -->
+    <record id="questionnaire_section_occasion" model="l10n_si.questionnaire.section">
+        <field name="name">Occasion &amp; Activities</field>
+        <field name="sequence">30</field>
+        <field name="template_id" ref="questionnaire_template_default"/>
+    </record>
+    <record id="question_q_occasion" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_occasion"/>
+        <field name="sequence">10</field>
+        <field name="name">Are you celebrating a special occasion?</field>
+        <field name="question_type">single_select</field>
+        <field name="options_raw">No special occasion
+Birthday
+Anniversary
+Honeymoon
+Business trip
+Family vacation</field>
+        <field name="storage_field">special_occasion</field>
+    </record>
+    <record id="question_q_occasion_date" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_occasion"/>
+        <field name="sequence">20</field>
+        <field name="name">Date of the occasion (if applicable)</field>
+        <field name="question_type">date</field>
+        <field name="storage_field">occasion_date</field>
+    </record>
+    <record id="question_q_activities" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_occasion"/>
+        <field name="sequence">30</field>
+        <field name="name">Which activities are you interested in?</field>
+        <field name="question_type">text</field>
+        <field name="help_text">E.g. spa, wine tasting, excursion, restaurant reservation, fitness.</field>
+        <field name="storage_field">planned_activities</field>
+    </record>
+
+    <!-- ============== SECTION 4: Arrival Details ============== -->
+    <record id="questionnaire_section_arrival" model="l10n_si.questionnaire.section">
+        <field name="name">Arrival Details</field>
+        <field name="sequence">40</field>
+        <field name="template_id" ref="questionnaire_template_default"/>
+    </record>
+    <record id="question_q_arrival_time" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_arrival"/>
+        <field name="sequence">10</field>
+        <field name="name">Estimated arrival time</field>
+        <field name="question_type">text</field>
+        <field name="help_text">E.g. 14:30, late evening around 22:00.</field>
+        <field name="storage_field">estimated_arrival_time</field>
+    </record>
+    <record id="question_q_transport" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_arrival"/>
+        <field name="sequence">20</field>
+        <field name="name">How will you arrive?</field>
+        <field name="question_type">single_select</field>
+        <field name="options_raw">Car
+Taxi
+Public transport
+Walking
+Other</field>
+        <field name="storage_field">transport_mode</field>
+    </record>
+    <record id="question_q_parking" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_arrival"/>
+        <field name="sequence">30</field>
+        <field name="name">Will you need parking?</field>
+        <field name="question_type">boolean</field>
+        <field name="storage_field">parking_needed</field>
+    </record>
+    <record id="question_q_communication" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_arrival"/>
+        <field name="sequence">40</field>
+        <field name="name">Preferred communication channel</field>
+        <field name="question_type">single_select</field>
+        <field name="options_raw">Email
+WhatsApp
+SMS
+No marketing</field>
+        <field name="storage_field">communication_preference</field>
+    </record>
+    <record id="question_q_notes" model="l10n_si.questionnaire.question">
+        <field name="section_id" ref="questionnaire_section_arrival"/>
+        <field name="sequence">50</field>
+        <field name="name">Anything else we should know?</field>
+        <field name="question_type">textarea</field>
+        <field name="storage_field">notes</field>
+    </record>
+</odoo>

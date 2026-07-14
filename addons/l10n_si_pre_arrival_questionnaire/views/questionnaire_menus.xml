@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_questionnaire_root"
+              name="Questionnaire"
+              parent="l10n_si_hotel.menu_l10n_si_hotel_root"
+              sequence="25"
+              groups="l10n_si_hotel.hotel_manager_group"/>
+
+    <menuitem id="menu_questionnaire_templates"
+              name="Templates"
+              parent="menu_questionnaire_root"
+              action="action_questionnaire_template"
+              sequence="10"/>
+
+    <menuitem id="menu_questionnaire_responses"
+              name="Responses"
+              parent="menu_questionnaire_root"
+              action="action_questionnaire_response"
+              sequence="20"/>
+</odoo>

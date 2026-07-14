@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============ Common layout ============ -->
+    <template id="questionnaire_layout">
+        &lt;!DOCTYPE html&gt;
+        <html>
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+                <title>Pre-arrival Questionnaire</title>
+                <link rel="stylesheet" href="/web/static/src/libs/bootstrap/css/bootstrap.min.css"/>
+                <link rel="stylesheet" href="/web/static/src/libs/fontawesome/css/fontawesome.min.css"/>
+                <style>
+                    * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+                    html, body {
+                        margin: 0;
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                        min-height: 100vh;
+                        color: #333;
+                    }
+                    .qr-container {
+                        max-width: 700px;
+                        margin: 40px auto;
+                        padding: 0 20px;
+                    }
+                    .qr-card {
+                        background: white;
+                        border-radius: 16px;
+                        padding: 40px;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                    }
+                    .qr-header {
+                        text-align: center;
+                        margin-bottom: 30px;
+                    }
+                    .qr-header h1 {
+                        color: #875A7B;
+                        font-size: 32px;
+                        margin-bottom: 8px;
+                    }
+                    .qr-header p {
+                        color: #666;
+                        font-size: 18px;
+                    }
+                    .qr-section {
+                        margin-bottom: 30px;
+                    }
+                    .qr-section h2 {
+                        color: #875A7B;
+                        font-size: 22px;
+                        margin-bottom: 16px;
+                        padding-bottom: 8px;
+                        border-bottom: 2px solid #f0f0f0;
+                    }
+                    .qr-question {
+                        margin-bottom: 24px;
+                    }
+                    .qr-question label {
+                        font-size: 17px;
+                        font-weight: 500;
+                        display: block;
+                        margin-bottom: 8px;
+                    }
+                    .qr-question .help-text {
+                        font-size: 14px;
+                        color: #999;
+                        margin-bottom: 8px;
+                    }
+                    .qr-question input[type="text"],
+                    .qr-question input[type="date"],
+                    .qr-question input[type="time"],
+                    .qr-question input[type="number"],
+                    .qr-question textarea,
+                    .qr-question select {
+                        width: 100%;
+                        padding: 12px 16px;
+                        font-size: 16px;
+                        border: 2px solid #ddd;
+                        border-radius: 8px;
+                        transition: border-color 0.2s;
+                    }
+                    .qr-question input:focus,
+                    .qr-question textarea:focus,
+                    .qr-question select:focus {
+                        outline: none;
+                        border-color: #875A7B;
+                    }
+                    .qr-question textarea {
+                        min-height: 80px;
+                        resize: vertical;
+                    }
+                    .qr-question .radio-group,
+                    .qr-question .checkbox-group {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 8px;
+                    }
+                    .qr-question .radio-group label,
+                    .qr-question .checkbox-group label {
+                        display: flex;
+                        align-items: center;
+                        padding: 12px 16px;
+                        border: 2px solid #ddd;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-weight: normal;
+                        transition: all 0.2s;
+                    }
+                    .qr-question .radio-group label:hover,
+                    .qr-question .checkbox-group label:hover {
+                        border-color: #875A7B;
+                        background: #f8f5f9;
+                    }
+                    .qr-question input[type="radio"],
+                    .qr-question input[type="checkbox"] {
+                        margin-right: 12px;
+                        width: 20px;
+                        height: 20px;
+                    }
+                    .qr-question .boolean-toggle {
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                    }
+                    .qr-question .boolean-toggle input {
+                        width: 24px;
+                        height: 24px;
+                    }
+                    .qr-nav {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-top: 30px;
+                        padding-top: 20px;
+                        border-top: 1px solid #eee;
+                    }
+                    .btn-qr {
+                        padding: 14px 32px;
+                        font-size: 18px;
+                        border: none;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-weight: 500;
+                        transition: all 0.2s;
+                    }
+                    .btn-qr-primary {
+                        background: #875A7B;
+                        color: white;
+                    }
+                    .btn-qr-secondary {
+                        background: #f5f5f5;
+                        color: #666;
+                    }
+                    .btn-qr:hover { opacity: 0.9; transform: translateY(-1px); }
+                    .progress-bar {
+                        background: #f0f0f0;
+                        height: 6px;
+                        border-radius: 3px;
+                        margin-bottom: 30px;
+                        overflow: hidden;
+                    }
+                    .progress-bar .fill {
+                        background: #875A7B;
+                        height: 100%;
+                        transition: width 0.3s;
+                    }
+                    .step-indicator {
+                        text-align: center;
+                        color: #999;
+                        font-size: 14px;
+                        margin-bottom: 8px;
+                    }
+                    .alert-qr {
+                        background: #d4edda;
+                        color: #155724;
+                        padding: 20px;
+                        border-radius: 8px;
+                        margin-bottom: 20px;
+                        text-align: center;
+                        font-size: 18px;
+                    }
+                    .alert-qr-error {
+                        background: #f8d7da;
+                        color: #721c24;
+                    }
+                    .summary-row {
+                        padding: 12px 0;
+                        border-bottom: 1px solid #eee;
+                    }
+                    .summary-row .label { font-weight: 500; color: #555; }
+                    .summary-row .value { color: #333; margin-top: 4px; }
+                    .summary-empty { color: #aaa; font-style: italic; }
+                </style>
+            </head>
+            <body>
+                <div class="qr-container">
+                    <div class="qr-card">
+                        <t t-out="0"/>
+                    </div>
+                </div>
+            </body>
+        </html>
+    </template>
+
+    <!-- ============ Welcome ============ -->
+    <template id="welcome">
+        <t t-call="l10n_si_pre_arrival_questionnaire.questionnaire_layout">
+            <div class="qr-header">
+                <h1>Welcome, <t t-out="response.partner_id.name or 'guest'"/>!</h1>
+                <p t-out="template.welcome_text"/>
+            </div>
+            <div class="step-indicator">
+                Estimated time: <t t-out="template.estimated_minutes"/> minutes
+            </div>
+            <div class="alert-qr">
+                <i class="fa fa-lock"/> Your answers are private and will only be used to prepare your stay.
+            </div>
+            <div style="text-align: center; margin: 30px 0;">
+                <p style="font-size: 16px; color: #666; margin-bottom: 24px;">
+                    We'll ask you about:
+                </p>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+                    <t t-foreach="sections" t-as="section">
+                        <span style="background: #f0e6f0; color: #875A7B; padding: 8px 16px; border-radius: 20px; font-size: 14px;">
+                            <i class="fa fa-check-circle"/> <t t-out="section.name"/>
+                        </span>
+                    </t>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a t-att-href="'/questionnaire/section/%s/0' % response.token"
+                   class="btn-qr btn-qr-primary">
+                    <i class="fa fa-arrow-right"/> Start
+                </a>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============ Section ============ -->
+    <template id="section">
+        <t t-call="l10n_si_pre_arrival_questionnaire.questionnaire_layout">
+            <div class="qr-header">
+                <h1 t-out="section.name"/>
+                <p t-if="section.description" t-out="section.description"/>
+            </div>
+            <div class="step-indicator">
+                Section <t t-out="section_idx + 1"/> of <t t-out="total_sections"/>
+            </div>
+            <div class="progress-bar">
+                <div class="fill" t-att-style="'width: %d%%' % ((section_idx + 1) * 100 / total_sections)"/>
+            </div>
+            <form t-att-action="'/questionnaire/submit_section/%s/%d' % (response.token, section_idx)"
+                  method="post">
+                <t t-foreach="section.question_ids" t-as="q">
+                    <div class="qr-question">
+                        <label>
+                            <t t-out="q.name"/>
+                            <t t-if="q.is_required"><span style="color: #dc3545;"> *</span></t>
+                        </label>
+                        <p t-if="q.help_text" class="help-text" t-out="q.help_text"/>
+
+                        <t t-if="q.question_type == 'text'">
+                            <input type="text" t-att-name="'q_%d' % q.id"
+                                   t-att-required="q.is_required"
+                                   t-att-value="getattr(response, q.storage_field, '') if q.storage_field else ''"/>
+                        </t>
+
+                        <t t-elif="q.question_type == 'textarea'">
+                            <textarea t-att-name="'q_%d' % q.id"
+                                      t-att-required="q.is_required"><t t-out="getattr(response, q.storage_field, '') if q.storage_field else ''"/></textarea>
+                        </t>
+
+                        <t t-elif="q.question_type == 'single_select'">
+                            <select t-att-name="'q_%d' % q.id" t-att-required="q.is_required">
+                                <option value="">—</option>
+                                <t t-foreach="q.get_options()" t-as="opt">
+                                    <option t-att-value="opt"
+                                            t-att-selected="q.storage_field and getattr(response, q.storage_field, '') == opt"
+                                            t-out="opt"/>
+                                </t>
+                            </select>
+                        </t>
+
+                        <t t-elif="q.question_type == 'multi_select'">
+                            <div class="checkbox-group">
+                                <t t-foreach="q.get_options()" t-as="opt">
+                                    <label>
+                                        <input type="checkbox" t-att-name="'q_%d' % q.id" t-att-value="opt"/>
+                                        <t t-out="opt"/>
+                                    </label>
+                                </t>
+                            </div>
+                        </t>
+
+                        <t t-elif="q.question_type == 'date'">
+                            <input type="date" t-att-name="'q_%d' % q.id"
+                                   t-att-required="q.is_required"/>
+                        </t>
+
+                        <t t-elif="q.question_type == 'time'">
+                            <input type="time" t-att-name="'q_%d' % q.id"
+                                   t-att-required="q.is_required"/>
+                        </t>
+
+                        <t t-elif="q.question_type == 'integer'">
+                            <input type="number" t-att-name="'q_%d' % q.id"
+                                   t-att-required="q.is_required"/>
+                        </t>
+
+                        <t t-elif="q.question_type == 'boolean'">
+                            <div class="boolean-toggle">
+                                <input type="checkbox" t-att-name="'q_%d' % q.id"
+                                       t-att-checked="q.storage_field and getattr(response, q.storage_field, False)"/>
+                                <span style="font-size: 16px;">Yes</span>
+                            </div>
+                        </t>
+
+                        <t t-elif="q.question_type == 'rating'">
+                            <div style="font-size: 32px; color: #ffc107;">
+                                <t t-foreach="range(1, 6)" t-as="star">
+                                    <label style="cursor: pointer;">
+                                        <input type="radio" t-att-name="'q_%d' % q.id"
+                                               t-att-value="star"
+                                               style="display: none;"/>
+                                        <i class="fa fa-star"/>
+                                    </label>
+                                </t>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+                <div class="qr-nav">
+                    <t t-if="prev_idx &gt;= 0">
+                        <a t-att-href="'/questionnaire/section/%s/%d' % (response.token, prev_idx)"
+                           class="btn-qr btn-qr-secondary">
+                            <i class="fa fa-arrow-left"/> Back
+                        </a>
+                    </t>
+                    <t t-else="">
+                        <span/>
+                    </t>
+                    <button type="submit" class="btn-qr btn-qr-primary">
+                        <t t-if="next_idx &lt; total_sections">
+                            Next <i class="fa fa-arrow-right"/>
+                        </t>
+                        <t t-else="">
+                            Review <i class="fa fa-check"/>
+                        </t>
+                    </button>
+                </div>
+            </form>
+        </t>
+    </template>
+
+    <!-- ============ Summary ============ -->
+    <template id="summary">
+        <t t-call="l10n_si_pre_arrival_questionnaire.questionnaire_layout">
+            <div class="qr-header">
+                <h1>Please review your answers</h1>
+                <p>Make sure everything is correct before submitting.</p>
+            </div>
+            <form t-att-action="'/questionnaire/complete/%s' % response.token" method="post">
+                <t t-foreach="summary" t-as="sec">
+                    <div class="qr-section">
+                        <h2 t-out="sec.section.name"/>
+                        <t t-foreach="sec.questions" t-as="qa">
+                            <div class="summary-row">
+                                <div class="label" t-out="qa.q.name"/>
+                                <div class="value">
+                                    <t t-if="qa.answer">
+                                        <t t-out="qa.answer"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span class="summary-empty">— not answered —</span>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+                <div class="qr-nav">
+                    <a t-att-href="'/questionnaire/section/%s/%d' % (response.token, len(summary) - 1)"
+                       class="btn-qr btn-qr-secondary">
+                        <i class="fa fa-arrow-left"/> Back to edit
+                    </a>
+                    <button type="submit" class="btn-qr btn-qr-primary">
+                        <i class="fa fa-check"/> Submit
+                    </button>
+                </div>
+            </form>
+        </t>
+    </template>
+
+    <!-- ============ Thank You ============ -->
+    <template id="thank_you">
+        <t t-call="l10n_si_pre_arrival_questionnaire.questionnaire_layout">
+            <div style="text-align: center;">
+                <div style="background: #28a745; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
+                    <i class="fa fa-check" style="font-size: 50px;"/>
+                </div>
+                <h1 style="color: #875A7B; margin-bottom: 16px;">Thank you!</h1>
+                <p style="font-size: 18px; color: #666; margin-bottom: 30px;" t-out="template.thank_you_text"/>
+                <div class="alert-qr">
+                    <i class="fa fa-bell"/> Your preferences have been shared with our team.
+                </div>
+                <div style="margin-top: 30px; color: #999; font-size: 14px;">
+                    <i class="fa fa-calendar"/> See you on
+                    <t t-out="response.folio_id.check_in.strftime('%A, %d %B %Y') if response.folio_id.check_in else 'your arrival date'"/>!
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============ Expired ============ -->
+    <template id="expired">
+        <t t-call="l10n_si_pre_arrival_questionnaire.questionnaire_layout">
+            <div style="text-align: center;">
+                <div style="background: #dc3545; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
+                    <i class="fa fa-clock-o" style="font-size: 50px;"/>
+                </div>
+                <h1 style="color: #dc3545;">This link has expired</h1>
+                <p style="font-size: 18px; color: #666;">
+                    Your check-in date has passed. If you still want to share
+                    preferences, please contact the reception.
+                </p>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============ Already Completed ============ -->
+    <template id="already_completed">
+        <t t-call="l10n_si_pre_arrival_questionnaire.questionnaire_layout">
+            <div style="text-align: center;">
+                <div style="background: #28a745; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
+                    <i class="fa fa-check" style="font-size: 50px;"/>
+                </div>
+                <h1 style="color: #875A7B;">Already completed</h1>
+                <p style="font-size: 18px; color: #666;">
+                    You've already submitted your preferences for this stay.
+                </p>
+                <p style="font-size: 14px; color: #999; margin-top: 20px;">
+                    Completed on <t t-out="response.completed_date.strftime('%d.%m.%Y at %H:%M') if response.completed_date else ''"/>
+                </p>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============ Admin Preview ============ -->
+    <template id="preview">
+        &lt;!DOCTYPE html&gt;
+        <html>
+            <head>
+                <meta charset="utf-8"/>
+                <title>Preview: <t t-out="template.name"/></title>
+                <link rel="stylesheet" href="/web/static/src/libs/bootstrap/css/bootstrap.min.css"/>
+            </head>
+            <body>
+                <div class="container py-4">
+                    <div class="alert alert-info">
+                        <i class="fa fa-eye"/> <strong>Admin preview</strong> —
+                        This is how guests will see the questionnaire.
+                    </div>
+                    <h1 t-out="template.name"/>
+                    <p t-out="template.welcome_text"/>
+                    <t t-foreach="sections" t-as="section">
+                        <h3 class="mt-4" t-out="section.name"/>
+                        <p t-if="section.description" class="text-muted" t-out="section.description"/>
+                        <t t-foreach="section.question_ids" t-as="q">
+                            <div class="form-group mt-3">
+                                <label>
+                                    <t t-out="q.name"/>
+                                    <t t-if="q.is_required"><span class="text-danger">*</span></t>
+                                    <span class="badge badge-secondary ml-2" t-out="q.question_type"/>
+                                </label>
+                                <p t-if="q.help_text" class="text-muted small" t-out="q.help_text"/>
+                                <t t-if="q.question_type == 'text'">
+                                    <input type="text" class="form-control" disabled="disabled"/>
+                                </t>
+                                <t t-elif="q.question_type == 'textarea'">
+                                    <textarea class="form-control" disabled="disabled"/>
+                                </t>
+                                <t t-elif="q.question_type == 'single_select'">
+                                    <select class="form-control" disabled="disabled">
+                                        <option>—</option>
+                                        <t t-foreach="q.get_options()" t-as="opt">
+                                            <option t-out="opt"/>
+                                        </t>
+                                    </select>
+                                </t>
+                                <t t-elif="q.question_type == 'multi_select'">
+                                    <t t-foreach="q.get_options()" t-as="opt">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" disabled="disabled"/>
+                                            <label class="form-check-label" t-out="opt"/>
+                                        </div>
+                                    </t>
+                                </t>
+                                <t t-elif="q.question_type == 'boolean'">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" disabled="disabled"/>
+                                        <label class="form-check-label">Yes</label>
+                                    </div>
+                                </t>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+            </body>
+        </html>
+    </template>
+</odoo>

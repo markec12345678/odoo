@@ -5,6 +5,75 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.19.0] — 2026-07-14
+
+### Added — Pre-arrival Questionnaire (86th module)
+
+**`l10n_si_pre_arrival_questionnaire`** — structured pre-arrival survey that
+guests fill via a token-authenticated link (no login). Captures dietary
+restrictions, allergies, room preferences, planned activities, arrival
+details, and free-text notes.
+
+Guest flow (5 screens):
+1. **Welcome** — guest opens link from Guest Journey email
+2. **Section-by-section** — multi-step form (Dietary, Room, Occasion, Arrival)
+3. **Summary** — review all answers
+4. **Submit** — confirm and save
+5. **Thank you** — confirmation screen
+
+Models:
+- `l10n_si.questionnaire.template` — reusable, multilingual template
+- `l10n_si.questionnaire.section` — groups questions
+- `l10n_si.questionnaire.question` — single question (9 types: text,
+  textarea, single_select, multi_select, date, time, integer, boolean, rating)
+- `l10n_si.questionnaire.response` — guest's response (state machine:
+  sent → started → completed / expired)
+- Extends `l10n_si.hotel.folio` with:
+  - `questionnaire_response_id` (smart button)
+  - `questionnaire_state` (status)
+  - `has_dietary_alert` (computed)
+  - `dietary_summary` (computed — for kitchen display)
+  - `action_send_questionnaire()` (creates response + sends email)
+
+Default template installed (4 sections, 13 questions):
+- **Dietary:** restrictions, allergies
+- **Room:** pillow, bed, floor preferences
+- **Occasion:** special occasion, date, planned activities
+- **Arrival:** estimated time, transport, parking, communication, notes
+
+Features:
+- Token-based (no login) — secure per-guest links
+- Multi-section wizard UI with progress bar
+- 9 question types
+- Summary review before submit
+- Expire stale responses cron (daily)
+- Folio chatter notification on completion
+- Dietary alert banner on folio form
+- Printable PDF report (QWeb)
+- Reception dashboard: responses tree/form with filters
+- Admin preview mode
+
+Routes (all public):
+- `GET  /questionnaire/start/<token>` — welcome screen
+- `GET  /questionnaire/section/<token>/<idx>` — show section
+- `POST /questionnaire/submit_section/<token>/<idx>` — save & next
+- `GET  /questionnaire/summary/<token>` — review answers
+- `POST /questionnaire/complete/<token>` — finalize
+- `GET  /questionnaire/preview/<template_id>` — admin preview
+
+Integrates with:
+- `l10n_si_hotel` (folio)
+- `l10n_si_guest_journey` (link in T-7d email — planned)
+- `l10n_si_kiosk` (pre-fill check-in form — planned)
+- `l10n_si_ai_concierge` (context for personalisation — planned)
+- `website` (QWeb templates)
+
+### Updated — README badges
+- Module count: 85 → 86
+- Test count: 135 → 137
+- Version: v19.0.18.0 → v19.0.19.0
+- Added pre-arrival questionnaire to feature highlights
+
 ## [19.0.18.0] — 2026-07-14
 
 ### Added — Kiosk Mode (85th module)

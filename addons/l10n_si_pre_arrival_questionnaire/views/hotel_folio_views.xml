@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add questionnaire smart button + dietary alert banner to folio form -->
+    <record id="view_hotel_folio_form_questionnaire" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.folio.form.questionnaire</field>
+        <field name="model">l10n_si.hotel.folio</field>
+        <field name="inherit_id" ref="l10n_si_hotel.view_hotel_folio_form"/>
+        <field name="arch" type="xml">
+            <!-- Smart button -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object"
+                        name="action_view_questionnaire" icon="fa-clipboard-list">
+                    <div class="o_stat_info">
+                        <field name="questionnaire_state" widget="label_selection"
+                               attrs="{'invisible': [('questionnaire_response_id', '=', False)]}"/>
+                        <span class="o_stat_text" attrs="{'invisible': [('questionnaire_response_id', '!=', False)]}">Questionnaire</span>
+                    </div>
+                </button>
+            </xpath>
+            <!-- Dietary alert banner -->
+            <xpath expr="//sheet" position="inside">
+                <div class="alert alert-warning" role="alert"
+                     invisible="not has_dietary_alert">
+                    <i class="fa fa-exclamation-triangle"/> <strong>Dietary alert:</strong>
+                    <field name="dietary_summary" readonly="1"/>
+                </div>
+            </xpath>
+            <!-- Send questionnaire button in header -->
+            <xpath expr="//header" position="inside">
+                <button name="action_send_questionnaire" type="object"
+                        string="Send Questionnaire"
+                        class="btn-secondary"
+                        invisible="questionnaire_response_id or not partner_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

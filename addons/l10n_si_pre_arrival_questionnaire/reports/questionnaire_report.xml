@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="report_questionnaire_response_pdf"
+        model="l10n_si.questionnaire.response"
+        string="Pre-arrival Questionnaire"
+        report_type="qweb-pdf"
+        name="l10n_si_pre_arrival_questionnaire.report_questionnaire_response_template"
+        file="l10n_si_pre_arrival_questionnaire.report_questionnaire_response"
+    />
+
+    <template id="report_questionnaire_response_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Pre-arrival Questionnaire</h2>
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <strong>Guest:</strong> <span t-field="doc.partner_id.name"/><br/>
+                            <strong>Folio:</strong> <span t-field="doc.folio_id.name"/><br/>
+                            <strong>Check-in:</strong> <span t-field="doc.folio_id.check_in"/><br/>
+                            <strong>Completed:</strong> <span t-field="doc.completed_date"/>
+                        </div>
+                        <div class="col-6">
+                            <t t-if="doc.has_dietary_alert if hasattr(doc, 'has_dietary_alert') else (doc.dietary_restrictions or doc.allergies)">
+                                <div class="alert alert-warning">
+                                    <strong>Dietary alert!</strong><br/>
+                                    <t t-if="doc.dietary_restrictions">
+                                        Restrictions: <span t-field="doc.dietary_restrictions"/><br/>
+                                    </t>
+                                    <t t-if="doc.allergies">
+                                        Allergies: <span t-field="doc.allergies"/>
+                                    </t>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-4">Dietary Preferences</h3>
+                    <table class="table table-sm">
+                        <tr><td class="font-weight-bold w-25">Restrictions</td><td t-field="doc.dietary_restrictions"/></tr>
+                        <tr><td class="font-weight-bold">Allergies</td><td t-field="doc.allergies"/></tr>
+                    </table>
+
+                    <h3 class="mt-4">Room Preferences</h3>
+                    <table class="table table-sm">
+                        <tr><td class="font-weight-bold w-25">Pillow</td><td t-field="doc.pillow_preference"/></tr>
+                        <tr><td class="font-weight-bold">Bed</td><td t-field="doc.bed_configuration"/></tr>
+                        <tr><td class="font-weight-bold">Floor</td><td t-field="doc.floor_preference"/></tr>
+                    </table>
+
+                    <h3 class="mt-4">Occasion &amp; Activities</h3>
+                    <table class="table table-sm">
+                        <tr><td class="font-weight-bold w-25">Occasion</td><td t-field="doc.special_occasion"/></tr>
+                        <tr><td class="font-weight-bold">Date</td><td t-field="doc.occasion_date"/></tr>
+                        <tr><td class="font-weight-bold">Activities</td><td t-field="doc.planned_activities"/></tr>
+                    </table>
+
+                    <h3 class="mt-4">Arrival</h3>
+                    <table class="table table-sm">
+                        <tr><td class="font-weight-bold w-25">Time</td><td t-field="doc.estimated_arrival_time"/></tr>
+                        <tr><td class="font-weight-bold">Transport</td><td t-field="doc.transport_mode"/></tr>
+                        <tr><td class="font-weight-bold">Parking</td><td t-field="doc.parking_needed"/></tr>
+                        <tr><td class="font-weight-bold">Communication</td><td t-field="doc.communication_preference"/></tr>
+                        <tr><td class="font-weight-bold">Notes</td><td t-field="doc.notes"/></tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
