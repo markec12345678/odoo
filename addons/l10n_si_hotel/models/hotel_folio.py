@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
 """Hotel folio - main bill for a guest's stay."""
+import base64
+import io
+import logging
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+
+_logger = logging.getLogger(__name__)
 
 
 class HotelFolio(models.Model):
@@ -38,6 +44,15 @@ class HotelFolio(models.Model):
 
     # Service charges
     service_line_ids = fields.One2many('l10n_si.hotel.folio.line', 'folio_id', string='Storitve')
+
+    # QR Code for self check-in
+    checkin_qr_code = fields.Binary(
+        string='QR koda za check-in', copy=False, readonly=True,
+        help='QR koda ki gostu odpre self check-in formo na telefonu',
+    )
+    checkin_url = fields.Char(
+        string='Check-in URL', compute='_compute_checkin_url', store=False,
+    )
 
     # Status
     state = fields.Selection(
@@ -191,6 +206,86 @@ class HotelFolio(models.Model):
             'res_id': self.move_id.id,
             'view_mode': 'form',
         }
+
+    # ================================================================
+    # QR CODE & SELF CHECK-IN
+    # ================================================================
+
+    @api.depends('id')
+    def _compute_checkin_url(self):
+        """Compute the self check-in URL for this folio."""
+        base_url = self.env['ir.config_parameter'].sudo().get_param(
+            'web.base.url', 'https://odoo-production-fa42.up.railway.app'
+        )
+        for folio in self:
+            folio.checkin_url = f'{base_url}/my/checkin/{folio.id}'
+
+    def action_generate_checkin_qr(self):
+        """Generate QR code linking to self check-in page."""
+        try:
+            import qrcode
+        except ImportError:
+            raise UserError(_(
+                'qrcode knjižnica ni nameščena. Namestite z: pip install qrcode'
+            ))
+
+        for folio in self:
+            url = folio.checkin_url
+            if not url:
+                continue
+
+            qr = qrcode.QRCode(
+                version=1,
+                error_correction=qrcode.constants.ERROR_CORRECT_L,
+                box_size=8,
+                border=4,
+            )
+            qr.add_data(url)
+            qr.make(fit=True)
+
+            img = qr.make_image(fill_color='#1E3A5F', back_color='white')
+            buffer = io.BytesIO()
+            img.save(buffer, format='PNG')
+            qr_base64 = base64.b64encode(buffer.getvalue()).decode()
+
+            folio.checkin_qr_code = qr_base64
+            _logger.info('QR code generated for folio %s → %s', folio.name, url)
+
+    def action_send_checkin_whatsapp(self):
+        """Send self check-in link via WhatsApp to the guest."""
+        WhatsAppMsg = self.env.get('l10n_si.whatsapp.message')
+        if not WhatsAppMsg:
+            raise UserError(_('WhatsApp modul ni nameščen.'))
+
+        for folio in self:
+            if not folio.partner_id.mobile and not folio.partner_id.phone:
+                raise UserError(_('Gost nima telefonske številke.'))
+
+            company = folio.company_id
+            if not company.wa_enabled:
+                raise UserError(_('WhatsApp ni omogočen za to podjetje.'))
+
+            url = folio.checkin_url
+            check_in_date = folio.check_in.strftime('%d.%m.%Y') if folio.check_in else ''
+            guest_name = folio.partner_id.name or 'Gost'
+
+            body = (
+                f'Dobrodošli {guest_name}! 🏨\n\n'
+                f'Vaša rezervacija je potrjena. Check-in: {check_in_date}.\n\n'
+                f'Za hitro prijavo izpolnite obrazec na povezavi:\n{url}\n\n'
+                f'Lep pozdrav, ekipa hotela'
+            )
+
+            msg = WhatsAppMsg.create({
+                'partner_id': folio.partner_id.id,
+                'direction': 'outgoing',
+                'message_type': 'text',
+                'body': body,
+                'company_id': company.id,
+            })
+            msg.action_send()
+            _logger.info('WhatsApp check-in link sent to %s for folio %s',
+                         folio.partner_id.name, folio.name)
 
 
 class HotelFolioLine(models.Model):

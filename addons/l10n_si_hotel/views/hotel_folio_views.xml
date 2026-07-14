@@ -31,6 +31,10 @@
                             invisible="['|', ('state', '!=', 'closed'), ('move_id', '!=', False)]"/>
                     <button name="action_add_service" type="object" string="Dodaj storitev"
                             invisible="[('state', 'in', ('draft', 'cancelled'))]"/>
+                    <button name="action_generate_checkin_qr" type="object"
+                            string="📱 Generiraj QR" class="btn-secondary"/>
+                    <button name="action_send_checkin_whatsapp" type="object"
+                            string="💬 Pošlji check-in WhatsApp" class="btn-secondary"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -88,6 +92,17 @@
                         </page>
                         <page string="Opombe">
                             <field name="notes" nolabel="1"/>
+                        </page>
+                        <page string="📱 Self Check-in" invisible="[('checkin_qr_code', '=', False)]">
+                            <group>
+                                <group string="Check-in povezava">
+                                    <field name="checkin_url" readonly="1" widget="url"/>
+                                </group>
+                                <group string="QR koda">
+                                    <field name="checkin_qr_code" widget="image"
+                                           class="oe_avatar"/>
+                                </group>
+                            </group>
                         </page>
                     </notebook>
                     <group class="oe_total">
