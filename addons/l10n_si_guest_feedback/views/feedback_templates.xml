@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============ Layout ============ -->
+    <template id="feedback_layout">
+        &lt;!DOCTYPE html&gt;
+        <html>
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+                <title>Guest Feedback</title>
+                <link rel="stylesheet" href="/web/static/src/libs/bootstrap/css/bootstrap.min.css"/>
+                <link rel="stylesheet" href="/web/static/src/libs/fontawesome/css/fontawesome.min.css"/>
+                <style>
+                    * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+                    html, body {
+                        margin: 0;
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                        min-height: 100vh;
+                        color: #333;
+                    }
+                    .fb-container { max-width: 700px; margin: 40px auto; padding: 0 20px; }
+                    .fb-card {
+                        background: white;
+                        border-radius: 16px;
+                        padding: 40px;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                    }
+                    .fb-header { text-align: center; margin-bottom: 30px; }
+                    .fb-header h1 { color: #875A7B; font-size: 28px; margin-bottom: 8px; }
+                    .fb-header p { color: #666; font-size: 18px; }
+                    .fb-question { margin-bottom: 30px; }
+                    .fb-question label {
+                        font-size: 17px; font-weight: 500;
+                        display: block; margin-bottom: 12px;
+                    }
+                    .fb-question .help-text {
+                        font-size: 14px; color: #999; margin-bottom: 8px;
+                    }
+                    .star-rating {
+                        display: flex; gap: 8px; font-size: 36px;
+                    }
+                    .star-rating label {
+                        cursor: pointer; color: #ddd; transition: color 0.2s;
+                    }
+                    .star-rating input { display: none; }
+                    .star-rating input:checked ~ label,
+                    .star-rating label:hover,
+                    .star-rating label:hover ~ label {
+                        color: #ffc107;
+                    }
+                    .star-rating label.active { color: #ffc107; }
+                    .nps-rating {
+                        display: flex; flex-wrap: wrap; gap: 4px;
+                    }
+                    .nps-rating label {
+                        width: 38px; height: 38px;
+                        display: flex; align-items: center; justify-content: center;
+                        border: 2px solid #ddd; border-radius: 6px;
+                        cursor: pointer; font-weight: 600;
+                        transition: all 0.2s;
+                    }
+                    .nps-rating input { display: none; }
+                    .nps-rating input:checked + label {
+                        background: #875A7B; color: white; border-color: #875A7B;
+                    }
+                    .fb-question input[type="text"],
+                    .fb-question textarea {
+                        width: 100%; padding: 12px 16px; font-size: 16px;
+                        border: 2px solid #ddd; border-radius: 8px;
+                    }
+                    .fb-question textarea { min-height: 80px; resize: vertical; }
+                    .btn-fb {
+                        padding: 14px 32px; font-size: 18px; border: none;
+                        border-radius: 8px; cursor: pointer; font-weight: 500;
+                        background: #875A7B; color: white; width: 100%;
+                    }
+                    .btn-fb:hover { opacity: 0.9; }
+                    .alert-fb {
+                        background: #d4edda; color: #155724;
+                        padding: 20px; border-radius: 8px;
+                        margin-bottom: 20px; text-align: center; font-size: 18px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="fb-container">
+                    <div class="fb-card">
+                        <t t-out="0"/>
+                    </div>
+                </div>
+            </body>
+        </html>
+    </template>
+
+    <!-- ============ Form ============ -->
+    <template id="form">
+        <t t-call="l10n_si_guest_feedback.feedback_layout">
+            <div class="fb-header">
+                <h1 t-out="survey.name"/>
+                <p t-out="survey.welcome_text"/>
+            </div>
+            <form t-att-action="'/feedback/submit/%s' % response.token" method="post">
+                <t t-foreach="survey.question_ids" t-as="q">
+                    <div class="fb-question">
+                        <label>
+                            <t t-out="q.name"/>
+                            <t t-if="q.is_required"><span style="color: #dc3545;"> *</span></t>
+                        </label>
+                        <p t-if="q.help_text" class="help-text" t-out="q.help_text"/>
+
+                        <t t-if="q.question_type == 'rating_5'">
+                            <div class="star-rating">
+                                <t t-foreach="range(1, 6)" t-as="star">
+                                    <input type="radio" t-att-name="'q_%d' % q.id"
+                                           t-att-value="star" t-att-id="'q_%d_%d' % (q.id, star)"
+                                           t-att-required="q.is_required"/>
+                                    <label t-att-for="'q_%d_%d' % (q.id, star)">
+                                        <i class="fa fa-star"/>
+                                    </label>
+                                </t>
+                            </div>
+                        </t>
+
+                        <t t-elif="q.question_type == 'rating_10'">
+                            <div class="nps-rating">
+                                <t t-foreach="range(0, 11)" t-as="n">
+                                    <input type="radio" t-att-name="'q_%d' % q.id"
+                                           t-att-value="n" t-att-id="'q_%d_%d' % (q.id, n)"
+                                           t-att-required="q.is_required"/>
+                                    <label t-att-for="'q_%d_%d' % (q.id, n)" t-out="n"/>
+                                </t>
+                            </div>
+                        </t>
+
+                        <t t-elif="q.question_type == 'yes_no'">
+                            <div>
+                                <label style="margin-right: 20px;">
+                                    <input type="radio" t-att-name="'q_%d' % q.id"
+                                           value="1" t-att-required="q.is_required"/>
+                                    Yes
+                                </label>
+                                <label>
+                                    <input type="radio" t-att-name="'q_%d' % q.id"
+                                           value="0" t-att-required="q.is_required"/>
+                                    No
+                                </label>
+                            </div>
+                        </t>
+
+                        <t t-elif="q.question_type == 'text'">
+                            <input type="text" t-att-name="'q_%d' % q.id"
+                                   t-att-required="q.is_required"/>
+                        </t>
+
+                        <t t-elif="q.question_type == 'textarea'">
+                            <textarea t-att-name="'q_%d' % q.id"
+                                      t-att-required="q.is_required"/>
+                        </t>
+                    </div>
+                </t>
+                <button type="submit" class="btn-fb">
+                    <i class="fa fa-paper-plane"/> Submit Feedback
+                </button>
+            </form>
+        </t>
+    </template>
+
+    <!-- ============ Thank You ============ -->
+    <template id="thank_you">
+        <t t-call="l10n_si_guest_feedback.feedback_layout">
+            <div style="text-align: center;">
+                <div style="background: #28a745; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
+                    <i class="fa fa-check" style="font-size: 50px;"/>
+                </div>
+                <h1 style="color: #875A7B; margin-bottom: 16px;">Thank you!</h1>
+                <p style="font-size: 18px; color: #666; margin-bottom: 30px;" t-out="survey.thank_you_text"/>
+                <div class="alert-fb" t-if="response.has_alert">
+                    <i class="fa fa-heart"/> We're sorry your experience wasn't perfect.
+                    Our team has been notified and will follow up.
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============ Expired ============ -->
+    <template id="expired">
+        <t t-call="l10n_si_guest_feedback.feedback_layout">
+            <div style="text-align: center;">
+                <div style="background: #dc3545; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
+                    <i class="fa fa-clock-o" style="font-size: 50px;"/>
+                </div>
+                <h1 style="color: #dc3545;">Link expired</h1>
+                <p style="font-size: 18px; color: #666;">
+                    This feedback link is no longer active.
+                </p>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============ Already Completed ============ -->
+    <template id="already_completed">
+        <t t-call="l10n_si_guest_feedback.feedback_layout">
+            <div style="text-align: center;">
+                <div style="background: #28a745; color: white; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
+                    <i class="fa fa-check" style="font-size: 50px;"/>
+                </div>
+                <h1 style="color: #875A7B;">Already submitted</h1>
+                <p style="font-size: 18px; color: #666;">
+                    You've already given us feedback for this stay. Thank you!
+                </p>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============ Admin Preview ============ -->
+    <template id="preview">
+        &lt;!DOCTYPE html&gt;
+        <html>
+            <head>
+                <meta charset="utf-8"/>
+                <title>Preview: <t t-out="survey.name"/></title>
+                <link rel="stylesheet" href="/web/static/src/libs/bootstrap/css/bootstrap.min.css"/>
+            </head>
+            <body>
+                <div class="container py-4">
+                    <div class="alert alert-info">
+                        <i class="fa fa-eye"/> <strong>Admin preview</strong>
+                    </div>
+                    <h1 t-out="survey.name"/>
+                    <p t-out="survey.welcome_text"/>
+                    <t t-foreach="survey.question_ids" t-as="q">
+                        <div class="form-group mt-3">
+                            <label>
+                                <t t-out="q.name"/>
+                                <t t-if="q.is_required"><span class="text-danger">*</span></t>
+                                <span class="badge badge-secondary ml-2" t-out="q.question_type"/>
+                            </label>
+                            <p t-if="q.help_text" class="text-muted small" t-out="q.help_text"/>
+                        </div>
+                    </t>
+                </div>
+            </body>
+        </html>
+    </template>
+</odoo>

@@ -5,6 +5,65 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.22.0] — 2026-07-14
+
+### Added — Real-time Guest Feedback with Instant Alerts (89th module)
+
+**`l10n_si_guest_feedback`** — collects structured feedback from guests
+during their stay and after checkout, with real-time alerting when scores
+are low.
+
+Guest flow:
+1. Guest receives email with unique feedback link (token-authenticated, no login)
+2. Opens link — sees multi-question form (5-star ratings + free text)
+3. On submit: data saved, dashboard updated, AI sentiment analysis runs
+4. If any score <= alert threshold (default 2): instant alert to managers
+   via email + internal chatter notification
+
+Key features:
+- Token-based, no login (works on any device)
+- 5 question types: rating_5, rating_10 (NPS), yes_no, text, textarea
+- 10 categories: room, cleanliness, service, breakfast, restaurant, spa,
+  staff, value, overall, other
+- Configurable alert threshold per survey (default: score <= 2)
+- Multi-channel alerts: email, internal chatter (WhatsApp optional)
+- AI sentiment analysis (positive/neutral/negative + 1-sentence summary)
+- Real-time dashboard with auto-refresh JSON endpoint
+- Trends: avg score, NPS, sentiment breakdown
+- Alert workflow: open → acknowledged → in_progress → resolved/wont_fix
+- Action tracking: root cause, action taken, follow-up done
+- GDPR-safe: anonymous option
+- 2 default surveys installed:
+  - Mid-stay: 6 questions (cleanliness, comfort, staff, breakfast, overall, improvement)
+  - Post-stay NPS: 3 questions (NPS 0-10, value, recommendation reason)
+
+Models:
+- `l10n_si.feedback.survey` — reusable survey definition
+- `l10n_si.feedback.question` — single question (5 types, 10 categories)
+- `l10n_si.feedback.response` — guest's response (state machine)
+- `l10n_si.feedback.alert` — low-score alert with action tracking
+- Extends `l10n_si.hotel.folio` with smart button, avg score, alert banner
+
+Routes (all public, no login):
+- `GET  /feedback/start/<token>` — show feedback form
+- `POST /feedback/submit/<token>` — submit
+- `GET  /feedback/preview/<survey_id>` — admin preview
+- `JSON /feedback/dashboard/data` — real-time dashboard data
+
+Integrates with:
+- `l10n_si_hotel` (folio, partner)
+- `l10n_si_guest_journey` (link in mid-stay message)
+- `l10n_si_whatsapp_business` (alert channel, optional)
+- `l10n_si_ai_core` (sentiment analysis, optional)
+- `website` (QWeb templates)
+
+### Updated — README badges
+- Module count: 88 → 89
+- Test count: 141 → 143
+- Version: v19.0.21.0 → v19.0.22.0
+- Guest Experience category: 12 → 13 modules
+- Added real-time feedback to feature highlights
+
 ## [19.0.21.0] — 2026-07-14
 
 ### Added — Monthly AJPES eTurizem Report Automation (88th module)

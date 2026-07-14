@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Default mid-stay survey -->
+    <record id="feedback_survey_mid_stay" model="l10n_si.feedback.survey">
+        <field name="name">Mid-stay Feedback</field>
+        <field name="sequence">10</field>
+        <field name="trigger">mid_stay</field>
+        <field name="welcome_text">We'd love to hear how we're doing. Takes 1 minute.</field>
+        <field name="thank_you_text">Thank you for your feedback! We appreciate it.</field>
+        <field name="alert_threshold">2</field>
+        <field name="allow_anonymous" eval="True"/>
+    </record>
+    <record id="feedback_q_room_cleanliness" model="l10n_si.feedback.question">
+        <field name="survey_id" ref="feedback_survey_mid_stay"/>
+        <field name="sequence">10</field>
+        <field name="name">How clean is your room?</field>
+        <field name="question_type">rating_5</field>
+        <field name="category">cleanliness</field>
+        <field name="is_required" eval="True"/>
+    </record>
+    <record id="feedback_q_room_comfort" model="l10n_si.feedback.question">
+        <field name="survey_id" ref="feedback_survey_mid_stay"/>
+        <field name="sequence">20</field>
+        <field name="name">How comfortable is your room?</field>
+        <field name="question_type">rating_5</field>
+        <field name="category">room</field>
+        <field name="is_required" eval="True"/>
+    </record>
+    <record id="feedback_q_staff" model="l10n_si.feedback.question">
+        <field name="survey_id" ref="feedback_survey_mid_stay"/>
+        <field name="sequence">30</field>
+        <field name="name">How friendly was our staff?</field>
+        <field name="question_type">rating_5</field>
+        <field name="category">staff</field>
+        <field name="is_required" eval="True"/>
+    </record>
+    <record id="feedback_q_breakfast" model="l10n_si.feedback.question">
+        <field name="survey_id" ref="feedback_survey_mid_stay"/>
+        <field name="sequence">40</field>
+        <field name="name">How was breakfast?</field>
+        <field name="question_type">rating_5</field>
+        <field name="category">breakfast</field>
+        <field name="is_required" eval="False"/>
+    </record>
+    <record id="feedback_q_overall" model="l10n_si.feedback.question">
+        <field name="survey_id" ref="feedback_survey_mid_stay"/>
+        <field name="sequence">50</field>
+        <field name="name">Overall, how would you rate your stay so far?</field>
+        <field name="question_type">rating_5</field>
+        <field name="category">overall</field>
+        <field name="is_required" eval="True"/>
+    </record>
+    <record id="feedback_q_improvement" model="l10n_si.feedback.question">
+        <field name="survey_id" ref="feedback_survey_mid_stay"/>
+        <field name="sequence">60</field>
+        <field name="name">What could we improve?</field>
+        <field name="question_type">textarea</field>
+        <field name="category">other</field>
+        <field name="is_required" eval="False"/>
+    </record>
+
+    <!-- Post-stay NPS survey -->
+    <record id="feedback_survey_post_stay" model="l10n_si.feedback.survey">
+        <field name="name">Post-stay NPS Survey</field>
+        <field name="sequence">20</field>
+        <field name="trigger">post_stay</field>
+        <field name="trigger_offset_hours">24</field>
+        <field name="welcome_text">How likely are you to recommend us? We value your opinion.</field>
+        <field name="thank_you_text">Thank you for your time!</field>
+        <field name="alert_threshold">3</field>
+        <field name="allow_anonymous" eval="True"/>
+    </record>
+    <record id="feedback_q_nps" model="l10n_si.feedback.question">
+        <field name="survey_id" ref="feedback_survey_post_stay"/>
+        <field name="sequence">10</field>
+        <field name="name">How likely are you to recommend us to a friend or colleague?</field>
+        <field name="question_type">rating_10</field>
+        <field name="category">overall</field>
+        <field name="is_required" eval="True"/>
+        <field name="help_text">0 = Not at all likely, 10 = Extremely likely</field>
+    </record>
+    <record id="feedback_q_value" model="l10n_si.feedback.question">
+        <field name="survey_id" ref="feedback_survey_post_stay"/>
+        <field name="sequence">20</field>
+        <field name="name">How was the value for money?</field>
+        <field name="question_type">rating_5</field>
+        <field name="category">value</field>
+        <field name="is_required" eval="True"/>
+    </record>
+    <record id="feedback_q_recommend_text" model="l10n_si.feedback.question">
+        <field name="survey_id" ref="feedback_survey_post_stay"/>
+        <field name="sequence">30</field>
+        <field name="name">What's the main reason for your score?</field>
+        <field name="question_type">textarea</field>
+        <field name="category">other</field>
+        <field name="is_required" eval="False"/>
+    </record>
+</odoo>

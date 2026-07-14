@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_feedback_root"
+              name="Guest Feedback"
+              parent="l10n_si_hotel.menu_l10n_si_hotel_root"
+              sequence="40"
+              groups="l10n_si_hotel.hotel_manager_group"/>
+
+    <menuitem id="menu_feedback_dashboard"
+              name="Dashboard"
+              parent="menu_feedback_root"
+              action="action_feedback_dashboard"
+              sequence="10"/>
+
+    <menuitem id="menu_feedback_responses"
+              name="Responses"
+              parent="menu_feedback_root"
+              action="action_feedback_response"
+              sequence="20"/>
+
+    <menuitem id="menu_feedback_alerts"
+              name="Alerts"
+              parent="menu_feedback_root"
+              action="action_feedback_alert"
+              sequence="30"/>
+
+    <menuitem id="menu_feedback_surveys"
+              name="Surveys"
+              parent="menu_feedback_root"
+              action="action_feedback_survey"
+              sequence="40"/>
+</odoo>

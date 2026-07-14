@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hotel_folio_form_feedback" model="ir.ui.view">
+        <field name="name">l10n_si.hotel.folio.form.feedback</field>
+        <field name="model">l10n_si.hotel.folio</field>
+        <field name="inherit_id" ref="l10n_si_hotel.view_hotel_folio_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object"
+                        name="action_view_feedback" icon="fa-star">
+                    <div class="o_stat_info">
+                        <field name="feedback_avg_score" widget="statinfo"
+                               string="Score"/>
+                        <span class="o_stat_text">Feedback</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <div class="alert alert-danger" role="alert"
+                     invisible="not has_feedback_alert">
+                    <i class="fa fa-exclamation-triangle"/>
+                    <strong> Low feedback score received</strong> — see feedback details.
+                </div>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_send_feedback_request" type="object"
+                        string="Send Feedback Request"
+                        class="btn-secondary"
+                        invisible="not partner_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

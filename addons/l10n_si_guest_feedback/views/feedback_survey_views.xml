@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_feedback_survey_tree" model="ir.ui.view">
+        <field name="name">l10n_si.feedback.survey.tree</field>
+        <field name="model">l10n_si.feedback.survey</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="not active">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="trigger"/>
+                <field name="question_count"/>
+                <field name="response_count"/>
+                <field name="avg_score"/>
+                <field name="alert_count"/>
+                <field name="alert_threshold"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_feedback_survey_form" model="ir.ui.view">
+        <field name="name">l10n_si.feedback.survey.form</field>
+        <field name="model">l10n_si.feedback.survey</field>
+        <field name="arch" type="xml">
+            <form string="Feedback Survey">
+                <header>
+                    <button name="action_preview" type="object" string="Preview"
+                            class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="action_view_responses" icon="fa-list">
+                            <field name="response_count" widget="statinfo" string="Responses"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                            invisible="not active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="trigger"/>
+                            <field name="trigger_offset_hours"
+                                   invisible="trigger not in ['post_stay', 'arrival_day', 'check_out_day', 'mid_stay']"/>
+                            <field name="alert_threshold"/>
+                            <field name="allow_anonymous"/>
+                            <field name="active"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="welcome_text"/>
+                            <field name="thank_you_text"/>
+                        </group>
+                    </group>
+                    <field name="description" widget="html"/>
+                    <notebook>
+                        <page string="Questions" name="questions">
+                            <field name="question_ids" context="{'default_survey_id': id}">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="question_type"/>
+                                    <field name="category"/>
+                                    <field name="is_required"/>
+                                    <field name="help_text"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Stats" name="stats">
+                            <group>
+                                <group>
+                                    <field name="response_count"/>
+                                    <field name="avg_score"/>
+                                    <field name="alert_count"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_feedback_survey_search" model="ir.ui.view">
+        <field name="name">l10n_si.feedback.survey.search</field>
+        <field name="model">l10n_si.feedback.survey</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Archived" name="filter_archived"
+                        domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_feedback_survey" model="ir.actions.act_window">
+        <field name="name">Feedback Surveys</field>
+        <field name="res_model">l10n_si.feedback.survey</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_feedback_survey_search"/>
+    </record>
+</odoo>

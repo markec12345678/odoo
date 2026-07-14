@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_feedback_survey_user,Feedback Survey User,model_l10n_si_feedback_survey,base.group_user,1,0,0,0
+access_feedback_survey_manager,Feedback Survey Manager,model_l10n_si_feedback_survey,l10n_si_hotel.hotel_manager_group,1,1,1,1
+access_feedback_question_user,Feedback Question User,model_l10n_si_feedback_question,base.group_user,1,0,0,0
+access_feedback_question_manager,Feedback Question Manager,model_l10n_si_feedback_question,l10n_si_hotel.hotel_manager_group,1,1,1,1
+access_feedback_response_user,Feedback Response User,model_l10n_si_feedback_response,base.group_user,1,0,0,0
+access_feedback_response_manager,Feedback Response Manager,model_l10n_si_feedback_response,l10n_si_hotel.hotel_manager_group,1,1,1,1
+access_feedback_response_public,Feedback Response Public,model_l10n_si_feedback_response,base.group_public,1,1,1,0
+access_feedback_alert_user,Feedback Alert User,model_l10n_si_feedback_alert,base.group_user,1,0,0,0
+access_feedback_alert_manager,Feedback Alert Manager,model_l10n_si_feedback_alert,l10n_si_hotel.hotel_manager_group,1,1,1,1

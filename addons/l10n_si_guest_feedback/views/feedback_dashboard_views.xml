@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_feedback_dashboard" model="ir.ui.view">
+        <field name="name">l10n_si.feedback.dashboard</field>
+        <field name="model">l10n_si.feedback.response</field>
+        <field name="arch" type="xml">
+            <dashboard>
+                <view type="kanban" name="kanban_responses"/>
+                <group>
+                    <aggregate name="total_today" string="Today"
+                               group_operator="count" measure="__count__"
+                               domain="[('completed_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                    <aggregate name="alerts_open" string="Open Alerts"
+                               group_operator="count" measure="__count__"
+                               domain="[('has_alert', '=', True), ('state', '=', 'completed')]"/>
+                    <aggregate name="avg_score" string="Avg Score"
+                               group_operator="avg" measure="overall_score"/>
+                    <aggregate name="nps_avg" string="Avg NPS"
+                               group_operator="avg" measure="nps_score"/>
+                </group>
+                <group>
+                    <view type="pie" name="sentiment_pie"/>
+                    <view type="bar" name="survey_bar"/>
+                </group>
+            </dashboard>
+        </field>
+    </record>
+
+    <record id="action_feedback_dashboard" model="ir.actions.act_window">
+        <field name="name">Feedback Dashboard</field>
+        <field name="res_model">l10n_si.feedback.response</field>
+        <field name="view_mode">dashboard,tree,form</field>
+        <field name="context">{'search_default_filter_today': 1}</field>
+    </record>
+</odoo>

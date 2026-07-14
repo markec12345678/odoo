@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="feedback_survey_company_rule" model="ir.rule">
+        <field name="name">Feedback Survey: multi-company</field>
+        <field name="model_id" ref="model_l10n_si_feedback_survey"/>
+        <field name="domain_force">
+            ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+        </field>
+    </record>
+    <record id="feedback_response_company_rule" model="ir.rule">
+        <field name="name">Feedback Response: multi-company</field>
+        <field name="model_id" ref="model_l10n_si_feedback_response"/>
+        <field name="domain_force">
+            ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+        </field>
+    </record>
+    <record id="feedback_alert_company_rule" model="ir.rule">
+        <field name="name">Feedback Alert: multi-company</field>
+        <field name="model_id" ref="model_l10n_si_feedback_alert"/>
+        <field name="domain_force">
+            ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+        </field>
+    </record>
+    <!-- Public can read/create their own responses (token-scoped) -->
+    <record id="feedback_response_public_rule" model="ir.rule">
+        <field name="name">Feedback Response: public access</field>
+        <field name="model_id" ref="model_l10n_si_feedback_response"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_public'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

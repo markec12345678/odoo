@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_feedback_alert_tree" model="ir.ui.view">
+        <field name="name">l10n_si.feedback.alert.tree</field>
+        <field name="model">l10n_si.feedback.alert</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="state == 'open'"
+                  decoration-warning="state in ['acknowledged', 'in_progress']"
+                  decoration-success="state in ['resolved', 'wont_fix']">
+                <field name="create_date"/>
+                <field name="partner_id"/>
+                <field name="folio_id"/>
+                <field name="question_id"/>
+                <field name="category"/>
+                <field name="score"/>
+                <field name="state" widget="badge"/>
+                <field name="assigned_to"/>
+                <button name="action_acknowledge" type="object" string="Ack"
+                        class="btn-warning btn-sm"
+                        invisible="state != 'open'"/>
+                <button name="action_resolve" type="object" string="Resolve"
+                        class="btn-success btn-sm"
+                        invisible="state not in ['acknowledged', 'in_progress']"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_feedback_alert_form" model="ir.ui.view">
+        <field name="name">l10n_si.feedback.alert.form</field>
+        <field name="model">l10n_si.feedback.alert</field>
+        <field name="arch" type="xml">
+            <form string="Feedback Alert">
+                <header>
+                    <button name="action_acknowledge" type="object" string="Acknowledge"
+                            class="btn-warning"
+                            invisible="state != 'open'"/>
+                    <button name="action_start_progress" type="object" string="Start"
+                            class="btn-primary"
+                            invisible="state not in ['open', 'acknowledged']"/>
+                    <button name="action_resolve" type="object" string="Resolve"
+                            class="btn-success"
+                            invisible="state not in ['acknowledged', 'in_progress']"/>
+                    <button name="action_wont_fix" type="object" string="Won't Fix"
+                            class="btn-secondary"
+                            invisible="state in ['resolved', 'wont_fix']"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="open,acknowledged,in_progress,resolved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Source">
+                            <field name="response_id"/>
+                            <field name="survey_id" readonly="1"/>
+                            <field name="folio_id" readonly="1"/>
+                            <field name="partner_id" readonly="1"/>
+                            <field name="question_id" readonly="1"/>
+                        </group>
+                        <group string="Score">
+                            <field name="score" readonly="1"/>
+                            <field name="category" readonly="1"/>
+                            <field name="comment" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Resolution" name="resolution">
+                            <group>
+                                <field name="assigned_to"/>
+                                <field name="acknowledged_on" readonly="1"/>
+                                <field name="resolved_on" readonly="1"/>
+                                <field name="root_cause"/>
+                                <field name="action_taken"/>
+                                <field name="follow_up_done" widget="boolean_toggle"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_feedback_alert_search" model="ir.ui.view">
+        <field name="name">l10n_si.feedback.alert.search</field>
+        <field name="model">l10n_si.feedback.alert</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id"/>
+                <field name="folio_id"/>
+                <field name="category"/>
+                <filter string="Open" name="filter_open"
+                        domain="[('state', '=', 'open')]"/>
+                <filter string="In Progress" name="filter_inprogress"
+                        domain="[('state', 'in', ['acknowledged', 'in_progress'])]"/>
+                <filter string="Resolved" name="filter_resolved"
+                        domain="[('state', '=', 'resolved')]"/>
+                <filter string="Today" name="filter_today"
+                        domain="[('create_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                <group expand="0" string="Group By">
+                    <filter string="State" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                    <filter string="Category" name="group_category"
+                            context="{'group_by': 'category'}"/>
+                    <filter string="Assigned to" name="group_assigned"
+                            context="{'group_by': 'assigned_to'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_feedback_alert" model="ir.actions.act_window">
+        <field name="name">Feedback Alerts</field>
+        <field name="res_model">l10n_si.feedback.alert</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_feedback_alert_search"/>
+        <field name="context">{'search_default_filter_open': 1, 'search_default_filter_today': 1}</field>
+    </record>
+</odoo>
