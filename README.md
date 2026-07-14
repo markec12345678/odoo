@@ -4,20 +4,20 @@
 
 ### The most complete Slovenian & Croatian tourism ERP on Earth
 
+[![Live Demo](https://img.shields.io/badge/🚀_LIVE_DEMO-Try_Now-9B59B6.svg?style=for-the-badge)](https://odoo-production-fa42.up.railway.app/web/login)
+
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](./LICENSE)
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0-875A7B.svg)](https://www.odoo.com)
 [![Modules](https://img.shields.io/badge/Modules-205-green.svg)](#module-catalog)
 [![OCA](https://img.shields.io/badge/OCA%20Modules-107-orange.svg)](https://github.com/OCA)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](./requirements.txt)
-[![Railway](https://img.shields.io/badge/Railway-Live%20Demo-9B59B6.svg)](https://odoo-production-fa42.up.railway.app/web/login)
-[![Version](https://img.shields.io/badge/version-v19.0.29.0-blue.svg)](https://github.com/markec12345678/odoo/releases)
+[![Version](https://img.shields.io/badge/version-v19.0.30.0-blue.svg)](https://github.com/markec12345678/odoo/releases)
 [![Status](https://img.shields.io/badge/status-production%20ready-brightgreen.svg)]()
-[![Modules Installed](https://img.shields.io/badge/installed-240+-brightgreen.svg)]()
-[![Last Commit](https://img.shields.io/github/last-commit/markec12345678/odoo/19.0)](https://github.com/markec12345678/odoo/commits/19.0)
-[![Coverage](https://img.shields.io/badge/l10n%20coverage-100%25-brightgreen.svg)]()
 [![CI Tests](https://img.shields.io/badge/tests-143%2F143%20%E2%9C%93-brightgreen.svg)](https://github.com/markec12345678/odoo/actions)
 [![Scanners](https://img.shields.io/badge/scanners-5%20%C2%B7%200%20issues-brightgreen.svg)](scripts/)
-[![AI Core](https://img.shields.io/badge/AI%20Core-9%20modules%20%C2%B7%207%20backends-blue.svg)](addons/l10n_si_ai_core/)
+[![AI Core](https://img.shields.io/badge/AI%20Core-7%20backends-blue.svg)](addons/l10n_si_ai_core/)
+[![Coverage](https://img.shields.io/badge/l10n%20coverage-100%25-brightgreen.svg)]()
+[![Last Commit](https://img.shields.io/github/last-commit/markec12345678/odoo-si-hr-tourism-suite/19.0)](https://github.com/markec12345678/odoo-si-hr-tourism-suite/commits/19.0)
 
 ### CI/CD Status
 
@@ -31,15 +31,63 @@
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Live Demo — Try It Now!
+
+<div align="center">
+
+### 👉 [**https://odoo-production-fa42.up.railway.app/web/login**](https://odoo-production-fa42.up.railway.app/web/login)
+
+**Credentials:** `admin` / `admin` (change immediately!)
 
 | | |
 |---|---|
-| **URL** | https://odoo-production-fa42.up.railway.app/web/login |
-| **Credentials** | `admin` / `admin` (change immediately!) |
 | **Hosting** | Railway Cloud (Postgres 18 + Odoo 19) |
 | **Auto-deploy** | Every push to `19.0` triggers Railway rebuild |
-| **Modules** | 240+ installed (80 l10n + 160 Odoo/OCA) |
+| **Modules installed** | 240+ (98 custom SI/HR + 144 OCA + Odoo core) |
+| **Uptime** | 24/7 with daily backup at 03:00 |
+
+</div>
+
+---
+
+## 📸 Screenshots — See It In Action
+
+<div align="center">
+
+### Hotel Folio with Guest Journey Timeline
+![Hotel Folio](docs/screenshots/07-folio-guest-journey.svg)
+
+*Smart buttons: Journey · Feedback · Questionnaire · Dietary Alert · Housekeeping · eTurizem — all on one screen*
+
+### AI Concierge — 7 LLM Backends Router
+![AI Core](docs/screenshots/08-ai-core-router.svg)
+
+*ZAI · OpenAI · Anthropic · ZenMux · OpenAI-compatible · Puter.com (FREE) · Local — with automatic fallback*
+
+### Lobby Kiosk — Self Check-in
+![Kiosk](docs/screenshots/09-kiosk-checkin.svg)
+
+*Touch-optimised tablet interface — passport OCR, signature pad, auto AJPES registration*
+
+### AI Concierge Chat
+![AI Concierge](docs/screenshots/01-ai-concierge.svg)
+
+### FURS Invoice with ZOI/EOR
+![FURS](docs/screenshots/02-furs-invoice.svg)
+
+### Hotel Executive Dashboard
+![Dashboard](docs/screenshots/03-hotel-dashboard.svg)
+
+### POS Terminal with Fiscal
+![POS](docs/screenshots/04-pos-terminal.svg)
+
+### Channel Manager (Booking.com + Airbnb)
+![Channel Manager](docs/screenshots/05-channel-manager.svg)
+
+### Audit Trail
+![Audit Trail](docs/screenshots/06-audit-trail.svg)
+
+</div>
 
 ---
 

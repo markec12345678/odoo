@@ -5,6 +5,36 @@ All notable changes to the custom `l10n_si_*` and `l10n_hr_*` modules are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.30.0] — 2026-07-14
+
+### Improved — GitHub visibility & marketing
+
+**Repository description updated** to include SEO keywords:
+- "Slovenia & Croatia Tourism ERP" at the start
+- All key features: FURS, AJPES, CISF Fiskalizacija 2.0, HTZ eVisitor
+- "205 modules. 100% OCA 19.0 parity. Live demo on Railway."
+
+**Topics expanded** (20/20):
+- Added: `slovenian-localization`, `croatian-localization`, `tourism`, `open-source`
+- Kept: `slovenia`, `croatia`, `furs`, `ajpes`, `etourism`, `fiskalizacija`, `evisitor`
+- Plus: `hotel-management`, `hospitality`, `ai-concierge`, `channel-manager`, `revenue-management`, `whatsapp-business`, `railway`, `odoo`, `odoo-19`
+
+**README redesigned**:
+- Added prominent "🚀 LIVE DEMO — Try Now" badge at the top (large, for-the-badge style)
+- New "Live Demo — Try It Now!" section with centered URL and info table
+- New "📸 Screenshots — See It In Action" section with 9 SVG screenshots
+- All badges updated with correct repo path (`odoo-si-hr-tourism-suite` not `odoo`)
+
+**3 new SVG screenshots** added:
+- `07-folio-guest-journey.svg` — Hotel folio with 6 smart buttons, 3-column layout (guest info, stay details, AI chat), and full guest journey timeline (T-7d → Day +3)
+- `08-ai-core-router.svg` — AI Core router with 7 backend cards, request flow diagram, fallback chain, and usage stats (99.7% success rate, €847 saved)
+- `09-kiosk-checkin.svg` — Tablet self check-in kiosk with 6-step progress, OCR-scanned passport field, and form layout
+
+### Updated — README badges
+- Version: v19.0.29.0 → v19.0.30.0
+- Fixed Last Commit badge URL (was wrong repo path)
+- Removed redundant badges (Modules Installed, Railway)
+
 ## [19.0.29.0] — 2026-07-14
 
 ### 🎉 OCA 19.0 FULL PARITY ACHIEVED! (Batch 3 — final)
